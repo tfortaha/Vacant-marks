@@ -1,0 +1,48 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-label>Dashboard</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card style="background-color: #2f3b69;">
+    <ion-grid>
+      <form [formGroup]="formlogin">
+      <ion-row>
+        <ion-col>
+          <ion-item (click)="getVenues()">
+            <ion-label position="stacked">Search Venue</ion-label>
+            <ion-input type="text" placeholder="Please Select" name="destination"
+               formControlName="destination" [(ngModel)]="formlogin.value.destination"></ion-input>
+          </ion-item>
+          <span class="error ion-padding" style="color:red;" *ngIf="errorControl.Date.value =='' && errorControl.destination.value ==''">
+            Venue is required.
+          </span>
+        </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="stacked">Select Date</ion-label>
+              <ion-datetime displayFormat="DD MMMM YYYY" placeholder="Please Select" min="{{minDate}}" max={{maxDate}} formControlName="Date">
+              </ion-datetime>
+              </ion-item>
+              <span class="error ion-padding" style="color:red;" *ngIf="errorControl.Date.value =='' ">
+                Date is required.
+              </span>
+          </ion-col>
+        </ion-row> 
+
+        <ion-row>
+          <ion-col>
+            <ion-button color="light" expand="full" (click)="search()">Search</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-grid>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="light" routerLink="/dashboard" routerDirection="root">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Venues</ion-title>
+  </ion-toolbar>
+  <ion-toolbar >
+    <ion-searchbar placeholder="Search"
+                   animated
+                   (ionChange)="search( $event )"
+                   (ionCancel)="clear($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="popular_hotels" *ngIf=" allData.length > 0">
+    <ion-card class="ion-no-padding" *ngFor="let item of data">
+      <ion-list lines="none" class="ion-no-padding">
+        <ion-item class="ion-no-padding">
+
+          <!-- Image -->
+          <ion-thumbnail slot="start"  (click)="onItemClickFunc(item.Id,item.Name)">
+            <img class="packages_thumbnail" style="vertical-align: middle;" [src]="item.EncodeLogo">
+          </ion-thumbnail>
+
+          <ion-label class="ion-text-wrap" (click)="onItemClickFunc(item.Id,item.Name)">
+            <h4 class="name">{{item.Name}}</h4>
+            <ion-text color="medium">
+              <ion-icon color="medium" name="location"></ion-icon> {{item.Address}}<br>
+              <ion-text>Max Capacity: {{item.MaxCapacity}} | Min Capacity: {{item.MinCapacity}}</ion-text>
+            </ion-text>
+            <br>
+            <!-- <ion-text color="color1">${{item.price}}/night</ion-text> -->
+            <p class="ion-padding-top">
+              <ion-icon name="person"></ion-icon>
+              <ion-icon name="briefcase"></ion-icon>
+              <ion-icon name="logo-slack"></ion-icon>
+              <ion-icon name="copy"></ion-icon>
+            </p>
+          </ion-label>
+          <ion-card (click)="onDetailsClick(item.Id,item.Name)">
+            Book Now
+          </ion-card>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
+</ion-content>

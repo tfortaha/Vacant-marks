@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="light" routerLink="/dashboard" routerDirection="root">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <!-- <ion-buttons slot="start">
+      <ion-back-button defaultHref="dashboard"></ion-back-button>
+    </ion-buttons> -->
+    <ion-title>Venues</ion-title>
+  </ion-toolbar>
+  <ion-toolbar >
+    <ion-searchbar placeholder="Search"
+                   animated
+                   (ionChange)="search( $event )"
+                   (ionCancel)="clear($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list class="ion-no-margin" lines="none">
+          <ion-item *ngFor="let item of data; let Index=index;"
+            (click)="onItemClickFunc(item.Id,item.Name)">
+            <ion-label>
+              <h2 class="text-size-xs">{{Index+1}}. {{item.Name}}</h2>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <div id="popular_hotels">
+    <ion-card class="ion-no-padding" *ngFor="let item of data">
+      <ion-list lines="none" class="ion-no-padding">
+        <ion-item class="ion-no-padding">
+
+          <!-- Image -->
+          <ion-thumbnail slot="start"  (click)="onItemClickFunc(item.Id,item.Name)">
+            <img class="packages_thumbnail" style="vertical-align: middle;" [src]="item.EncodeLogo">
+          </ion-thumbnail>
+
+          <ion-label class="ion-text-wrap" (click)="onItemClickFunc(item.Id,item.Name)">
+            <h4 class="name">{{item.Name}}</h4>
+            <ion-text color="medium">
+              <ion-icon color="medium" name="location"></ion-icon> {{item.Address}}
+            </ion-text>
+            <br>
+            <!-- <ion-text color="color1">${{item.price}}/night</ion-text> -->
+            <p class="ion-padding-top">
+              <ion-icon name="person"></ion-icon> {{item.totalPerson}} &nbsp;
+              <ion-icon name="briefcase"></ion-icon> {{item.suitcases}} &nbsp;
+              <ion-icon name="logo-slack"></ion-icon> {{item.seats}} &nbsp;
+              <ion-icon name="copy"></ion-icon> {{item.doorCount}}
+            </p>
+          </ion-label>
+          <ion-card (click)="onDetailsClick(item.Id,item.Name)">
+            Details
+          </ion-card>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
+</ion-content>

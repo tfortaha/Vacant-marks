@@ -1,0 +1,6424 @@
+@charset "UTF-8";
+/* INCLUDE FONTS AND COLOR COMBINATION
+=======================================================
+=======================================================*/
+@font-face {
+  font-family: "fontello";
+  src: url('fontello.eot?89574879');
+  src: url('fontello.eot?89574879#iefix') format("embedded-opentype"), url('fontello.woff?89574879') format("woff"), url('fontello.ttf?89574879') format("truetype"), url('fontello.svg?89574879#fontello') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?89574879#fontello') format('svg');
+  }
+}
+*/
+[class^=icon-]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-feature-settings: normal;
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: 0.2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+.icon-account:before {
+  content: "";
+}
+/* '' */
+.icon-zip-box:before {
+  content: "";
+}
+/* '' */
+.icon-airballoon:before {
+  content: "";
+}
+/* '' */
+.icon-airplane-off:before {
+  content: "";
+}
+/* '' */
+.icon-airplane:before {
+  content: "";
+}
+/* '' */
+.icon-alarm-check:before {
+  content: "";
+}
+/* '' */
+.icon-alarm-multiple:before {
+  content: "";
+}
+/* '' */
+.icon-alarm-off:before {
+  content: "";
+}
+/* '' */
+.icon-alarm-plus:before {
+  content: "";
+}
+/* '' */
+.icon-apple:before {
+  content: "";
+}
+/* '' */
+.icon-appnet:before {
+  content: "";
+}
+/* '' */
+.icon-apps:before {
+  content: "";
+}
+/* '' */
+.icon-arrange-bring-forward:before {
+  content: "";
+}
+/* '' */
+.icon-arrange-bring-to-front:before {
+  content: "";
+}
+/* '' */
+.icon-arrange-send-backward:before {
+  content: "";
+}
+/* '' */
+.icon-arrange-send-to-back:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-collapse:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-right:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-up-bold-circle-outline:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-up-bold-circle:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-up-bold-hexagon-outline:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-up:before {
+  content: "";
+}
+/* '' */
+.icon-attachment:before {
+  content: "";
+}
+/* '' */
+.icon-auto-fix:before {
+  content: "";
+}
+/* '' */
+.icon-auto-upload:before {
+  content: "";
+}
+/* '' */
+.icon-battery-90:before {
+  content: "";
+}
+/* '' */
+.icon-battery-alert:before {
+  content: "";
+}
+/* '' */
+.icon-battery-charging-100:before {
+  content: "";
+}
+/* '' */
+.icon-battery-charging-20:before {
+  content: "";
+}
+/* '' */
+.icon-battery-charging-30:before {
+  content: "";
+}
+/* '' */
+.icon-battery-charging-40:before {
+  content: "";
+}
+/* '' */
+.icon-battery-charging-60:before {
+  content: "";
+}
+/* '' */
+.icon-battery-charging-80:before {
+  content: "";
+}
+/* '' */
+.icon-beats:before {
+  content: "";
+}
+/* '' */
+.icon-behance:before {
+  content: "";
+}
+/* '' */
+.icon-bell-off:before {
+  content: "";
+}
+/* '' */
+.icon-bell-outline:before {
+  content: "";
+}
+/* '' */
+.icon-bell-ring-outline:before {
+  content: "";
+}
+/* '' */
+.icon-bell-ring:before {
+  content: "";
+}
+/* '' */
+.icon-bell-sleep:before {
+  content: "";
+}
+/* '' */
+.icon-bell:before {
+  content: "";
+}
+/* '' */
+.icon-blur-off:before {
+  content: "";
+}
+/* '' */
+.icon-blur-radial:before {
+  content: "";
+}
+/* '' */
+.icon-blur:before {
+  content: "";
+}
+/* '' */
+.icon-book-multiple-variant:before {
+  content: "";
+}
+/* '' */
+.icon-book-multiple:before {
+  content: "";
+}
+/* '' */
+.icon-book-variant:before {
+  content: "";
+}
+/* '' */
+.icon-book:before {
+  content: "";
+}
+/* '' */
+.icon-bookmark-outline:before {
+  content: "";
+}
+/* '' */
+.icon-bowling:before {
+  content: "";
+}
+/* '' */
+.icon-briefcase-check:before {
+  content: "";
+}
+/* '' */
+.icon-briefcase-download:before {
+  content: "";
+}
+/* '' */
+.icon-briefcase-upload:before {
+  content: "";
+}
+/* '' */
+.icon-briefcase:before {
+  content: "";
+}
+/* '' */
+.icon-brightness-1:before {
+  content: "";
+}
+/* '' */
+.icon-brightness-2:before {
+  content: "";
+}
+/* '' */
+.icon-brightness-3:before {
+  content: "";
+}
+/* '' */
+.icon-brightness-4:before {
+  content: "";
+}
+/* '' */
+.icon-brightness-5:before {
+  content: "";
+}
+/* '' */
+.icon-brightness-6:before {
+  content: "";
+}
+/* '' */
+.icon-brightness-7:before {
+  content: "";
+}
+/* '' */
+.icon-brightness-auto:before {
+  content: "";
+}
+/* '' */
+.icon-broom:before {
+  content: "";
+}
+/* '' */
+.icon-brush:before {
+  content: "";
+}
+/* '' */
+.icon-bug:before {
+  content: "";
+}
+/* '' */
+.icon-bus:before {
+  content: "";
+}
+/* '' */
+.icon-cake-variant:before {
+  content: "";
+}
+/* '' */
+.icon-cake:before {
+  content: "";
+}
+/* '' */
+.icon-calculator:before {
+  content: "";
+}
+/* '' */
+.icon-calendar-check:before {
+  content: "";
+}
+/* '' */
+.icon-calendar-remove:before {
+  content: "";
+}
+/* '' */
+.icon-calendar-text:before {
+  content: "";
+}
+/* '' */
+.icon-calendar-today:before {
+  content: "";
+}
+/* '' */
+.icon-calendar:before {
+  content: "";
+}
+/* '' */
+.icon-camcorder-box-off:before {
+  content: "";
+}
+/* '' */
+.icon-camcorder-box:before {
+  content: "";
+}
+/* '' */
+.icon-camcorder-off:before {
+  content: "";
+}
+/* '' */
+.icon-camcorder:before {
+  content: "";
+}
+/* '' */
+.icon-camera-iris:before {
+  content: "";
+}
+/* '' */
+.icon-camera-party-mode:before {
+  content: "";
+}
+/* '' */
+.icon-camera-switch:before {
+  content: "";
+}
+/* '' */
+.icon-camera-timer:before {
+  content: "";
+}
+/* '' */
+.icon-camera:before {
+  content: "";
+}
+/* '' */
+.icon-candycane:before {
+  content: "";
+}
+/* '' */
+.icon-car-wash:before {
+  content: "";
+}
+/* '' */
+.icon-car:before {
+  content: "";
+}
+/* '' */
+.icon-carrot:before {
+  content: "";
+}
+/* '' */
+.icon-cart-outline:before {
+  content: "";
+}
+/* '' */
+.icon-cart:before {
+  content: "";
+}
+/* '' */
+.icon-cash:before {
+  content: "";
+}
+/* '' */
+.icon-cast-connected:before {
+  content: "";
+}
+/* '' */
+.icon-cast:before {
+  content: "";
+}
+/* '' */
+.icon-cellphone-android:before {
+  content: "";
+}
+/* '' */
+.icon-cellphone-dock:before {
+  content: "";
+}
+/* '' */
+.icon-cellphone-iphone:before {
+  content: "";
+}
+/* '' */
+.icon-cellphone-link-off:before {
+  content: "";
+}
+/* '' */
+.icon-cellphone-link:before {
+  content: "";
+}
+/* '' */
+.icon-cellphone-settings:before {
+  content: "";
+}
+/* '' */
+.icon-cellphone:before {
+  content: "";
+}
+/* '' */
+.icon-chart-bar:before {
+  content: "";
+}
+/* '' */
+.icon-chart-histogram:before {
+  content: "";
+}
+/* '' */
+.icon-chart-line:before {
+  content: "";
+}
+/* '' */
+.icon-check-all:before {
+  content: "";
+}
+/* '' */
+.icon-check:before {
+  content: "";
+}
+/* '' */
+.icon-checkbox-blank-circle-outline:before {
+  content: "";
+}
+/* '' */
+.icon-checkbox-blank-circle:before {
+  content: "";
+}
+/* '' */
+.icon-checkbox-blank-outline:before {
+  content: "";
+}
+/* '' */
+.icon-checkbox-blank:before {
+  content: "";
+}
+/* '' */
+.icon-checkbox-marked-circle-outline:before {
+  content: "";
+}
+/* '' */
+.icon-checkbox-marked-circle:before {
+  content: "";
+}
+/* '' */
+.icon-checkbox-marked-outline:before {
+  content: "";
+}
+/* '' */
+.icon-checkbox-marked:before {
+  content: "";
+}
+/* '' */
+.icon-checkbox-multiple-blank-outline:before {
+  content: "";
+}
+/* '' */
+.icon-checkbox-multiple-blank:before {
+  content: "";
+}
+/* '' */
+.icon-checkbox-multiple-marked-outline:before {
+  content: "";
+}
+/* '' */
+.icon-checkbox-multiple-marked:before {
+  content: "";
+}
+/* '' */
+.icon-chevron-down:before {
+  content: "";
+}
+/* '' */
+.icon-chevron-left:before {
+  content: "";
+}
+/* '' */
+.icon-chevron-right:before {
+  content: "";
+}
+/* '' */
+.icon-chevron-up:before {
+  content: "";
+}
+/* '' */
+.icon-city:before {
+  content: "";
+}
+/* '' */
+.icon-clipboard-account:before {
+  content: "";
+}
+/* '' */
+.icon-clipboard-alert:before {
+  content: "";
+}
+/* '' */
+.icon-clipboard-arrow-down:before {
+  content: "";
+}
+/* '' */
+.icon-clipboard-arrow-left:before {
+  content: "";
+}
+/* '' */
+.icon-clipboard-check:before {
+  content: "";
+}
+/* '' */
+.icon-clipboard-outline:before {
+  content: "";
+}
+/* '' */
+.icon-clipboard-text:before {
+  content: "";
+}
+/* '' */
+.icon-clipboard:before {
+  content: "";
+}
+/* '' */
+.icon-clock:before {
+  content: "";
+}
+/* '' */
+.icon-close-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-close-box:before {
+  content: "";
+}
+/* '' */
+.icon-close-circle-outline:before {
+  content: "";
+}
+/* '' */
+.icon-close-circle:before {
+  content: "";
+}
+/* '' */
+.icon-close-network:before {
+  content: "";
+}
+/* '' */
+.icon-close:before {
+  content: "";
+}
+/* '' */
+.icon-closed-caption:before {
+  content: "";
+}
+/* '' */
+.icon-cloud-check:before {
+  content: "";
+}
+/* '' */
+.icon-cloud-circle:before {
+  content: "";
+}
+/* '' */
+.icon-cloud-download:before {
+  content: "";
+}
+/* '' */
+.icon-cloud-outline-off:before {
+  content: "";
+}
+/* '' */
+.icon-cloud-outline:before {
+  content: "";
+}
+/* '' */
+.icon-cloud-upload:before {
+  content: "";
+}
+/* '' */
+.icon-cloud:before {
+  content: "";
+}
+/* '' */
+.icon-coffee-to-go:before {
+  content: "";
+}
+/* '' */
+.icon-coffee:before {
+  content: "";
+}
+/* '' */
+.icon-coin:before {
+  content: "";
+}
+/* '' */
+.icon-color-helper:before {
+  content: "";
+}
+/* '' */
+.icon-comment-account-outline:before {
+  content: "";
+}
+/* '' */
+.icon-comment-account:before {
+  content: "";
+}
+/* '' */
+.icon-comment-alert-outline:before {
+  content: "";
+}
+/* '' */
+.icon-comment-alert:before {
+  content: "";
+}
+/* '' */
+.icon-comment-check-outline:before {
+  content: "";
+}
+/* '' */
+.icon-comment-check:before {
+  content: "";
+}
+/* '' */
+.icon-comment-multipe-outline:before {
+  content: "";
+}
+/* '' */
+.icon-comment-outline:before {
+  content: "";
+}
+/* '' */
+.icon-comment-plus-outline:before {
+  content: "";
+}
+/* '' */
+.icon-comment-processing-outline:before {
+  content: "";
+}
+/* '' */
+.icon-comment-processing:before {
+  content: "";
+}
+/* '' */
+.icon-comment-remove-outline:before {
+  content: "";
+}
+/* '' */
+.icon-comment-text-outline:before {
+  content: "";
+}
+/* '' */
+.icon-comment-text:before {
+  content: "";
+}
+/* '' */
+.icon-comment:before {
+  content: "";
+}
+/* '' */
+.icon-compare:before {
+  content: "";
+}
+/* '' */
+.icon-compass-outline:before {
+  content: "";
+}
+/* '' */
+.icon-compass:before {
+  content: "";
+}
+/* '' */
+.icon-content-copy:before {
+  content: "";
+}
+/* '' */
+.icon-content-cut:before {
+  content: "";
+}
+/* '' */
+.icon-content-paste:before {
+  content: "";
+}
+/* '' */
+.icon-content-save:before {
+  content: "";
+}
+/* '' */
+.icon-contrast-box:before {
+  content: "";
+}
+/* '' */
+.icon-contrast-circle:before {
+  content: "";
+}
+/* '' */
+.icon-contrast:before {
+  content: "";
+}
+/* '' */
+.icon-cow:before {
+  content: "";
+}
+/* '' */
+.icon-credit-card:before {
+  content: "";
+}
+/* '' */
+.icon-crop-free:before {
+  content: "";
+}
+/* '' */
+.icon-crop-landscape:before {
+  content: "";
+}
+/* '' */
+.icon-crop-portrait:before {
+  content: "";
+}
+/* '' */
+.icon-crop-square:before {
+  content: "";
+}
+/* '' */
+.icon-crop:before {
+  content: "";
+}
+/* '' */
+.icon-crosshairs-gps:before {
+  content: "";
+}
+/* '' */
+.icon-crosshairs:before {
+  content: "";
+}
+/* '' */
+.icon-cube-outline:before {
+  content: "";
+}
+/* '' */
+.icon-cube:before {
+  content: "";
+}
+/* '' */
+.icon-cup-water:before {
+  content: "";
+}
+/* '' */
+.icon-cup:before {
+  content: "";
+}
+/* '' */
+.icon-currency-btc:before {
+  content: "";
+}
+/* '' */
+.icon-currency-usd:before {
+  content: "";
+}
+/* '' */
+.icon-cursor-default-outline:before {
+  content: "";
+}
+/* '' */
+.icon-cursor-default:before {
+  content: "";
+}
+/* '' */
+.icon-cursor-pointer:before {
+  content: "";
+}
+/* '' */
+.icon-database-minus:before {
+  content: "";
+}
+/* '' */
+.icon-database-outline:before {
+  content: "";
+}
+/* '' */
+.icon-database-plus:before {
+  content: "";
+}
+/* '' */
+.icon-database:before {
+  content: "";
+}
+/* '' */
+.icon-debug-step-into:before {
+  content: "";
+}
+/* '' */
+.icon-debug-step-out:before {
+  content: "";
+}
+/* '' */
+.icon-debug-step-over:before {
+  content: "";
+}
+/* '' */
+.icon-delete:before {
+  content: "";
+}
+/* '' */
+.icon-desktop-mac:before {
+  content: "";
+}
+/* '' */
+.icon-deviantart:before {
+  content: "";
+}
+/* '' */
+.icon-dice:before {
+  content: "";
+}
+/* '' */
+.icon-directions:before {
+  content: "";
+}
+/* '' */
+.icon-disk-alert:before {
+  content: "";
+}
+/* '' */
+.icon-disqus-outline:before {
+  content: "";
+}
+/* '' */
+.icon-disqus:before {
+  content: "";
+}
+/* '' */
+.icon-dots-horizontal:before {
+  content: "";
+}
+/* '' */
+.icon-dots-vertical:before {
+  content: "";
+}
+/* '' */
+.icon-download:before {
+  content: "";
+}
+/* '' */
+.icon-drawing-box:before {
+  content: "";
+}
+/* '' */
+.icon-account-alert:before {
+  content: "";
+}
+/* '' */
+.icon-account-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-account-box:before {
+  content: "";
+}
+/* '' */
+.icon-account-check:before {
+  content: "";
+}
+/* '' */
+.icon-account-circle:before {
+  content: "";
+}
+/* '' */
+.icon-account-key:before {
+  content: "";
+}
+/* '' */
+.icon-account-location:before {
+  content: "";
+}
+/* '' */
+.icon-account-minus:before {
+  content: "";
+}
+/* '' */
+.icon-account-multiple-outline:before {
+  content: "";
+}
+/* '' */
+.icon-account-multiple-plus:before {
+  content: "";
+}
+/* '' */
+.icon-account-multiple:before {
+  content: "";
+}
+/* '' */
+.icon-account-network:before {
+  content: "";
+}
+/* '' */
+.icon-account-outline:before {
+  content: "";
+}
+/* '' */
+.icon-account-plus:before {
+  content: "";
+}
+/* '' */
+.icon-account-remove:before {
+  content: "";
+}
+/* '' */
+.icon-account-search:before {
+  content: "";
+}
+/* '' */
+.icon-account-star-variant:before {
+  content: "";
+}
+/* '' */
+.icon-account-star:before {
+  content: "";
+}
+/* '' */
+.icon-account-switch:before {
+  content: "";
+}
+/* '' */
+.icon-alarm:before {
+  content: "";
+}
+/* '' */
+.icon-album:before {
+  content: "";
+}
+/* '' */
+.icon-alert-box:before {
+  content: "";
+}
+/* '' */
+.icon-alert-circle:before {
+  content: "";
+}
+/* '' */
+.icon-alert-octagon:before {
+  content: "";
+}
+/* '' */
+.icon-alert:before {
+  content: "";
+}
+/* '' */
+.icon-alphabetical:before {
+  content: "";
+}
+/* '' */
+.icon-amazon:before {
+  content: "";
+}
+/* '' */
+.icon-ambulance:before {
+  content: "";
+}
+/* '' */
+.icon-android-debug-bridge:before {
+  content: "";
+}
+/* '' */
+.icon-android:before {
+  content: "";
+}
+/* '' */
+.icon-apple-mobileme:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-down-bold-circle-outline:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-down-bold-circle:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-down-bold-hexagon-outline:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-down:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-expand:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-left-bold-circle-outline:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-left-bold-circle:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-left-bold-hexagon-outline:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-left:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-right-bold-circle-outline:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-right-bold-circle:before {
+  content: "";
+}
+/* '' */
+.icon-arrow-right-bold-hexagon-outline:before {
+  content: "";
+}
+/* '' */
+.icon-backup-restore:before {
+  content: "";
+}
+/* '' */
+.icon-bank:before {
+  content: "";
+}
+/* '' */
+.icon-barcode:before {
+  content: "";
+}
+/* '' */
+.icon-basecamp:before {
+  content: "";
+}
+/* '' */
+.icon-basket-fill:before {
+  content: "";
+}
+/* '' */
+.icon-basket-unfill:before {
+  content: "";
+}
+/* '' */
+.icon-basket:before {
+  content: "";
+}
+/* '' */
+.icon-battery-20:before {
+  content: "";
+}
+/* '' */
+.icon-battery-30:before {
+  content: "";
+}
+/* '' */
+.icon-battery-40:before {
+  content: "";
+}
+/* '' */
+.icon-battery-60:before {
+  content: "";
+}
+/* '' */
+.icon-battery-80:before {
+  content: "";
+}
+/* '' */
+.icon-battery-charging-90:before {
+  content: "";
+}
+/* '' */
+.icon-battery-minus:before {
+  content: "";
+}
+/* '' */
+.icon-battery-negative:before {
+  content: "";
+}
+/* '' */
+.icon-battery-outline:before {
+  content: "";
+}
+/* '' */
+.icon-battery-plus:before {
+  content: "";
+}
+/* '' */
+.icon-battery-positive:before {
+  content: "";
+}
+/* '' */
+.icon-battery-unknown:before {
+  content: "";
+}
+/* '' */
+.icon-battery:before {
+  content: "";
+}
+/* '' */
+.icon-beaker-empty-outline:before {
+  content: "";
+}
+/* '' */
+.icon-beaker-empty:before {
+  content: "";
+}
+/* '' */
+.icon-beaker-outline:before {
+  content: "";
+}
+/* '' */
+.icon-beaker:before {
+  content: "";
+}
+/* '' */
+.icon-bike:before {
+  content: "";
+}
+/* '' */
+.icon-bing:before {
+  content: "";
+}
+/* '' */
+.icon-bio:before {
+  content: "";
+}
+/* '' */
+.icon-blackberry:before {
+  content: "";
+}
+/* '' */
+.icon-blinds:before {
+  content: "";
+}
+/* '' */
+.icon-block-helper:before {
+  content: "";
+}
+/* '' */
+.icon-blogger:before {
+  content: "";
+}
+/* '' */
+.icon-bluetooth-audio:before {
+  content: "";
+}
+/* '' */
+.icon-bluetooth-connect:before {
+  content: "";
+}
+/* '' */
+.icon-bluetooth-settings:before {
+  content: "";
+}
+/* '' */
+.icon-bluetooth:before {
+  content: "";
+}
+/* '' */
+.icon-blur-linear:before {
+  content: "";
+}
+/* '' */
+.icon-bookmark:before {
+  content: "";
+}
+/* '' */
+.icon-border-all:before {
+  content: "";
+}
+/* '' */
+.icon-border-bottom:before {
+  content: "";
+}
+/* '' */
+.icon-border-color:before {
+  content: "";
+}
+/* '' */
+.icon-border-horizontal:before {
+  content: "";
+}
+/* '' */
+.icon-border-inside:before {
+  content: "";
+}
+/* '' */
+.icon-border-left:before {
+  content: "";
+}
+/* '' */
+.icon-border-none:before {
+  content: "";
+}
+/* '' */
+.icon-border-outside:before {
+  content: "";
+}
+/* '' */
+.icon-border-right:before {
+  content: "";
+}
+/* '' */
+.icon-border-top:before {
+  content: "";
+}
+/* '' */
+.icon-border-vertical:before {
+  content: "";
+}
+/* '' */
+.icon-drawing:before {
+  content: "";
+}
+/* '' */
+.icon-dribbble-box:before {
+  content: "";
+}
+/* '' */
+.icon-dribbble:before {
+  content: "";
+}
+/* '' */
+.icon-duck:before {
+  content: "";
+}
+/* '' */
+.icon-earth-off:before {
+  content: "";
+}
+/* '' */
+.icon-earth:before {
+  content: "";
+}
+/* '' */
+.icon-elevation-decline:before {
+  content: "";
+}
+/* '' */
+.icon-elevation-rise:before {
+  content: "";
+}
+/* '' */
+.icon-email-outline:before {
+  content: "";
+}
+/* '' */
+.icon-email:before {
+  content: "";
+}
+/* '' */
+.icon-emoticon-cool:before {
+  content: "";
+}
+/* '' */
+.icon-emoticon-happy:before {
+  content: "";
+}
+/* '' */
+.icon-emoticon-neutral:before {
+  content: "";
+}
+/* '' */
+.icon-emoticon-poop:before {
+  content: "";
+}
+/* '' */
+.icon-emoticon-sad:before {
+  content: "";
+}
+/* '' */
+.icon-emoticon-tongue:before {
+  content: "";
+}
+/* '' */
+.icon-emoticon:before {
+  content: "";
+}
+/* '' */
+.icon-eraser:before {
+  content: "";
+}
+/* '' */
+.icon-etsy:before {
+  content: "";
+}
+/* '' */
+.icon-evernote:before {
+  content: "";
+}
+/* '' */
+.icon-exit-to-app:before {
+  content: "";
+}
+/* '' */
+.icon-eye-off:before {
+  content: "";
+}
+/* '' */
+.icon-eye:before {
+  content: "";
+}
+/* '' */
+.icon-eyedropper-variant:before {
+  content: "";
+}
+/* '' */
+.icon-eyedropper:before {
+  content: "";
+}
+/* '' */
+.icon-facebook-box:before {
+  content: "";
+}
+/* '' */
+.icon-facebook:before {
+  content: "";
+}
+/* '' */
+.icon-factory:before {
+  content: "";
+}
+/* '' */
+.icon-fast-forward:before {
+  content: "";
+}
+/* '' */
+.icon-ferry:before {
+  content: "";
+}
+/* '' */
+.icon-file-cloud:before {
+  content: "";
+}
+/* '' */
+.icon-file-delimited:before {
+  content: "";
+}
+/* '' */
+.icon-file-document-box:before {
+  content: "";
+}
+/* '' */
+.icon-file-document:before {
+  content: "";
+}
+/* '' */
+.icon-file-excel-box:before {
+  content: "";
+}
+/* '' */
+.icon-file-excel:before {
+  content: "";
+}
+/* '' */
+.icon-file-find:before {
+  content: "";
+}
+/* '' */
+.icon-file-image-box:before {
+  content: "";
+}
+/* '' */
+.icon-file-image:before {
+  content: "";
+}
+/* '' */
+.icon-file-music:before {
+  content: "";
+}
+/* '' */
+.icon-file-pdf-box:before {
+  content: "";
+}
+/* '' */
+.icon-file-pdf:before {
+  content: "";
+}
+/* '' */
+.icon-file-powerpoint-box:before {
+  content: "";
+}
+/* '' */
+.icon-file-powerpoint:before {
+  content: "";
+}
+/* '' */
+.icon-file-presentation-box:before {
+  content: "";
+}
+/* '' */
+.icon-file-video:before {
+  content: "";
+}
+/* '' */
+.icon-file-word-box:before {
+  content: "";
+}
+/* '' */
+.icon-file-word:before {
+  content: "";
+}
+/* '' */
+.icon-file:before {
+  content: "";
+}
+/* '' */
+.icon-film:before {
+  content: "";
+}
+/* '' */
+.icon-filmstrip-off:before {
+  content: "";
+}
+/* '' */
+.icon-filmstrip:before {
+  content: "";
+}
+/* '' */
+.icon-filter-outline:before {
+  content: "";
+}
+/* '' */
+.icon-filter-remove-outline:before {
+  content: "";
+}
+/* '' */
+.icon-filter-remove:before {
+  content: "";
+}
+/* '' */
+.icon-filter-variant:before {
+  content: "";
+}
+/* '' */
+.icon-filter:before {
+  content: "";
+}
+/* '' */
+.icon-fire:before {
+  content: "";
+}
+/* '' */
+.icon-fish:before {
+  content: "";
+}
+/* '' */
+.icon-flag-checkered:before {
+  content: "";
+}
+/* '' */
+.icon-flag-outline-variant:before {
+  content: "";
+}
+/* '' */
+.icon-flag-outline:before {
+  content: "";
+}
+/* '' */
+.icon-flag-variant:before {
+  content: "";
+}
+/* '' */
+.icon-flag:before {
+  content: "";
+}
+/* '' */
+.icon-flash-auto:before {
+  content: "";
+}
+/* '' */
+.icon-flash-off:before {
+  content: "";
+}
+/* '' */
+.icon-flash:before {
+  content: "";
+}
+/* '' */
+.icon-flip-to-back:before {
+  content: "";
+}
+/* '' */
+.icon-flip-to-front:before {
+  content: "";
+}
+/* '' */
+.icon-floppy:before {
+  content: "";
+}
+/* '' */
+.icon-flower:before {
+  content: "";
+}
+/* '' */
+.icon-folder-account:before {
+  content: "";
+}
+/* '' */
+.icon-folder-google-drive:before {
+  content: "";
+}
+/* '' */
+.icon-folder-image:before {
+  content: "";
+}
+/* '' */
+.icon-folder-move:before {
+  content: "";
+}
+/* '' */
+.icon-folder-multiple-image:before {
+  content: "";
+}
+/* '' */
+.icon-folder-multiple-outline:before {
+  content: "";
+}
+/* '' */
+.icon-folder-multiple:before {
+  content: "";
+}
+/* '' */
+.icon-folder-outline:before {
+  content: "";
+}
+/* '' */
+.icon-folder-plus:before {
+  content: "";
+}
+/* '' */
+.icon-folder-remove:before {
+  content: "";
+}
+/* '' */
+.icon-folder:before {
+  content: "";
+}
+/* '' */
+.icon-food-apple:before {
+  content: "";
+}
+/* '' */
+.icon-food:before {
+  content: "";
+}
+/* '' */
+.icon-format-align-center:before {
+  content: "";
+}
+/* '' */
+.icon-format-align-justify:before {
+  content: "";
+}
+/* '' */
+.icon-format-align-left:before {
+  content: "";
+}
+/* '' */
+.icon-format-align-right:before {
+  content: "";
+}
+/* '' */
+.icon-format-bold:before {
+  content: "";
+}
+/* '' */
+.icon-format-clear:before {
+  content: "";
+}
+/* '' */
+.icon-format-color-fill:before {
+  content: "";
+}
+/* '' */
+.icon-format-line-spacing:before {
+  content: "";
+}
+/* '' */
+.icon-format-list-numbers:before {
+  content: "";
+}
+/* '' */
+.icon-format-paint:before {
+  content: "";
+}
+/* '' */
+.icon-format-strikethrough:before {
+  content: "";
+}
+/* '' */
+.icon-format-subscript:before {
+  content: "";
+}
+/* '' */
+.icon-format-superscript:before {
+  content: "";
+}
+/* '' */
+.icon-format-underline:before {
+  content: "";
+}
+/* '' */
+.icon-foursquare:before {
+  content: "";
+}
+/* '' */
+.icon-fullscreen-exit:before {
+  content: "";
+}
+/* '' */
+.icon-fullscreen:before {
+  content: "";
+}
+/* '' */
+.icon-gamepad-variant:before {
+  content: "";
+}
+/* '' */
+.icon-gamepad:before {
+  content: "";
+}
+/* '' */
+.icon-gas-station:before {
+  content: "";
+}
+/* '' */
+.icon-gavel:before {
+  content: "";
+}
+/* '' */
+.icon-gender-female:before {
+  content: "";
+}
+/* '' */
+.icon-gender-male:before {
+  content: "";
+}
+/* '' */
+.icon-gender-transgender:before {
+  content: "";
+}
+/* '' */
+.icon-gift:before {
+  content: "";
+}
+/* '' */
+.icon-github-box:before {
+  content: "";
+}
+/* '' */
+.icon-github-circle:before {
+  content: "";
+}
+/* '' */
+.icon-gmail:before {
+  content: "";
+}
+/* '' */
+.icon-google-chrome:before {
+  content: "";
+}
+/* '' */
+.icon-google-circles-communities:before {
+  content: "";
+}
+/* '' */
+.icon-google-circles-extended:before {
+  content: "";
+}
+/* '' */
+.icon-google-circles:before {
+  content: "";
+}
+/* '' */
+.icon-google-drive:before {
+  content: "";
+}
+/* '' */
+.icon-google-earth:before {
+  content: "";
+}
+/* '' */
+.icon-google-glass:before {
+  content: "";
+}
+/* '' */
+.icon-google-maps:before {
+  content: "";
+}
+/* '' */
+.icon-google-pages:before {
+  content: "";
+}
+/* '' */
+.icon-google-play:before {
+  content: "";
+}
+/* '' */
+.icon-google-plus-box:before {
+  content: "";
+}
+/* '' */
+.icon-google-plus:before {
+  content: "";
+}
+/* '' */
+.icon-google:before {
+  content: "";
+}
+/* '' */
+.icon-guitar-pick-outline:before {
+  content: "";
+}
+/* '' */
+.icon-guitar-pick:before {
+  content: "";
+}
+/* '' */
+.icon-hand-pointing-right:before {
+  content: "";
+}
+/* '' */
+.icon-hanger:before {
+  content: "";
+}
+/* '' */
+.icon-hangouts:before {
+  content: "";
+}
+/* '' */
+.icon-harddisk:before {
+  content: "";
+}
+/* '' */
+.icon-headphones-box:before {
+  content: "";
+}
+/* '' */
+.icon-headphones:before {
+  content: "";
+}
+/* '' */
+.icon-headset:before {
+  content: "";
+}
+/* '' */
+.icon-heart-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-heart-box:before {
+  content: "";
+}
+/* '' */
+.icon-heart-outline:before {
+  content: "";
+}
+/* '' */
+.icon-heart:before {
+  content: "";
+}
+/* '' */
+.icon-help-circle:before {
+  content: "";
+}
+/* '' */
+.icon-help:before {
+  content: "";
+}
+/* '' */
+.icon-hexagon-outline:before {
+  content: "";
+}
+/* '' */
+.icon-hexagon:before {
+  content: "";
+}
+/* '' */
+.icon-history:before {
+  content: "";
+}
+/* '' */
+.icon-home-modern:before {
+  content: "";
+}
+/* '' */
+.icon-home-variant:before {
+  content: "";
+}
+/* '' */
+.icon-home:before {
+  content: "";
+}
+/* '' */
+.icon-hospital-building:before {
+  content: "";
+}
+/* '' */
+.icon-hospital-marker:before {
+  content: "";
+}
+/* '' */
+.icon-hospital:before {
+  content: "";
+}
+/* '' */
+.icon-hotel:before {
+  content: "";
+}
+/* '' */
+.icon-houzz-box:before {
+  content: "";
+}
+/* '' */
+.icon-houzz:before {
+  content: "";
+}
+/* '' */
+.icon-human-child:before {
+  content: "";
+}
+/* '' */
+.icon-human-male-female:before {
+  content: "";
+}
+/* '' */
+.icon-human:before {
+  content: "";
+}
+/* '' */
+.icon-image-album:before {
+  content: "";
+}
+/* '' */
+.icon-image-area-close:before {
+  content: "";
+}
+/* '' */
+.icon-image-area:before {
+  content: "";
+}
+/* '' */
+.icon-image-filter-black-white:before {
+  content: "";
+}
+/* '' */
+.icon-image-filter-center-focus:before {
+  content: "";
+}
+/* '' */
+.icon-image-filter-drama:before {
+  content: "";
+}
+/* '' */
+.icon-image-filter-frames:before {
+  content: "";
+}
+/* '' */
+.icon-image-filter-hdr:before {
+  content: "";
+}
+/* '' */
+.icon-image-filter-none:before {
+  content: "";
+}
+/* '' */
+.icon-image-filter-tilt-shift:before {
+  content: "";
+}
+/* '' */
+.icon-image-filter-vintage:before {
+  content: "";
+}
+/* '' */
+.icon-image-filter:before {
+  content: "";
+}
+/* '' */
+.icon-information-outline:before {
+  content: "";
+}
+/* '' */
+.icon-information:before {
+  content: "";
+}
+/* '' */
+.icon-instagram:before {
+  content: "";
+}
+/* '' */
+.icon-instapaper:before {
+  content: "";
+}
+/* '' */
+.icon-internet-explorer:before {
+  content: "";
+}
+/* '' */
+.icon-invert-colors:before {
+  content: "";
+}
+/* '' */
+.icon-key-change:before {
+  content: "";
+}
+/* '' */
+.icon-key-minus:before {
+  content: "";
+}
+/* '' */
+.icon-key-plus:before {
+  content: "";
+}
+/* '' */
+.icon-key-remove:before {
+  content: "";
+}
+/* '' */
+.icon-key-variant:before {
+  content: "";
+}
+/* '' */
+.icon-key:before {
+  content: "";
+}
+/* '' */
+.icon-keyboard-backspace:before {
+  content: "";
+}
+/* '' */
+.icon-keyboard-caps:before {
+  content: "";
+}
+/* '' */
+.icon-keyboard-close:before {
+  content: "";
+}
+/* '' */
+.icon-keyboard-return:before {
+  content: "";
+}
+/* '' */
+.icon-keyboard-tab:before {
+  content: "";
+}
+/* '' */
+.icon-keyboard:before {
+  content: "";
+}
+/* '' */
+.icon-label-outline:before {
+  content: "";
+}
+/* '' */
+.icon-label:before {
+  content: "";
+}
+/* '' */
+.icon-laptop-chromebook:before {
+  content: "";
+}
+/* '' */
+.icon-laptop-mac:before {
+  content: "";
+}
+/* '' */
+.icon-laptop-windows:before {
+  content: "";
+}
+/* '' */
+.icon-laptop:before {
+  content: "";
+}
+/* '' */
+.icon-lastfm:before {
+  content: "";
+}
+/* '' */
+.icon-launch:before {
+  content: "";
+}
+/* '' */
+.icon-leaf:before {
+  content: "";
+}
+/* '' */
+.icon-library-books:before {
+  content: "";
+}
+/* '' */
+.icon-library-music:before {
+  content: "";
+}
+/* '' */
+.icon-library-plus:before {
+  content: "";
+}
+/* '' */
+.icon-library:before {
+  content: "";
+}
+/* '' */
+.icon-lightbulb:before {
+  content: "";
+}
+/* '' */
+.icon-link:before {
+  content: "";
+}
+/* '' */
+.icon-linkedin:before {
+  content: "";
+}
+/* '' */
+.icon-linux:before {
+  content: "";
+}
+/* '' */
+.icon-lock-open-outline:before {
+  content: "";
+}
+/* '' */
+.icon-lock-open:before {
+  content: "";
+}
+/* '' */
+.icon-lock-outline:before {
+  content: "";
+}
+/* '' */
+.icon-lock:before {
+  content: "";
+}
+/* '' */
+.icon-login:before {
+  content: "";
+}
+/* '' */
+.icon-logout:before {
+  content: "";
+}
+/* '' */
+.icon-looks:before {
+  content: "";
+}
+/* '' */
+.icon-loupe:before {
+  content: "";
+}
+/* '' */
+.icon-magnify-minus:before {
+  content: "";
+}
+/* '' */
+.icon-magnify-plus:before {
+  content: "";
+}
+/* '' */
+.icon-magnify:before {
+  content: "";
+}
+/* '' */
+.icon-map-marker-circle:before {
+  content: "";
+}
+/* '' */
+.icon-map-marker-off:before {
+  content: "";
+}
+/* '' */
+.icon-map-marker-radius:before {
+  content: "";
+}
+/* '' */
+.icon-map-marker:before {
+  content: "";
+}
+/* '' */
+.icon-map:before {
+  content: "";
+}
+/* '' */
+.icon-marker-check:before {
+  content: "";
+}
+/* '' */
+.icon-martini:before {
+  content: "";
+}
+/* '' */
+.icon-math-compass:before {
+  content: "";
+}
+/* '' */
+.icon-memory:before {
+  content: "";
+}
+/* '' */
+.icon-menu-down:before {
+  content: "";
+}
+/* '' */
+.icon-menu-up:before {
+  content: "";
+}
+/* '' */
+.icon-menu:before {
+  content: "";
+}
+/* '' */
+.icon-message-alert:before {
+  content: "";
+}
+/* '' */
+.icon-message-draw:before {
+  content: "";
+}
+/* '' */
+.icon-message-image:before {
+  content: "";
+}
+/* '' */
+.icon-message-processing:before {
+  content: "";
+}
+/* '' */
+.icon-message-reply:before {
+  content: "";
+}
+/* '' */
+.icon-message-video:before {
+  content: "";
+}
+/* '' */
+.icon-microphone-dots:before {
+  content: "";
+}
+/* '' */
+.icon-microphone-off:before {
+  content: "";
+}
+/* '' */
+.icon-microphone-outline:before {
+  content: "";
+}
+/* '' */
+.icon-microphone-settings:before {
+  content: "";
+}
+/* '' */
+.icon-microphone:before {
+  content: "";
+}
+/* '' */
+.icon-minus-box:before {
+  content: "";
+}
+/* '' */
+.icon-minus-circle-outline:before {
+  content: "";
+}
+/* '' */
+.icon-minus-circle:before {
+  content: "";
+}
+/* '' */
+.icon-minus-network:before {
+  content: "";
+}
+/* '' */
+.icon-minus:before {
+  content: "";
+}
+/* '' */
+.icon-monitor:before {
+  content: "";
+}
+/* '' */
+.icon-more:before {
+  content: "";
+}
+/* '' */
+.icon-mouse:before {
+  content: "";
+}
+/* '' */
+.icon-movie:before {
+  content: "";
+}
+/* '' */
+.icon-music-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-music-box:before {
+  content: "";
+}
+/* '' */
+.icon-nature-people:before {
+  content: "";
+}
+/* '' */
+.icon-nature:before {
+  content: "";
+}
+/* '' */
+.icon-navigation:before {
+  content: "";
+}
+/* '' */
+.icon-needle:before {
+  content: "";
+}
+/* '' */
+.icon-nest-protect:before {
+  content: "";
+}
+/* '' */
+.icon-nest-thermostat:before {
+  content: "";
+}
+/* '' */
+.icon-newspaper:before {
+  content: "";
+}
+/* '' */
+.icon-nfc-variant:before {
+  content: "";
+}
+/* '' */
+.icon-nfc:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-0-box-multiple-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-0-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-0-box:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-1-box-multiple-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-1-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-1-box:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-2-box-multiple-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-2-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-2-box:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-3-box-multiple-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-3-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-3-box:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-4-box-multiple-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-4-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-4-box:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-5-box-multiple-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-5-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-5-box:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-6-box-multiple-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-6-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-6-box:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-7-box-multiple-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-7-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-7-box:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-8-box-multiple-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-8-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-8-box:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-9-box-multiple-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-9-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-9-box:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-9-plus-box-multiple-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-9-plus-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-numeric-9-plus-box:before {
+  content: "";
+}
+/* '' */
+.icon-numeric:before {
+  content: "";
+}
+/* '' */
+.icon-oil:before {
+  content: "";
+}
+/* '' */
+.icon-open-in-app:before {
+  content: "";
+}
+/* '' */
+.icon-ornament-variant:before {
+  content: "";
+}
+/* '' */
+.icon-ornament:before {
+  content: "";
+}
+/* '' */
+.icon-package-down:before {
+  content: "";
+}
+/* '' */
+.icon-package-up:before {
+  content: "";
+}
+/* '' */
+.icon-package:before {
+  content: "";
+}
+/* '' */
+.icon-palette:before {
+  content: "";
+}
+/* '' */
+.icon-pandora:before {
+  content: "";
+}
+/* '' */
+.icon-panorama-fisheye:before {
+  content: "";
+}
+/* '' */
+.icon-panorama-horizontal:before {
+  content: "";
+}
+/* '' */
+.icon-panorama-vertical:before {
+  content: "";
+}
+/* '' */
+.icon-panorama-wide-angle:before {
+  content: "";
+}
+/* '' */
+.icon-panorama:before {
+  content: "";
+}
+/* '' */
+.icon-paper-cut-vertical:before {
+  content: "";
+}
+/* '' */
+.icon-paperclip:before {
+  content: "";
+}
+/* '' */
+.icon-parking:before {
+  content: "";
+}
+/* '' */
+.icon-pause-circle-outline:before {
+  content: "";
+}
+/* '' */
+.icon-pause-circle:before {
+  content: "";
+}
+/* '' */
+.icon-pause-octagon-outline:before {
+  content: "";
+}
+/* '' */
+.icon-pause-octagon:before {
+  content: "";
+}
+/* '' */
+.icon-pause:before {
+  content: "";
+}
+/* '' */
+.icon-pencil-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-pencil-box:before {
+  content: "";
+}
+/* '' */
+.icon-pencil:before {
+  content: "";
+}
+/* '' */
+.icon-pharmacy:before {
+  content: "";
+}
+/* '' */
+.icon-phone-bluetooth:before {
+  content: "";
+}
+/* '' */
+.icon-phone-forward:before {
+  content: "";
+}
+/* '' */
+.icon-phone-hangup:before {
+  content: "";
+}
+/* '' */
+.icon-phone-in-talk:before {
+  content: "";
+}
+/* '' */
+.icon-phone-locked:before {
+  content: "";
+}
+/* '' */
+.icon-phone-missed:before {
+  content: "";
+}
+/* '' */
+.icon-phone-paused:before {
+  content: "";
+}
+/* '' */
+.icon-phone-settings:before {
+  content: "";
+}
+/* '' */
+.icon-phone:before {
+  content: "";
+}
+/* '' */
+.icon-pig:before {
+  content: "";
+}
+/* '' */
+.icon-pill:before {
+  content: "";
+}
+/* '' */
+.icon-pin-off:before {
+  content: "";
+}
+/* '' */
+.icon-pin:before {
+  content: "";
+}
+/* '' */
+.icon-pine-tree-box:before {
+  content: "";
+}
+/* '' */
+.icon-pine-tree:before {
+  content: "";
+}
+/* '' */
+.icon-pinterest:before {
+  content: "";
+}
+/* '' */
+.icon-pizza:before {
+  content: "";
+}
+/* '' */
+.icon-play-box-outline:before {
+  content: "";
+}
+/* '' */
+.icon-play-circle-outline:before {
+  content: "";
+}
+/* '' */
+.icon-play-circle:before {
+  content: "";
+}
+/* '' */
+.icon-play:before {
+  content: "";
+}
+/* '' */
+.icon-playlist-plus:before {
+  content: "";
+}
+/* '' */
+.icon-plus-box:before {
+  content: "";
+}
+/* '' */
+.icon-plus-circle-outline:before {
+  content: "";
+}
+/* '' */
+.icon-plus-circle:before {
+  content: "";
+}
+/* '' */
+.icon-plus-network:before {
+  content: "";
+}
+/* '' */
+.icon-plus-one:before {
+  content: "";
+}
+/* '' */
+.icon-plus:before {
+  content: "";
+}
+/* '' */
+.icon-pocket:before {
+  content: "";
+}
+/* '' */
+.icon-poll-box:before {
+  content: "";
+}
+/* '' */
+.icon-poll:before {
+  content: "";
+}
+/* '' */
+.icon-polymer:before {
+  content: "";
+}
+/* '' */
+.icon-popcorn:before {
+  content: "";
+}
+/* '' */
+.icon-power-settings:before {
+  content: "";
+}
+/* '' */
+.icon-power:before {
+  content: "";
+}
+/* '' */
+.icon-presentation:before {
+  content: "";
+}
+/* '' */
+.icon-printer:before {
+  content: "";
+}
+/* '' */
+.icon-puzzle:before {
+  content: "";
+}
+/* '' */
+.icon-qrcode:before {
+  content: "";
+}
+/* '' */
+.icon-quality-high:before {
+  content: "";
+}
+/* '' */
+.icon-radiator:before {
+  content: "";
+}
+/* '' */
+.icon-radiobox-blank:before {
+  content: "";
+}
+/* '' */
+.icon-radiobox-marked:before {
+  content: "";
+}
+/* '' */
+.icon-rdio:before {
+  content: "";
+}
+/* '' */
+.icon-readability:before {
+  content: "";
+}
+/* '' */
+.icon-receipt:before {
+  content: "";
+}
+/* '' */
+.icon-recycle:before {
+  content: "";
+}
+/* '' */
+.icon-redo-variant:before {
+  content: "";
+}
+/* '' */
+.icon-redo:before {
+  content: "";
+}
+/* '' */
+.icon-refresh:before {
+  content: "";
+}
+/* '' */
+.icon-relative-scale:before {
+  content: "";
+}
+/* '' */
+.icon-reload:before {
+  content: "";
+}
+/* '' */
+.icon-remote:before {
+  content: "";
+}
+/* '' */
+.icon-rename-box:before {
+  content: "";
+}
+/* '' */
+.icon-repeat-once:before {
+  content: "";
+}
+/* '' */
+.icon-repeat:before {
+  content: "";
+}
+/* '' */
+.icon-replay:before {
+  content: "";
+}
+/* '' */
+.icon-reply-all:before {
+  content: "";
+}
+/* '' */
+.icon-reply:before {
+  content: "";
+}
+/* '' */
+.icon-responsive:before {
+  content: "";
+}
+/* '' */
+.icon-rewind:before {
+  content: "";
+}
+/* '' */
+.icon-ribbon:before {
+  content: "";
+}
+/* '' */
+.icon-rotate-3d:before {
+  content: "";
+}
+/* '' */
+.icon-rotate-left-variant:before {
+  content: "";
+}
+/* '' */
+.icon-rotate-left:before {
+  content: "";
+}
+/* '' */
+.icon-rotate-right-variant:before {
+  content: "";
+}
+/* '' */
+.icon-rotate-right:before {
+  content: "";
+}
+/* '' */
+.icon-routes:before {
+  content: "";
+}
+/* '' */
+.icon-rss-box:before {
+  content: "";
+}
+/* '' */
+.icon-rss:before {
+  content: "";
+}
+/* '' */
+.icon-satellite:before {
+  content: "";
+}
+/* '' */
+.icon-school:before {
+  content: "";
+}
+/* '' */
+.icon-script:before {
+  content: "";
+}
+/* '' */
+.icon-security-network:before {
+  content: "";
+}
+/* '' */
+.icon-security:before {
+  content: "";
+}
+/* '' */
+.icon-send:before {
+  content: "";
+}
+/* '' */
+.icon-server-minus:before {
+  content: "";
+}
+/* '' */
+.icon-server-network-off:before {
+  content: "";
+}
+/* '' */
+.icon-server-network:before {
+  content: "";
+}
+/* '' */
+.icon-server-off:before {
+  content: "";
+}
+/* '' */
+.icon-server-plus:before {
+  content: "";
+}
+/* '' */
+.icon-server-remove:before {
+  content: "";
+}
+/* '' */
+.icon-server-security:before {
+  content: "";
+}
+/* '' */
+.icon-server:before {
+  content: "";
+}
+/* '' */
+.icon-settings-box:before {
+  content: "";
+}
+/* '' */
+.icon-settings:before {
+  content: "";
+}
+/* '' */
+.icon-shape-plus:before {
+  content: "";
+}
+/* '' */
+.icon-share-variant:before {
+  content: "";
+}
+/* '' */
+.icon-share:before {
+  content: "";
+}
+/* '' */
+.icon-shopping-music:before {
+  content: "";
+}
+/* '' */
+.icon-shopping:before {
+  content: "";
+}
+/* '' */
+.icon-shuffle:before {
+  content: "";
+}
+/* '' */
+.icon-sign-caution:before {
+  content: "";
+}
+/* '' */
+.icon-silverware-variant:before {
+  content: "";
+}
+/* '' */
+.icon-silverware:before {
+  content: "";
+}
+/* '' */
+.icon-sim-alert:before {
+  content: "";
+}
+/* '' */
+.icon-sim:before {
+  content: "";
+}
+/* '' */
+.icon-skip-next:before {
+  content: "";
+}
+/* '' */
+.icon-skip-previous:before {
+  content: "";
+}
+/* '' */
+.icon-snowman:before {
+  content: "";
+}
+/* '' */
+.icon-sort-alphabetical:before {
+  content: "";
+}
+/* '' */
+.icon-sort-ascending:before {
+  content: "";
+}
+/* '' */
+.icon-sort-descending:before {
+  content: "";
+}
+/* '' */
+.icon-sort-numeric:before {
+  content: "";
+}
+/* '' */
+.icon-sort-variant:before {
+  content: "";
+}
+/* '' */
+.icon-sort:before {
+  content: "";
+}
+/* '' */
+.icon-soundcloud:before {
+  content: "";
+}
+/* '' */
+.icon-source-fork:before {
+  content: "";
+}
+/* '' */
+.icon-source-pull:before {
+  content: "";
+}
+/* '' */
+.icon-speaker-off:before {
+  content: "";
+}
+/* '' */
+.icon-speaker:before {
+  content: "";
+}
+/* '' */
+.icon-spellcheck:before {
+  content: "";
+}
+/* '' */
+.icon-spotify:before {
+  content: "";
+}
+/* '' */
+.icon-spotlight-beam:before {
+  content: "";
+}
+/* '' */
+.icon-spotlight:before {
+  content: "";
+}
+/* '' */
+.icon-star-circle:before {
+  content: "";
+}
+/* '' */
+.icon-star-half:before {
+  content: "";
+}
+/* '' */
+.icon-star-outline:before {
+  content: "";
+}
+/* '' */
+.icon-star:before {
+  content: "";
+}
+/* '' */
+.icon-stocking:before {
+  content: "";
+}
+/* '' */
+.icon-stop:before {
+  content: "";
+}
+/* '' */
+.icon-store-24-hour:before {
+  content: "";
+}
+/* '' */
+.icon-store:before {
+  content: "";
+}
+/* '' */
+.icon-stove:before {
+  content: "";
+}
+/* '' */
+.icon-subway:before {
+  content: "";
+}
+/* '' */
+.icon-swap-horizontal:before {
+  content: "";
+}
+/* '' */
+.icon-swap-vertical:before {
+  content: "";
+}
+/* '' */
+.icon-sword:before {
+  content: "";
+}
+/* '' */
+.icon-sync-alert:before {
+  content: "";
+}
+/* '' */
+.icon-sync-off:before {
+  content: "";
+}
+/* '' */
+.icon-sync:before {
+  content: "";
+}
+/* '' */
+.icon-tab-unselected:before {
+  content: "";
+}
+/* '' */
+.icon-tab:before {
+  content: "";
+}
+/* '' */
+.icon-table:before {
+  content: "";
+}
+/* '' */
+.icon-tablet-android:before {
+  content: "";
+}
+/* '' */
+.icon-tablet-ipad:before {
+  content: "";
+}
+/* '' */
+.icon-tablet:before {
+  content: "";
+}
+/* '' */
+.icon-tag-faces:before {
+  content: "";
+}
+/* '' */
+.icon-tag-outline:before {
+  content: "";
+}
+/* '' */
+.icon-tag-text-outline:before {
+  content: "";
+}
+/* '' */
+.icon-tag:before {
+  content: "";
+}
+/* '' */
+.icon-taxi:before {
+  content: "";
+}
+/* '' */
+.icon-television-guide:before {
+  content: "";
+}
+/* '' */
+.icon-television:before {
+  content: "";
+}
+/* '' */
+.icon-temperature-celsius:before {
+  content: "";
+}
+/* '' */
+.icon-temperature-fahrenheit:before {
+  content: "";
+}
+/* '' */
+.icon-temperature-kelvin:before {
+  content: "";
+}
+/* '' */
+.icon-tent:before {
+  content: "";
+}
+/* '' */
+.icon-terrain:before {
+  content: "";
+}
+/* '' */
+.icon-texture:before {
+  content: "";
+}
+/* '' */
+.icon-theater:before {
+  content: "";
+}
+/* '' */
+.icon-thermometer-lines:before {
+  content: "";
+}
+/* '' */
+.icon-thermometer:before {
+  content: "";
+}
+/* '' */
+.icon-thumb-down:before {
+  content: "";
+}
+/* '' */
+.icon-thumb-up:before {
+  content: "";
+}
+/* '' */
+.icon-thumbs-up-down:before {
+  content: "";
+}
+/* '' */
+.icon-ticket-account:before {
+  content: "";
+}
+/* '' */
+.icon-ticket:before {
+  content: "";
+}
+/* '' */
+.icon-tie:before {
+  content: "";
+}
+/* '' */
+.icon-timelapse:before {
+  content: "";
+}
+/* '' */
+.icon-timer-10:before {
+  content: "";
+}
+/* '' */
+.icon-timer-3:before {
+  content: "";
+}
+/* '' */
+.icon-timer-off:before {
+  content: "";
+}
+/* '' */
+.icon-timer-sand:before {
+  content: "";
+}
+/* '' */
+.icon-timer:before {
+  content: "";
+}
+/* '' */
+.icon-timetable:before {
+  content: "";
+}
+/* '' */
+.icon-toggle-switch-off:before {
+  content: "";
+}
+/* '' */
+.icon-toggle-switch:before {
+  content: "";
+}
+/* '' */
+.icon-tooltip-edit:before {
+  content: "";
+}
+/* '' */
+.icon-tooltip-image:before {
+  content: "";
+}
+/* '' */
+.icon-tooltip-outline:before {
+  content: "";
+}
+/* '' */
+.icon-tooltip-text:before {
+  content: "";
+}
+/* '' */
+.icon-tooltip:before {
+  content: "";
+}
+/* '' */
+.icon-tor:before {
+  content: "";
+}
+/* '' */
+.icon-traffic-light:before {
+  content: "";
+}
+/* '' */
+.icon-train:before {
+  content: "";
+}
+/* '' */
+.icon-tram:before {
+  content: "";
+}
+/* '' */
+.icon-transcribe-close:before {
+  content: "";
+}
+/* '' */
+.icon-transcribe:before {
+  content: "";
+}
+/* '' */
+.icon-trending-down:before {
+  content: "";
+}
+/* '' */
+.icon-trending-neutral:before {
+  content: "";
+}
+/* '' */
+.icon-trending-up:before {
+  content: "";
+}
+/* '' */
+.icon-trophy-award:before {
+  content: "";
+}
+/* '' */
+.icon-trophy-variant:before {
+  content: "";
+}
+/* '' */
+.icon-trophy:before {
+  content: "";
+}
+/* '' */
+.icon-truck:before {
+  content: "";
+}
+/* '' */
+.icon-tshirt-crew:before {
+  content: "";
+}
+/* '' */
+.icon-tshirt-v:before {
+  content: "";
+}
+/* '' */
+.icon-tumblr-reblog:before {
+  content: "";
+}
+/* '' */
+.icon-tumblr:before {
+  content: "";
+}
+/* '' */
+.icon-twitch:before {
+  content: "";
+}
+/* '' */
+.icon-twitter-box:before {
+  content: "";
+}
+/* '' */
+.icon-twitter-retweet:before {
+  content: "";
+}
+/* '' */
+.icon-twitter:before {
+  content: "";
+}
+/* '' */
+.icon-ubuntu:before {
+  content: "";
+}
+/* '' */
+.icon-undo-variant:before {
+  content: "";
+}
+/* '' */
+.icon-undo:before {
+  content: "";
+}
+/* '' */
+.icon-unfold-less:before {
+  content: "";
+}
+/* '' */
+.icon-unfold-more:before {
+  content: "";
+}
+/* '' */
+.icon-upload:before {
+  content: "";
+}
+/* '' */
+.icon-usb:before {
+  content: "";
+}
+/* '' */
+.icon-vector-curve:before {
+  content: "";
+}
+/* '' */
+.icon-vector-point:before {
+  content: "";
+}
+/* '' */
+.icon-vector-square:before {
+  content: "";
+}
+/* '' */
+.icon-verified:before {
+  content: "";
+}
+/* '' */
+.icon-vibrate:before {
+  content: "";
+}
+/* '' */
+.icon-video-off:before {
+  content: "";
+}
+/* '' */
+.icon-video-switch:before {
+  content: "";
+}
+/* '' */
+.icon-video:before {
+  content: "";
+}
+/* '' */
+.icon-view-agenda:before {
+  content: "";
+}
+/* '' */
+.icon-view-array:before {
+  content: "";
+}
+/* '' */
+.icon-view-carousel:before {
+  content: "";
+}
+/* '' */
+.icon-view-column:before {
+  content: "";
+}
+/* '' */
+.icon-view-dashboard:before {
+  content: "";
+}
+/* '' */
+.icon-view-day:before {
+  content: "";
+}
+/* '' */
+.icon-view-headline:before {
+  content: "";
+}
+/* '' */
+.icon-view-list:before {
+  content: "";
+}
+/* '' */
+.icon-view-module:before {
+  content: "";
+}
+/* '' */
+.icon-view-quilt:before {
+  content: "";
+}
+/* '' */
+.icon-view-stream:before {
+  content: "";
+}
+/* '' */
+.icon-view-week:before {
+  content: "";
+}
+/* '' */
+.icon-voicemail:before {
+  content: "";
+}
+/* '' */
+.icon-volume-high:before {
+  content: "";
+}
+/* '' */
+.icon-volume-low:before {
+  content: "";
+}
+/* '' */
+.icon-volume-medium:before {
+  content: "";
+}
+/* '' */
+.icon-volume-off:before {
+  content: "";
+}
+/* '' */
+.icon-walk:before {
+  content: "";
+}
+/* '' */
+.icon-wallet-giftcard:before {
+  content: "";
+}
+/* '' */
+.icon-wallet-membership:before {
+  content: "";
+}
+/* '' */
+.icon-wallet-travel:before {
+  content: "";
+}
+/* '' */
+.icon-wallet:before {
+  content: "";
+}
+/* '' */
+.icon-watch:before {
+  content: "";
+}
+/* '' */
+.icon-water-off:before {
+  content: "";
+}
+/* '' */
+.icon-water-pump:before {
+  content: "";
+}
+/* '' */
+.icon-water:before {
+  content: "";
+}
+/* '' */
+.icon-weather-cloudy:before {
+  content: "";
+}
+/* '' */
+.icon-weather-hail:before {
+  content: "";
+}
+/* '' */
+.icon-weather-lightning:before {
+  content: "";
+}
+/* '' */
+.icon-weather-night:before {
+  content: "";
+}
+/* '' */
+.icon-weather-partlycloudy:before {
+  content: "";
+}
+/* '' */
+.icon-weather-pouring:before {
+  content: "";
+}
+/* '' */
+.icon-weather-rainy:before {
+  content: "";
+}
+/* '' */
+.icon-weather-snowy:before {
+  content: "";
+}
+/* '' */
+.icon-weather-sunny:before {
+  content: "";
+}
+/* '' */
+.icon-weather-sunset-down:before {
+  content: "";
+}
+/* '' */
+.icon-weather-sunset-up:before {
+  content: "";
+}
+/* '' */
+.icon-weather-sunset:before {
+  content: "";
+}
+/* '' */
+.icon-weather-windy-variant:before {
+  content: "";
+}
+/* '' */
+.icon-weather-windy:before {
+  content: "";
+}
+/* '' */
+.icon-web:before {
+  content: "";
+}
+/* '' */
+.icon-whatsapp:before {
+  content: "";
+}
+/* '' */
+.icon-wheelchair-accessibility:before {
+  content: "";
+}
+/* '' */
+.icon-white-balance-auto:before {
+  content: "";
+}
+/* '' */
+.icon-white-balance-incandescent:before {
+  content: "";
+}
+/* '' */
+.icon-white-balance-irradescent:before {
+  content: "";
+}
+/* '' */
+.icon-white-balance-sunny:before {
+  content: "";
+}
+/* '' */
+.icon-wifi:before {
+  content: "";
+}
+/* '' */
+.icon-wikipedia:before {
+  content: "";
+}
+/* '' */
+.icon-window-closed:before {
+  content: "";
+}
+/* '' */
+.icon-window-open:before {
+  content: "";
+}
+/* '' */
+.icon-windows:before {
+  content: "";
+}
+/* '' */
+.icon-xbox:before {
+  content: "";
+}
+/* '' */
+.icon-xda:before {
+  content: "";
+}
+/* '' */
+.icon-xml:before {
+  content: "";
+}
+/* '' */
+.icon-youtube-play:before {
+  content: "";
+}
+/* '' */
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 300;
+  src: url('OpenSans-Light.ttf');
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url('OpenSans-Regular.ttf');
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  src: url('OpenSans-Bold.ttf');
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url('OpenSans-SemiBold.ttf');
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 800;
+  src: url('OpenSans-ExtraBold.ttf');
+}
+:root {
+  /* Settings Fonts Size And Icon Size
+  =======================================================
+  =======================================================*/
+  --fallback-color: red;
+  --h1-font-size: 24px;
+  --h2-font-size: 16px;
+  --h3-font-size: 15px;
+  --h4-font-size: 14px;
+  --h5-font-size: 12px;
+  --h6-font-size: 10px;
+  --text-font-size: 11px;
+  /* Settings Fonts Size Icon
+  =======================================================
+  =======================================================*/
+  --icon-size-small: 20px;
+  --icon-size-medium: 32px;
+  --icon-size-large: 60px;
+  /* Settings Font Span
+  =======================================================
+  =======================================================*/
+  --span-size-small: 12px;
+  --span-size-medium: 24px;
+  --span-size-large: 30px;
+  /* Settings Color Background Our App
+  =======================================================
+  =======================================================*/
+  --cs-background-primary: #fff;
+  --cs-background-secondary: #f7f7f7;
+  --cs-background-accent: #2f3b69;
+  /* Settings Color Text Our App
+  =======================================================
+  =======================================================*/
+  --cs-text-primary: #fff;
+  --cs-text-secondary: #2f3b69;
+  --cs-text-accent: #2f3b69;
+  /* Settings Color Gradient Our App
+  =======================================================
+  =======================================================*/
+  --cs-blandModes-primary: #2f3b69;
+  --cs-blandModes-secondary: #ffffff;
+  --cs-blandModes-accent: #2f3b69;
+  --cs-mode-image: multiply;
+  --cs-gradient-linear: linear-gradient(to left, var(--cs-blandModes-primary) 0%, var(--cs-blandModes-accent) 100%);
+  /* Settings Color Gradient Toolbar
+  =======================================================
+  =======================================================*/
+  --cs-toolbar-primary: #2f3b69;
+  --cs-toolbar-accent: #2f3b69;
+  --cs-gradient-linear-toolbar: linear-gradient(to left, var(--cs-toolbar-primary) 0%, var(--cs-toolbar-accent) 100%);
+  /* Settings Size Avatar
+  =======================================================
+  =======================================================*/
+  --size-avatar: 60px;
+  /* Settings Border Radius
+  =======================================================
+  =======================================================*/
+  --border-radius: 4px;
+  /* Settings Color Icon
+  =======================================================
+  =======================================================*/
+  --cs-icon-color-primary: #2f3b69;
+  --cs-icon-color-secondary: #fff;
+}
+/* SETTINGS RTL STYLE
+=======================================================
+=======================================================*/
+html[dir=rtl] {
+  /* SETTINGS INPUT FIELD
+      =======================================================*/
+  /* SETTINGS COMMENTS WITH TIMELINE
+      =======================================================*/
+  /* SETTINGS CARD
+    =======================================================*/
+  /* SETTINGS TABS
+    =======================================================*/
+  /* SETTINGS TIMELINE
+    =======================================================*/
+  /* SETTINGS ALERT
+  =======================================================*/
+  /* SETTINGS SCROLLL SEGMENT
+  =======================================================
+  =======================================================*/
+}
+html[dir=rtl] cs-expandable-list-layout-1 .social-share {
+  left: 8px;
+  right: unset !important;
+}
+html[dir=rtl] .item-textarea.item-has-focus .label-floating, html[dir=rtl] .item-textarea.item-has-value .label-floating,
+html[dir=rtl] ion-item.input.item-has-focus .label-floating,
+html[dir=rtl] ion-item.input.item-has-value .label-floating {
+  transform: translateZ(0) scale(1) !important;
+}
+html[dir=rtl] .item-textarea ion-icon,
+html[dir=rtl] ion-item.input ion-icon {
+  left: 0;
+  right: unset;
+}
+html[dir=rtl] cs-comment-layout-2 ion-item:before {
+  left: unset;
+  right: 45px;
+}
+html[dir=rtl] cs-google-card-list-layout-1 ion-thumbnail {
+  margin: 0 0 0 10px !important;
+}
+html[dir=rtl] cs-google-card-list-layout-2 .title-card {
+  left: auto !important;
+  right: 16px;
+}
+html[dir=rtl] ion-tabs app-tab1 h2 {
+  left: auto !important;
+  right: 16px;
+}
+html[dir=rtl] ion-tabs app-tab5 ion-list > ion-item::before {
+  left: auto !important;
+  right: 45px;
+}
+html[dir=rtl] cs-timeline-layout-1 ion-card:after,
+html[dir=rtl] cs-timeline-layout-3 ion-card:after {
+  right: -30px;
+  left: unset;
+}
+html[dir=rtl] cs-timeline-layout-1 ion-card:before,
+html[dir=rtl] cs-timeline-layout-3 ion-card:before {
+  right: -36px;
+  left: unset;
+}
+html[dir=rtl] cs-timeline-layout-2 .item-thumbnail:after {
+  right: -30px;
+  left: unset;
+}
+html[dir=rtl] cs-timeline-layout-2 .item-thumbnail:before {
+  right: -36px;
+  left: unset;
+}
+html[dir=rtl] .alert-button-group {
+  padding: 8px 8px 8px 0 !important;
+}
+html[dir=rtl] cs-scroll-segment-layout-4 .page1 .background-size {
+  margin-left: 8px !important;
+  margin-right: 0 !important;
+}
+html[dir=rtl] cs-scroll-segment-layout-4 .page1 .small-image .background-size {
+  margin-right: 8px !important;
+  margin-left: 0 !important;
+}
+/* Setting Animation FadeIn
+=======================================================
+=======================================================*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fadeIn {
+  animation-name: fadeIn;
+}
+/* Setting Animation FadeInLeft
+=======================================================
+=======================================================*/
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.fadeInLeft {
+  animation-name: fadeInLeft;
+}
+/* Setting Animation FadeInRight
+=======================================================
+=======================================================*/
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.fadeInRight {
+  animation-name: fadeInRight;
+}
+/* Setting Animation FadeInUp
+=======================================================
+=======================================================*/
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+/* Setting Animation ZoomIn
+=======================================================
+=======================================================*/
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.zoomIn {
+  animation-name: zoomIn;
+}
+/* Setting Animation BounceIn
+=======================================================
+=======================================================*/
+@keyframes bounceIn {
+  from, 20%, 40%, 60%, 80%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    opacity: 1;
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+.bounceIn {
+  animation-name: bounceIn;
+}
+/* Setting Animation BounceInLeft
+=======================================================
+=======================================================*/
+@keyframes bounceInLeft {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    transform: translate3d(-3000px, 0, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(25px, 0, 0);
+  }
+  75% {
+    opacity: 1;
+    transform: translate3d(-10px, 0, 0);
+  }
+  90% {
+    opacity: 1;
+    transform: translate3d(5px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.bounceInLeft {
+  animation-name: bounceInLeft;
+}
+/* Setting Animation BounceInRight
+=======================================================
+=======================================================*/
+@keyframes bounceInRight {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  from {
+    opacity: 0;
+    transform: translate3d(3000px, 0, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(-25px, 0, 0);
+  }
+  75% {
+    opacity: 1;
+    transform: translate3d(10px, 0, 0);
+  }
+  90% {
+    opacity: 1;
+    transform: translate3d(-5px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.bounceInRight {
+  animation-name: bounceInRight;
+}
+/* Setting Animation SlideInLeft
+=======================================================
+=======================================================*/
+@keyframes slideInLeft {
+  from {
+    opacity: 1;
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.slideInLeft {
+  animation-name: slideInLeft;
+}
+/* Setting Animation SlideInUP
+=======================================================
+=======================================================*/
+@keyframes slideInUp {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.slideInUp {
+  animation-name: slideInUp;
+}
+/* Setting Animation Duration
+=======================================================
+=======================================================*/
+.animation-slow {
+  animation-duration: 1.2s;
+  animation-delay: 300ms;
+  animation-fill-mode: forwards;
+}
+.animation-normal {
+  animation-duration: 800ms;
+  animation-delay: 200ms;
+  animation-fill-mode: forwards;
+}
+.animation-fast {
+  animation-duration: 600ms;
+  animation-delay: 200ms;
+  animation-fill-mode: forwards;
+}
+/* Settings Opacity
+================================================
+================================================*/
+.opacity-0 {
+  opacity: 0;
+}
+.blue {
+  /* Settings Fonts Size And Icon Size
+  =======================================================
+  =======================================================*/
+  --fallback-color: red;
+  --h1-font-size: 24px;
+  --h2-font-size: 16px;
+  --h3-font-size: 15px;
+  --h4-font-size: 14px;
+  --h5-font-size: 12px;
+  --h6-font-size: 10px;
+  --text-font-size: 12px;
+  /* Settings Fonts Size Icon
+  =======================================================
+  =======================================================*/
+  --icon-size-small: 20px;
+  --icon-size-medium: 32px;
+  --icon-size-large: 60px;
+  /* Settings Font Span
+  =======================================================
+  =======================================================*/
+  --span-size-small: 12px;
+  --span-size-medium: 24px;
+  --span-size-large: 30px;
+  /* Settings Color Background Our App
+  =======================================================
+  =======================================================*/
+  --cs-background-primary: #fff;
+  --cs-background-secondary: #f7f7f7;
+  --cs-background-accent: #007CDC;
+  /* Settings Color Text Our App
+  =======================================================
+  =======================================================*/
+  --cs-text-primary: #fff;
+  --cs-text-secondary: #007CDC;
+  --cs-text-accent: #455B65;
+  /* Settings Color Gradient Our App
+  =======================================================
+  =======================================================*/
+  --cs-blandModes-primary: #007CDC;
+  --cs-blandModes-secondary: #ffffff;
+  --cs-blandModes-accent: #007CDC;
+  --cs-mode-image: multiply;
+  --cs-gradient-linear: linear-gradient(to left, var(--cs-blandModes-primary) 0%, var(--cs-blandModes-accent) 100%);
+  /* Settings Color Gradient Toolbar
+  =======================================================
+  =======================================================*/
+  --cs-toolbar-primary: #00C0E8;
+  --cs-toolbar-accent: #0090D0;
+  --cs-gradient-linear-toolbar: linear-gradient(to left, var(--cs-toolbar-primary) 0%, var(--cs-toolbar-accent) 100%);
+  /* Settings Size Avatar
+  =======================================================
+  =======================================================*/
+  --size-avatar: 60px;
+  /* Settings Border Radius
+  =======================================================
+  =======================================================*/
+  --border-radius: 4px;
+  /* Settings Color Icon
+  =======================================================
+  =======================================================*/
+  --cs-icon-color-primary: #007CDC;
+  --cs-icon-color-secondary: #fff;
+}
+.blue-gradient-1 {
+  /* Settings Fonts Size And Icon Size
+  =======================================================
+  =======================================================*/
+  --fallback-color: red;
+  --h1-font-size: 24px;
+  --h2-font-size: 16px;
+  --h3-font-size: 15px;
+  --h4-font-size: 14px;
+  --h5-font-size: 12px;
+  --h6-font-size: 10px;
+  --text-font-size: 12px;
+  /* Settings Fonts Size Icon
+  =======================================================
+  =======================================================*/
+  --icon-size-small: 20px;
+  --icon-size-medium: 32px;
+  --icon-size-large: 60px;
+  /* Settings Font Span
+  =======================================================
+  =======================================================*/
+  --span-size-small: 12px;
+  --span-size-medium: 24px;
+  --span-size-large: 30px;
+  /* Settings Color Background Our App
+  =======================================================
+  =======================================================*/
+  --cs-background-primary: #fff;
+  --cs-background-secondary: #f7f7f7;
+  --cs-background-accent: #4154FF;
+  /* Settings Color Text Our App
+  =======================================================
+  =======================================================*/
+  --cs-text-primary: #fff;
+  --cs-text-secondary: #4154FF;
+  --cs-text-accent: #455B65;
+  /* Settings Color Gradient Our App
+  =======================================================
+  =======================================================*/
+  --cs-blandModes-primary: #3ABCFF;
+  --cs-blandModes-secondary: #ffffff;
+  --cs-blandModes-accent: #4154FF;
+  --cs-mode-image: multiply;
+  --cs-gradient-linear: linear-gradient(to left, var(--cs-blandModes-primary) 0%, var(--cs-blandModes-accent) 100%);
+  /* Settings Color Gradient Toolbar
+  =======================================================
+  =======================================================*/
+  --cs-toolbar-primary: #3ABCFF;
+  --cs-toolbar-accent: #4154FF;
+  --cs-gradient-linear-toolbar: linear-gradient(to left, var(--cs-toolbar-primary) 0%, var(--cs-toolbar-accent) 100%);
+  /* Settings Size Avatar
+  =======================================================
+  =======================================================*/
+  --size-avatar: 60px;
+  /* Settings Border Radius
+  =======================================================
+  =======================================================*/
+  --border-radius: 4px;
+  /* Settings Color Icon
+  =======================================================
+  =======================================================*/
+  --cs-icon-color-primary: #4154FF;
+  --cs-icon-color-secondary: #fff;
+}
+.blue-gradient-2 {
+  /* Settings Fonts Size And Icon Size
+  =======================================================
+  =======================================================*/
+  --fallback-color: red;
+  --h1-font-size: 24px;
+  --h2-font-size: 16px;
+  --h3-font-size: 15px;
+  --h4-font-size: 14px;
+  --h5-font-size: 12px;
+  --h6-font-size: 10px;
+  --text-font-size: 12px;
+  /* Settings Fonts Size Icon
+  =======================================================
+  =======================================================*/
+  --icon-size-small: 20px;
+  --icon-size-medium: 32px;
+  --icon-size-large: 60px;
+  /* Settings Font Span
+  =======================================================
+  =======================================================*/
+  --span-size-small: 12px;
+  --span-size-medium: 24px;
+  --span-size-large: 30px;
+  /* Settings Color Background Our App
+  =======================================================
+  =======================================================*/
+  --cs-background-primary: #fff;
+  --cs-background-secondary: #f7f7f7;
+  --cs-background-accent: #68BDFF;
+  /* Settings Color Text Our App
+  =======================================================
+  =======================================================*/
+  --cs-text-primary: #fff;
+  --cs-text-secondary: #68BDFF;
+  --cs-text-accent: #455B65;
+  /* Settings Color Gradient Our App
+  =======================================================
+  =======================================================*/
+  --cs-blandModes-primary: #41EBFF;
+  --cs-blandModes-secondary: #ffffff;
+  --cs-blandModes-accent: #68BDFF;
+  --cs-mode-image: multiply;
+  --cs-gradient-linear: linear-gradient(to left, var(--cs-blandModes-primary) 0%, var(--cs-blandModes-accent) 100%);
+  /* Settings Color Gradient Toolbar
+  =======================================================
+  =======================================================*/
+  --cs-toolbar-primary: #41EBFF;
+  --cs-toolbar-accent: #68BDFF;
+  --cs-gradient-linear-toolbar: linear-gradient(to left, var(--cs-toolbar-primary) 0%, var(--cs-toolbar-accent) 100%);
+  /* Settings Size Avatar
+  =======================================================
+  =======================================================*/
+  --size-avatar: 60px;
+  /* Settings Border Radius
+  =======================================================
+  =======================================================*/
+  --border-radius: 4px;
+  /* Settings Color Icon
+  =======================================================
+  =======================================================*/
+  --cs-icon-color-primary: #68BDFF;
+  --cs-icon-color-secondary: #fff;
+}
+.blue-gradient-3 {
+  /* Settings Fonts Size And Icon Size
+  =======================================================
+  =======================================================*/
+  --fallback-color: red;
+  --h1-font-size: 24px;
+  --h2-font-size: 16px;
+  --h3-font-size: 15px;
+  --h4-font-size: 14px;
+  --h5-font-size: 12px;
+  --h6-font-size: 10px;
+  --text-font-size: 12px;
+  /* Settings Fonts Size Icon
+  =======================================================
+  =======================================================*/
+  --icon-size-small: 20px;
+  --icon-size-medium: 32px;
+  --icon-size-large: 60px;
+  /* Settings Font Span
+  =======================================================
+  =======================================================*/
+  --span-size-small: 12px;
+  --span-size-medium: 24px;
+  --span-size-large: 30px;
+  /* Settings Color Background Our App
+  =======================================================
+  =======================================================*/
+  --cs-background-primary: #fff;
+  --cs-background-secondary: #f7f7f7;
+  --cs-background-accent: #007CDC;
+  /* Settings Color Text Our App
+  =======================================================
+  =======================================================*/
+  --cs-text-primary: #fff;
+  --cs-text-secondary: #007CDC;
+  --cs-text-accent: #455B65;
+  /* Settings Color Gradient Our App
+  =======================================================
+  =======================================================*/
+  --cs-blandModes-primary: #68BDFF;
+  --cs-blandModes-secondary: #ffffff;
+  --cs-blandModes-accent: #007CDC;
+  --cs-mode-image: multiply;
+  --cs-gradient-linear: linear-gradient(to left, var(--cs-blandModes-primary) 0%, var(--cs-blandModes-accent) 100%);
+  /* Settings Color Gradient Toolbar
+  =======================================================
+  =======================================================*/
+  --cs-toolbar-primary: #68BDFF;
+  --cs-toolbar-accent: #007CDC;
+  --cs-gradient-linear-toolbar: linear-gradient(to left, var(--cs-toolbar-primary) 0%, var(--cs-toolbar-accent) 100%);
+  /* Settings Size Avatar
+  =======================================================
+  =======================================================*/
+  --size-avatar: 60px;
+  /* Settings Border Radius
+  =======================================================
+  =======================================================*/
+  --border-radius: 4px;
+  /* Settings Color Icon
+  =======================================================
+  =======================================================*/
+  --cs-icon-color-primary: #007CDC;
+  --cs-icon-color-secondary: #fff;
+}
+.dark-gray {
+  /* Settings Fonts Size And Icon Size
+  =======================================================
+  =======================================================*/
+  --fallback-color: red;
+  --h1-font-size: 24px;
+  --h2-font-size: 16px;
+  --h3-font-size: 15px;
+  --h4-font-size: 14px;
+  --h5-font-size: 12px;
+  --h6-font-size: 10px;
+  --text-font-size: 12px;
+  /* Settings Fonts Size Icon
+  =======================================================
+  =======================================================*/
+  --icon-size-small: 20px;
+  --icon-size-medium: 32px;
+  --icon-size-large: 60px;
+  /* Settings Font Span
+  =======================================================
+  =======================================================*/
+  --span-size-small: 12px;
+  --span-size-medium: 24px;
+  --span-size-large: 30px;
+  /* Settings Color Background Our App
+  =======================================================
+  =======================================================*/
+  --cs-background-primary: #fff;
+  --cs-background-secondary: #f7f7f7;
+  --cs-background-accent: #41586B;
+  /* Settings Color Text Our App
+  =======================================================
+  =======================================================*/
+  --cs-text-primary: #fff;
+  --cs-text-secondary: #41586B;
+  --cs-text-accent: #455B65;
+  /* Settings Color Gradient Our App
+  =======================================================
+  =======================================================*/
+  --cs-blandModes-primary: #455B65;
+  --cs-blandModes-secondary: #ffffff;
+  --cs-blandModes-accent: #212C36;
+  --cs-mode-image: multiply;
+  --cs-gradient-linear: linear-gradient(to left, var(--cs-blandModes-primary) 0%, var(--cs-blandModes-accent) 100%);
+  /* Settings Color Gradient Toolbar
+  =======================================================
+  =======================================================*/
+  --cs-toolbar-primary: #455B65;
+  --cs-toolbar-accent: #212C36;
+  --cs-gradient-linear-toolbar: linear-gradient(to left, var(--cs-toolbar-primary) 0%, var(--cs-toolbar-accent) 100%);
+  /* Settings Size Avatar
+  =======================================================
+  =======================================================*/
+  --size-avatar: 60px;
+  /* Settings Border Radius
+  =======================================================
+  =======================================================*/
+  --border-radius: 4px;
+  /* Settings Color Icon
+  =======================================================
+  =======================================================*/
+  --cs-icon-color-primary: #41586B;
+  --cs-icon-color-secondary: #fff;
+}
+.green {
+  /* Settings Fonts Size And Icon Size
+  =======================================================
+  =======================================================*/
+  --fallback-color: red;
+  --h1-font-size: 24px;
+  --h2-font-size: 16px;
+  --h3-font-size: 15px;
+  --h4-font-size: 14px;
+  --h5-font-size: 12px;
+  --h6-font-size: 10px;
+  --text-font-size: 12px;
+  /* Settings Fonts Size Icon
+  =======================================================
+  =======================================================*/
+  --icon-size-small: 20px;
+  --icon-size-medium: 32px;
+  --icon-size-large: 60px;
+  /* Settings Font Span
+  =======================================================
+  =======================================================*/
+  --span-size-small: 12px;
+  --span-size-medium: 24px;
+  --span-size-large: 30px;
+  /* Settings Color Background Our App
+  =======================================================
+  =======================================================*/
+  --cs-background-primary: #fff;
+  --cs-background-secondary: #f7f7f7;
+  --cs-background-accent: #49b36f;
+  /* Settings Color Text Our App
+  =======================================================
+  =======================================================*/
+  --cs-text-primary: #fff;
+  --cs-text-secondary: #49b36f;
+  --cs-text-accent: #455B65;
+  /* Settings Color Gradient Our App
+  =======================================================
+  =======================================================*/
+  --cs-blandModes-primary: #49b36f;
+  --cs-blandModes-secondary: #ffffff;
+  --cs-blandModes-accent: #49b36f;
+  --cs-mode-image: multiply;
+  --cs-gradient-linear: linear-gradient(to left, var(--cs-blandModes-primary) 0%, var(--cs-blandModes-accent) 100%);
+  /* Settings Color Gradient Toolbar
+  =======================================================
+  =======================================================*/
+  --cs-toolbar-primary: #49b36f;
+  --cs-toolbar-accent: #49b36f;
+  --cs-gradient-linear-toolbar: linear-gradient(to left, var(--cs-toolbar-primary) 0%, var(--cs-toolbar-accent) 100%);
+  /* Settings Size Avatar
+  =======================================================
+  =======================================================*/
+  --size-avatar: 60px;
+  /* Settings Border Radius
+  =======================================================
+  =======================================================*/
+  --border-radius: 4px;
+  /* Settings Color Icon
+  =======================================================
+  =======================================================*/
+  --cs-icon-color-primary: #41586B;
+  --cs-icon-color-secondary: #fff;
+}
+.purple {
+  /* Settings Fonts Size And Icon Size
+  =======================================================
+  =======================================================*/
+  --fallback-color: red;
+  --h1-font-size: 24px;
+  --h2-font-size: 16px;
+  --h3-font-size: 15px;
+  --h4-font-size: 14px;
+  --h5-font-size: 12px;
+  --h6-font-size: 10px;
+  --text-font-size: 12px;
+  /* Settings Fonts Size Icon
+  =======================================================
+  =======================================================*/
+  --icon-size-small: 20px;
+  --icon--size-medium: 32px;
+  --icon-size-large: 60px;
+  /* Settings Font Span
+  =======================================================
+  =======================================================*/
+  --span-size-small: 12px;
+  --span-size-medium: 24px;
+  --span-size-large: 30px;
+  /* Settings Color Background Our App
+  =======================================================
+  =======================================================*/
+  --cs-background-primary: #fff;
+  --cs-background-secondary: #f7f7f7;
+  --cs-background-accent: #CD7BDD;
+  /* Settings Color Text Our App
+  =======================================================
+  =======================================================*/
+  --cs-text-primary: #fff;
+  --cs-text-secondary: #CD7BDD;
+  --cs-text-accent: #455B65;
+  /* Settings Color Gradient Our App
+  =======================================================
+  =======================================================*/
+  --cs-blandModes-primary: #CD7BDD;
+  --cs-blandModes-secondary: #ffffff;
+  --cs-blandModes-accent: #CD7BDD;
+  --cs-mode-image: multiply;
+  --cs-gradient-linear: linear-gradient(to left, var(--cs-blandModes-primary) 0%, var(--cs-blandModes-accent) 100%);
+  /* Settings Color Gradient Toolbar
+  =======================================================
+  =======================================================*/
+  --cs-toolbar-primary: #CD7BDD;
+  --cs-toolbar-accent: #CD7BDD;
+  --cs-gradient-linear-toolbar: linear-gradient(to left, var(--cs-toolbar-primary) 0%, var(--cs-toolbar-accent) 100%);
+  /* Settings Size Avatar
+  =======================================================
+  =======================================================*/
+  --size-avatar: 60px;
+  /* Settings Border Radius
+  =======================================================
+  =======================================================*/
+  --border-radius: 4px;
+  /* Settings Color Icon
+  =======================================================
+  =======================================================*/
+  --cs-icon-color-primary: #CD7BDD;
+  --cs-icon-color-secondary: #fff;
+}
+.red {
+  /* Settings Fonts Size And Icon Size
+  =======================================================
+  =======================================================*/
+  --fallback-color: red;
+  --h1-font-size: 24px;
+  --h2-font-size: 16px;
+  --h3-font-size: 15px;
+  --h4-font-size: 14px;
+  --h5-font-size: 12px;
+  --h6-font-size: 10px;
+  --text-font-size: 12px;
+  /* Settings Fonts Size Icon
+  =======================================================
+  =======================================================*/
+  --icon-size-small: 20px;
+  --icon-size-medium: 32px;
+  --icon-size-large: 60px;
+  /* Settings Font Span
+  =======================================================
+  =======================================================*/
+  --span-size-small: 12px;
+  --span-size-medium: 24px;
+  --span-size-large: 30px;
+  /* Settings Color Background Our App
+  =======================================================
+  =======================================================*/
+  --cs-background-primary: #fff;
+  --cs-background-secondary: #f7f7f7;
+  --cs-background-accent: #FC1343;
+  /* Settings Color Text Our App
+  =======================================================
+  =======================================================*/
+  --cs-text-primary: #fff;
+  --cs-text-secondary: #FC1343;
+  --cs-text-accent: #455B65;
+  /* Settings Color Gradient Our App
+  =======================================================
+  =======================================================*/
+  --cs-blandModes-primary: #FC1343;
+  --cs-blandModes-secondary: #ffffff;
+  --cs-blandModes-accent: #FC1343;
+  --cs-mode-image: multiply;
+  --cs-gradient-linear: linear-gradient(to left, var(--cs-blandModes-primary) 0%, var(--cs-blandModes-accent) 100%);
+  /* Settings Color Gradient Toolbar
+  =======================================================
+  =======================================================*/
+  --cs-toolbar-primary: #FC1343;
+  --cs-toolbar-accent: #FC1343;
+  --cs-gradient-linear-toolbar: linear-gradient(to left, var(--cs-toolbar-primary) 0%, var(--cs-toolbar-accent) 100%);
+  /* Settings Size Avatar
+  =======================================================
+  =======================================================*/
+  --size-avatar: 60px;
+  /* Settings Border Radius
+  =======================================================
+  =======================================================*/
+  --border-radius: 4px;
+  /* Settings Color Icon
+  =======================================================
+  =======================================================*/
+  --cs-icon-color-primary: #FC1343;
+  --cs-icon-color-secondary: #fff;
+}
+.orange {
+  /* Settings Fonts Size And Icon Size
+  =======================================================
+  =======================================================*/
+  --fallback-color: red;
+  --h1-font-size: 24px;
+  --h2-font-size: 16px;
+  --h3-font-size: 15px;
+  --h4-font-size: 14px;
+  --h5-font-size: 12px;
+  --h6-font-size: 10px;
+  --text-font-size: 12px;
+  /* Settings Fonts Size Icon
+  =======================================================
+  =======================================================*/
+  --icon-size-small: 20px;
+  --icon-size-medium: 32px;
+  --icon-size-large: 60px;
+  /* Settings Font Span
+  =======================================================
+  =======================================================*/
+  --span-size-small: 12px;
+  --span-size-medium: 24px;
+  --span-size-large: 30px;
+  /* Settings Color Background Our App
+  =======================================================
+  =======================================================*/
+  --cs-background-primary: #fff;
+  --cs-background-secondary: #f7f7f7;
+  --cs-background-accent: #FD8345;
+  /* Settings Color Text Our App
+  =======================================================
+  =======================================================*/
+  --cs-text-primary: #fff;
+  --cs-text-secondary: #FD8345;
+  --cs-text-accent: #455B65;
+  /* Settings Color Gradient Our App
+  =======================================================
+  =======================================================*/
+  --cs-blandModes-primary: #FD8345;
+  --cs-blandModes-secondary: #ffffff;
+  --cs-blandModes-accent: #FD8345;
+  --cs-mode-image: multiply;
+  --cs-gradient-linear: linear-gradient(to left, var(--cs-blandModes-primary) 0%, var(--cs-blandModes-accent) 100%);
+  /* Settings Color Gradient Toolbar
+  =======================================================
+  =======================================================*/
+  --cs-toolbar-primary: #FD8345;
+  --cs-toolbar-accent: #FD8345;
+  --cs-gradient-linear-toolbar: linear-gradient(to left, var(--cs-toolbar-primary) 0%, var(--cs-toolbar-accent) 100%);
+  /* Settings Size Avatar
+  =======================================================
+  =======================================================*/
+  --size-avatar: 60px;
+  /* Settings Border Radius
+  =======================================================
+  =======================================================*/
+  --border-radius: 4px;
+  /* Settings Color Icon
+  =======================================================
+  =======================================================*/
+  --cs-icon-color-primary: #FD8345;
+  --cs-icon-color-secondary: #fff;
+}
+.yellow {
+  /* Settings Fonts Size And Icon Size
+  =======================================================
+  =======================================================*/
+  --fallback-color: red;
+  --h1-font-size: 24px;
+  --h2-font-size: 16px;
+  --h3-font-size: 15px;
+  --h4-font-size: 14px;
+  --h5-font-size: 12px;
+  --h6-font-size: 10px;
+  --text-font-size: 12px;
+  /* Settings Fonts Size Icon
+  =======================================================
+  =======================================================*/
+  --icon-size-small: 20px;
+  --icon-size-medium: 32px;
+  --icon-size-large: 60px;
+  /* Settings Font Span
+  =======================================================
+  =======================================================*/
+  --span-size-small: 12px;
+  --span-size-medium: 24px;
+  --span-size-large: 30px;
+  /* Settings Color Background Our App
+  =======================================================
+  =======================================================*/
+  --cs-background-primary: #fff;
+  --cs-background-secondary: #f7f7f7;
+  --cs-background-accent: #F5BC0A;
+  /* Settings Color Text Our App
+  =======================================================
+  =======================================================*/
+  --cs-text-primary: #fff;
+  --cs-text-secondary: #F5BC0A;
+  --cs-text-accent: #455B65;
+  /* Settings Color Gradient Our App
+  =======================================================
+  =======================================================*/
+  --cs-blandModes-primary: #F5BC0A;
+  --cs-blandModes-secondary: #ffffff;
+  --cs-blandModes-accent: #F5BC0A;
+  --cs-mode-image: multiply;
+  --cs-gradient-linear: linear-gradient(to left, var(--cs-blandModes-primary) 0%, var(--cs-blandModes-accent) 100%);
+  /* Settings Color Gradient Toolbar
+  =======================================================
+  =======================================================*/
+  --cs-toolbar-primary: #F5BC0A;
+  --cs-toolbar-accent: #F5BC0A;
+  --cs-gradient-linear-toolbar: linear-gradient(to left, var(--cs-toolbar-primary) 0%, var(--cs-toolbar-accent) 100%);
+  /* Settings Size Avatar
+  =======================================================
+  =======================================================*/
+  --size-avatar: 60px;
+  /* Settings Border Radius
+  =======================================================
+  =======================================================*/
+  --border-radius: 4px;
+  /* Settings Color Icon
+  =======================================================
+  =======================================================*/
+  --cs-icon-color-primary: #F5BC0A;
+  --cs-icon-color-secondary: #fff;
+}
+body {
+  --ion-font-family: "Open Sans", sans-serif;
+}
+/* Setting Avatar
+=======================================================
+=======================================================*/
+ion-avatar {
+  height: var(--size-avatar);
+  width: var(--size-avatar);
+}
+/* SETTINGS TOOLBAR
+=======================================================
+=======================================================*/
+ion-toolbar {
+  --background: var(--cs-gradient-linear-toolbar);
+  --color: var(--cs-text-primary);
+}
+ion-toolbar [slot=start] {
+  margin-inline-end: 0;
+}
+ion-toolbar ion-menu-button,
+ion-toolbar ion-back-button {
+  --color: var(--cs-text-primary) !important;
+}
+ion-toolbar ion-title {
+  font-weight: bold !important;
+  font-size: var(--h3-font-size) !important;
+}
+.margin-half {
+  margin: 8px;
+}
+.padding-half {
+  padding: 8px;
+}
+ion-item {
+  --ripple-color: transparent;
+}
+/* SETTINGS FONT SIZE
+=======================================================
+=======================================================*/
+.text-size-xl {
+  font-size: var(--h1-font-size, 24px) !important;
+  color: var(--cs-text-accent, #455B65);
+  line-height: 36px;
+  letter-spacing: 1px;
+}
+.text-size-lg {
+  font-size: var(--h2-font-size, 16px) !important;
+  color: var(--cs-text-accent, #455B65);
+  letter-spacing: 1px;
+}
+.text-size-md {
+  font-size: var(--h3-font-size, 15px) !important;
+  color: var(--cs-text-accent, #455B65);
+  letter-spacing: 1px;
+}
+.text-size-xs {
+  font-size: var(--h4-font-size, 14px) !important;
+  color: var(--cs-text-accent, #455B65);
+  letter-spacing: 1px;
+}
+.text-size-sm {
+  font-size: var(--h5-font-size, 12px) !important;
+  color: var(--cs-text-accent, #455B65);
+  letter-spacing: 1px;
+}
+.text-size-p {
+  font-size: var(--text-font-size, 12px) !important;
+  color: var(--cs-text-accent, #455B65);
+  letter-spacing: 1px;
+}
+.text-nowrap {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+/* SETTINGS ITEM SLIDING
+=======================================================
+=======================================================*/
+ion-item-option {
+  --background: var(--cs-background-primary, #ffffff);
+  --color: transparent;
+  font-size: 32px;
+  width: 56px;
+}
+ion-item-option.item-options-ios {
+  border-bottom-color: transparent !important;
+}
+/* SETTINGS COLOR AND SIZE ICON
+=======================================================
+=======================================================*/
+.icon-small {
+  color: var(--cs-icon-color-primary, #00c0e8);
+  font-size: var(--icon-size-small, 20px);
+}
+.icon-medium {
+  color: var(--cs-icon-color-primary, #00c0e8);
+  font-size: var(--icon-size-medium, 32px);
+}
+.icon-large {
+  color: var(--cs-icon-color-secondary, #ffffff);
+  font-size: var(--icon-size-large, 60px);
+}
+/* SETTINGS MAIN MENU
+=======================================================
+=======================================================*/
+ion-menu-toggle .icon-small {
+  margin-right: 10px;
+}
+i {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+}
+/* # Settings Span Components
+================================================
+================================================*/
+.span-small {
+  color: var(--cs-text-secondary);
+  font-size: var(--h4-font-size);
+}
+.span-medium {
+  color: var(--cs-text-secondary);
+  font-size: var(--h1-font-size);
+}
+.span-large {
+  color: var(--cs-text-secondary);
+  font-size: 30px !important;
+}
+/* SETTINGS BUTTON SIZE
+=======================================================
+=======================================================*/
+.default-button {
+  --color: var(--cs-text-primary, #ffffff);
+  --background: var(--cs-background-accent, #0090d0);
+  --background-hover: var(--cs-background-accent, #0090d0) !important;
+  --color-hover: var(--cs-text-primary, #ffffff) !important;
+  --color-activated: var(--cs-text-primary, #ffffff);
+  --color-focused: var(--cs-text-primary, #ffffff);
+  --padding-top: 15px;
+  --padding-bottom: 15px;
+  --padding-start: 25px;
+  --padding-end: 25px;
+  font-size: var(--h5-font-size);
+  font-weight: 400;
+  height: auto;
+  border-radius: 4px;
+  overflow: hidden;
+}
+ion-button {
+  --ripple-color: transparent;
+  --color-focused: transparent;
+  --opacity: 1;
+}
+ion-ripple-effect {
+  color: transparent;
+}
+.button-round {
+  --border-width: 1px;
+  --color: var(--cs-text-secondary, #0090d0) !important;
+  --color-hover: var(--cs-text-secondary, #0090d0) !important;
+  --color-activated: var(--cs-text-secondary, #0090d0)!important;
+  --color-focused: var(--cs-text-secondary, #0090d0)!important;
+  --padding-top: 15px;
+  --padding-bottom: 15px;
+  --padding-start: 25px;
+  --padding-end: 25px;
+  --border-color: var(--cs-background-accent, #0090d0) !important;
+  font-weight: bold !important;
+}
+.button-icon {
+  --background: transparent !important;
+  --color: var(--cs-text-accent, #455B65) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  --background-hover: transparent;
+  --color-hover: var(--cs-text-accent, #455B65 !important);
+  --color-activated: var(--cs-text-accent, #455B65)!important;
+  --color-focused: var(--cs-text-accent, #455B65)!important;
+  --box-shadow: none;
+}
+.button-icon [slot=start] {
+  margin-inline-end: 8px !important;
+}
+ion-fab-button {
+  --background-focused: transparent !important;
+  --background-hover: transparent !important;
+  --color-hover: var(--cs-background-accent, #0090d0) !important;
+  --color-activated: var(--cs-background-accent, #0090d0) !important;
+  --color-focused: var(--cs-background-accent, #0090d0) !important;
+  --background: transparent;
+  --color: var(--cs-background-accent, #0090d0);
+  --box-shadow: none;
+  --ripple-color: rgba(0, 0, 0, 0.1);
+}
+.clear-button {
+  --background: transparent;
+  --color: var(--cs-text-secondary, #0090d0) !important;
+  --background-hover: transparent !important;
+  --color-hover: var(--cs-text-secondary, #0090d0)!important;
+  --color-activated: var(--cs-text-secondary, #0090d0)!important;
+  --color-focused: var(--cs-text-secondary, #0090d0)!important;
+}
+/* SETTINGS INPUT FIELD
+=======================================================
+=======================================================*/
+.input {
+  --highlight-height: 1px;
+  --highlight-color-focused: var(--cs-background-accent, #0090d0);
+  --highlight-color-valid: var(--cs-background-accent, #0090d0);
+  --highlight-color-invalid: var(--cs-background-accent, #0090d0);
+}
+.input ion-label {
+  --color: var(--cs-text-secondary, #0090d0) !important;
+}
+.input.item-has-focus .label-floating {
+  color: var(--cs-text-secondary, #0090d0) !important;
+}
+.input .icon-small {
+  color: red;
+}
+/* SETTINGS CHECK BOX
+=======================================================
+=======================================================*/
+ion-checkbox {
+  --background-checked: var(--cs-background-accent, #0090d0);
+  --border-color-checked: var(--cs-background-accent, #0090d0);
+  --border-color: var(--cs-background-accent, #0090d0);
+}
+/* SETTINGS TOOGLE
+=======================================================
+=======================================================*/
+ion-toggle {
+  --background: var(--cs-background-secondary, #f7f7f7);
+  --background-checked: var(--cs-background-secondary, #f7f7f7);
+  --handle-background: var(--cs-background-secondary, #f7f7f7);
+  --handle-background-checked: var(--cs-background-accent, #0090d0);
+}
+/* SETTINGS RADIO
+=======================================================
+=======================================================*/
+ion-radio {
+  --color-checked: var(--cs-background-accent, #0090d0);
+}
+/* SETTINGS TABS
+=======================================================
+=======================================================*/
+ion-tab-bar {
+  --background: var(--cs-background-accent, #0090d0);
+}
+ion-tab-button {
+  --color: rgba(255, 255, 255, 0.71);
+  --color-selected: var(--cs-text-primary, #ffffff);
+  --ripple-color: rgba(0, 0, 0, 0.1);
+}
+ion-tab-button .ripple-effect {
+  display: none !important;
+}
+/* SETTING SEGMENT BUTTON
+===========================================
+===========================================*/
+ion-segment {
+  --background: transparent;
+}
+ion-segment-button {
+  --background: transparent;
+  --background-checked: transparent !important;
+  --background-focused: transparent !important;
+  --background-hover: transparent !important;
+  --ripple-color: transparent !important;
+  --color: rgba(255, 255, 255, 0.7);
+  --color-checked: var(--cs-text-primary, #ffffff) !important;
+  --color-focused: rgba(255, 255, 255, 0.7) !important;
+  --color-hover: rgba(255, 255, 255, 0.7) !important;
+  --indicator-box-shadow: none;
+  --border-width: 0 !important;
+  --border-radius: 0;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 5px;
+  min-width: unset;
+  max-width: unset;
+}
+.ios ion-segment {
+  padding: 10px 0 0 0;
+}
+.ios ion-segment ion-segment-button {
+  --indicator-color: transparent;
+}
+.ios ion-segment .segment-button-checked {
+  border-bottom: 2px solid var(--cs-background-primary);
+}
+/* SETTINGS SUPER TAB
+=======================================================
+=======================================================*/
+super-tabs-toolbar:after {
+  background-image: none !important;
+}
+super-tabs-container, super-tab {
+  width: 100%;
+}
+super-tab-button {
+  flex-grow: 1;
+  max-width: unset;
+}
+/* SETTINGS SEARCHBAR
+=======================================================
+=======================================================*/
+ion-searchbar {
+  --background: var(--cs-background-primary, #fff) !important;
+  --cancel-button-color: var(--cs-text-secondary, #0090d0) !important;
+  --clear-button-color: var(--cs-text-secondary, #0090d0) !important;
+  --color: var(--cs-text-secondary, #0090d0) !important;
+  --icon-color: var(--cs-text-secondary, #0090d0) !important;
+  --placeholder-color: var(--cs-text-secondary, #0090d0) !important;
+}
+.ios ion-searchbar {
+  --box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.ios ion-searchbar .searchbar-input {
+  border-radius: 0;
+}
+/* SETTINGS RANGE
+=======================================================
+=======================================================*/
+ion-range {
+  --knob-background: var(--cs-background-accent, #0090d0);
+  --bar-background-active: var(--cs-background-accent, #0090d0);
+  --bar-background: var(--cs-background-secondary, #f7f7f7);
+  --pin-background: var(--cs-background-accent, #0090d0);
+}
+/* SETTINGS ION-BADGE
+=======================================================
+=======================================================*/
+ion-badge {
+  --background: var(--cs-background-accent, #0090d0);
+  --color: var(--cs-text-primary, #ffffff);
+}
+/* SETTINGS WIZARD
+=======================================================
+=======================================================*/
+cs-wizard-layout-1 .swiper-pagination.swiper-pagination-bullets {
+  bottom: 50px !important;
+}
+cs-wizard-layout-1 .swiper-pagination-bullet-active {
+  --bullet-background: #fff !important;
+  background: var(--bullet-background);
+}
+cs-wizard-layout-2 .swiper-pagination.swiper-pagination-bullets {
+  bottom: -35px !important;
+}
+cs-wizard-layout-2 .swiper-pagination-bullet-active {
+  background: var(--cs-background-accent, #0090d0);
+}
+cs-wizard-layout-3 .swiper-pagination.swiper-pagination-bullets {
+  bottom: 50px !important;
+}
+cs-wizard-layout-3 .swiper-pagination-bullet-active {
+  --bullet-background: #fff !important;
+  background: var(--bullet-background);
+}
+cs-wizard-layout-4 .swiper-pagination-bullet-active {
+  --bullet-background: #fff !important;
+  background: var(--bullet-background);
+}
+cs-profile-layout-2 .swiper-pagination.swiper-pagination-bullets {
+  bottom: -35px !important;
+}
+cs-profile-layout-2 .swiper-pagination-bullet-active {
+  background: var(--cs-background-accent, #0090d0);
+}
+cs-profile-layout-4 .swiper-pagination.swiper-pagination-bullets {
+  bottom: -25px !important;
+}
+cs-profile-layout-4 .swiper-pagination-bullet-active {
+  background: var(--cs-background-accent, #0090d0);
+}
+.spinner-page .swiper-pagination-bullet-active {
+  background: var(--cs-background-accent, #0090d0);
+}
+/* Black&White Avatar and Image
+=======================================================
+=======================================================*/
+ion-avatar, ion-thumbnail {
+  filter: grayscale(100%);
+}
+.images-filter {
+  filter: grayscale(100%);
+}
+ion-img, img {
+  object-fit: cover;
+}
+/* Default Overview Ionic Section
+=======================================================
+=======================================================*/
+.background-size {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+.background-white {
+  background-color: #fff;
+}
+[slot=end] {
+  margin-inline-start: 0px;
+}
+[slot=start] {
+  margin-inline-end: 16px;
+}
+.font-bold {
+  font-weight: 900 !important;
+}
+.border-radius {
+  border-radius: 4px;
+}
+.no-border-radius {
+  border-radius: 0;
+}
+.no-box-shadow {
+  box-shadow: none !important;
+}
+.transparent {
+  --background: transparent;
+  background: var(--background);
+}
+.box-shadow {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) !important;
+  z-index: 999;
+}
+.clearfix {
+  display: block;
+  clear: both;
+}
+/* Settings Alert Info
+================================================
+================================================*/
+.info-dialog {
+  text-align: center;
+}
+.info-dialog .alert-head {
+  text-align: center;
+}
+.info-dialog .alert-head .alert-title {
+  font-size: var(--h4-font-size, 14px);
+  color: var(--cs-text-secondary, #0090d0) !important;
+}
+.info-dialog .alert-head .alert-sub-title {
+  font-size: var(--h2-font-size, 16px);
+  color: var(--cs-text-secondary, #0090d0);
+}
+.info-dialog .alert-message {
+  color: var(--cs-text-accent, #455B65) !important;
+  font-size: var(--text-font-size, 12px);
+}
+.info-dialog .alert-button-inner {
+  color: var(--cs-text-secondary, #0090d0) !important;
+}
+/* Settings Alert Warning
+================================================
+================================================*/
+.alert-warning .alert-title {
+  text-align: center;
+  font-size: var(--h4-font-size, 14px);
+  color: var(--cs-text-secondary, #0090d0) !important;
+}
+.alert-warning .alert-sub-title {
+  text-align: center;
+  color: var(--cs-text-secondary, #0090d0);
+}
+.alert-warning .alert-message {
+  color: var(--cs-text-accent, #455B65) !important;
+  font-size: var(--text-font-size, 12px);
+  text-align: center;
+}
+.alert-warning .alert-button-group {
+  padding: 8px 0 8px 8px !important;
+}
+.alert-warning button {
+  width: 100%;
+  margin-bottom: 20px;
+  background: var(--cs-background-accent, #0090d0) !important;
+  text-align: center;
+  color: var(--cs-text-primary, #ffffff) !important;
+  display: block;
+}
+.alert-warning button .alert-button-inner {
+  text-align: center;
+  display: block;
+}
+/* Settings Alert Wrapper
+================================================
+================================================*/
+.alert-wrapper [aria-checked=true].sc-ion-alert-ios .alert-radio-inner.sc-ion-alert-ios {
+  border-color: var(--cs-background-accent, #0090d0) !important;
+}
+.alert-wrapper [aria-checked=true].sc-ion-alert-ios .alert-radio-label.sc-ion-alert-ios {
+  color: var(--cs-text-secondary, #0090d0);
+}
+.select-alert [aria-checked=true].sc-ion-alert-md .alert-checkbox-icon.sc-ion-alert-md,
+.select-alert [aria-checked=true].sc-ion-alert-ios .alert-checkbox-icon.sc-ion-alert-ios {
+  border-color: var(--cs-text-secondary, #0090d0) !important;
+  background-color: var(--cs-background-accent, #0090d0) !important;
+}
+.select-alert .alert-button-inner {
+  color: var(--cs-text-secondary, #0090d0) !important;
+}
+/* Settings Action Sheet
+================================================
+================================================*/
+ion-action-sheet {
+  --background: var(--cs-background-primary, #FFFFFF) !important;
+  --background-selected: var(--cs-background-primary, #FFFFFF) !important;
+  --background-activated: var(--cs-background-primary, #FFFFFF) !important;
+  --color: var(--cs-text-primary) !important;
+  --button-color-selected: var(--cs-text-secondary) !important;
+  --button-color: var(--cs-text-accent) !important;
+}
+ion-action-sheet .action-sheet-destructive {
+  color: var(--cs-text-secondary) !important;
+}
+/* Settings Alert Subscribe
+================================================
+================================================*/
+.alert-subscribe .alert-title {
+  font-size: var(--h4-font-size, 14px);
+  color: var(--cs-text-secondary, #0090d0);
+}
+.alert-subscribe .alert-sub-title {
+  color: var(--cs-text-secondary, #0090d0);
+  font-size: var(--h3-font-size, 15px);
+}
+.alert-subscribe .alert-button-inner {
+  color: var(--cs-text-secondary, #0090d0) !important;
+}
+/* Settings Alert Dialog
+================================================
+================================================*/
+.basic-dialog .alert-head .alert-title {
+  font-size: var(--text-size-lg, 16px);
+  color: var(--cs-text-secondary, #0090d0) !important;
+}
+.basic-dialog .alert-message {
+  color: var(--cs-text-accent, #455B65) !important;
+  font-size: var(--h4-font-size, 14px);
+}
+.basic-dialog .alert-input:focus {
+  border-bottom: 1px solid var(--ion-color-primary, #0090d0);
+}
+/* Settings Spinner
+================================================
+================================================*/
+ion-spinner {
+  width: 40px;
+  height: 40px;
+  --color: var(--cs-background-accent, #0090d0) !important;
+}
+cs-spinner.svg-size {
+  font-size: 45px;
+  color: var(--cs-background-accent) !important;
+  stroke: var(--cs-background-accent) !important;
+}
+cs-spinner svg {
+  fill: var(--cs-background-accent) !important;
+}
+.lbl {
+  font-size: 12px;
+}
+.inputalert {
+  font-size: 15px;
+  color: black;
+  align-items: flex-start;
+}
+.iosaligntext {
+  text-align: left;
+}
+/** Ionic CSS Variables **/
+:root {
+  /** primary **/
+  --ion-color-primary: #3880ff;
+  --ion-color-primary-rgb: 56, 128, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #3171e0;
+  --ion-color-primary-tint: #4c8dff;
+  /** secondary **/
+  --ion-color-secondary: #0cd1e8;
+  --ion-color-secondary-rgb: 12, 209, 232;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #0bb8cc;
+  --ion-color-secondary-tint: #24d6ea;
+  /** tertiary **/
+  --ion-color-tertiary: #7044ff;
+  --ion-color-tertiary-rgb: 112, 68, 255;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #633ce0;
+  --ion-color-tertiary-tint: #7e57ff;
+  /** success **/
+  --ion-color-success: #10dc60;
+  --ion-color-success-rgb: 16, 220, 96;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #0ec254;
+  --ion-color-success-tint: #28e070;
+  /** warning **/
+  --ion-color-warning: #ffce00;
+  --ion-color-warning-rgb: 255, 206, 0;
+  --ion-color-warning-contrast: #ffffff;
+  --ion-color-warning-contrast-rgb: 255, 255, 255;
+  --ion-color-warning-shade: #e0b500;
+  --ion-color-warning-tint: #ffd31a;
+  /** danger **/
+  --ion-color-danger: #f04141;
+  --ion-color-danger-rgb: 245, 61, 61;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #d33939;
+  --ion-color-danger-tint: #f25454;
+  /** dark **/
+  --ion-color-dark: #222428;
+  --ion-color-dark-rgb: 34, 34, 34;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #1e2023;
+  --ion-color-dark-tint: #383a3e;
+  /** medium **/
+  --ion-color-medium: #989aa2;
+  --ion-color-medium-rgb: 152, 154, 162;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #86888f;
+  --ion-color-medium-tint: #a2a4ab;
+  /** light **/
+  --ion-color-light: #f4f5f8;
+  --ion-color-light-rgb: 244, 244, 244;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #d7d8da;
+  --ion-color-light-tint: #f5f6f9;
+}
+/*
+ * Dark Colors
+ * -------------------------------------------
+ */
+body.dark {
+  --ion-color-primary: #428cff;
+  --ion-color-primary-rgb: 66,140,255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255,255,255;
+  --ion-color-primary-shade: #3a7be0;
+  --ion-color-primary-tint: #5598ff;
+  --ion-color-secondary: #50c8ff;
+  --ion-color-secondary-rgb: 80,200,255;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255,255,255;
+  --ion-color-secondary-shade: #46b0e0;
+  --ion-color-secondary-tint: #62ceff;
+  --ion-color-tertiary: #6a64ff;
+  --ion-color-tertiary-rgb: 106,100,255;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255,255,255;
+  --ion-color-tertiary-shade: #5d58e0;
+  --ion-color-tertiary-tint: #7974ff;
+  --ion-color-success: #2fdf75;
+  --ion-color-success-rgb: 47,223,117;
+  --ion-color-success-contrast: #000000;
+  --ion-color-success-contrast-rgb: 0,0,0;
+  --ion-color-success-shade: #29c467;
+  --ion-color-success-tint: #44e283;
+  --ion-color-warning: #ffd534;
+  --ion-color-warning-rgb: 255,213,52;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0,0,0;
+  --ion-color-warning-shade: #e0bb2e;
+  --ion-color-warning-tint: #ffd948;
+  --ion-color-danger: #ff4961;
+  --ion-color-danger-rgb: 255,73,97;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255,255,255;
+  --ion-color-danger-shade: #e04055;
+  --ion-color-danger-tint: #ff5b71;
+  --ion-color-dark: #f4f5f8;
+  --ion-color-dark-rgb: 244,245,248;
+  --ion-color-dark-contrast: #000000;
+  --ion-color-dark-contrast-rgb: 0,0,0;
+  --ion-color-dark-shade: #d7d8da;
+  --ion-color-dark-tint: #f5f6f9;
+  --ion-color-medium: #989aa2;
+  --ion-color-medium-rgb: 152,154,162;
+  --ion-color-medium-contrast: #000000;
+  --ion-color-medium-contrast-rgb: 0,0,0;
+  --ion-color-medium-shade: #86888f;
+  --ion-color-medium-tint: #a2a4ab;
+  --ion-color-light: #222428;
+  --ion-color-light-rgb: 34,36,40;
+  --ion-color-light-contrast: #ffffff;
+  --ion-color-light-contrast-rgb: 255,255,255;
+  --ion-color-light-shade: #1e2023;
+  --ion-color-light-tint: #383a3e;
+}
+/*
+ * iOS Dark Theme
+ * -------------------------------------------
+ */
+.ios body.dark {
+  --ion-background-color: #000000;
+  --ion-background-color-rgb: 0,0,0;
+  --ion-text-color: #ffffff;
+  --ion-text-color-rgb: 255,255,255;
+  --ion-color-step-50: #0d0d0d;
+  --ion-color-step-100: #1a1a1a;
+  --ion-color-step-150: #262626;
+  --ion-color-step-200: #333333;
+  --ion-color-step-250: #404040;
+  --ion-color-step-300: #4d4d4d;
+  --ion-color-step-350: #595959;
+  --ion-color-step-400: #666666;
+  --ion-color-step-450: #737373;
+  --ion-color-step-500: #808080;
+  --ion-color-step-550: #8c8c8c;
+  --ion-color-step-600: #999999;
+  --ion-color-step-650: #a6a6a6;
+  --ion-color-step-700: #b3b3b3;
+  --ion-color-step-750: #bfbfbf;
+  --ion-color-step-800: #cccccc;
+  --ion-color-step-850: #d9d9d9;
+  --ion-color-step-900: #e6e6e6;
+  --ion-color-step-950: #f2f2f2;
+  --ion-toolbar-background: #0d0d0d;
+  --ion-item-background: #1c1c1c;
+  --ion-item-background-activated: #313131;
+}
+/*
+ * Material Design Dark Theme
+ * -------------------------------------------
+ */
+.md body.dark {
+  --ion-background-color: #121212;
+  --ion-background-color-rgb: 18,18,18;
+  --ion-text-color: #ffffff;
+  --ion-text-color-rgb: 255,255,255;
+  --ion-border-color: #222222;
+  --ion-color-step-50: #1e1e1e;
+  --ion-color-step-100: #2a2a2a;
+  --ion-color-step-150: #363636;
+  --ion-color-step-200: #414141;
+  --ion-color-step-250: #4d4d4d;
+  --ion-color-step-300: #595959;
+  --ion-color-step-350: #656565;
+  --ion-color-step-400: #717171;
+  --ion-color-step-450: #7d7d7d;
+  --ion-color-step-500: #898989;
+  --ion-color-step-550: #949494;
+  --ion-color-step-600: #a0a0a0;
+  --ion-color-step-650: #acacac;
+  --ion-color-step-700: #b8b8b8;
+  --ion-color-step-750: #c4c4c4;
+  --ion-color-step-800: #d0d0d0;
+  --ion-color-step-850: #dbdbdb;
+  --ion-color-step-900: #e7e7e7;
+  --ion-color-step-950: #f3f3f3;
+  --ion-item-background: #1A1B1E;
+}
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+/* Core CSS required for Ionic components to work properly */
+html.ios {
+  --ion-default-font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
+}
+html.md {
+  --ion-default-font: "Roboto", "Helvetica Neue", sans-serif;
+}
+html {
+  --ion-font-family: var(--ion-default-font);
+}
+body {
+  background: var(--ion-background-color);
+}
+body.backdrop-no-scroll {
+  overflow: hidden;
+}
+html.ios ion-modal.modal-card .ion-page > ion-header > ion-toolbar:first-of-type {
+  padding-top: 0px;
+}
+html.ios ion-modal .ion-page {
+  border-radius: inherit;
+}
+.ion-color-primary {
+  --ion-color-base: var(--ion-color-primary, #3880ff) !important;
+  --ion-color-base-rgb: var(--ion-color-primary-rgb, 56, 128, 255) !important;
+  --ion-color-contrast: var(--ion-color-primary-contrast, #fff) !important;
+  --ion-color-contrast-rgb: var(--ion-color-primary-contrast-rgb, 255, 255, 255) !important;
+  --ion-color-shade: var(--ion-color-primary-shade, #3171e0) !important;
+  --ion-color-tint: var(--ion-color-primary-tint, #4c8dff) !important;
+}
+.ion-color-secondary {
+  --ion-color-base: var(--ion-color-secondary, #3dc2ff) !important;
+  --ion-color-base-rgb: var(--ion-color-secondary-rgb, 61, 194, 255) !important;
+  --ion-color-contrast: var(--ion-color-secondary-contrast, #fff) !important;
+  --ion-color-contrast-rgb: var(--ion-color-secondary-contrast-rgb, 255, 255, 255) !important;
+  --ion-color-shade: var(--ion-color-secondary-shade, #36abe0) !important;
+  --ion-color-tint: var(--ion-color-secondary-tint, #50c8ff) !important;
+}
+.ion-color-tertiary {
+  --ion-color-base: var(--ion-color-tertiary, #5260ff) !important;
+  --ion-color-base-rgb: var(--ion-color-tertiary-rgb, 82, 96, 255) !important;
+  --ion-color-contrast: var(--ion-color-tertiary-contrast, #fff) !important;
+  --ion-color-contrast-rgb: var(--ion-color-tertiary-contrast-rgb, 255, 255, 255) !important;
+  --ion-color-shade: var(--ion-color-tertiary-shade, #4854e0) !important;
+  --ion-color-tint: var(--ion-color-tertiary-tint, #6370ff) !important;
+}
+.ion-color-success {
+  --ion-color-base: var(--ion-color-success, #2dd36f) !important;
+  --ion-color-base-rgb: var(--ion-color-success-rgb, 45, 211, 111) !important;
+  --ion-color-contrast: var(--ion-color-success-contrast, #fff) !important;
+  --ion-color-contrast-rgb: var(--ion-color-success-contrast-rgb, 255, 255, 255) !important;
+  --ion-color-shade: var(--ion-color-success-shade, #28ba62) !important;
+  --ion-color-tint: var(--ion-color-success-tint, #42d77d) !important;
+}
+.ion-color-warning {
+  --ion-color-base: var(--ion-color-warning, #ffc409) !important;
+  --ion-color-base-rgb: var(--ion-color-warning-rgb, 255, 196, 9) !important;
+  --ion-color-contrast: var(--ion-color-warning-contrast, #000) !important;
+  --ion-color-contrast-rgb: var(--ion-color-warning-contrast-rgb, 0, 0, 0) !important;
+  --ion-color-shade: var(--ion-color-warning-shade, #e0ac08) !important;
+  --ion-color-tint: var(--ion-color-warning-tint, #ffca22) !important;
+}
+.ion-color-danger {
+  --ion-color-base: var(--ion-color-danger, #eb445a) !important;
+  --ion-color-base-rgb: var(--ion-color-danger-rgb, 235, 68, 90) !important;
+  --ion-color-contrast: var(--ion-color-danger-contrast, #fff) !important;
+  --ion-color-contrast-rgb: var(--ion-color-danger-contrast-rgb, 255, 255, 255) !important;
+  --ion-color-shade: var(--ion-color-danger-shade, #cf3c4f) !important;
+  --ion-color-tint: var(--ion-color-danger-tint, #ed576b) !important;
+}
+.ion-color-light {
+  --ion-color-base: var(--ion-color-light, #f4f5f8) !important;
+  --ion-color-base-rgb: var(--ion-color-light-rgb, 244, 245, 248) !important;
+  --ion-color-contrast: var(--ion-color-light-contrast, #000) !important;
+  --ion-color-contrast-rgb: var(--ion-color-light-contrast-rgb, 0, 0, 0) !important;
+  --ion-color-shade: var(--ion-color-light-shade, #d7d8da) !important;
+  --ion-color-tint: var(--ion-color-light-tint, #f5f6f9) !important;
+}
+.ion-color-medium {
+  --ion-color-base: var(--ion-color-medium, #92949c) !important;
+  --ion-color-base-rgb: var(--ion-color-medium-rgb, 146, 148, 156) !important;
+  --ion-color-contrast: var(--ion-color-medium-contrast, #fff) !important;
+  --ion-color-contrast-rgb: var(--ion-color-medium-contrast-rgb, 255, 255, 255) !important;
+  --ion-color-shade: var(--ion-color-medium-shade, #808289) !important;
+  --ion-color-tint: var(--ion-color-medium-tint, #9d9fa6) !important;
+}
+.ion-color-dark {
+  --ion-color-base: var(--ion-color-dark, #222428) !important;
+  --ion-color-base-rgb: var(--ion-color-dark-rgb, 34, 36, 40) !important;
+  --ion-color-contrast: var(--ion-color-dark-contrast, #fff) !important;
+  --ion-color-contrast-rgb: var(--ion-color-dark-contrast-rgb, 255, 255, 255) !important;
+  --ion-color-shade: var(--ion-color-dark-shade, #1e2023) !important;
+  --ion-color-tint: var(--ion-color-dark-tint, #383a3e) !important;
+}
+.ion-page {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-between;
+  contain: layout size style;
+  overflow: hidden;
+  z-index: 0;
+}
+.split-pane-visible > .ion-page.split-pane-main {
+  position: relative;
+}
+ion-route,
+ion-route-redirect,
+ion-router,
+ion-select-option,
+ion-nav-controller,
+ion-menu-controller,
+ion-action-sheet-controller,
+ion-alert-controller,
+ion-loading-controller,
+ion-modal-controller,
+ion-picker-controller,
+ion-popover-controller,
+ion-toast-controller,
+.ion-page-hidden,
+[hidden] {
+  /* stylelint-disable-next-line declaration-no-important */
+  display: none !important;
+}
+.ion-page-invisible {
+  opacity: 0;
+}
+.can-go-back > ion-header ion-back-button {
+  display: block;
+}
+html.plt-ios.plt-hybrid, html.plt-ios.plt-pwa {
+  --ion-statusbar-padding: 20px;
+}
+@supports (padding-top: 20px) {
+  html {
+    --ion-safe-area-top: var(--ion-statusbar-padding);
+  }
+}
+@supports (padding-top: constant(safe-area-inset-top)) {
+  html {
+    --ion-safe-area-top: constant(safe-area-inset-top);
+    --ion-safe-area-bottom: constant(safe-area-inset-bottom);
+    --ion-safe-area-left: constant(safe-area-inset-left);
+    --ion-safe-area-right: constant(safe-area-inset-right);
+  }
+}
+@supports (padding-top: env(safe-area-inset-top)) {
+  html {
+    --ion-safe-area-top: env(safe-area-inset-top);
+    --ion-safe-area-bottom: env(safe-area-inset-bottom);
+    --ion-safe-area-left: env(safe-area-inset-left);
+    --ion-safe-area-right: env(safe-area-inset-right);
+  }
+}
+ion-card.ion-color .ion-inherit-color,
+ion-card-header.ion-color .ion-inherit-color {
+  color: inherit;
+}
+.menu-content {
+  transform: translate3d(0,  0,  0);
+}
+.menu-content-open {
+  cursor: pointer;
+  touch-action: manipulation;
+  pointer-events: none;
+}
+.ios .menu-content-reveal {
+  box-shadow: -8px 0 42px rgba(0, 0, 0, 0.08);
+}
+[dir=rtl].ios .menu-content-reveal {
+  box-shadow: 8px 0 42px rgba(0, 0, 0, 0.08);
+}
+.md .menu-content-reveal {
+  box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.18);
+}
+.md .menu-content-push {
+  box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.18);
+}
+/* Basic CSS for apps built with Ionic */
+audio,
+canvas,
+progress,
+video {
+  vertical-align: baseline;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+b,
+strong {
+  font-weight: bold;
+}
+img {
+  max-width: 100%;
+  border: 0;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+figure {
+  margin: 1em 40px;
+}
+hr {
+  height: 1px;
+  border-width: 0;
+  box-sizing: content-box;
+}
+pre {
+  overflow: auto;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+label,
+input,
+select,
+textarea {
+  font-family: inherit;
+  line-height: normal;
+}
+textarea {
+  overflow: auto;
+  height: auto;
+  font: inherit;
+  color: inherit;
+}
+textarea::placeholder {
+  padding-left: 2px;
+}
+form,
+input,
+optgroup,
+select {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+html input[type=button],
+input[type=reset],
+input[type=submit] {
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+a,
+a div,
+a span,
+a ion-icon,
+a ion-label,
+button,
+button div,
+button span,
+button ion-icon,
+button ion-label,
+.ion-tappable,
+[tappable],
+[tappable] div,
+[tappable] span,
+[tappable] ion-icon,
+[tappable] ion-label,
+input,
+textarea {
+  touch-action: manipulation;
+}
+a ion-label,
+button ion-label {
+  pointer-events: none;
+}
+button {
+  border: 0;
+  border-radius: 0;
+  font-family: inherit;
+  font-style: inherit;
+  font-feature-settings: inherit;
+  font-variant: inherit;
+  line-height: 1;
+  text-transform: none;
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+[tappable] {
+  cursor: pointer;
+}
+a[disabled],
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+input[type=checkbox],
+input[type=radio] {
+  padding: 0;
+  box-sizing: border-box;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+html {
+  width: 100%;
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+}
+html:not(.hydrated) body {
+  display: none;
+}
+html.plt-pwa {
+  height: 100vh;
+}
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  position: fixed;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+  touch-action: manipulation;
+  -webkit-user-drag: none;
+  -ms-content-zooming: none;
+  word-wrap: break-word;
+  overscroll-behavior-y: none;
+  -webkit-text-size-adjust: none;
+          text-size-adjust: none;
+}
+html {
+  font-family: var(--ion-font-family);
+}
+a {
+  background-color: transparent;
+  color: var(--ion-color-primary, #3880ff);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 16px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+h1 {
+  margin-top: 20px;
+  font-size: 26px;
+}
+h2 {
+  margin-top: 18px;
+  font-size: 24px;
+}
+h3 {
+  font-size: 22px;
+}
+h4 {
+  font-size: 20px;
+}
+h5 {
+  font-size: 18px;
+}
+h6 {
+  font-size: 16px;
+}
+small {
+  font-size: 75%;
+}
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+.ion-hide {
+  display: none !important;
+}
+.ion-hide-up {
+  display: none !important;
+}
+.ion-hide-down {
+  display: none !important;
+}
+@media (min-width: 576px) {
+  .ion-hide-sm-up {
+    display: none !important;
+  }
+}
+@media (max-width: 575.98px) {
+  .ion-hide-sm-down {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) {
+  .ion-hide-md-up {
+    display: none !important;
+  }
+}
+@media (max-width: 767.98px) {
+  .ion-hide-md-down {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) {
+  .ion-hide-lg-up {
+    display: none !important;
+  }
+}
+@media (max-width: 991.98px) {
+  .ion-hide-lg-down {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  .ion-hide-xl-up {
+    display: none !important;
+  }
+}
+@media (max-width: 1199.98px) {
+  .ion-hide-xl-down {
+    display: none !important;
+  }
+}
+/* Optional CSS utils that can be commented out */
+.ion-no-padding {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.ion-padding {
+  --padding-start: var(--ion-padding, 16px);
+  --padding-end: var(--ion-padding, 16px);
+  --padding-top: var(--ion-padding, 16px);
+  --padding-bottom: var(--ion-padding, 16px);
+  padding-left: var(--ion-padding, 16px);
+  padding-right: var(--ion-padding, 16px);
+  padding-top: var(--ion-padding, 16px);
+  padding-bottom: var(--ion-padding, 16px);
+}
+@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+  .ion-padding {
+    padding-left: unset;
+    padding-right: unset;
+    padding-inline-start: var(--ion-padding, 16px);
+    padding-inline-end: var(--ion-padding, 16px);
+  }
+}
+.ion-padding-top {
+  --padding-top: var(--ion-padding, 16px);
+  padding-top: var(--ion-padding, 16px);
+}
+.ion-padding-start {
+  --padding-start: var(--ion-padding, 16px);
+  padding-left: var(--ion-padding, 16px);
+}
+@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+  .ion-padding-start {
+    padding-left: unset;
+    padding-inline-start: var(--ion-padding, 16px);
+  }
+}
+.ion-padding-end {
+  --padding-end: var(--ion-padding, 16px);
+  padding-right: var(--ion-padding, 16px);
+}
+@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+  .ion-padding-end {
+    padding-right: unset;
+    padding-inline-end: var(--ion-padding, 16px);
+  }
+}
+.ion-padding-bottom {
+  --padding-bottom: var(--ion-padding, 16px);
+  padding-bottom: var(--ion-padding, 16px);
+}
+.ion-padding-vertical {
+  --padding-top: var(--ion-padding, 16px);
+  --padding-bottom: var(--ion-padding, 16px);
+  padding-top: var(--ion-padding, 16px);
+  padding-bottom: var(--ion-padding, 16px);
+}
+.ion-padding-horizontal {
+  --padding-start: var(--ion-padding, 16px);
+  --padding-end: var(--ion-padding, 16px);
+  padding-left: var(--ion-padding, 16px);
+  padding-right: var(--ion-padding, 16px);
+}
+@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+  .ion-padding-horizontal {
+    padding-left: unset;
+    padding-right: unset;
+    padding-inline-start: var(--ion-padding, 16px);
+    padding-inline-end: var(--ion-padding, 16px);
+  }
+}
+.ion-no-margin {
+  --margin-start: 0;
+  --margin-end: 0;
+  --margin-top: 0;
+  --margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.ion-margin {
+  --margin-start: var(--ion-margin, 16px);
+  --margin-end: var(--ion-margin, 16px);
+  --margin-top: var(--ion-margin, 16px);
+  --margin-bottom: var(--ion-margin, 16px);
+  margin-left: var(--ion-margin, 16px);
+  margin-right: var(--ion-margin, 16px);
+  margin-top: var(--ion-margin, 16px);
+  margin-bottom: var(--ion-margin, 16px);
+}
+@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+  .ion-margin {
+    margin-left: unset;
+    margin-right: unset;
+    margin-inline-start: var(--ion-margin, 16px);
+    margin-inline-end: var(--ion-margin, 16px);
+  }
+}
+.ion-margin-top {
+  --margin-top: var(--ion-margin, 16px);
+  margin-top: var(--ion-margin, 16px);
+}
+.ion-margin-start {
+  --margin-start: var(--ion-margin, 16px);
+  margin-left: var(--ion-margin, 16px);
+}
+@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+  .ion-margin-start {
+    margin-left: unset;
+    margin-inline-start: var(--ion-margin, 16px);
+  }
+}
+.ion-margin-end {
+  --margin-end: var(--ion-margin, 16px);
+  margin-right: var(--ion-margin, 16px);
+}
+@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+  .ion-margin-end {
+    margin-right: unset;
+    margin-inline-end: var(--ion-margin, 16px);
+  }
+}
+.ion-margin-bottom {
+  --margin-bottom: var(--ion-margin, 16px);
+  margin-bottom: var(--ion-margin, 16px);
+}
+.ion-margin-vertical {
+  --margin-top: var(--ion-margin, 16px);
+  --margin-bottom: var(--ion-margin, 16px);
+  margin-top: var(--ion-margin, 16px);
+  margin-bottom: var(--ion-margin, 16px);
+}
+.ion-margin-horizontal {
+  --margin-start: var(--ion-margin, 16px);
+  --margin-end: var(--ion-margin, 16px);
+  margin-left: var(--ion-margin, 16px);
+  margin-right: var(--ion-margin, 16px);
+}
+@supports (margin-inline-start: 0) or (-webkit-margin-start: 0) {
+  .ion-margin-horizontal {
+    margin-left: unset;
+    margin-right: unset;
+    margin-inline-start: var(--ion-margin, 16px);
+    margin-inline-end: var(--ion-margin, 16px);
+  }
+}
+.ion-float-left {
+  float: left !important;
+}
+.ion-float-right {
+  float: right !important;
+}
+.ion-float-start {
+  float: left !important;
+}
+[dir=rtl] .ion-float-start, :host-context([dir=rtl]) .ion-float-start {
+  float: right !important;
+}
+.ion-float-end {
+  float: right !important;
+}
+[dir=rtl] .ion-float-end, :host-context([dir=rtl]) .ion-float-end {
+  float: left !important;
+}
+@media (min-width: 576px) {
+  .ion-float-sm-left {
+    float: left !important;
+  }
+
+  .ion-float-sm-right {
+    float: right !important;
+  }
+
+  .ion-float-sm-start {
+    float: left !important;
+  }
+  [dir=rtl] .ion-float-sm-start, :host-context([dir=rtl]) .ion-float-sm-start {
+    float: right !important;
+  }
+
+  .ion-float-sm-end {
+    float: right !important;
+  }
+  [dir=rtl] .ion-float-sm-end, :host-context([dir=rtl]) .ion-float-sm-end {
+    float: left !important;
+  }
+}
+@media (min-width: 768px) {
+  .ion-float-md-left {
+    float: left !important;
+  }
+
+  .ion-float-md-right {
+    float: right !important;
+  }
+
+  .ion-float-md-start {
+    float: left !important;
+  }
+  [dir=rtl] .ion-float-md-start, :host-context([dir=rtl]) .ion-float-md-start {
+    float: right !important;
+  }
+
+  .ion-float-md-end {
+    float: right !important;
+  }
+  [dir=rtl] .ion-float-md-end, :host-context([dir=rtl]) .ion-float-md-end {
+    float: left !important;
+  }
+}
+@media (min-width: 992px) {
+  .ion-float-lg-left {
+    float: left !important;
+  }
+
+  .ion-float-lg-right {
+    float: right !important;
+  }
+
+  .ion-float-lg-start {
+    float: left !important;
+  }
+  [dir=rtl] .ion-float-lg-start, :host-context([dir=rtl]) .ion-float-lg-start {
+    float: right !important;
+  }
+
+  .ion-float-lg-end {
+    float: right !important;
+  }
+  [dir=rtl] .ion-float-lg-end, :host-context([dir=rtl]) .ion-float-lg-end {
+    float: left !important;
+  }
+}
+@media (min-width: 1200px) {
+  .ion-float-xl-left {
+    float: left !important;
+  }
+
+  .ion-float-xl-right {
+    float: right !important;
+  }
+
+  .ion-float-xl-start {
+    float: left !important;
+  }
+  [dir=rtl] .ion-float-xl-start, :host-context([dir=rtl]) .ion-float-xl-start {
+    float: right !important;
+  }
+
+  .ion-float-xl-end {
+    float: right !important;
+  }
+  [dir=rtl] .ion-float-xl-end, :host-context([dir=rtl]) .ion-float-xl-end {
+    float: left !important;
+  }
+}
+.ion-text-center {
+  text-align: center !important;
+}
+.ion-text-justify {
+  text-align: justify !important;
+}
+.ion-text-start {
+  text-align: start !important;
+}
+.ion-text-end {
+  text-align: end !important;
+}
+.ion-text-left {
+  text-align: left !important;
+}
+.ion-text-right {
+  text-align: right !important;
+}
+.ion-text-nowrap {
+  white-space: nowrap !important;
+}
+.ion-text-wrap {
+  white-space: normal !important;
+}
+@media (min-width: 576px) {
+  .ion-text-sm-center {
+    text-align: center !important;
+  }
+
+  .ion-text-sm-justify {
+    text-align: justify !important;
+  }
+
+  .ion-text-sm-start {
+    text-align: start !important;
+  }
+
+  .ion-text-sm-end {
+    text-align: end !important;
+  }
+
+  .ion-text-sm-left {
+    text-align: left !important;
+  }
+
+  .ion-text-sm-right {
+    text-align: right !important;
+  }
+
+  .ion-text-sm-nowrap {
+    white-space: nowrap !important;
+  }
+
+  .ion-text-sm-wrap {
+    white-space: normal !important;
+  }
+}
+@media (min-width: 768px) {
+  .ion-text-md-center {
+    text-align: center !important;
+  }
+
+  .ion-text-md-justify {
+    text-align: justify !important;
+  }
+
+  .ion-text-md-start {
+    text-align: start !important;
+  }
+
+  .ion-text-md-end {
+    text-align: end !important;
+  }
+
+  .ion-text-md-left {
+    text-align: left !important;
+  }
+
+  .ion-text-md-right {
+    text-align: right !important;
+  }
+
+  .ion-text-md-nowrap {
+    white-space: nowrap !important;
+  }
+
+  .ion-text-md-wrap {
+    white-space: normal !important;
+  }
+}
+@media (min-width: 992px) {
+  .ion-text-lg-center {
+    text-align: center !important;
+  }
+
+  .ion-text-lg-justify {
+    text-align: justify !important;
+  }
+
+  .ion-text-lg-start {
+    text-align: start !important;
+  }
+
+  .ion-text-lg-end {
+    text-align: end !important;
+  }
+
+  .ion-text-lg-left {
+    text-align: left !important;
+  }
+
+  .ion-text-lg-right {
+    text-align: right !important;
+  }
+
+  .ion-text-lg-nowrap {
+    white-space: nowrap !important;
+  }
+
+  .ion-text-lg-wrap {
+    white-space: normal !important;
+  }
+}
+@media (min-width: 1200px) {
+  .ion-text-xl-center {
+    text-align: center !important;
+  }
+
+  .ion-text-xl-justify {
+    text-align: justify !important;
+  }
+
+  .ion-text-xl-start {
+    text-align: start !important;
+  }
+
+  .ion-text-xl-end {
+    text-align: end !important;
+  }
+
+  .ion-text-xl-left {
+    text-align: left !important;
+  }
+
+  .ion-text-xl-right {
+    text-align: right !important;
+  }
+
+  .ion-text-xl-nowrap {
+    white-space: nowrap !important;
+  }
+
+  .ion-text-xl-wrap {
+    white-space: normal !important;
+  }
+}
+.ion-text-uppercase {
+  /* stylelint-disable-next-line declaration-no-important */
+  text-transform: uppercase !important;
+}
+.ion-text-lowercase {
+  /* stylelint-disable-next-line declaration-no-important */
+  text-transform: lowercase !important;
+}
+.ion-text-capitalize {
+  /* stylelint-disable-next-line declaration-no-important */
+  text-transform: capitalize !important;
+}
+@media (min-width: 576px) {
+  .ion-text-sm-uppercase {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-transform: uppercase !important;
+  }
+
+  .ion-text-sm-lowercase {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-transform: lowercase !important;
+  }
+
+  .ion-text-sm-capitalize {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-transform: capitalize !important;
+  }
+}
+@media (min-width: 768px) {
+  .ion-text-md-uppercase {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-transform: uppercase !important;
+  }
+
+  .ion-text-md-lowercase {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-transform: lowercase !important;
+  }
+
+  .ion-text-md-capitalize {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-transform: capitalize !important;
+  }
+}
+@media (min-width: 992px) {
+  .ion-text-lg-uppercase {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-transform: uppercase !important;
+  }
+
+  .ion-text-lg-lowercase {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-transform: lowercase !important;
+  }
+
+  .ion-text-lg-capitalize {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-transform: capitalize !important;
+  }
+}
+@media (min-width: 1200px) {
+  .ion-text-xl-uppercase {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-transform: uppercase !important;
+  }
+
+  .ion-text-xl-lowercase {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-transform: lowercase !important;
+  }
+
+  .ion-text-xl-capitalize {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-transform: capitalize !important;
+  }
+}
+.ion-align-self-start {
+  align-self: flex-start !important;
+}
+.ion-align-self-end {
+  align-self: flex-end !important;
+}
+.ion-align-self-center {
+  align-self: center !important;
+}
+.ion-align-self-stretch {
+  align-self: stretch !important;
+}
+.ion-align-self-baseline {
+  align-self: baseline !important;
+}
+.ion-align-self-auto {
+  align-self: auto !important;
+}
+.ion-wrap {
+  flex-wrap: wrap !important;
+}
+.ion-nowrap {
+  flex-wrap: nowrap !important;
+}
+.ion-wrap-reverse {
+  flex-wrap: wrap-reverse !important;
+}
+.ion-justify-content-start {
+  justify-content: flex-start !important;
+}
+.ion-justify-content-center {
+  justify-content: center !important;
+}
+.ion-justify-content-end {
+  justify-content: flex-end !important;
+}
+.ion-justify-content-around {
+  justify-content: space-around !important;
+}
+.ion-justify-content-between {
+  justify-content: space-between !important;
+}
+.ion-justify-content-evenly {
+  justify-content: space-evenly !important;
+}
+.ion-align-items-start {
+  align-items: flex-start !important;
+}
+.ion-align-items-center {
+  align-items: center !important;
+}
+.ion-align-items-end {
+  align-items: flex-end !important;
+}
+.ion-align-items-stretch {
+  align-items: stretch !important;
+}
+.ion-align-items-baseline {
+  align-items: baseline !important;
+}
+
+/*# sourceMappingURL=styles.css.map*/

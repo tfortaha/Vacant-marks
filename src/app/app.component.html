@@ -1,0 +1,60 @@
+<!-- <ion-app>
+  <ion-router-outlet></ion-router-outlet>
+</ion-app> -->
+<ion-app>
+  <ion-menu side="start" menuId="pages" type="overlay" contentId="mainContent">
+    <ion-header>
+      <ion-toolbar style="text-align: center;">
+        <img style="width: 50%; align-items: center;" src="assets/icon/VMSLogo.png">
+        <ion-row>
+          <!-- <ion-col size="12"><img src="assets/images/VMSLogo.png"></ion-col> -->
+            <!-- <div>Vacand Mark</div> -->
+            <!-- <ion-fab style="padding-left:100px; padding-top:35px;" vertical="top" horizontal="start">
+              <ion-button size="small" color="none" style="border: none;">
+                <h5>Vaccand Mark</h5>
+              </ion-button>
+            </ion-fab> -->
+        </ion-row>
+      </ion-toolbar>
+    </ion-header>
+    
+    <ion-content>
+      <ion-list class="ion-padding" lines="none">
+        <ion-menu-toggle auto-hide="false">
+          <ion-item [routerDirection]="'root'" [routerLink]="['']">
+            <i slot="start" class="icon icon-home icon-small"></i>
+            <h1 class="text-size-xs">Dashboard</h1>
+          </ion-item>
+<!-- 
+          <ion-item [routerDirection]="'root'" [routerLink]="['/profile']">
+            <i slot="start" class="icon icon-account-circle icon-small" style="color: #49b36f;"></i>
+            <h1 class="text-size-xs">{{ 'profile' | translate }}</h1>
+          </ion-item>
+          
+          <ion-item [routerDirection]="'root'" [routerLink]="['/customer']">
+            <i slot="start" class="icon icon-account icon-small" style="color: #49b36f;"></i>
+            <h1 class="text-size-xs">{{ 'customer' | translate }}</h1>
+          </ion-item>
+
+          <ion-item [routerDirection]="'root'" [routerLink]="['/customerrequest']">
+            <i slot="start" class="icon icon-plus-circle-outline icon-small" style="color: #49b36f;"></i>
+            <h1 class="text-size-xs">{{ 'CustomerRequest' | translate }}</h1>
+          </ion-item> 
+          <ion-item [routerDirection]="'root'" [routerLink]="['/settings']">
+            <i slot="start" class="icon icon-settings icon-small" style="color: #49b36f;"></i>
+            <h1 class="text-size-xs">settings</h1>
+          </ion-item>-->
+
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+    
+    <ion-footer class="ion-no-border">
+      <div class="ion-padding">
+        <ion-button shape="round" color="color1" expand="full" (click)="signout()">
+          Signout</ion-button>
+      </div>
+    </ion-footer>
+  </ion-menu>
+  <ion-router-outlet id="mainContent"></ion-router-outlet>
+</ion-app>
