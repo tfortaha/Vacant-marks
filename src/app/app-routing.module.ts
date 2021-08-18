@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'venuebydate',
     loadChildren: () => import('./venuebydate/venuebydate.module').then( m => m.VenuebydatePageModule)
   },
+  {
+    path: 'search-venueby-date-name',
+    loadChildren: () => import('./search-venueby-date-name/search-venueby-date-name.module').then( m => m.SearchVenuebyDateNamePageModule)
+  },
   // {
   //   path: 'home',
   //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)

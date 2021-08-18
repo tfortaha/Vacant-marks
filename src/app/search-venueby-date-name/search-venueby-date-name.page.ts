@@ -6,11 +6,11 @@ import { Storage } from '@ionic/storage';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-venuebydate',
-  templateUrl: './venuebydate.page.html',
-  styleUrls: ['./venuebydate.page.scss'],
+  selector: 'app-search-venueby-date-name',
+  templateUrl: './search-venueby-date-name.page.html',
+  styleUrls: ['./search-venueby-date-name.page.scss'],
 })
-export class VenuebydatePage implements OnInit {
+export class SearchVenuebyDateNamePage implements OnInit {
 
   allData:any =[];
   data:any = [];
@@ -18,7 +18,9 @@ export class VenuebydatePage implements OnInit {
   alert:HTMLIonAlertElement;
 
   postData={
-    Date:''
+    Date:'',
+    destination:'',
+    destinationId:''
   }
   count = 0;
 
@@ -41,6 +43,7 @@ export class VenuebydatePage implements OnInit {
         if(this.count==0)
         {
           this.postData.Date=this.data[0].Date;
+          this.postData.destinationId=this.data[0].destinationId;
           this.count+=1;
         }
         // this.loading.dismiss();
@@ -61,7 +64,8 @@ export class VenuebydatePage implements OnInit {
     await this.loading.present();
 
     let params = new HttpParams();
-    params = params.set("Date",this.postData.Date)
+    params = params.set("Date",this.postData.Date);
+    params = params.set("VenueId",this.postData.destinationId);
     this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
       this.data = this.allData = res;
       this.loading.dismiss();
@@ -103,5 +107,4 @@ export class VenuebydatePage implements OnInit {
     });
     await this.alert.present();
   }
-
 }

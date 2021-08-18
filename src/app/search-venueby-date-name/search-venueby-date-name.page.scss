@@ -1,0 +1,96 @@
+ion-searchbar {
+    --border-radius: 25px;
+}
+
+ion-menu-button {
+    color: var(--ion-color-color1);
+}
+
+.section1 {
+   // background: var(--ion-color-color1) !important;
+    text-align: center;
+    padding: 0px;
+
+    .value {
+    //    color: var(--ion-color-color1);
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    ion-item {
+       --background: #2f3b69;
+        --color: #ffffff;
+
+        font-weight: 600;
+     //   --highlight-background: var(--ion-color-color1);
+
+        ion-label {
+            color: #ffffff;
+        }
+    }
+
+    ion-button {
+        --background: #ffffff;
+       // --color: var(--ion-color-color1);
+        --background-activated: #ffffff;
+    }
+}
+
+ion-segment {
+    .segment-button-checked {
+        color: #000000;
+    }
+
+    ion-segment-button {
+        color: #fff;
+        --background-hover: #2f3b69;
+        --background-focused: #2f3b69;
+        --color-checked: #2f3b69;
+        --indicator-color: #ffffff;
+    }
+}
+
+.submit-btn {
+    ion-button {
+        width: 100%;
+    }
+}
+
+#popular_hotels {
+    .item {
+        ion-thumbnail {
+            width: 100px;
+            height: 137px;
+
+            .packages_thumbnail {
+                width: 100px;
+                height: 137px;
+                border-radius: 5px;
+            }
+        }
+
+        .name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        ion-icon {
+          //  color: var(--ion-color-color1);
+            padding-right: 10px;
+        }
+
+        ion-note {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        ion-card {
+            writing-mode: tb-rl;
+            padding: 10px;
+            background-color: #2f3b69;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+        }
+    }
+}

@@ -18,7 +18,8 @@ export class DashboardPage implements OnInit {
 
   postData = {
     destination:'',
-    Date:''
+    Date:'',
+    destinationId:''
   }
 
   formlogin : FormGroup;
@@ -52,7 +53,9 @@ export class DashboardPage implements OnInit {
     this.storage.create();
     this.storage.get("selectedVenue").then(response=>{
       if(response){
+        debugger;
         form.destination = response[0].Name;
+        this.postData.destinationId = response[0].Id;
       }
     })
   }
@@ -66,17 +69,23 @@ export class DashboardPage implements OnInit {
     let form = this;
     let formValues = form.formlogin.value;
     
-    let SearchDate:any = [{"Date":format(new Date(formValues.Date),"yyyy-MM-dd")}];
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        special: JSON.stringify(SearchDate)
-      }
-    };
     if(formValues.Date != "" && formValues.destination == ""){
+      let SearchDate:any = [{"Date":format(new Date(formValues.Date),"yyyy-MM-dd")}];
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          special: JSON.stringify(SearchDate)
+        }
+      };
       this.router.navigate(['/venuebydate'],navigationExtras);
     }
     else if(formValues.Date != "" && formValues.destination != ""){
-      alert('form is valid');
+      let SearchByDateName:any = [{"Date":format(new Date(formValues.Date),"yyyy-MM-dd"),"destinationId":this.postData.destinationId}];
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          special: JSON.stringify(SearchByDateName)
+        }
+      };
+      this.router.navigate(['/search-venueby-date-name'],navigationExtras);
 
     }
     else{
