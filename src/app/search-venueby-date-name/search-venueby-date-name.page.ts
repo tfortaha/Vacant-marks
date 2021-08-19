@@ -95,8 +95,8 @@ export class SearchVenuebyDateNamePage implements OnInit {
     // })
   }
 
-  onDetailsClick(Id,Name){
-    console.log("Details Click: ",Id,Name);
+  BookNowClick(){
+    console.log("Book now Click: ");
   }
 
 

@@ -53,6 +53,7 @@ export class VenuesPage implements OnInit {
       this.loading.dismiss();
     })
   }
+  
   search(event){
     this.data = this.allData;
     let text = event.target.value;

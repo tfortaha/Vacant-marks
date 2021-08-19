@@ -4,5 +4,5 @@
 
 export const environment = {
   production: false,
-  apiUrl:'http://www.onelocation.somee.com/'
+  apiUrl:'http://www.vacantmarks.com/'
 };

@@ -45,4 +45,41 @@
       </form>
     </ion-grid>
   </ion-card>
+
+  <div id="popular_hotels">
+    <ion-list-header>
+      <ion-label color="dark">Popular Venues</ion-label>
+      <ion-button (click)="gotoHotelListPage()">See All</ion-button>
+    </ion-list-header>
+
+    <ion-card *ngFor="let item of venues let k=index">
+      <ion-list lines="none">
+        <ion-item class="ion-no-padding border" (click)="gotoHotelListPage()">
+
+          <!-- Image -->
+          <ion-thumbnail slot="start">
+            <img class="packages_thumbnail" style="vertical-align: middle;" [src]="item.EncodeLogo">
+          </ion-thumbnail>
+
+          <ion-label class="ion-text-wrap">
+            <h4 class="name">{{item.Name}}</h4>
+            <ion-text color="medium">
+              <ion-icon color="medium" name="location"></ion-icon> {{item.Address}}
+            </ion-text>
+            <br>
+            <!-- <ion-text color="color1">${{item.price}}/night</ion-text> -->
+            <p class="ion-padding-top">
+              <ion-icon name="person"></ion-icon> {{item.totalPerson}} &nbsp;
+              <ion-icon name="briefcase"></ion-icon> {{item.suitcases}} &nbsp;
+              <ion-icon name="logo-slack"></ion-icon> {{item.seats}} &nbsp;
+              <ion-icon name="copy"></ion-icon> {{item.doorCount}}
+            </p>
+          </ion-label>
+          <!-- <ion-card>
+            Book Now
+          </ion-card> -->
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
 </ion-content>

@@ -3,6 +3,8 @@ import { NavigationExtras, Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { format } from 'date-fns';
+import { HttpParams } from '@angular/common/http';
+import { HttpService } from '../services/http.service';
 import { FormGroup, FormBuilder,FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -24,12 +26,16 @@ export class DashboardPage implements OnInit {
 
   formlogin : FormGroup;
 
+  venues:any=[];
+  loading: HTMLIonLoadingElement;
+  alert:HTMLIonAlertElement;
 
   constructor(
     private router: Router,
+    private httpService: HttpService,
+    private storage: Storage,
     public alertController: AlertController,
     private loadingController: LoadingController,
-    private storage: Storage,
     formBuilder : FormBuilder
   ) 
   { 
@@ -45,7 +51,28 @@ export class DashboardPage implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.getVenue();
+  }
+  async getVenue(){
+
+    this.loading = await this.loadingController.create({
+      //message: this.translate.instant('pleasewait'),
+      cssClass: 'custom-loading',
+      translucent: true,
+      showBackdrop: true,
+      spinner:'bubbles'
+    });
+    await this.loading.present();
+
+    let params = new HttpParams();
+    this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
+      this.venues = res;
+      this.loading.dismiss();
+      console.log(res);
+    },err =>{
+      this.alerrt();
+      this.loading.dismiss();
+    })
   }
 
   ionViewDidEnter(){
@@ -105,5 +132,13 @@ export class DashboardPage implements OnInit {
 
   get errorControl() {
     return this.formlogin.controls;
+  }
+
+  async alerrt(){
+    this.alert = await this.alertController.create({
+      message: 'Some thing went wrong. Please try again later.',
+      buttons:['ok']
+    });
+    await this.alert.present();
   }
 }

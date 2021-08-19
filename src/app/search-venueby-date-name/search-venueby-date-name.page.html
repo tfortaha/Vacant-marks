@@ -18,7 +18,7 @@
 
 <ion-content>
   <div id="popular_hotels" *ngIf=" allData.length > 0">
-    <ion-card class="ion-no-padding" *ngFor="let item of data">
+    <ion-card class="ion-no-padding" *ngFor="let item of data; let k=index">
       <ion-list lines="none" class="ion-no-padding">
         <ion-item class="ion-no-padding">
 
@@ -28,10 +28,15 @@
           </ion-thumbnail>
 
           <ion-label class="ion-text-wrap" (click)="onItemClickFunc(item.Id,item.Name)">
-            <h4 class="name">{{item.Name}}</h4>
-            <ion-text color="medium">
-              <ion-icon color="medium" name="location"></ion-icon> {{item.Address}}<br>
-              <ion-text>Max Capacity: {{item.MaxCapacity}} | Min Capacity: {{item.MinCapacity}}</ion-text>
+            <h3 class="name">{{item.Name}}</h3>
+            <ion-text style="word-wrap: normal;" color="medium">
+              <ion-icon color="medium" name="location"></ion-icon> 
+              {{item.Address}} <br>
+              Max Capacity: {{item.MaxCapacity}} <br>
+              Min Capacity: {{item.MinCapacity}} <br>
+              Available slot: {{item.slots[k].SlotStartEnd}}<br>
+              Date: {{item.slots[k].Date}} <br>
+              Status: {{item.slots[k].Status}}
             </ion-text>
             <br>
             <!-- <ion-text color="color1">${{item.price}}/night</ion-text> -->
@@ -42,7 +47,7 @@
               <ion-icon name="copy"></ion-icon>
             </p>
           </ion-label>
-          <ion-card (click)="onDetailsClick(item.Id,item.Name)">
+          <ion-card (click)="BookNowClick()">
             Book Now
           </ion-card>
         </ion-item>

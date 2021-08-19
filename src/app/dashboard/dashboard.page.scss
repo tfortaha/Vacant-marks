@@ -1,3 +1,43 @@
 ion-item{
     border-radius: 5px;
 }
+
+
+#popular_hotels {
+    .item {
+        ion-thumbnail {
+            width: 100px;
+            height: 137px;
+
+            .packages_thumbnail {
+                width: 100px;
+                height: 137px;
+                border-radius: 5px;
+            }
+        }
+
+        .name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        ion-icon {
+          //  color: var(--ion-color-color1);
+            padding-right: 10px;
+        }
+
+        ion-note {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        ion-card {
+            writing-mode: tb-rl;
+            padding: 10px;
+            background-color: #2f3b69;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+        }
+    }
+}

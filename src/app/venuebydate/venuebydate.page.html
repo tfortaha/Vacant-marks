@@ -30,8 +30,11 @@
           <ion-label class="ion-text-wrap" (click)="onItemClickFunc(item.Id,item.Name)">
             <h4 class="name">{{item.Name}}</h4>
             <ion-text color="medium">
-              <ion-icon color="medium" name="location"></ion-icon> {{item.Address}}<br>
-              <ion-text>Max Capacity: {{item.MaxCapacity}} | Min Capacity: {{item.MinCapacity}}</ion-text>
+              <ion-icon color="medium" name="location"></ion-icon>
+              {{item.Address}}<br>
+              Max Capacity: {{item.MaxCapacity}}<br>
+              Min Capacity: {{item.MinCapacity}}<br>
+              Area(yards): {{item.Yards}}<br>
             </ion-text>
             <br>
             <!-- <ion-text color="color1">${{item.price}}/night</ion-text> -->
