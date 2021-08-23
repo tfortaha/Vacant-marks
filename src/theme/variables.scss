@@ -208,8 +208,8 @@ i {
 
 .default-button {
   --color: var(--cs-text-primary, #ffffff);
-  --background: var(--cs-background-accent, #0090d0);
-  --background-hover: var(--cs-background-accent, #0090d0) !important;
+  --background: var(--cs-background-accent, #2f3b69);
+  --background-hover: var(--cs-background-accent, #2f3b69) !important;
   --color-hover:  var(--cs-text-primary, #ffffff) !important;
   --color-activated: var(--cs-text-primary, #ffffff);
   --color-focused: var(--cs-text-primary, #ffffff);
@@ -237,15 +237,15 @@ ion-ripple-effect {
 
 .button-round {
   --border-width: 1px;
-  --color: var(--cs-text-secondary, #0090d0) !important;
-  --color-hover: var(--cs-text-secondary, #0090d0) !important;
-  --color-activated: var(--cs-text-secondary, #0090d0)!important;
-  --color-focused: var(--cs-text-secondary, #0090d0)!important;
+  --color: var(--cs-text-secondary, #2f3b69) !important;
+  --color-hover: var(--cs-text-secondary, #2f3b69) !important;
+  --color-activated: var(--cs-text-secondary, #2f3b69)!important;
+  --color-focused: var(--cs-text-secondary, #2f3b69)!important;
   --padding-top: 15px;
   --padding-bottom: 15px;
   --padding-start: 25px;
   --padding-end: 25px;
-  --border-color: var(--cs-background-accent, #0090d0) !important;
+  --border-color: var(--cs-background-accent, #2f3b69) !important;
     font-weight: bold !important;
 }
 
@@ -278,11 +278,11 @@ ion-fab-button {
 
 .clear-button {
   --background: transparent;
-  --color: var(--cs-text-secondary, #0090d0) !important;
+  --color: var(--cs-text-secondary, #2f3b69) !important;
   --background-hover: transparent !important;
-  --color-hover: var(--cs-text-secondary, #0090d0)!important;
-  --color-activated: var(--cs-text-secondary, #0090d0)!important;
-  --color-focused: var(--cs-text-secondary, #0090d0)!important;
+  --color-hover: var(--cs-text-secondary, #2f3b69)!important;
+  --color-activated: var(--cs-text-secondary, #2f3b69)!important;
+  --color-focused: var(--cs-text-secondary, #2f3b69)!important;
 }
 
 /* SETTINGS INPUT FIELD
@@ -416,8 +416,8 @@ super-tab-button {
 =======================================================*/
 ion-searchbar {
 --background: var(--cs-background-primary, #fff) !important;
---cancel-button-color: var(--cs-text-secondary, #0090d0) !important;
---clear-button-color: var(--cs-text-secondary, #0090d0) !important;
+--cancel-button-color: var(--cs-text-secondary, #2f3b69) !important;
+--clear-button-color: var(--cs-text-secondary, #2f3b69) !important;
 --color: var(--cs-text-secondary, #0090d0) !important;
 --icon-color: var(--cs-text-secondary, #0090d0) !important;
 --placeholder-color: var(--cs-text-secondary, #0090d0) !important;
@@ -619,7 +619,7 @@ ion-img, img {
   }
 
   .alert-button-inner {
-    color: var(--cs-text-secondary, #0090d0) !important;
+    color: var(--cs-text-secondary, #2f3b69) !important;
   }
 }
 
@@ -652,7 +652,7 @@ ion-img, img {
   button {
     width: 100%;
     margin-bottom: 20px;
-    background: var(--cs-background-accent, #0090d0) !important;
+    background: var(--cs-background-accent, #2f3b69) !important;
     text-align: center;
     color: var(--cs-text-primary, #ffffff) !important;
     display: block;
@@ -687,7 +687,7 @@ ion-img, img {
   }
 
   .alert-button-inner {
-    color: var(--cs-text-secondary, #0090d0) !important;
+    color: var(--cs-text-secondary, #2f3b69) !important;
   }
 }
 
@@ -724,7 +724,7 @@ ion-action-sheet {
   }
 
   .alert-button-inner {
-    color: var(--cs-text-secondary, #0090d0) !important;
+    color: var(--cs-text-secondary, #2f3b69) !important;
   }
 }
 

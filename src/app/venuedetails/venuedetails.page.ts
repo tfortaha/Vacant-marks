@@ -3,14 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { HttpService } from '../services/http.service';
 import { Storage } from '@ionic/storage';
-import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-search-venueby-date-name',
-  templateUrl: './search-venueby-date-name.page.html',
-  styleUrls: ['./search-venueby-date-name.page.scss'],
+  selector: 'app-venuedetails',
+  templateUrl: './venuedetails.page.html',
+  styleUrls: ['./venuedetails.page.scss'],
 })
-export class SearchVenuebyDateNamePage implements OnInit {
+export class VenuedetailsPage implements OnInit {
 
   allData:any =[];
   data:any = [];
@@ -18,11 +18,13 @@ export class SearchVenuebyDateNamePage implements OnInit {
   alert:HTMLIonAlertElement;
 
   postData={
-    Date:'',
-    destination:'',
-    destinationId:''
+    VenueId:''
   }
   count = 0;
+  imgUrl="";
+  testimageArray:any=[];
+
+  PbarHide=0;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,22 +35,29 @@ export class SearchVenuebyDateNamePage implements OnInit {
     private storage: Storage,
   ) { }
 
-  async ngOnInit() {
-    await this.storage.create();
+    // Slider Options
+    slideOpts = {
+      initialSlide: 0,
+      speed: 400,
+      slidesPerView: 3.1,
+      spaceBetween: 10,
+      loop: true,
+      effect: 'slide',
+    };
 
+  ngOnInit() {
     this.route.queryParams.subscribe(paramse => {
       if (paramse && paramse.special) {
         this.data = JSON.parse(paramse.special);
         if(this.count==0)
         {
-          this.postData.Date=this.data[0].Date;
-          this.postData.destinationId=this.data[0].destinationId;
+          this.postData.VenueId=this.data;
           this.count+=1;
         }
-        // this.loading.dismiss();
+        this.getVenue();
+        this.imageLoop();
       }
     });
-    this.getVenue();
   }
 
   async getVenue(){
@@ -63,10 +72,11 @@ export class SearchVenuebyDateNamePage implements OnInit {
     await this.loading.present();
 
     let params = new HttpParams();
-    params = params.set("Date",this.postData.Date);
-    params = params.set("VenueId",this.postData.destinationId);
-    this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
+    params = params.set("Id",this.postData.VenueId)
+    this.httpService.get("api/venue/venues",params).subscribe((res) => {
       this.data = this.allData = res;
+      // this.imageLoop();
+      this.PbarHide=1;
       this.loading.dismiss();
       console.log(res);
     },err =>{
@@ -74,36 +84,6 @@ export class SearchVenuebyDateNamePage implements OnInit {
       this.loading.dismiss();
     })
   }
-  search(event){
-    this.data = this.allData;
-    let text = event.target.value;
-    this.data = this.data.filter((item) => {
-      return item.Name.toLowerCase().indexOf(text.toLowerCase()) > -1;
-    })
-   
-  }
-  clear(event){
-    this.data = this.allData;
-  }
-  onItemClickFunc(Id,Name): void {
-    let  VenueId = Id;
-    console.log(VenueId);
-      let navigationExtras: NavigationExtras = {
-        queryParams: {
-          special: JSON.stringify(VenueId)
-        }
-      };
-      this.router.navigate(['/venuedetails'],navigationExtras);
-    // this.storage.set("selectedVenue",selectedVenue).then(response=>{
-    //   console.log("selectedVenue --> ",response)
-    //   this.router.navigate(['/dashboard']);
-    // })
-  }
-
-  BookNowClick(){
-    console.log("Book now Click: ");
-  }
-
 
   async alerrt(){
     this.alert = await this.alertController.create({
@@ -111,5 +91,14 @@ export class SearchVenuebyDateNamePage implements OnInit {
       buttons:['ok']
     });
     await this.alert.present();
+  }
+
+  imageLoop(){
+    let j=2;
+    for(let i=0; i<8; i++){
+      this.imgUrl = "\\assets\\hotels\\"+j+".jpg";
+      this.testimageArray[i] = this.imgUrl;
+      j++;
+    }
   }
 }

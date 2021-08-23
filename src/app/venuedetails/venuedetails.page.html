@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="light" routerLink="/dashboard" routerDirection="root">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Venues</ion-title>
+  </ion-toolbar>
+  <ion-progress-bar *ngIf="PbarHide == 0" type="indeterminate" value="0.5"></ion-progress-bar>
+</ion-header>
+
+<ion-content [fullscreen]="true" id="hotel-details" *ngIf="PbarHide == 1">
+   <ion-slides pager="true" *ngIf="testimageArray.length > 0">
+    <ion-slide *ngFor="let item of testimageArray">
+      <img [src]="item" />
+    </ion-slide>
+  </ion-slides>
+
+  <div  class="ion-padding">
+    <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
+      <h1 class="hotel-name" style="text-align: center;">{{data.Name}}</h1>
+      <p style="text-align: center;"> <ion-icon name="location" slot="start" color="medium"></ion-icon> {{data.Address}}</p>
+    </ion-card>
+    
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col>
+          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
+            <div class="images ion-padding">
+              <ion-img src="assets/DetailsImgs/yards.png"></ion-img>
+            </div>
+            <ion-card-content class="ion-no-padding">
+              <h2 class="text-size-lg">Yards:</h2>
+              <p class="text-size-xs">{{data.Yards}}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
+            <div class="images ion-padding">
+              <ion-img src="assets/DetailsImgs/minCap.png"></ion-img>
+            </div>
+            <ion-card-content class="ion-no-padding">
+              <h2 class="text-size-lg">Min. Capacity:</h2>
+              <p class="text-size-xs">{{data.MinCapacity}}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
+            <div class="images ion-padding">
+              <ion-img src="assets/DetailsImgs/maxCap.png"></ion-img>
+            </div>
+            <ion-card-content class="ion-no-padding">
+              <h2 class="text-size-lg">Max. Capacity:</h2>
+              <p class="text-size-xs">{{data.MaxCapacity}}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col>
+          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center" *ngFor="let slot of data.slots">
+            <div class="images ion-padding">
+              <ion-img src="assets/DetailsImgs/slot.png"></ion-img>
+            </div>
+            <ion-card-content class="ion-no-padding">
+              <h2 class="text-size-lg">Available Slots:</h2>
+              <p class="text-size-xs">{{slot.SlotStartEnd}}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div style="padding-right: 15px;">
+    <ion-button expand="block" expand="full" shape="round" fill="outline">
+      Book Now
+    </ion-button>
+  </div>
+</ion-content>

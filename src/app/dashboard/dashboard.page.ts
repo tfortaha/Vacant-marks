@@ -24,6 +24,7 @@ export class DashboardPage implements OnInit {
     destinationId:''
   }
 
+  isValid:Boolean = false;
   formlogin : FormGroup;
 
   venues:any=[];
@@ -53,6 +54,14 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.getVenue();
   }
+
+  ionViewDidLoad(){
+    this.postData = {
+      destination:'',
+      Date:'',
+      destinationId:''
+    }
+  }
   async getVenue(){
 
     this.loading = await this.loadingController.create({
@@ -80,7 +89,6 @@ export class DashboardPage implements OnInit {
     this.storage.create();
     this.storage.get("selectedVenue").then(response=>{
       if(response){
-        debugger;
         form.destination = response[0].Name;
         this.postData.destinationId = response[0].Id;
       }
@@ -92,11 +100,11 @@ export class DashboardPage implements OnInit {
   }
 
   search(){
-    debugger;
     let form = this;
     let formValues = form.formlogin.value;
     
     if(formValues.Date != "" && formValues.destination == ""){
+      this.isValid = false;
       let SearchDate:any = [{"Date":format(new Date(formValues.Date),"yyyy-MM-dd")}];
       let navigationExtras: NavigationExtras = {
         queryParams: {
@@ -106,6 +114,7 @@ export class DashboardPage implements OnInit {
       this.router.navigate(['/venuebydate'],navigationExtras);
     }
     else if(formValues.Date != "" && formValues.destination != ""){
+      this.isValid = false;
       let SearchByDateName:any = [{"Date":format(new Date(formValues.Date),"yyyy-MM-dd"),"destinationId":this.postData.destinationId}];
       let navigationExtras: NavigationExtras = {
         queryParams: {
@@ -116,16 +125,8 @@ export class DashboardPage implements OnInit {
 
     }
     else{
-      alert('empty fields');
+      this.isValid = true;
     }
-
-        // if(form.formlogin.valid){
-
-        //   alert('form is valid');
-        // } 
-        // else {
-        //   alert('empty fields');
-        // }
     console.log(form.formlogin.value.Date,form.formlogin.value.destination)
     console.log(this.postData.destination,this.postData.Date);
   }
@@ -134,6 +135,18 @@ export class DashboardPage implements OnInit {
     return this.formlogin.controls;
   }
 
+  onDetailsClick(Id,Name){
+    console.log("Details Click: ",Id,Name);
+    let  VenueId = Id;
+    console.log(VenueId);
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          special: JSON.stringify(VenueId)
+        }
+      };
+      this.router.navigate(['/venuedetails'],navigationExtras);
+  }
+  
   async alerrt(){
     this.alert = await this.alertController.create({
       message: 'Some thing went wrong. Please try again later.',

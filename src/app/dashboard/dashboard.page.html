@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-label>Dashboard</ion-label>
+    <ion-label>Vacant Marks</ion-label>
   </ion-toolbar>
 </ion-header>
 
@@ -18,9 +18,11 @@
             <ion-input type="text" placeholder="Please Select" name="destination"
                formControlName="destination" [(ngModel)]="formlogin.value.destination"></ion-input>
           </ion-item>
-          <span class="error ion-padding" style="color:red;" *ngIf="errorControl.Date.value =='' && errorControl.destination.value ==''">
-            Venue is required.
-          </span>
+          <div *ngIf="isValid == true">
+            <span class="error ion-padding" style="color:red;" *ngIf="errorControl.Date.value =='' && errorControl.destination.value ==''">
+              Venue is required.
+            </span>
+        </div>
         </ion-col>
         </ion-row>
 
@@ -31,9 +33,11 @@
               <ion-datetime displayFormat="DD MMMM YYYY" placeholder="Please Select" min="{{minDate}}" max={{maxDate}} formControlName="Date">
               </ion-datetime>
               </ion-item>
-              <span class="error ion-padding" style="color:red;" *ngIf="errorControl.Date.value =='' ">
-                Date is required.
-              </span>
+              <div *ngIf="isValid == true">
+                <span class="error ion-padding" style="color:red;" *ngIf="errorControl.Date.value =='' ">
+                  Date is required.
+                </span>
+              </div>
           </ion-col>
         </ion-row> 
 
@@ -49,37 +53,39 @@
   <div id="popular_hotels">
     <ion-list-header>
       <ion-label color="dark">Popular Venues</ion-label>
-      <ion-button (click)="gotoHotelListPage()">See All</ion-button>
+      <ion-button >See All</ion-button>
     </ion-list-header>
 
-    <ion-card *ngFor="let item of venues let k=index">
-      <ion-list lines="none">
-        <ion-item class="ion-no-padding border" (click)="gotoHotelListPage()">
-
-          <!-- Image -->
-          <ion-thumbnail slot="start">
-            <img class="packages_thumbnail" style="vertical-align: middle;" [src]="item.EncodeLogo">
-          </ion-thumbnail>
-
-          <ion-label class="ion-text-wrap">
-            <h4 class="name">{{item.Name}}</h4>
-            <ion-text color="medium">
-              <ion-icon color="medium" name="location"></ion-icon> {{item.Address}}
-            </ion-text>
-            <br>
-            <!-- <ion-text color="color1">${{item.price}}/night</ion-text> -->
-            <p class="ion-padding-top">
-              <ion-icon name="person"></ion-icon> {{item.totalPerson}} &nbsp;
-              <ion-icon name="briefcase"></ion-icon> {{item.suitcases}} &nbsp;
-              <ion-icon name="logo-slack"></ion-icon> {{item.seats}} &nbsp;
-              <ion-icon name="copy"></ion-icon> {{item.doorCount}}
-            </p>
-          </ion-label>
-          <!-- <ion-card>
-            Book Now
-          </ion-card> -->
-        </ion-item>
-      </ion-list>
-    </ion-card>
+    <div *ngIf="venues.length > 0">
+      <ion-card *ngFor="let item of venues let k=index">
+        <ion-list lines="none">
+          <ion-item class="ion-no-padding border" (click)="onDetailsClick(item.Id, item.Name)">
+  
+            <!-- Image -->
+            <ion-thumbnail slot="start">
+              <img class="packages_thumbnail" style="vertical-align: middle;" [src]="item.EncodeLogo">
+            </ion-thumbnail>
+  
+            <ion-label class="ion-text-wrap">
+              <h2> {{item.Name}}</h2>
+              <ion-text color="medium">
+                <ion-icon name="location"></ion-icon>{{item.Address}}
+              </ion-text>
+              <br>
+              <!-- <ion-text color="color1">${{item.price}}/night</ion-text> -->
+              <p class="ion-padding-top">
+                <ion-icon name="person"></ion-icon> {{item.totalPerson}} &nbsp;
+                <ion-icon name="briefcase"></ion-icon> {{item.suitcases}} &nbsp;
+                <ion-icon name="logo-slack"></ion-icon> {{item.seats}} &nbsp;
+                <ion-icon name="copy"></ion-icon> {{item.doorCount}}
+              </p>
+            </ion-label>
+            <!-- <ion-card>
+              Book Now
+            </ion-card> -->
+          </ion-item>
+        </ion-list>
+      </ion-card>
+    </div>
   </div>
 </ion-content>

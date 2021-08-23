@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { HttpService } from '../services/http.service';
 import { Storage } from '@ionic/storage';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-venuebydate',
@@ -21,6 +21,7 @@ export class VenuebydatePage implements OnInit {
     Date:''
   }
   count = 0;
+  imgUrl="";
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +36,6 @@ export class VenuebydatePage implements OnInit {
     await this.storage.create();
 
     this.route.queryParams.subscribe(paramse => {
-      debugger;
       if (paramse && paramse.special) {
         this.data = JSON.parse(paramse.special);
         if(this.count==0)
@@ -64,12 +64,22 @@ export class VenuebydatePage implements OnInit {
     params = params.set("Date",this.postData.Date)
     this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
       this.data = this.allData = res;
+      this.imageLoop();
       this.loading.dismiss();
       console.log(res);
     },err =>{
       this.alerrt();
       this.loading.dismiss();
     })
+  }
+
+  imageLoop(){
+    let j=2;
+    for(let i=0; i<this.data.length; i++){
+      this.imgUrl = "\\assets\\hotels\\"+j+".jpg";
+      this.data[i].img = this.imgUrl;
+      j++;
+    }
   }
   search(event){
     this.data = this.allData;
@@ -83,8 +93,15 @@ export class VenuebydatePage implements OnInit {
     this.data = this.allData;
   }
   onItemClickFunc(Id,Name): void {
-    let selectedVenue:any = [{"Name":Name,"Id":Id}];
-    console.log(selectedVenue);
+    let  VenueId = Id;
+    console.log(VenueId);
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          special: JSON.stringify(VenueId)
+        }
+      };
+      this.router.navigate(['/venuedetails'],navigationExtras);
+
     // this.storage.set("selectedVenue",selectedVenue).then(response=>{
     //   console.log("selectedVenue --> ",response)
     //   this.router.navigate(['/dashboard']);

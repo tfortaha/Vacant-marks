@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { HttpService } from '../services/http.service';
 import { Storage } from '@ionic/storage';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-venues',
@@ -75,6 +75,14 @@ export class VenuesPage implements OnInit {
 
   onDetailsClick(Id,Name){
     console.log("Details Click: ",Id,Name);
+    let  VenueId = Id;
+    console.log(VenueId);
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          special: JSON.stringify(VenueId)
+        }
+      };
+      this.router.navigate(['/venuedetails'],navigationExtras);
   }
 
 

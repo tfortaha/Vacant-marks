@@ -94,3 +94,54 @@ ion-segment {
         }
     }
 }
+
+// #search-bar {
+//     background: #eeeeee;
+
+//     ion-searchbar {
+//         --icon-color: var(--ion-color-color1);
+//         --placeholder-color: var(--ion-color-color1);
+//         --background: #fff;
+//         --color: var(--ion-color-color1);
+//         --box-shadow: 0px 1px 12px 0px #cccccc;
+//         --border-radius: 25px;
+//     }
+// }
+
+img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+
+}
+
+ion-fab-button {
+    --background: transparent;
+    --background-focused: transparent;
+    --background-activated: transparent;
+}
+
+.item {
+    .name {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #3c3c3c;
+    }
+
+    ion-note {
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    ion-card {
+        writing-mode: tb-rl;
+        padding: 10px;
+        background-color: #2f3b69;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+    }
+    // .price {
+    //     font-size: 18px;
+    // }
+}
