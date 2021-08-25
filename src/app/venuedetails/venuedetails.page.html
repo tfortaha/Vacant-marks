@@ -36,6 +36,35 @@
             </ion-card-content>
           </ion-card>
         </ion-col>
+      
+        <ion-col>
+          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
+            <div class="images ion-padding">
+              <ion-img src="assets/DetailsImgs/star.png"></ion-img>
+            </div>
+            <ion-card-content class="ion-no-padding">
+              <h2 class="text-size-lg">Service: </h2>
+              <p class="text-size-xs">Excellent</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center" *ngFor="let slot of data.slots let in=index">
+            <div class="images ion-padding">
+              <ion-img src="assets/DetailsImgs/slot.png" style="display: inline-table; width: 40%;"></ion-img>
+            </div>
+            <ion-card-content class="ion-no-padding">
+              <h2 class="text-size-lg">Available Slots:</h2>
+              <p class="text-size-xs">{{in+1}}. {{slot.SlotStartEnd}}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
         <ion-col>
           <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
             <div class="images ion-padding">
@@ -47,9 +76,7 @@
             </ion-card-content>
           </ion-card>
         </ion-col>
-      </ion-row>
 
-      <ion-row>
         <ion-col>
           <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
             <div class="images ion-padding">
@@ -61,25 +88,13 @@
             </ion-card-content>
           </ion-card>
         </ion-col>
-
-        <ion-col>
-          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center" *ngFor="let slot of data.slots">
-            <div class="images ion-padding">
-              <ion-img src="assets/DetailsImgs/slot.png"></ion-img>
-            </div>
-            <ion-card-content class="ion-no-padding">
-              <h2 class="text-size-lg">Available Slots:</h2>
-              <p class="text-size-xs">{{slot.SlotStartEnd}}</p>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
       </ion-row>
     </ion-grid>
   </div>
 
   <div style="padding-right: 15px;">
     <ion-button expand="block" expand="full" shape="round" fill="outline">
-      Book Now
+      See Availablity
     </ion-button>
   </div>
 </ion-content>
