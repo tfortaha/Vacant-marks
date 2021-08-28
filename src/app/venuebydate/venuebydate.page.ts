@@ -33,8 +33,6 @@ export class VenuebydatePage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    await this.storage.create();
-
     this.route.queryParams.subscribe(paramse => {
       if (paramse && paramse.special) {
         this.data = JSON.parse(paramse.special);

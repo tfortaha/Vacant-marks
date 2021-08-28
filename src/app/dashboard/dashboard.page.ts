@@ -10,8 +10,7 @@ import { FormGroup, FormBuilder,FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
-  styleUrls: ['./dashboard.page.scss'],
-  providers:[Storage]
+  styleUrls: ['./dashboard.page.scss']
 })
 export class DashboardPage implements OnInit {
 
@@ -86,7 +85,6 @@ export class DashboardPage implements OnInit {
 
   ionViewDidEnter(){
     let form = this.formlogin.value; 
-    this.storage.create();
     this.storage.get("selectedVenue").then(response=>{
       if(response){
         form.destination = response[0].Name;

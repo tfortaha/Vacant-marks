@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { Storage } from '@ionic/storage';
@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 @Injectable({
   providedIn: 'root'
 })
+
 export class HttpService {
 
   constructor(private http: HttpClient) { }
@@ -52,12 +53,12 @@ export class HttpService {
     const options = { headers: headers, withCredintials: false };
     return this.http.post(url,JSON.stringify(data),{headers:headers,params:params});
   }
-  token(serviceName: string, data: any) {
-    const headers = new HttpHeaders();
-    headers.append("Content-Type", "application/x-www-form-urlencoded");
+  getUserDetail(serviceName: string, data: any) {
+    let headers = new HttpHeaders();
+    headers = headers.append("Content-Type", "application/json");
     const options = { headers: headers, withCredintials: false };
     const url = environment.apiUrl + serviceName;
-    let json = "username=" + data.username + "&password=" + data.password + "&grant_type=password";
-    return this.http.post(url, json, options);
+    let json = "username=" + data.username + "&password=" + data.password;
+    return this.http.post(url, JSON.stringify(data), options);
   }
 }

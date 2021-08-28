@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },
+  // {
+  //   path: '',
+  //   loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  // },
+  { path: '', loadChildren: () => import('./tab/tab.module').then(m => m.TabPageModule) },
+  // {
+  //   path: 'dashboard',
+  //   loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  // },
   {
     path: 'venues',
     loadChildren: () => import('./venues/venues.module').then( m => m.VenuesPageModule)
@@ -29,6 +30,18 @@ const routes: Routes = [
   {
     path: 'venuedetails',
     loadChildren: () => import('./venuedetails/venuedetails.module').then( m => m.VenuedetailsPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'tab',
+    loadChildren: () => import('./tab/tab.module').then( m => m.TabPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
   // {
   //   path: 'home',

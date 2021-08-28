@@ -1,5 +1,85 @@
 (self["webpackChunkvacant_marks"] = self["webpackChunkvacant_marks"] || []).push([["src_app_venuedetails_venuedetails_module_ts"],{
 
+/***/ 6858:
+/*!******************************************!*\
+  !*** ./src/app/services/http.service.ts ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HttpService": () => (/* binding */ HttpService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../environments/environment */ 2340);
+
+
+
+
+let HttpService = class HttpService {
+    constructor(http) {
+        this.http = http;
+    }
+    get(serviceName, params) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        headers.append('Access-Control-Allow-Origin', '*');
+        // headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        // headers.append('Access-Control-Allow-Methods', 'GET');
+        headers.append('Content-Type', 'application/json');
+        //headers.append("Accept", 'application/json');
+        //headers.append("Content-Type", "application/x-www-form-urlencoded");
+        // headers = headers.append("Authorization", "bearer " + token);
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        const options = { headers: headers, withCredintials: false };
+        return this.http.get(url, { headers: headers, params: params });
+    }
+    getData(serviceName, params, token) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        //headers.append("Content-Type", "application/x-www-form-urlencoded");
+        headers = headers.append("Authorization", "bearer " + token);
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        const options = { headers: headers, withCredintials: false };
+        return this.http.get(url, { headers: headers, params: params });
+    }
+    // post(serviceName: string, data: any) {
+    //   const headers = new HttpHeaders();
+    //   const options = { headers: headers, withCredintials: false };
+    //   const url = environment.apiUrl + serviceName;
+    //   return this.http.post(url, JSON.stringify(data), options);
+    // }
+    post(serviceName, params, token, data) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+        headers = headers.append("Authorization", "bearer " + token);
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        const options = { headers: headers, withCredintials: false };
+        return this.http.post(url, JSON.stringify(data), { headers: headers, params: params });
+    }
+    getUserDetail(serviceName, data) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+        const options = { headers: headers, withCredintials: false };
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        let json = "username=" + data.username + "&password=" + data.password;
+        return this.http.post(url, JSON.stringify(data), options);
+    }
+};
+HttpService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
+];
+HttpService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: 'root'
+    })
+], HttpService);
+
+
+
+/***/ }),
+
 /***/ 9618:
 /*!*************************************************************!*\
   !*** ./src/app/venuedetails/venuedetails-routing.module.ts ***!
@@ -92,15 +172,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "VenuedetailsPage": () => (/* binding */ VenuedetailsPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_venuedetails_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./venuedetails.page.html */ 9339);
 /* harmony import */ var _venuedetails_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./venuedetails.page.scss */ 9391);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 1841);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 476);
 /* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/http.service */ 6858);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/storage */ 1628);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage */ 8605);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 9895);
 
 
 
@@ -151,7 +231,7 @@ let VenuedetailsPage = class VenuedetailsPage {
         });
     }
     getVenue() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.loading = yield this.loadingController.create({
                 //message: this.translate.instant('pleasewait'),
                 cssClass: 'custom-loading',
@@ -160,7 +240,7 @@ let VenuedetailsPage = class VenuedetailsPage {
                 spinner: 'bubbles'
             });
             yield this.loading.present();
-            let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__.HttpParams();
+            let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpParams();
             params = params.set("Id", this.postData.VenueId);
             this.httpService.get("api/venue/venues", params).subscribe((res) => {
                 this.data = this.allData = res;
@@ -175,7 +255,7 @@ let VenuedetailsPage = class VenuedetailsPage {
         });
     }
     alerrt() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.alert = yield this.alertController.create({
                 message: 'Some thing went wrong. Please try again later.',
                 buttons: ['ok']
@@ -193,14 +273,14 @@ let VenuedetailsPage = class VenuedetailsPage {
     }
 };
 VenuedetailsPage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.ActivatedRoute },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.ActivatedRoute },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
     { type: _services_http_service__WEBPACK_IMPORTED_MODULE_2__.HttpService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.AlertController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.LoadingController },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_3__.Storage }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.AlertController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.LoadingController },
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_7__.Storage }
 ];
-VenuedetailsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+VenuedetailsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-venuedetails',
         template: _raw_loader_venuedetails_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
@@ -238,7 +318,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"light\" routerLink=\"/dashboard\" routerDirection=\"root\">\n        <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>Venues</ion-title>\n  </ion-toolbar>\n  <ion-progress-bar *ngIf=\"PbarHide == 0\" type=\"indeterminate\" value=\"0.5\"></ion-progress-bar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\" id=\"hotel-details\" *ngIf=\"PbarHide == 1\">\n   <ion-slides pager=\"true\" *ngIf=\"testimageArray.length > 0\">\n    <ion-slide *ngFor=\"let item of testimageArray\">\n      <img [src]=\"item\" />\n    </ion-slide>\n  </ion-slides>\n\n  <div  class=\"ion-padding\">\n    <ion-card class=\"box-shadow ion-padding ion-no-margin ion-text-center\">\n      <h1 class=\"hotel-name\" style=\"text-align: center;\">{{data.Name}}</h1>\n      <p style=\"text-align: center;\"> <ion-icon name=\"location\" slot=\"start\" color=\"medium\"></ion-icon> {{data.Address}}</p>\n    </ion-card>\n    \n    <ion-grid class=\"ion-no-padding\">\n      <ion-row>\n        <ion-col>\n          <ion-card class=\"box-shadow ion-padding ion-no-margin ion-text-center\">\n            <div class=\"images ion-padding\">\n              <ion-img src=\"assets/DetailsImgs/yards.png\"></ion-img>\n            </div>\n            <ion-card-content class=\"ion-no-padding\">\n              <h2 class=\"text-size-lg\">Yards:</h2>\n              <p class=\"text-size-xs\">{{data.Yards}}</p>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      \n        <ion-col>\n          <ion-card class=\"box-shadow ion-padding ion-no-margin ion-text-center\">\n            <div class=\"images ion-padding\">\n              <ion-img src=\"assets/DetailsImgs/star.png\"></ion-img>\n            </div>\n            <ion-card-content class=\"ion-no-padding\">\n              <h2 class=\"text-size-lg\">Service: </h2>\n              <p class=\"text-size-xs\">Excellent</p>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <ion-card class=\"box-shadow ion-padding ion-no-margin ion-text-center\" *ngFor=\"let slot of data.slots let in=index\">\n            <div class=\"images ion-padding\">\n              <ion-img src=\"assets/DetailsImgs/slot.png\" style=\"display: inline-table; width: 40%;\"></ion-img>\n            </div>\n            <ion-card-content class=\"ion-no-padding\">\n              <h2 class=\"text-size-lg\">Available Slots:</h2>\n              <p class=\"text-size-xs\">{{in+1}}. {{slot.SlotStartEnd}}</p>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <ion-card class=\"box-shadow ion-padding ion-no-margin ion-text-center\">\n            <div class=\"images ion-padding\">\n              <ion-img src=\"assets/DetailsImgs/minCap.png\"></ion-img>\n            </div>\n            <ion-card-content class=\"ion-no-padding\">\n              <h2 class=\"text-size-lg\">Min. Capacity:</h2>\n              <p class=\"text-size-xs\">{{data.MinCapacity}}</p>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n\n        <ion-col>\n          <ion-card class=\"box-shadow ion-padding ion-no-margin ion-text-center\">\n            <div class=\"images ion-padding\">\n              <ion-img src=\"assets/DetailsImgs/maxCap.png\"></ion-img>\n            </div>\n            <ion-card-content class=\"ion-no-padding\">\n              <h2 class=\"text-size-lg\">Max. Capacity:</h2>\n              <p class=\"text-size-xs\">{{data.MaxCapacity}}</p>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n\n  <div style=\"padding-right: 15px;\">\n    <ion-button expand=\"block\" expand=\"full\" shape=\"round\" fill=\"outline\">\n      See Availablity\n    </ion-button>\n  </div>\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button color=\"light\">\n        <!-- <ion-icon name=\"arrow-back\"></ion-icon> -->\n      </ion-back-button>\n    </ion-buttons>\n    <ion-title>Venues</ion-title>\n  </ion-toolbar>\n  <ion-progress-bar *ngIf=\"PbarHide == 0\" type=\"indeterminate\" value=\"0.5\"></ion-progress-bar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\" id=\"hotel-details\" *ngIf=\"PbarHide == 1\">\n   <ion-slides pager=\"true\" *ngIf=\"testimageArray.length > 0\">\n    <ion-slide *ngFor=\"let item of testimageArray\">\n      <img [src]=\"item\" />\n    </ion-slide>\n  </ion-slides>\n\n  <div  class=\"ion-padding\">\n    <ion-card class=\"box-shadow ion-padding ion-no-margin ion-text-center\">\n      <h1 class=\"hotel-name\" style=\"text-align: center;\">{{data.Name}}</h1>\n      <p style=\"text-align: center;\"> <ion-icon name=\"location\" slot=\"start\" color=\"medium\"></ion-icon> {{data.Address}}</p>\n    </ion-card>\n    \n    <ion-grid class=\"ion-no-padding\">\n      <ion-row>\n        <ion-col>\n          <ion-card class=\"box-shadow ion-padding ion-no-margin ion-text-center\">\n            <div class=\"images ion-padding\">\n              <ion-img src=\"assets/DetailsImgs/yards.png\"></ion-img>\n            </div>\n            <ion-card-content class=\"ion-no-padding\">\n              <h2 class=\"text-size-lg\">Yards:</h2>\n              <p class=\"text-size-xs\">{{data.Yards}}</p>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      \n        <ion-col>\n          <ion-card class=\"box-shadow ion-padding ion-no-margin ion-text-center\">\n            <div class=\"images ion-padding\">\n              <ion-img src=\"assets/DetailsImgs/star.png\"></ion-img>\n            </div>\n            <ion-card-content class=\"ion-no-padding\">\n              <h2 class=\"text-size-lg\">Service: </h2>\n              <p class=\"text-size-xs\">Excellent</p>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <ion-card class=\"box-shadow ion-padding ion-no-margin ion-text-center\" *ngFor=\"let slot of data.slots let in=index\">\n            <div class=\"images ion-padding\">\n              <ion-img src=\"assets/DetailsImgs/slot.png\" style=\"display: inline-table; width: 40%;\"></ion-img>\n            </div>\n            <ion-card-content class=\"ion-no-padding\">\n              <h2 class=\"text-size-lg\">Available Slots:</h2>\n              <p class=\"text-size-xs\">{{in+1}}. {{slot.SlotStartEnd}}</p>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <ion-card class=\"box-shadow ion-padding ion-no-margin ion-text-center\">\n            <div class=\"images ion-padding\">\n              <ion-img src=\"assets/DetailsImgs/minCap.png\"></ion-img>\n            </div>\n            <ion-card-content class=\"ion-no-padding\">\n              <h2 class=\"text-size-lg\">Min. Capacity:</h2>\n              <p class=\"text-size-xs\">{{data.MinCapacity}}</p>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n\n        <ion-col>\n          <ion-card class=\"box-shadow ion-padding ion-no-margin ion-text-center\">\n            <div class=\"images ion-padding\">\n              <ion-img src=\"assets/DetailsImgs/maxCap.png\"></ion-img>\n            </div>\n            <ion-card-content class=\"ion-no-padding\">\n              <h2 class=\"text-size-lg\">Max. Capacity:</h2>\n              <p class=\"text-size-xs\">{{data.MaxCapacity}}</p>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n\n  <div style=\"padding-right: 15px;\">\n    <ion-button expand=\"block\" expand=\"full\" shape=\"round\" fill=\"outline\">\n      See Availablity\n    </ion-button>\n  </div>\n</ion-content>");
 
 /***/ })
 

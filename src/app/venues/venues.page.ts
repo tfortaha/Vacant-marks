@@ -8,8 +8,7 @@ import { Router, NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-venues',
   templateUrl: './venues.page.html',
-  styleUrls: ['./venues.page.scss'],
-  providers:[Storage]
+  styleUrls: ['./venues.page.scss']
 })
 export class VenuesPage implements OnInit {
 
@@ -28,7 +27,6 @@ export class VenuesPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    await this.storage.create();
     this.getVenue();
   }
 
@@ -69,7 +67,7 @@ export class VenuesPage implements OnInit {
     let selectedVenue:any = [{"Name":Name,"Id":Id}];
     this.storage.set("selectedVenue",selectedVenue).then(response=>{
       console.log("selectedVenue --> ",response)
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['']);
     })
   }
 

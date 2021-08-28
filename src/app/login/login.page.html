@@ -1,0 +1,96 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+
+    <!-- Back Button -->
+    <ion-buttons slot="start">
+      <ion-button color="dark" routerLink="" routerDirection="root" (click)="close()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<!-- Contents -->
+<ion-content id="signin" [fullscreen]="true" class="ion-padding">
+  <div id="section1">
+    <!-- SignIn Form -->
+    <form>
+      <ion-grid>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+
+            <!-- Title -->
+            <div class="ion-padding">
+              <h2>Sign In</h2>
+            </div>
+
+            <!-- <ion-row>
+              <ion-col>
+                <ion-button expand="full" color="primary" shape="round">
+                  Facebook
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button expand="full" color="secondary" shape="round">
+                  Twitter
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
+            <div class="ion-padding ion-text-center">
+              <ion-text color="medium">or log in with email</ion-text>
+            </div> -->
+
+            <!-- Email -->
+            <div class="ion-padding-bottom ion-padding-top">
+              <ion-item lines="none">
+                <ion-label>
+                  <ion-icon name="mail"></ion-icon>
+                </ion-label>
+                <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="postData.username"></ion-input>
+                <ion-icon *ngIf="!isUsernameValid" class="icon-small" name="remove-circle"></ion-icon>
+              </ion-item>
+            </div>
+
+            <!-- Password -->
+            <ion-item lines="none">
+              <ion-label>
+                <ion-icon name="eye"></ion-icon>
+              </ion-label>
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="postData.password">
+              </ion-input>
+              <ion-icon *ngIf="!isPasswordValid" class="icon-small" name="remove-circle"></ion-icon>
+            </ion-item>
+
+            <!-- Forget Password Button -->
+            <ion-button expand="block" color="medium" fill="clear">
+              <span>Forget Password?</span>
+            </ion-button>
+
+
+            <!-- Sign In Button -->
+            <div class="buttons ion-padding">
+              <ion-button expand="full" id="#button" fill="outline" shape="round" (click)="loginAction()">
+                <ion-text><strong>Sign In</strong></ion-text>
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+
+  <!-- SignUp Buttons -->
+  <div id="section2">
+    <ion-button fill="clear" color="dark">
+      <ion-text color="medium">Don't Have An Account? 
+        <ion-text>
+          <b>Sign In</b>
+        </ion-text>
+      </ion-text>
+    </ion-button>
+  </div>
+</ion-content>

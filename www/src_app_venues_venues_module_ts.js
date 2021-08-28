@@ -1,5 +1,85 @@
 (self["webpackChunkvacant_marks"] = self["webpackChunkvacant_marks"] || []).push([["src_app_venues_venues_module_ts"],{
 
+/***/ 6858:
+/*!******************************************!*\
+  !*** ./src/app/services/http.service.ts ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HttpService": () => (/* binding */ HttpService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../environments/environment */ 2340);
+
+
+
+
+let HttpService = class HttpService {
+    constructor(http) {
+        this.http = http;
+    }
+    get(serviceName, params) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        headers.append('Access-Control-Allow-Origin', '*');
+        // headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        // headers.append('Access-Control-Allow-Methods', 'GET');
+        headers.append('Content-Type', 'application/json');
+        //headers.append("Accept", 'application/json');
+        //headers.append("Content-Type", "application/x-www-form-urlencoded");
+        // headers = headers.append("Authorization", "bearer " + token);
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        const options = { headers: headers, withCredintials: false };
+        return this.http.get(url, { headers: headers, params: params });
+    }
+    getData(serviceName, params, token) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        //headers.append("Content-Type", "application/x-www-form-urlencoded");
+        headers = headers.append("Authorization", "bearer " + token);
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        const options = { headers: headers, withCredintials: false };
+        return this.http.get(url, { headers: headers, params: params });
+    }
+    // post(serviceName: string, data: any) {
+    //   const headers = new HttpHeaders();
+    //   const options = { headers: headers, withCredintials: false };
+    //   const url = environment.apiUrl + serviceName;
+    //   return this.http.post(url, JSON.stringify(data), options);
+    // }
+    post(serviceName, params, token, data) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+        headers = headers.append("Authorization", "bearer " + token);
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        const options = { headers: headers, withCredintials: false };
+        return this.http.post(url, JSON.stringify(data), { headers: headers, params: params });
+    }
+    getUserDetail(serviceName, data) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+        const options = { headers: headers, withCredintials: false };
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        let json = "username=" + data.username + "&password=" + data.password;
+        return this.http.post(url, JSON.stringify(data), options);
+    }
+};
+HttpService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
+];
+HttpService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: 'root'
+    })
+], HttpService);
+
+
+
+/***/ }),
+
 /***/ 8798:
 /*!*************************************************!*\
   !*** ./src/app/venues/venues-routing.module.ts ***!
@@ -92,15 +172,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "VenuesPage": () => (/* binding */ VenuesPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_venues_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./venues.page.html */ 1995);
 /* harmony import */ var _venues_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./venues.page.scss */ 3082);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 1841);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 476);
 /* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/http.service */ 6858);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/storage */ 1628);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage */ 8605);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 9895);
 
 
 
@@ -121,13 +201,12 @@ let VenuesPage = class VenuesPage {
         this.data = [];
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            yield this.storage.create();
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.getVenue();
         });
     }
     getVenue() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.loading = yield this.loadingController.create({
                 //message: this.translate.instant('pleasewait'),
                 cssClass: 'custom-loading',
@@ -136,7 +215,7 @@ let VenuesPage = class VenuesPage {
                 spinner: 'bubbles'
             });
             yield this.loading.present();
-            let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__.HttpParams();
+            let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpParams();
             this.httpService.get("api/Venue/Venues", params).subscribe((res) => {
                 this.data = this.allData = res;
                 this.loading.dismiss();
@@ -161,7 +240,7 @@ let VenuesPage = class VenuesPage {
         let selectedVenue = [{ "Name": Name, "Id": Id }];
         this.storage.set("selectedVenue", selectedVenue).then(response => {
             console.log("selectedVenue --> ", response);
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['']);
         });
     }
     onDetailsClick(Id, Name) {
@@ -176,7 +255,7 @@ let VenuesPage = class VenuesPage {
         this.router.navigate(['/venuedetails'], navigationExtras);
     }
     alerrt() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.alert = yield this.alertController.create({
                 message: 'Some thing went wrong. Please try again later.',
                 buttons: ['ok']
@@ -186,17 +265,16 @@ let VenuesPage = class VenuesPage {
     }
 };
 VenuesPage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
     { type: _services_http_service__WEBPACK_IMPORTED_MODULE_2__.HttpService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.AlertController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.LoadingController },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_3__.Storage }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.AlertController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.LoadingController },
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_7__.Storage }
 ];
-VenuesPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+VenuesPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-venues',
         template: _raw_loader_venues_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
-        providers: [_ionic_storage__WEBPACK_IMPORTED_MODULE_3__.Storage],
         styles: [_venues_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
     })
 ], VenuesPage);
@@ -231,7 +309,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"light\" routerLink=\"/dashboard\" routerDirection=\"root\">\n        <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n\n    <!-- <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"dashboard\"></ion-back-button>\n    </ion-buttons> -->\n    <ion-title>Venues</ion-title>\n  </ion-toolbar>\n  <ion-toolbar >\n    <ion-searchbar placeholder=\"Search\"\n                   animated\n                   (ionChange)=\"search( $event )\"\n                   (ionCancel)=\"clear($event)\">\n    </ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <ion-grid class=\"ion-no-padding\">\n    <ion-row>\n      <ion-col size=\"12\">\n        <ion-list class=\"ion-no-margin\" lines=\"none\">\n          <ion-item *ngFor=\"let item of data; let Index=index;\"\n            (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <ion-label>\n              <h2 class=\"text-size-xs\">{{Index+1}}. {{item.Name}}</h2>\n            </ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid> -->\n\n  <div id=\"popular_hotels\">\n    <ion-card class=\"ion-no-padding\" *ngFor=\"let item of data\">\n      <ion-list lines=\"none\" class=\"ion-no-padding\">\n        <ion-item class=\"ion-no-padding\">\n\n          <!-- Image -->\n          <ion-thumbnail slot=\"start\"  (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <img class=\"packages_thumbnail\" style=\"vertical-align: middle;\" [src]=\"item.EncodeLogo\">\n          </ion-thumbnail>\n\n          <ion-label class=\"ion-text-wrap\" (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <h4 class=\"name\">{{item.Name}}</h4>\n            <ion-text color=\"medium\">\n              <ion-icon color=\"medium\" name=\"location\"></ion-icon> \n              {{item.Address}}<br>\n              Max Capacity: {{item.MaxCapacity}}<br>\n              Min Capacity: {{item.MinCapacity}}<br>\n              Area(yards): {{item.Yards}}<br>\n            </ion-text>\n            <br>\n            <!-- <ion-text color=\"color1\">${{item.price}}/night</ion-text> -->\n            <p class=\"ion-padding-top\">\n              <ion-icon name=\"person\"></ion-icon> {{item.totalPerson}} &nbsp;\n              <ion-icon name=\"briefcase\"></ion-icon> {{item.suitcases}} &nbsp;\n              <ion-icon name=\"logo-slack\"></ion-icon> {{item.seats}} &nbsp;\n              <ion-icon name=\"copy\"></ion-icon> {{item.doorCount}}\n            </p>\n          </ion-label>\n          <ion-card (click)=\"onDetailsClick(item.Id,item.Name)\">\n            Details\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div>\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"light\" routerLink=\"\" routerDirection=\"root\">\n        <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n\n    <!-- <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"dashboard\"></ion-back-button>\n    </ion-buttons> -->\n    <ion-title>Venues</ion-title>\n  </ion-toolbar>\n  <ion-toolbar >\n    <ion-searchbar placeholder=\"Search\"\n                   animated\n                   (ionChange)=\"search( $event )\"\n                   (ionCancel)=\"clear($event)\">\n    </ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <ion-grid class=\"ion-no-padding\">\n    <ion-row>\n      <ion-col size=\"12\">\n        <ion-list class=\"ion-no-margin\" lines=\"none\">\n          <ion-item *ngFor=\"let item of data; let Index=index;\"\n            (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <ion-label>\n              <h2 class=\"text-size-xs\">{{Index+1}}. {{item.Name}}</h2>\n            </ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid> -->\n\n  <div id=\"popular_hotels\">\n    <ion-card class=\"ion-no-padding\" *ngFor=\"let item of data\">\n      <ion-list lines=\"none\" class=\"ion-no-padding\">\n        <ion-item class=\"ion-no-padding\">\n\n          <!-- Image -->\n          <ion-thumbnail slot=\"start\"  (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <img class=\"packages_thumbnail\" style=\"vertical-align: middle;\" [src]=\"item.EncodeLogo\">\n          </ion-thumbnail>\n\n          <ion-label class=\"ion-text-wrap\" (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <h4 class=\"name\">{{item.Name}}</h4>\n            <ion-text color=\"medium\">\n              <ion-icon color=\"medium\" name=\"location\"></ion-icon> \n              {{item.Address}}<br>\n              Max Capacity: {{item.MaxCapacity}}<br>\n              Min Capacity: {{item.MinCapacity}}<br>\n              Area(yards): {{item.Yards}}<br>\n            </ion-text>\n            <br>\n            <!-- <ion-text color=\"color1\">${{item.price}}/night</ion-text> -->\n            <p class=\"ion-padding-top\">\n              <ion-icon name=\"person\"></ion-icon> {{item.totalPerson}} &nbsp;\n              <ion-icon name=\"briefcase\"></ion-icon> {{item.suitcases}} &nbsp;\n              <ion-icon name=\"logo-slack\"></ion-icon> {{item.seats}} &nbsp;\n              <ion-icon name=\"copy\"></ion-icon> {{item.doorCount}}\n            </p>\n          </ion-label>\n          <ion-card (click)=\"onDetailsClick(item.Id,item.Name)\">\n            Details\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div>\n</ion-content>");
 
 /***/ })
 

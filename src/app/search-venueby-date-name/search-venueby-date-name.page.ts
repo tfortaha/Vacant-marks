@@ -34,7 +34,6 @@ export class SearchVenuebyDateNamePage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    await this.storage.create();
 
     this.route.queryParams.subscribe(paramse => {
       if (paramse && paramse.special) {

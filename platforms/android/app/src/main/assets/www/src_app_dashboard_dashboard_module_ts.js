@@ -1161,7 +1161,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ getUTCDayOfYear)
 /* harmony export */ });
-/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toDate/index.js */ 4513);
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toDate/index.js */ 4732);
 /* harmony import */ var _requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../requiredArgs/index.js */ 3463);
 
 
@@ -1192,7 +1192,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ getUTCISOWeekYear)
 /* harmony export */ });
-/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toDate/index.js */ 4513);
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toDate/index.js */ 4732);
 /* harmony import */ var _startOfUTCISOWeek_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../startOfUTCISOWeek/index.js */ 5317);
 /* harmony import */ var _requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../requiredArgs/index.js */ 3463);
 
@@ -1235,7 +1235,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ getUTCISOWeek)
 /* harmony export */ });
-/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toDate/index.js */ 4513);
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toDate/index.js */ 4732);
 /* harmony import */ var _startOfUTCISOWeek_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../startOfUTCISOWeek/index.js */ 5317);
 /* harmony import */ var _startOfUTCISOWeekYear_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../startOfUTCISOWeekYear/index.js */ 1427);
 /* harmony import */ var _requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../requiredArgs/index.js */ 3463);
@@ -1270,7 +1270,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ getUTCWeekYear)
 /* harmony export */ });
 /* harmony import */ var _toInteger_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../toInteger/index.js */ 207);
-/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toDate/index.js */ 4513);
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toDate/index.js */ 4732);
 /* harmony import */ var _startOfUTCWeek_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../startOfUTCWeek/index.js */ 8699);
 /* harmony import */ var _requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../requiredArgs/index.js */ 3463);
 
@@ -1324,7 +1324,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ getUTCWeek)
 /* harmony export */ });
-/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toDate/index.js */ 4513);
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toDate/index.js */ 4732);
 /* harmony import */ var _startOfUTCWeek_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../startOfUTCWeek/index.js */ 8699);
 /* harmony import */ var _startOfUTCWeekYear_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../startOfUTCWeekYear/index.js */ 6062);
 /* harmony import */ var _requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../requiredArgs/index.js */ 3463);
@@ -1443,7 +1443,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ startOfUTCISOWeek)
 /* harmony export */ });
-/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toDate/index.js */ 4513);
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toDate/index.js */ 4732);
 /* harmony import */ var _requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../requiredArgs/index.js */ 3463);
 
  // This function will be a part of public API when UTC function will be implemented.
@@ -1512,7 +1512,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ startOfUTCWeek)
 /* harmony export */ });
 /* harmony import */ var _toInteger_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../toInteger/index.js */ 207);
-/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../toDate/index.js */ 4513);
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../toDate/index.js */ 4732);
 /* harmony import */ var _requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../requiredArgs/index.js */ 3463);
 
 
@@ -1580,7 +1580,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ addMilliseconds)
 /* harmony export */ });
 /* harmony import */ var _lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_lib/toInteger/index.js */ 207);
-/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../toDate/index.js */ 4513);
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../toDate/index.js */ 4732);
 /* harmony import */ var _lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_lib/requiredArgs/index.js */ 3463);
 
 
@@ -1631,7 +1631,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _isValid_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../isValid/index.js */ 3246);
 /* harmony import */ var _locale_en_US_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../locale/en-US/index.js */ 9239);
 /* harmony import */ var _subMilliseconds_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../subMilliseconds/index.js */ 7251);
-/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../toDate/index.js */ 4513);
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../toDate/index.js */ 4732);
 /* harmony import */ var _lib_format_formatters_index_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../_lib/format/formatters/index.js */ 5319);
 /* harmony import */ var _lib_format_longFormatters_index_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../_lib/format/longFormatters/index.js */ 9709);
 /* harmony import */ var _lib_getTimezoneOffsetInMilliseconds_index_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../_lib/getTimezoneOffsetInMilliseconds/index.js */ 5729);
@@ -2085,7 +2085,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ isValid)
 /* harmony export */ });
-/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../toDate/index.js */ 4513);
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../toDate/index.js */ 4732);
 /* harmony import */ var _lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_lib/requiredArgs/index.js */ 3463);
 
 
@@ -2856,7 +2856,7 @@ function subMilliseconds(dirtyDate, dirtyAmount) {
 
 /***/ }),
 
-/***/ 4513:
+/***/ 4732:
 /*!***************************************************!*\
   !*** ./node_modules/date-fns/esm/toDate/index.js ***!
   \***************************************************/
@@ -3017,17 +3017,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DashboardPage": () => (/* binding */ DashboardPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_dashboard_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./dashboard.page.html */ 2836);
 /* harmony import */ var _dashboard_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dashboard.page.scss */ 8043);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 9895);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 476);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/storage */ 1628);
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! date-fns */ 2707);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 1841);
-/* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/http.service */ 6858);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 3679);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/storage */ 8605);
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! date-fns */ 2707);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/http.service */ 6858);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ 3679);
 
 
 
@@ -3046,7 +3046,7 @@ let DashboardPage = class DashboardPage {
         this.storage = storage;
         this.alertController = alertController;
         this.loadingController = loadingController;
-        this.minDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_4__.default)(new Date(), "yyyy-MM-dd");
+        this.minDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__.default)(new Date(), "yyyy-MM-dd");
         this.maxDate = new Date().getFullYear() + 2;
         this.postData = {
             destination: '',
@@ -3056,11 +3056,11 @@ let DashboardPage = class DashboardPage {
         this.isValid = false;
         this.venues = [];
         this.formlogin = formBuilder.group({
-            destination: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormControl('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.compose([
-                _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required
+            destination: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormControl('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__.Validators.compose([
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__.Validators.required
             ])),
-            Date: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormControl('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.compose([
-                _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required
+            Date: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormControl('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__.Validators.compose([
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__.Validators.required
             ]))
         });
         console.log(this.minDate, this.maxDate);
@@ -3076,7 +3076,7 @@ let DashboardPage = class DashboardPage {
         };
     }
     getVenue() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             this.loading = yield this.loadingController.create({
                 //message: this.translate.instant('pleasewait'),
                 cssClass: 'custom-loading',
@@ -3085,7 +3085,7 @@ let DashboardPage = class DashboardPage {
                 spinner: 'bubbles'
             });
             yield this.loading.present();
-            let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpParams();
+            let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpParams();
             this.httpService.get("api/Venue/Venues", params).subscribe((res) => {
                 this.venues = res;
                 this.loading.dismiss();
@@ -3098,7 +3098,6 @@ let DashboardPage = class DashboardPage {
     }
     ionViewDidEnter() {
         let form = this.formlogin.value;
-        this.storage.create();
         this.storage.get("selectedVenue").then(response => {
             if (response) {
                 form.destination = response[0].Name;
@@ -3114,7 +3113,7 @@ let DashboardPage = class DashboardPage {
         let formValues = form.formlogin.value;
         if (formValues.Date != "" && formValues.destination == "") {
             this.isValid = false;
-            let SearchDate = [{ "Date": (0,date_fns__WEBPACK_IMPORTED_MODULE_4__.default)(new Date(formValues.Date), "yyyy-MM-dd") }];
+            let SearchDate = [{ "Date": (0,date_fns__WEBPACK_IMPORTED_MODULE_3__.default)(new Date(formValues.Date), "yyyy-MM-dd") }];
             let navigationExtras = {
                 queryParams: {
                     special: JSON.stringify(SearchDate)
@@ -3124,7 +3123,7 @@ let DashboardPage = class DashboardPage {
         }
         else if (formValues.Date != "" && formValues.destination != "") {
             this.isValid = false;
-            let SearchByDateName = [{ "Date": (0,date_fns__WEBPACK_IMPORTED_MODULE_4__.default)(new Date(formValues.Date), "yyyy-MM-dd"), "destinationId": this.postData.destinationId }];
+            let SearchByDateName = [{ "Date": (0,date_fns__WEBPACK_IMPORTED_MODULE_3__.default)(new Date(formValues.Date), "yyyy-MM-dd"), "destinationId": this.postData.destinationId }];
             let navigationExtras = {
                 queryParams: {
                     special: JSON.stringify(SearchByDateName)
@@ -3153,7 +3152,7 @@ let DashboardPage = class DashboardPage {
         this.router.navigate(['/venuedetails'], navigationExtras);
     }
     alerrt() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             this.alert = yield this.alertController.create({
                 message: 'Some thing went wrong. Please try again later.',
                 buttons: ['ok']
@@ -3163,21 +3162,100 @@ let DashboardPage = class DashboardPage {
     }
 };
 DashboardPage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.Router },
-    { type: _services_http_service__WEBPACK_IMPORTED_MODULE_3__.HttpService },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_2__.Storage },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router },
+    { type: _services_http_service__WEBPACK_IMPORTED_MODULE_2__.HttpService },
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_8__.Storage },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.AlertController },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.LoadingController },
-    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormBuilder }
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormBuilder }
 ];
-DashboardPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+DashboardPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
         selector: 'app-dashboard',
         template: _raw_loader_dashboard_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
-        providers: [_ionic_storage__WEBPACK_IMPORTED_MODULE_2__.Storage],
         styles: [_dashboard_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
     })
 ], DashboardPage);
+
+
+
+/***/ }),
+
+/***/ 6858:
+/*!******************************************!*\
+  !*** ./src/app/services/http.service.ts ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HttpService": () => (/* binding */ HttpService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../environments/environment */ 2340);
+
+
+
+
+let HttpService = class HttpService {
+    constructor(http) {
+        this.http = http;
+    }
+    get(serviceName, params) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        headers.append('Access-Control-Allow-Origin', '*');
+        // headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        // headers.append('Access-Control-Allow-Methods', 'GET');
+        headers.append('Content-Type', 'application/json');
+        //headers.append("Accept", 'application/json');
+        //headers.append("Content-Type", "application/x-www-form-urlencoded");
+        // headers = headers.append("Authorization", "bearer " + token);
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        const options = { headers: headers, withCredintials: false };
+        return this.http.get(url, { headers: headers, params: params });
+    }
+    getData(serviceName, params, token) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        //headers.append("Content-Type", "application/x-www-form-urlencoded");
+        headers = headers.append("Authorization", "bearer " + token);
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        const options = { headers: headers, withCredintials: false };
+        return this.http.get(url, { headers: headers, params: params });
+    }
+    // post(serviceName: string, data: any) {
+    //   const headers = new HttpHeaders();
+    //   const options = { headers: headers, withCredintials: false };
+    //   const url = environment.apiUrl + serviceName;
+    //   return this.http.post(url, JSON.stringify(data), options);
+    // }
+    post(serviceName, params, token, data) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+        headers = headers.append("Authorization", "bearer " + token);
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        const options = { headers: headers, withCredintials: false };
+        return this.http.post(url, JSON.stringify(data), { headers: headers, params: params });
+    }
+    getUserDetail(serviceName, data) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+        const options = { headers: headers, withCredintials: false };
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        let json = "username=" + data.username + "&password=" + data.password;
+        return this.http.post(url, JSON.stringify(data), options);
+    }
+};
+HttpService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
+];
+HttpService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: 'root'
+    })
+], HttpService);
 
 
 

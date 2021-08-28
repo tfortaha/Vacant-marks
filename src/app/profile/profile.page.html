@@ -1,0 +1,71 @@
+<!--
+  - Profile Screen
+  - @author    FlawlessThemes <flawlesstemplates@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   FlawlessThemes
+-->
+
+<!-- Header -->
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contents -->
+<ion-content [fullscreen]="true" class="background">
+  <!-- Profile Details -->
+  <ion-list lines="none" class="ion-padding-top">
+    <ion-item>
+      <!-- User Image -->
+      <ion-avatar slot="start">
+        <img style="vertical-align: middle;" src="assets/DetailsImgs/avatar.png">
+      </ion-avatar>
+
+      <div *ngIf="data != null">
+        <ion-label class="ion-text-wrap" *ngIf="data.FirstName !== '' || data.FirstName !== null || data.FirstName !== undefined">
+          <h4 class="name">{{data.FirstName}} {{data.LastName}}</h4>
+          <!-- <ion-text class="edit-profile" (click)="gotoEditProfile()">Edit profile</ion-text> -->
+        </ion-label>
+      </div>
+
+      <div *ngIf="data == null">
+        <ion-label class="ion-text-wrap">
+          <h1 style="padding-bottom: 3px;">Login</h1>
+          <ion-text class="edit-profile" (click)="login()">Login or Create an Account.</ion-text>
+        </ion-label>
+      </div>
+
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="data == null">
+    <ion-list lines="full" class="ion-padding-top">
+      <ion-item> </ion-item>
+      <ion-item (click)="login()">
+        <ion-icon color="medium" slot="end" name="log-out"></ion-icon>
+        <ion-label class="ion-padding">Login or Register</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="data != null">
+    <ion-list>
+      <!-- <ion-item-divider>{{'BasicInformation' | translate }}</ion-item-divider> -->
+      <ion-item
+        *ngIf="data.UserName !== '' || data.UserName !== null || data.UserName !== undefined">
+        <ion-label stacked>UserName</ion-label>
+        <ion-label>{{data.UserName}}</ion-label>
+      </ion-item>
+
+      <ion-item
+        *ngIf="data.EmailID !== '' || data.EmailID !== null || data.EmailID !== undefined">
+        <ion-label stacked>Email </ion-label>
+        <ion-label>{{data.EmailID}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

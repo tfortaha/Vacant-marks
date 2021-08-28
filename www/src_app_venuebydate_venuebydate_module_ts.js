@@ -1,5 +1,85 @@
 (self["webpackChunkvacant_marks"] = self["webpackChunkvacant_marks"] || []).push([["src_app_venuebydate_venuebydate_module_ts"],{
 
+/***/ 6858:
+/*!******************************************!*\
+  !*** ./src/app/services/http.service.ts ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HttpService": () => (/* binding */ HttpService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../environments/environment */ 2340);
+
+
+
+
+let HttpService = class HttpService {
+    constructor(http) {
+        this.http = http;
+    }
+    get(serviceName, params) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        headers.append('Access-Control-Allow-Origin', '*');
+        // headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        // headers.append('Access-Control-Allow-Methods', 'GET');
+        headers.append('Content-Type', 'application/json');
+        //headers.append("Accept", 'application/json');
+        //headers.append("Content-Type", "application/x-www-form-urlencoded");
+        // headers = headers.append("Authorization", "bearer " + token);
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        const options = { headers: headers, withCredintials: false };
+        return this.http.get(url, { headers: headers, params: params });
+    }
+    getData(serviceName, params, token) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        //headers.append("Content-Type", "application/x-www-form-urlencoded");
+        headers = headers.append("Authorization", "bearer " + token);
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        const options = { headers: headers, withCredintials: false };
+        return this.http.get(url, { headers: headers, params: params });
+    }
+    // post(serviceName: string, data: any) {
+    //   const headers = new HttpHeaders();
+    //   const options = { headers: headers, withCredintials: false };
+    //   const url = environment.apiUrl + serviceName;
+    //   return this.http.post(url, JSON.stringify(data), options);
+    // }
+    post(serviceName, params, token, data) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+        headers = headers.append("Authorization", "bearer " + token);
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        const options = { headers: headers, withCredintials: false };
+        return this.http.post(url, JSON.stringify(data), { headers: headers, params: params });
+    }
+    getUserDetail(serviceName, data) {
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+        const options = { headers: headers, withCredintials: false };
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
+        let json = "username=" + data.username + "&password=" + data.password;
+        return this.http.post(url, JSON.stringify(data), options);
+    }
+};
+HttpService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
+];
+HttpService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: 'root'
+    })
+], HttpService);
+
+
+
+/***/ }),
+
 /***/ 7440:
 /*!***********************************************************!*\
   !*** ./src/app/venuebydate/venuebydate-routing.module.ts ***!
@@ -92,15 +172,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "VenuebydatePage": () => (/* binding */ VenuebydatePage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_venuebydate_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./venuebydate.page.html */ 8596);
 /* harmony import */ var _venuebydate_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./venuebydate.page.scss */ 5198);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 1841);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 476);
 /* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/http.service */ 6858);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/storage */ 1628);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage */ 8605);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 9895);
 
 
 
@@ -127,8 +207,7 @@ let VenuebydatePage = class VenuebydatePage {
         this.imgUrl = "";
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            yield this.storage.create();
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.route.queryParams.subscribe(paramse => {
                 if (paramse && paramse.special) {
                     this.data = JSON.parse(paramse.special);
@@ -143,7 +222,7 @@ let VenuebydatePage = class VenuebydatePage {
         });
     }
     getVenue() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.loading = yield this.loadingController.create({
                 //message: this.translate.instant('pleasewait'),
                 cssClass: 'custom-loading',
@@ -152,7 +231,7 @@ let VenuebydatePage = class VenuebydatePage {
                 spinner: 'bubbles'
             });
             yield this.loading.present();
-            let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__.HttpParams();
+            let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpParams();
             params = params.set("Date", this.postData.Date);
             this.httpService.get("api/Venue/Venues", params).subscribe((res) => {
                 this.data = this.allData = res;
@@ -201,7 +280,7 @@ let VenuebydatePage = class VenuebydatePage {
         console.log("Details Click: ", Id, Name);
     }
     alerrt() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.alert = yield this.alertController.create({
                 message: 'Some thing went wrong. Please try again later.',
                 buttons: ['ok']
@@ -211,14 +290,14 @@ let VenuebydatePage = class VenuebydatePage {
     }
 };
 VenuebydatePage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.ActivatedRoute },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.ActivatedRoute },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
     { type: _services_http_service__WEBPACK_IMPORTED_MODULE_2__.HttpService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.AlertController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.LoadingController },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_3__.Storage }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.AlertController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.LoadingController },
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_7__.Storage }
 ];
-VenuebydatePage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+VenuebydatePage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-venuebydate',
         template: _raw_loader_venuebydate_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
@@ -256,7 +335,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"light\" routerLink=\"/dashboard\" routerDirection=\"root\">\n        <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>Venues</ion-title>\n  </ion-toolbar>\n  <ion-toolbar >\n    <ion-searchbar placeholder=\"Search\"\n                   animated\n                   (ionChange)=\"search( $event )\"\n                   (ionCancel)=\"clear($event)\">\n    </ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <div id=\"popular_hotels\" *ngIf=\" allData.length > 0\">\n    <ion-card class=\"ion-no-padding\" *ngFor=\"let item of data\">\n      <ion-list lines=\"none\" class=\"ion-no-padding\">\n        <ion-item class=\"ion-no-padding\">\n\n          <ion-thumbnail slot=\"start\"  (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <img class=\"packages_thumbnail\" style=\"vertical-align: middle;\" [src]=\"item.EncodeLogo\">\n          </ion-thumbnail>\n\n          <ion-label class=\"ion-text-wrap\" (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <h4 class=\"name\">{{item.Name}}</h4>\n            <ion-text color=\"medium\">\n              <ion-icon color=\"medium\" name=\"location\"></ion-icon>\n              {{item.Address}}<br>\n              Max Capacity: {{item.MaxCapacity}}<br>\n              Min Capacity: {{item.MinCapacity}}<br>\n              Area(yards): {{item.Yards}}<br>\n            </ion-text>\n            <br>\n            <p class=\"ion-padding-top\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-icon name=\"briefcase\"></ion-icon>\n              <ion-icon name=\"logo-slack\"></ion-icon>\n              <ion-icon name=\"copy\"></ion-icon>\n            </p>\n          </ion-label>\n          <ion-card (click)=\"onDetailsClick(item.Id,item.Name)\">\n            Book Now\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div> -->\n\n  <div *ngIf=\" allData.length > 0\">\n    <ion-card *ngFor=\"let item of data; let k=index\">\n      <ion-fab vertical=\"top\" horizontal=\"start\">\n        <ion-button size=\"small\" color=\"warning\">\n          {{item.slots[0].Status}}\n        </ion-button>\n      </ion-fab>\n  \n      <img [src]=\"item.img\">\n      <ion-list lines=\"none\">\n        <ion-item>\n          <ion-label class=\"ion-text-wrap\"  (click)=\"onItemClickFunc(item.VenueId,item.Name)\">\n  \n            <h4 class=\"name\">{{item.Name}}</h4>\n  \n            <ion-text style=\"font-size: 12px;\" color=\"medium\"> \n              Max Capacity: {{item.MaxCapacity}} <br>\n                Min Capacity: {{item.MinCapacity}} <br>\n                Available slot: {{item.slots[0].SlotStartEnd}}<br>\n                Date: {{item.slots[0].Date}} <br>\n            </ion-text>\n          </ion-label>\n  \n          <ion-card (click)=\"BookNowClick()\">\n            Book Now\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"light\" routerLink=\"/tab/home\" routerDirection=\"root\">\n        <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>Venues</ion-title>\n  </ion-toolbar>\n  <ion-toolbar >\n    <ion-searchbar placeholder=\"Search\"\n                   animated\n                   (ionChange)=\"search( $event )\"\n                   (ionCancel)=\"clear($event)\">\n    </ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <div id=\"popular_hotels\" *ngIf=\" allData.length > 0\">\n    <ion-card class=\"ion-no-padding\" *ngFor=\"let item of data\">\n      <ion-list lines=\"none\" class=\"ion-no-padding\">\n        <ion-item class=\"ion-no-padding\">\n\n          <ion-thumbnail slot=\"start\"  (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <img class=\"packages_thumbnail\" style=\"vertical-align: middle;\" [src]=\"item.EncodeLogo\">\n          </ion-thumbnail>\n\n          <ion-label class=\"ion-text-wrap\" (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <h4 class=\"name\">{{item.Name}}</h4>\n            <ion-text color=\"medium\">\n              <ion-icon color=\"medium\" name=\"location\"></ion-icon>\n              {{item.Address}}<br>\n              Max Capacity: {{item.MaxCapacity}}<br>\n              Min Capacity: {{item.MinCapacity}}<br>\n              Area(yards): {{item.Yards}}<br>\n            </ion-text>\n            <br>\n            <p class=\"ion-padding-top\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-icon name=\"briefcase\"></ion-icon>\n              <ion-icon name=\"logo-slack\"></ion-icon>\n              <ion-icon name=\"copy\"></ion-icon>\n            </p>\n          </ion-label>\n          <ion-card (click)=\"onDetailsClick(item.Id,item.Name)\">\n            Book Now\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div> -->\n\n  <div *ngIf=\" allData.length > 0\">\n    <ion-card *ngFor=\"let item of data; let k=index\">\n      <ion-fab vertical=\"top\" horizontal=\"start\">\n        <ion-button size=\"small\" color=\"warning\">\n          {{item.slots[0].Status}}\n        </ion-button>\n      </ion-fab>\n  \n      <img [src]=\"item.img\">\n      <ion-list lines=\"none\">\n        <ion-item>\n          <ion-label class=\"ion-text-wrap\"  (click)=\"onItemClickFunc(item.VenueId,item.Name)\">\n  \n            <h4 class=\"name\">{{item.Name}}</h4>\n  \n            <ion-text style=\"font-size: 12px;\" color=\"medium\"> \n              Max Capacity: {{item.MaxCapacity}} <br>\n                Min Capacity: {{item.MinCapacity}} <br>\n                Available slot: {{item.slots[0].SlotStartEnd}}<br>\n                Date: {{item.slots[0].Date}} <br>\n            </ion-text>\n          </ion-label>\n  \n          <ion-card (click)=\"BookNowClick()\">\n            Book Now\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div>\n</ion-content>\n");
 
 /***/ })
 

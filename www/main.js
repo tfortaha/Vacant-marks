@@ -40,17 +40,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    {
-        path: '',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_dashboard_dashboard_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./dashboard/dashboard.module */ 4814)).then(m => m.DashboardPageModule)
-    },
-    {
-        path: 'dashboard',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_dashboard_dashboard_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./dashboard/dashboard.module */ 4814)).then(m => m.DashboardPageModule)
-    },
+    // {
+    //   path: '',
+    //   loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+    // },
+    { path: '', loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_tab_tab_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./tab/tab.module */ 4714)).then(m => m.TabPageModule) },
+    // {
+    //   path: 'dashboard',
+    //   loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+    // },
     {
         path: 'venues',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_venues_venues_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./venues/venues.module */ 3930)).then(m => m.VenuesPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_venues_venues_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./venues/venues.module */ 3930)).then(m => m.VenuesPageModule)
     },
     {
         path: 'search-venue',
@@ -58,15 +59,27 @@ const routes = [
     },
     {
         path: 'venuebydate',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_venuebydate_venuebydate_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./venuebydate/venuebydate.module */ 4290)).then(m => m.VenuebydatePageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_venuebydate_venuebydate_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./venuebydate/venuebydate.module */ 4290)).then(m => m.VenuebydatePageModule)
     },
     {
         path: 'search-venueby-date-name',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_search-venueby-date-name_search-venueby-date-name_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./search-venueby-date-name/search-venueby-date-name.module */ 2667)).then(m => m.SearchVenuebyDateNamePageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_search-venueby-date-name_search-venueby-date-name_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./search-venueby-date-name/search-venueby-date-name.module */ 2667)).then(m => m.SearchVenuebyDateNamePageModule)
     },
     {
         path: 'venuedetails',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_venuedetails_venuedetails_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./venuedetails/venuedetails.module */ 7631)).then(m => m.VenuedetailsPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_venuedetails_venuedetails_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./venuedetails/venuedetails.module */ 7631)).then(m => m.VenuedetailsPageModule)
+    },
+    {
+        path: 'login',
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_login_login_page_ts"), __webpack_require__.e("src_app_login_login_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./login/login.module */ 107)).then(m => m.LoginPageModule)
+    },
+    {
+        path: 'tab',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_tab_tab_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./tab/tab.module */ 4714)).then(m => m.TabPageModule)
+    },
+    {
+        path: 'profile',
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_login_login_page_ts"), __webpack_require__.e("src_app_profile_profile_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./profile/profile.module */ 4523)).then(m => m.ProfilePageModule)
     },
     // {
     //   path: 'home',
@@ -103,7 +116,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _raw_loader_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./app.component.html */ 1106);
 /* harmony import */ var _app_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.scss */ 3069);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/storage */ 1628);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/storage */ 8605);
 
 
 
@@ -112,8 +125,7 @@ __webpack_require__.r(__webpack_exports__);
 let AppComponent = class AppComponent {
     constructor(storage) {
         this.storage = storage;
-        this.storage.create();
-        this.storage.clear();
+        // this.storage.clear();
     }
 };
 AppComponent.ctorParameters = () => [
@@ -123,7 +135,6 @@ AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
         selector: 'app-root',
         template: _raw_loader_app_component_html__WEBPACK_IMPORTED_MODULE_0__.default,
-        providers: [_ionic_storage__WEBPACK_IMPORTED_MODULE_2__.Storage],
         styles: [_app_component_scss__WEBPACK_IMPORTED_MODULE_1__.default]
     })
 ], AppComponent);
@@ -146,11 +157,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 9895);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/storage */ 8605);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component */ 5041);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-routing.module */ 158);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 1841);
+
 
 
 
@@ -165,8 +178,8 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
         entryComponents: [],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpClientModule],
-        providers: [{ provide: _angular_router__WEBPACK_IMPORTED_MODULE_7__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicRouteStrategy }],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule, _ionic_storage__WEBPACK_IMPORTED_MODULE_6__.IonicStorageModule.forRoot(), _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpClientModule],
+        providers: [{ provide: _angular_router__WEBPACK_IMPORTED_MODULE_8__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicRouteStrategy }],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
     })
 ], AppModule);
@@ -301,7 +314,7 @@ var map = {
 		"node_modules_ionic_core_dist_esm_ion-infinite-scroll_2_entry_js"
 	],
 	"./ion-input.entry.js": [
-		1301,
+		4513,
 		"common",
 		"node_modules_ionic_core_dist_esm_ion-input_entry_js"
 	],
@@ -483,7 +496,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<!-- <ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app> -->\n<ion-app>\n  <ion-menu side=\"start\" menuId=\"pages\" type=\"overlay\" contentId=\"mainContent\">\n    <ion-header>\n      <ion-toolbar style=\"text-align: center;\">\n        <img style=\"width: 50%; align-items: center;\" src=\"assets/icon/VMSLogo.png\">\n        <ion-row>\n          <!-- <ion-col size=\"12\"><img src=\"assets/images/VMSLogo.png\"></ion-col> -->\n            <!-- <div>Vacand Mark</div> -->\n            <!-- <ion-fab style=\"padding-left:100px; padding-top:35px;\" vertical=\"top\" horizontal=\"start\">\n              <ion-button size=\"small\" color=\"none\" style=\"border: none;\">\n                <h5>Vaccand Mark</h5>\n              </ion-button>\n            </ion-fab> -->\n        </ion-row>\n      </ion-toolbar>\n    </ion-header>\n    \n    <ion-content>\n      <ion-list class=\"ion-padding\" lines=\"none\">\n        <ion-menu-toggle auto-hide=\"false\">\n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['']\">\n            <i slot=\"start\" class=\"icon icon-home icon-small\"></i>\n            <h1 class=\"text-size-xs\">Dashboard</h1>\n          </ion-item>\n \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/venues']\">\n            <i slot=\"start\" class=\"icon icon-home icon-small\"></i>\n            <h1 class=\"text-size-xs\">Venues</h1>\n          </ion-item>\n   <!--       \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/customer']\">\n            <i slot=\"start\" class=\"icon icon-account icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">{{ 'customer' | translate }}</h1>\n          </ion-item>\n\n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/customerrequest']\">\n            <i slot=\"start\" class=\"icon icon-plus-circle-outline icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">{{ 'CustomerRequest' | translate }}</h1>\n          </ion-item> \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/settings']\">\n            <i slot=\"start\" class=\"icon icon-settings icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">settings</h1>\n          </ion-item>-->\n\n        </ion-menu-toggle>\n      </ion-list>\n    </ion-content>\n    \n    <!-- <ion-footer class=\"ion-no-border\">\n      <div class=\"ion-padding\">\n        <ion-button shape=\"round\" color=\"color1\" expand=\"full\" (click)=\"signout()\">\n          Signout</ion-button>\n      </div>\n    </ion-footer> -->\n  </ion-menu>\n  <ion-router-outlet id=\"mainContent\"></ion-router-outlet>\n</ion-app>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("\n<ion-app>\n  <ion-menu side=\"start\" menuId=\"pages\" type=\"overlay\" contentId=\"mainContent\">\n    <ion-header>\n      <ion-toolbar style=\"text-align: center;\">\n        <img style=\"width: 50%; align-items: center;\" src=\"assets/icon/VMSLogo.png\">\n        <ion-row>\n          <!-- <ion-col size=\"12\"><img src=\"assets/images/VMSLogo.png\"></ion-col> -->\n            <!-- <div>Vacand Mark</div> -->\n            <!-- <ion-fab style=\"padding-left:100px; padding-top:35px;\" vertical=\"top\" horizontal=\"start\">\n              <ion-button size=\"small\" color=\"none\" style=\"border: none;\">\n                <h5>Vaccand Mark</h5>\n              </ion-button>\n            </ion-fab> -->\n        </ion-row>\n      </ion-toolbar>\n    </ion-header>\n    \n    <ion-content>\n      <ion-list class=\"ion-padding\" lines=\"none\">\n        <ion-menu-toggle auto-hide=\"false\">\n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['']\">\n            <i slot=\"start\" class=\"icon icon-home icon-small\"></i>\n            <h1 class=\"text-size-xs\">Dashboard</h1>\n          </ion-item>\n \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/venues']\">\n            <i slot=\"start\" class=\"icon icon-home icon-small\"></i>\n            <h1 class=\"text-size-xs\">Venues</h1>\n          </ion-item>\n   <!--       \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/customer']\">\n            <i slot=\"start\" class=\"icon icon-account icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">{{ 'customer' | translate }}</h1>\n          </ion-item>\n\n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/customerrequest']\">\n            <i slot=\"start\" class=\"icon icon-plus-circle-outline icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">{{ 'CustomerRequest' | translate }}</h1>\n          </ion-item> \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/settings']\">\n            <i slot=\"start\" class=\"icon icon-settings icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">settings</h1>\n          </ion-item>-->\n\n        </ion-menu-toggle>\n      </ion-list>\n    </ion-content>\n    \n    <!-- <ion-footer class=\"ion-no-border\">\n      <div class=\"ion-padding\">\n        <ion-button shape=\"round\" color=\"color1\" expand=\"full\" (click)=\"signout()\">\n          Signout</ion-button>\n      </div>\n    </ion-footer> -->\n  </ion-menu>\n  <ion-router-outlet id=\"mainContent\"></ion-router-outlet>\n</ion-app>");
 
 /***/ })
 
