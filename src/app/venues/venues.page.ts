@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { HttpService } from '../services/http.service';
 import { Storage } from '@ionic/storage';
 import { Router, NavigationExtras } from '@angular/router';
@@ -24,6 +24,7 @@ export class VenuesPage implements OnInit {
     public alertController: AlertController,
     private loadingController: LoadingController,
     private storage: Storage,
+    private modalController: ModalController
   ) { }
 
   async ngOnInit() {
@@ -64,11 +65,13 @@ export class VenuesPage implements OnInit {
     this.data = this.allData;
   }
   onItemClickFunc(Id,Name): void {
-    let selectedVenue:any = [{"Name":Name,"Id":Id}];
-    this.storage.set("selectedVenue",selectedVenue).then(response=>{
-      console.log("selectedVenue --> ",response)
-      this.router.navigate(['']);
-    })
+
+    this.modalController.dismiss(`${Id}\\${Name}`);
+    // let selectedVenue:any = [{"Name":Name,"Id":Id}];
+    // this.storage.set("selectedVenue",selectedVenue).then(response=>{
+    //   console.log("selectedVenue --> ",response)
+    //   this.router.navigate(['/tabs/home']);
+    // })
   }
 
   onDetailsClick(Id,Name){

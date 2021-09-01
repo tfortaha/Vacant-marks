@@ -1,11 +1,11 @@
-<ion-header>
+<ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button color="light">
-        <!-- <ion-icon name="arrow-back"></ion-icon> -->
-      </ion-back-button>
+      <ion-button defaultHref="home">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title>Venues</ion-title>
+    <!-- <ion-title>Venues</ion-title> -->
   </ion-toolbar>
   <ion-progress-bar *ngIf="PbarHide == 0" type="indeterminate" value="0.5"></ion-progress-bar>
 </ion-header>

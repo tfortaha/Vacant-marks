@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { format } from 'date-fns';
 import { HttpParams } from '@angular/common/http';
 import { HttpService } from '../services/http.service';
-import { FormGroup, FormBuilder,FormControl, Validators } from '@angular/forms';
+import { VenuesPage } from '../venues/venues.page';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,12 +23,22 @@ export class DashboardPage implements OnInit {
     destinationId:''
   }
 
-  isValid:Boolean = false;
-  formlogin : FormGroup;
-
   venues:any=[];
   loading: HTMLIonLoadingElement;
   alert:HTMLIonAlertElement;
+
+  public isDestinationValid = true;
+  public isDateValid = true;
+
+  // Slider Options
+  slideOpts = {
+    initialSlide: 0,
+    speed: 500,
+    slidesPerView: 2.2,
+    spaceBetween: 10,
+    loop: true,
+    effect: 'slide',
+  };
 
   constructor(
     private router: Router,
@@ -36,33 +46,34 @@ export class DashboardPage implements OnInit {
     private storage: Storage,
     public alertController: AlertController,
     private loadingController: LoadingController,
-    formBuilder : FormBuilder
+    private modalController: ModalController
   ) 
   { 
-    this.formlogin = formBuilder.group({
-      destination : new FormControl('', Validators.compose([
-          Validators.required
-      ])),    
-      Date : new FormControl('', Validators.compose([
-           Validators.required
-      ]))
-    });
-    console.log(this.minDate,this.maxDate);
+   
   }
 
   ngOnInit() {
-    this.getVenue();
+    //this.getVenue();
   }
 
-  ionViewDidLoad(){
-    this.postData = {
-      destination:'',
-      Date:'',
-      destinationId:''
+  validateInputs(): boolean {
+    this.isDestinationValid = true;
+    this.isDateValid = true;
+    if (!this.postData.destination || this.postData.destination.length === 0) {
+      this.isDestinationValid = false;
     }
+    if (!this.postData.Date || this.postData.Date.length === 0) {
+      this.isDateValid = false;
+    }
+    if (this.postData.Date != "") {
+      this.isDestinationValid = true;
+      this.isDateValid = true;
+    }
+    return this.isDestinationValid && this.isDateValid;
   }
-  async getVenue(){
 
+
+  async getVenue(){
     this.loading = await this.loadingController.create({
       //message: this.translate.instant('pleasewait'),
       cssClass: 'custom-loading',
@@ -71,7 +82,6 @@ export class DashboardPage implements OnInit {
       spinner:'bubbles'
     });
     await this.loading.present();
-
     let params = new HttpParams();
     this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
       this.venues = res;
@@ -83,54 +93,45 @@ export class DashboardPage implements OnInit {
     })
   }
 
-  ionViewDidEnter(){
-    let form = this.formlogin.value; 
-    this.storage.get("selectedVenue").then(response=>{
-      if(response){
-        form.destination = response[0].Name;
-        this.postData.destinationId = response[0].Id;
-      }
-    })
-  }
+  async getDestination() {
+    const modal = await this.modalController.create({
+      component: VenuesPage
+    });
 
-  getVenues(){
-    this.router.navigate(['/venues']);
+    modal.onDidDismiss().then((data) => {
+      if (data.data) {
+        debugger;
+        let SelectedVenue = data.data;
+        let splitVenue = SelectedVenue.split("\\");
+        console.log(splitVenue);
+        this.postData.destinationId = splitVenue[0];
+        this.postData.destination = splitVenue[1] ;
+      }
+    });
+    return await modal.present();
   }
 
   search(){
-    let form = this;
-    let formValues = form.formlogin.value;
-    
-    if(formValues.Date != "" && formValues.destination == ""){
-      this.isValid = false;
-      let SearchDate:any = [{"Date":format(new Date(formValues.Date),"yyyy-MM-dd")}];
-      let navigationExtras: NavigationExtras = {
-        queryParams: {
-          special: JSON.stringify(SearchDate)
-        }
-      };
-      this.router.navigate(['/venuebydate'],navigationExtras);
+    if (this.validateInputs()) {
+      if(this.postData.Date != "" && this.postData.destinationId == ""){
+        let SearchDate:any = [{"Date":format(new Date(this.postData.Date),"yyyy-MM-dd")}];
+        let navigationExtras: NavigationExtras = {
+              queryParams: {
+                special: JSON.stringify(SearchDate)
+              }
+            };
+            this.router.navigate(['/venuebydate'],navigationExtras);
+      }
+      else if( this.postData.Date != "" && this.postData.destinationId != "" ){
+        let SearchByDateName:any = [{"Date":format(new Date(this.postData.Date),"yyyy-MM-dd"),"destinationId":this.postData.destinationId}];
+        let navigationExtras: NavigationExtras = {
+          queryParams: {
+            special: JSON.stringify(SearchByDateName)
+          }
+        };
+        this.router.navigate(['/search-venueby-date-name'],navigationExtras);
+      }
     }
-    else if(formValues.Date != "" && formValues.destination != ""){
-      this.isValid = false;
-      let SearchByDateName:any = [{"Date":format(new Date(formValues.Date),"yyyy-MM-dd"),"destinationId":this.postData.destinationId}];
-      let navigationExtras: NavigationExtras = {
-        queryParams: {
-          special: JSON.stringify(SearchByDateName)
-        }
-      };
-      this.router.navigate(['/search-venueby-date-name'],navigationExtras);
-
-    }
-    else{
-      this.isValid = true;
-    }
-    console.log(form.formlogin.value.Date,form.formlogin.value.destination)
-    console.log(this.postData.destination,this.postData.Date);
-  }
-
-  get errorControl() {
-    return this.formlogin.controls;
   }
 
   onDetailsClick(Id,Name){

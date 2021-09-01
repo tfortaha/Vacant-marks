@@ -204,7 +204,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    apiUrl: 'http://www.vacantmarks.com/'
+    apiUrl: 'https://www.vacantmarks.com/'
 };
 
 

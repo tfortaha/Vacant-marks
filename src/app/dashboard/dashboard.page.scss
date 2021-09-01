@@ -3,41 +3,119 @@ ion-item{
 }
 
 
+// #popular_hotels {
+//     .item {
+//         ion-thumbnail {
+//             width: 100px;
+//             height: 137px;
+
+//             .packages_thumbnail {
+//                 width: 100px;
+//                 height: 137px;
+//                 border-radius: 5px;
+//             }
+//         }
+
+//         .name {
+//             font-size: 14px;
+//             font-weight: 500;
+//         }
+
+//         ion-icon {
+//           //  color: var(--ion-color-color1);
+//             padding-right: 10px;
+//         }
+
+//         ion-note {
+//             font-size: 1.3rem;
+//             font-weight: 600;
+//         }
+
+//         ion-card {
+//             writing-mode: tb-rl;
+//             padding: 10px;
+//             background-color: #2f3b69;
+//             color: #fff;
+//             font-size: 14px;
+//             font-weight: 700;
+//         }
+//     }
+// }
+
+.section1 {
+    background: #2f3b69 !important;
+    text-align: center;
+    padding: 0px;
+
+    .value {
+        color: #2f3b69;
+        // font-weight: 300;
+        font-weight: 300;
+        // font-size: 1rem;
+    }
+
+    ion-item {
+        --background: #2f3b69;
+        --color: #ffffff;
+
+        font-weight: 300;
+        font-family: 'Courier New', Courier, monospace;
+        --highlight-background: #2f3b69;
+
+        ion-label {
+            color: #ffffff;
+        }
+    }
+
+    ion-button {
+        --background: #ffffff;
+        --color: var(--ion-color-color1);
+        --background-activated: #ffffff;
+    }
+}
+
 #popular_hotels {
-    .item {
-        ion-thumbnail {
-            width: 100px;
-            height: 137px;
+    ion-list-header ion-label {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0px;
+    }
 
-            .packages_thumbnail {
-                width: 100px;
-                height: 137px;
-                border-radius: 5px;
+    // #slider
+    ion-slides,
+    .swiper-container {
+        width: 100%;
+        height: 200px;
+    }
+
+    .swiper-slide {
+        background-size: cover !important;
+        background-position: center !important;
+        border-radius: 10px;
+    }
+
+    .slider {
+        .section_1 {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            text-align: left;
+            margin: 0;
+        }
+
+        .section_2 {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            text-align: left;
+            margin: 0;
+            color: white;
+            text-shadow: 0 1px 0 black;
+
+
+            h2 {
+                font-size: 14px;
             }
-        }
-
-        .name {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        ion-icon {
-          //  color: var(--ion-color-color1);
-            padding-right: 10px;
-        }
-
-        ion-note {
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        ion-card {
-            writing-mode: tb-rl;
-            padding: 10px;
-            background-color: #2f3b69;
-            color: #fff;
-            font-size: 14px;
-            font-weight: 700;
         }
     }
 }

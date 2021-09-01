@@ -80,3 +80,8 @@
       margin:10px;
       min-height: 168px;
   }
+
+  ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+}
