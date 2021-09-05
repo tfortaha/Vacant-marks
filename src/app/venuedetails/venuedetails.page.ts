@@ -1,9 +1,10 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { HttpService } from '../services/http.service';
 import { Storage } from '@ionic/storage';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { NavParams} from '@ionic/angular';
 
 @Component({
   selector: 'app-venuedetails',
@@ -33,7 +34,14 @@ export class VenuedetailsPage implements OnInit {
     public alertController: AlertController,
     private loadingController: LoadingController,
     private storage: Storage,
-  ) { }
+    public navParams : NavParams,
+    public modalController: ModalController
+  ) 
+  {
+    debugger;
+    console.log(this.navParams.get('VenueId'));
+
+   }
 
     // Slider Options
     slideOpts = {
@@ -46,18 +54,32 @@ export class VenuedetailsPage implements OnInit {
     };
 
   ngOnInit() {
-    this.route.queryParams.subscribe(paramse => {
-      if (paramse && paramse.special) {
-        this.data = JSON.parse(paramse.special);
-        if(this.count==0)
+    debugger;
+    if(this.navParams.get('VenueId') != ""){
+          if(this.count==0)
         {
-          this.postData.VenueId=this.data;
+          this.postData.VenueId=this.navParams.get('VenueId');
           this.count+=1;
         }
         this.getVenue();
         this.imageLoop();
-      }
-    });
+    }
+
+    this.getVenue();
+    this.imageLoop();
+
+    // this.route.queryParams.subscribe(paramse => {
+    //   if (paramse && paramse.special) {
+    //     this.data = JSON.parse(paramse.special);
+    //     if(this.count==0)
+    //     {
+    //       this.postData.VenueId=this.data;
+    //       this.count+=1;
+    //     }
+    //     this.getVenue();
+    //     this.imageLoop();
+    //   }
+    // });
   }
 
   async getVenue(){
@@ -69,7 +91,7 @@ export class VenuedetailsPage implements OnInit {
       showBackdrop: true,
       spinner:'bubbles'
     });
-    await this.loading.present();
+   // await this.loading.present();
 
     let params = new HttpParams();
     params = params.set("Id",this.postData.VenueId)
@@ -77,11 +99,11 @@ export class VenuedetailsPage implements OnInit {
       this.data = this.allData = res;
       // this.imageLoop();
       this.PbarHide=1;
-      this.loading.dismiss();
+     // this.loading.dismiss();
       console.log(res);
     },err =>{
       this.alerrt();
-      this.loading.dismiss();
+     // this.loading.dismiss();
     })
   }
 
@@ -101,4 +123,9 @@ export class VenuedetailsPage implements OnInit {
       j++;
     }
   }
+
+  close(){
+    this.modalController.dismiss();
+  }
+
 }

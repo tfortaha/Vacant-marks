@@ -3017,17 +3017,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DashboardPage": () => (/* binding */ DashboardPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_dashboard_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./dashboard.page.html */ 2836);
 /* harmony import */ var _dashboard_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dashboard.page.scss */ 8043);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 9895);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 476);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/storage */ 8605);
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! date-fns */ 2707);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/storage */ 8605);
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! date-fns */ 2707);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 1841);
 /* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/http.service */ 6858);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ 3679);
+/* harmony import */ var _venues_venues_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../venues/venues.page */ 6547);
+/* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/data.service */ 2468);
+
 
 
 
@@ -3040,43 +3042,54 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let DashboardPage = class DashboardPage {
-    constructor(router, httpService, storage, alertController, loadingController, formBuilder) {
+    constructor(router, httpService, storage, alertController, loadingController, dataservice, modalController) {
         this.router = router;
         this.httpService = httpService;
         this.storage = storage;
         this.alertController = alertController;
         this.loadingController = loadingController;
-        this.minDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__.default)(new Date(), "yyyy-MM-dd");
+        this.dataservice = dataservice;
+        this.modalController = modalController;
+        this.minDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_5__.default)(new Date(), "yyyy-MM-dd");
         this.maxDate = new Date().getFullYear() + 2;
         this.postData = {
             destination: '',
             Date: '',
             destinationId: ''
         };
-        this.isValid = false;
         this.venues = [];
-        this.formlogin = formBuilder.group({
-            destination: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormControl('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__.Validators.compose([
-                _angular_forms__WEBPACK_IMPORTED_MODULE_4__.Validators.required
-            ])),
-            Date: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormControl('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__.Validators.compose([
-                _angular_forms__WEBPACK_IMPORTED_MODULE_4__.Validators.required
-            ]))
-        });
-        console.log(this.minDate, this.maxDate);
+        this.isDestinationValid = true;
+        this.isDateValid = true;
+        // Slider Options
+        this.slideOpts = {
+            initialSlide: 0,
+            speed: 200,
+            slidesPerView: 2.2,
+            spaceBetween: 10,
+            loop: true,
+            effect: 'slide',
+        };
     }
     ngOnInit() {
         this.getVenue();
     }
-    ionViewDidLoad() {
-        this.postData = {
-            destination: '',
-            Date: '',
-            destinationId: ''
-        };
+    validateInputs() {
+        this.isDestinationValid = true;
+        this.isDateValid = true;
+        if (!this.postData.destination || this.postData.destination.length === 0) {
+            this.isDestinationValid = false;
+        }
+        if (!this.postData.Date || this.postData.Date.length === 0) {
+            this.isDateValid = false;
+        }
+        if (this.postData.Date != "") {
+            this.isDestinationValid = true;
+            this.isDateValid = true;
+        }
+        return this.isDestinationValid && this.isDateValid;
     }
     getVenue() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
             this.loading = yield this.loadingController.create({
                 //message: this.translate.instant('pleasewait'),
                 cssClass: 'custom-loading',
@@ -3085,60 +3098,61 @@ let DashboardPage = class DashboardPage {
                 spinner: 'bubbles'
             });
             yield this.loading.present();
-            let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpParams();
-            this.httpService.get("api/Venue/Venues", params).subscribe((res) => {
-                this.venues = res;
+            if (this.dataservice.DashboardData.length == 0) {
+                let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpParams();
+                this.httpService.get("api/Venue/Venues", params).subscribe((res) => {
+                    this.venues = res;
+                    this.loading.dismiss();
+                    console.log(res);
+                }, err => {
+                    this.alerrt();
+                    this.loading.dismiss();
+                });
+            }
+            else {
+                this.venues = this.dataservice.DashboardData;
                 this.loading.dismiss();
-                console.log(res);
-            }, err => {
-                this.alerrt();
-                this.loading.dismiss();
-            });
-        });
-    }
-    ionViewDidEnter() {
-        let form = this.formlogin.value;
-        this.storage.get("selectedVenue").then(response => {
-            if (response) {
-                form.destination = response[0].Name;
-                this.postData.destinationId = response[0].Id;
             }
         });
     }
-    getVenues() {
-        this.router.navigate(['/venues']);
+    getDestination() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+            const modal = yield this.modalController.create({
+                component: _venues_venues_page__WEBPACK_IMPORTED_MODULE_3__.VenuesPage
+            });
+            modal.onDidDismiss().then((data) => {
+                if (data.data) {
+                    let SelectedVenue = data.data;
+                    let splitVenue = SelectedVenue.split("\\");
+                    console.log(splitVenue);
+                    this.postData.destinationId = splitVenue[0];
+                    this.postData.destination = splitVenue[1];
+                }
+            });
+            return yield modal.present();
+        });
     }
     search() {
-        let form = this;
-        let formValues = form.formlogin.value;
-        if (formValues.Date != "" && formValues.destination == "") {
-            this.isValid = false;
-            let SearchDate = [{ "Date": (0,date_fns__WEBPACK_IMPORTED_MODULE_3__.default)(new Date(formValues.Date), "yyyy-MM-dd") }];
-            let navigationExtras = {
-                queryParams: {
-                    special: JSON.stringify(SearchDate)
-                }
-            };
-            this.router.navigate(['/venuebydate'], navigationExtras);
+        if (this.validateInputs()) {
+            if (this.postData.Date != "" && this.postData.destinationId == "") {
+                let SearchDate = [{ "Date": (0,date_fns__WEBPACK_IMPORTED_MODULE_5__.default)(new Date(this.postData.Date), "yyyy-MM-dd") }];
+                let navigationExtras = {
+                    queryParams: {
+                        special: JSON.stringify(SearchDate)
+                    }
+                };
+                this.router.navigate(['/venuebydate'], navigationExtras);
+            }
+            else if (this.postData.Date != "" && this.postData.destinationId != "") {
+                let SearchByDateName = [{ "Date": (0,date_fns__WEBPACK_IMPORTED_MODULE_5__.default)(new Date(this.postData.Date), "yyyy-MM-dd"), "destinationId": this.postData.destinationId }];
+                let navigationExtras = {
+                    queryParams: {
+                        special: JSON.stringify(SearchByDateName)
+                    }
+                };
+                this.router.navigate(['/search-venueby-date-name'], navigationExtras);
+            }
         }
-        else if (formValues.Date != "" && formValues.destination != "") {
-            this.isValid = false;
-            let SearchByDateName = [{ "Date": (0,date_fns__WEBPACK_IMPORTED_MODULE_3__.default)(new Date(formValues.Date), "yyyy-MM-dd"), "destinationId": this.postData.destinationId }];
-            let navigationExtras = {
-                queryParams: {
-                    special: JSON.stringify(SearchByDateName)
-                }
-            };
-            this.router.navigate(['/search-venueby-date-name'], navigationExtras);
-        }
-        else {
-            this.isValid = true;
-        }
-        console.log(form.formlogin.value.Date, form.formlogin.value.destination);
-        console.log(this.postData.destination, this.postData.Date);
-    }
-    get errorControl() {
-        return this.formlogin.controls;
     }
     onDetailsClick(Id, Name) {
         console.log("Details Click: ", Id, Name);
@@ -3152,7 +3166,7 @@ let DashboardPage = class DashboardPage {
         this.router.navigate(['/venuedetails'], navigationExtras);
     }
     alerrt() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
             this.alert = yield this.alertController.create({
                 message: 'Some thing went wrong. Please try again later.',
                 buttons: ['ok']
@@ -3162,100 +3176,21 @@ let DashboardPage = class DashboardPage {
     }
 };
 DashboardPage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.Router },
     { type: _services_http_service__WEBPACK_IMPORTED_MODULE_2__.HttpService },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_8__.Storage },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.AlertController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.LoadingController },
-    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormBuilder }
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_9__.Storage },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.AlertController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.LoadingController },
+    { type: _services_data_service__WEBPACK_IMPORTED_MODULE_4__.DataService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.ModalController }
 ];
-DashboardPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
+DashboardPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
         selector: 'app-dashboard',
         template: _raw_loader_dashboard_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_dashboard_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
     })
 ], DashboardPage);
-
-
-
-/***/ }),
-
-/***/ 6858:
-/*!******************************************!*\
-  !*** ./src/app/services/http.service.ts ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "HttpService": () => (/* binding */ HttpService)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 1841);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../environments/environment */ 2340);
-
-
-
-
-let HttpService = class HttpService {
-    constructor(http) {
-        this.http = http;
-    }
-    get(serviceName, params) {
-        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
-        headers.append('Access-Control-Allow-Origin', '*');
-        // headers.append('Access-Control-Allow-Headers', 'Content-Type');
-        // headers.append('Access-Control-Allow-Methods', 'GET');
-        headers.append('Content-Type', 'application/json');
-        //headers.append("Accept", 'application/json');
-        //headers.append("Content-Type", "application/x-www-form-urlencoded");
-        // headers = headers.append("Authorization", "bearer " + token);
-        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
-        const options = { headers: headers, withCredintials: false };
-        return this.http.get(url, { headers: headers, params: params });
-    }
-    getData(serviceName, params, token) {
-        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
-        //headers.append("Content-Type", "application/x-www-form-urlencoded");
-        headers = headers.append("Authorization", "bearer " + token);
-        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
-        const options = { headers: headers, withCredintials: false };
-        return this.http.get(url, { headers: headers, params: params });
-    }
-    // post(serviceName: string, data: any) {
-    //   const headers = new HttpHeaders();
-    //   const options = { headers: headers, withCredintials: false };
-    //   const url = environment.apiUrl + serviceName;
-    //   return this.http.post(url, JSON.stringify(data), options);
-    // }
-    post(serviceName, params, token, data) {
-        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
-        headers = headers.append("Content-Type", "application/json");
-        headers = headers.append("Authorization", "bearer " + token);
-        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
-        const options = { headers: headers, withCredintials: false };
-        return this.http.post(url, JSON.stringify(data), { headers: headers, params: params });
-    }
-    getUserDetail(serviceName, data) {
-        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders();
-        headers = headers.append("Content-Type", "application/json");
-        const options = { headers: headers, withCredintials: false };
-        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl + serviceName;
-        let json = "username=" + data.username + "&password=" + data.password;
-        return this.http.post(url, JSON.stringify(data), options);
-    }
-};
-HttpService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
-];
-HttpService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
-        providedIn: 'root'
-    })
-], HttpService);
 
 
 
@@ -3272,7 +3207,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("ion-item {\n  border-radius: 5px;\n}\n\n#popular_hotels .item ion-thumbnail {\n  width: 100px;\n  height: 137px;\n}\n\n#popular_hotels .item ion-thumbnail .packages_thumbnail {\n  width: 100px;\n  height: 137px;\n  border-radius: 5px;\n}\n\n#popular_hotels .item .name {\n  font-size: 14px;\n  font-weight: 500;\n}\n\n#popular_hotels .item ion-icon {\n  padding-right: 10px;\n}\n\n#popular_hotels .item ion-note {\n  font-size: 1.3rem;\n  font-weight: 600;\n}\n\n#popular_hotels .item ion-card {\n  writing-mode: tb-rl;\n  padding: 10px;\n  background-color: #2f3b69;\n  color: #fff;\n  font-size: 14px;\n  font-weight: 700;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhc2hib2FyZC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBQTtBQUNKOztBQUtRO0VBQ0ksWUFBQTtFQUNBLGFBQUE7QUFGWjs7QUFJWTtFQUNJLFlBQUE7RUFDQSxhQUFBO0VBQ0Esa0JBQUE7QUFGaEI7O0FBTVE7RUFDSSxlQUFBO0VBQ0EsZ0JBQUE7QUFKWjs7QUFPUTtFQUVJLG1CQUFBO0FBTlo7O0FBU1E7RUFDSSxpQkFBQTtFQUNBLGdCQUFBO0FBUFo7O0FBVVE7RUFDSSxtQkFBQTtFQUNBLGFBQUE7RUFDQSx5QkFBQTtFQUNBLFdBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7QUFSWiIsImZpbGUiOiJkYXNoYm9hcmQucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWl0ZW17XHJcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbn1cclxuXHJcblxyXG4jcG9wdWxhcl9ob3RlbHMge1xyXG4gICAgLml0ZW0ge1xyXG4gICAgICAgIGlvbi10aHVtYm5haWwge1xyXG4gICAgICAgICAgICB3aWR0aDogMTAwcHg7XHJcbiAgICAgICAgICAgIGhlaWdodDogMTM3cHg7XHJcblxyXG4gICAgICAgICAgICAucGFja2FnZXNfdGh1bWJuYWlsIHtcclxuICAgICAgICAgICAgICAgIHdpZHRoOiAxMDBweDtcclxuICAgICAgICAgICAgICAgIGhlaWdodDogMTM3cHg7XHJcbiAgICAgICAgICAgICAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIC5uYW1lIHtcclxuICAgICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xyXG4gICAgICAgICAgICBmb250LXdlaWdodDogNTAwO1xyXG4gICAgICAgIH1cclxuXHJcbiAgICAgICAgaW9uLWljb24ge1xyXG4gICAgICAgICAgLy8gIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItY29sb3IxKTtcclxuICAgICAgICAgICAgcGFkZGluZy1yaWdodDogMTBweDtcclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIGlvbi1ub3RlIHtcclxuICAgICAgICAgICAgZm9udC1zaXplOiAxLjNyZW07XHJcbiAgICAgICAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7XHJcbiAgICAgICAgfVxyXG5cclxuICAgICAgICBpb24tY2FyZCB7XHJcbiAgICAgICAgICAgIHdyaXRpbmctbW9kZTogdGItcmw7XHJcbiAgICAgICAgICAgIHBhZGRpbmc6IDEwcHg7XHJcbiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICMyZjNiNjk7XHJcbiAgICAgICAgICAgIGNvbG9yOiAjZmZmO1xyXG4gICAgICAgICAgICBmb250LXNpemU6IDE0cHg7XHJcbiAgICAgICAgICAgIGZvbnQtd2VpZ2h0OiA3MDA7XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG59Il19 */");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("ion-item {\n  border-radius: 5px;\n}\n\n.section1 {\n  background: #2f3b69 !important;\n  text-align: center;\n  padding: 0px;\n}\n\n.section1 .value {\n  color: #2f3b69;\n  font-weight: 300;\n}\n\n.section1 ion-item {\n  --background: #2f3b69;\n  --color: #ffffff;\n  font-weight: 300;\n  font-family: \"Courier New\", Courier, monospace;\n  --highlight-background: #2f3b69;\n}\n\n.section1 ion-item ion-label {\n  color: #ffffff;\n}\n\n.section1 ion-button {\n  --background: #ffffff;\n  --color: var(--ion-color-color1);\n  --background-activated: #ffffff;\n}\n\n#popular_hotels ion-list-header ion-label {\n  font-size: 22px;\n  font-weight: 700;\n  letter-spacing: 0px;\n}\n\n#popular_hotels ion-slides,\n#popular_hotels .swiper-container {\n  width: 100%;\n  height: 200px;\n}\n\n#popular_hotels .swiper-slide {\n  background-size: cover !important;\n  background-position: center !important;\n  border-radius: 10px;\n}\n\n#popular_hotels .slider .section_1 {\n  position: absolute;\n  top: 10px;\n  left: 10px;\n  text-align: left;\n  margin: 0;\n}\n\n#popular_hotels .slider .section_2 {\n  position: absolute;\n  bottom: 10px;\n  left: 10px;\n  text-align: left;\n  margin: 0;\n  color: white;\n  text-shadow: 0 1px 0 black;\n}\n\n#popular_hotels .slider .section_2 h2 {\n  font-size: 14px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhc2hib2FyZC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBQTtBQUNKOztBQTBDQTtFQUNJLDhCQUFBO0VBQ0Esa0JBQUE7RUFDQSxZQUFBO0FBdkNKOztBQXlDSTtFQUNJLGNBQUE7RUFFQSxnQkFBQTtBQXhDUjs7QUE0Q0k7RUFDSSxxQkFBQTtFQUNBLGdCQUFBO0VBRUEsZ0JBQUE7RUFDQSw4Q0FBQTtFQUNBLCtCQUFBO0FBM0NSOztBQTZDUTtFQUNJLGNBQUE7QUEzQ1o7O0FBK0NJO0VBQ0kscUJBQUE7RUFDQSxnQ0FBQTtFQUNBLCtCQUFBO0FBN0NSOztBQWtESTtFQUNJLGVBQUE7RUFDQSxnQkFBQTtFQUNBLG1CQUFBO0FBL0NSOztBQW1ESTs7RUFFSSxXQUFBO0VBQ0EsYUFBQTtBQWpEUjs7QUFvREk7RUFDSSxpQ0FBQTtFQUNBLHNDQUFBO0VBQ0EsbUJBQUE7QUFsRFI7O0FBc0RRO0VBQ0ksa0JBQUE7RUFDQSxTQUFBO0VBQ0EsVUFBQTtFQUNBLGdCQUFBO0VBQ0EsU0FBQTtBQXBEWjs7QUF1RFE7RUFDSSxrQkFBQTtFQUNBLFlBQUE7RUFDQSxVQUFBO0VBQ0EsZ0JBQUE7RUFDQSxTQUFBO0VBQ0EsWUFBQTtFQUNBLDBCQUFBO0FBckRaOztBQXdEWTtFQUNJLGVBQUE7QUF0RGhCIiwiZmlsZSI6ImRhc2hib2FyZC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24taXRlbXtcclxuICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxufVxyXG5cclxuXHJcbi8vICNwb3B1bGFyX2hvdGVscyB7XHJcbi8vICAgICAuaXRlbSB7XHJcbi8vICAgICAgICAgaW9uLXRodW1ibmFpbCB7XHJcbi8vICAgICAgICAgICAgIHdpZHRoOiAxMDBweDtcclxuLy8gICAgICAgICAgICAgaGVpZ2h0OiAxMzdweDtcclxuXHJcbi8vICAgICAgICAgICAgIC5wYWNrYWdlc190aHVtYm5haWwge1xyXG4vLyAgICAgICAgICAgICAgICAgd2lkdGg6IDEwMHB4O1xyXG4vLyAgICAgICAgICAgICAgICAgaGVpZ2h0OiAxMzdweDtcclxuLy8gICAgICAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuLy8gICAgICAgICAgICAgfVxyXG4vLyAgICAgICAgIH1cclxuXHJcbi8vICAgICAgICAgLm5hbWUge1xyXG4vLyAgICAgICAgICAgICBmb250LXNpemU6IDE0cHg7XHJcbi8vICAgICAgICAgICAgIGZvbnQtd2VpZ2h0OiA1MDA7XHJcbi8vICAgICAgICAgfVxyXG5cclxuLy8gICAgICAgICBpb24taWNvbiB7XHJcbi8vICAgICAgICAgICAvLyAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1jb2xvcjEpO1xyXG4vLyAgICAgICAgICAgICBwYWRkaW5nLXJpZ2h0OiAxMHB4O1xyXG4vLyAgICAgICAgIH1cclxuXHJcbi8vICAgICAgICAgaW9uLW5vdGUge1xyXG4vLyAgICAgICAgICAgICBmb250LXNpemU6IDEuM3JlbTtcclxuLy8gICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDYwMDtcclxuLy8gICAgICAgICB9XHJcblxyXG4vLyAgICAgICAgIGlvbi1jYXJkIHtcclxuLy8gICAgICAgICAgICAgd3JpdGluZy1tb2RlOiB0Yi1ybDtcclxuLy8gICAgICAgICAgICAgcGFkZGluZzogMTBweDtcclxuLy8gICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzJmM2I2OTtcclxuLy8gICAgICAgICAgICAgY29sb3I6ICNmZmY7XHJcbi8vICAgICAgICAgICAgIGZvbnQtc2l6ZTogMTRweDtcclxuLy8gICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDcwMDtcclxuLy8gICAgICAgICB9XHJcbi8vICAgICB9XHJcbi8vIH1cclxuXHJcbi5zZWN0aW9uMSB7XHJcbiAgICBiYWNrZ3JvdW5kOiAjMmYzYjY5ICFpbXBvcnRhbnQ7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICBwYWRkaW5nOiAwcHg7XHJcblxyXG4gICAgLnZhbHVlIHtcclxuICAgICAgICBjb2xvcjogIzJmM2I2OTtcclxuICAgICAgICAvLyBmb250LXdlaWdodDogMzAwO1xyXG4gICAgICAgIGZvbnQtd2VpZ2h0OiAzMDA7XHJcbiAgICAgICAgLy8gZm9udC1zaXplOiAxcmVtO1xyXG4gICAgfVxyXG5cclxuICAgIGlvbi1pdGVtIHtcclxuICAgICAgICAtLWJhY2tncm91bmQ6ICMyZjNiNjk7XHJcbiAgICAgICAgLS1jb2xvcjogI2ZmZmZmZjtcclxuXHJcbiAgICAgICAgZm9udC13ZWlnaHQ6IDMwMDtcclxuICAgICAgICBmb250LWZhbWlseTogJ0NvdXJpZXIgTmV3JywgQ291cmllciwgbW9ub3NwYWNlO1xyXG4gICAgICAgIC0taGlnaGxpZ2h0LWJhY2tncm91bmQ6ICMyZjNiNjk7XHJcblxyXG4gICAgICAgIGlvbi1sYWJlbCB7XHJcbiAgICAgICAgICAgIGNvbG9yOiAjZmZmZmZmO1xyXG4gICAgICAgIH1cclxuICAgIH1cclxuXHJcbiAgICBpb24tYnV0dG9uIHtcclxuICAgICAgICAtLWJhY2tncm91bmQ6ICNmZmZmZmY7XHJcbiAgICAgICAgLS1jb2xvcjogdmFyKC0taW9uLWNvbG9yLWNvbG9yMSk7XHJcbiAgICAgICAgLS1iYWNrZ3JvdW5kLWFjdGl2YXRlZDogI2ZmZmZmZjtcclxuICAgIH1cclxufVxyXG5cclxuI3BvcHVsYXJfaG90ZWxzIHtcclxuICAgIGlvbi1saXN0LWhlYWRlciBpb24tbGFiZWwge1xyXG4gICAgICAgIGZvbnQtc2l6ZTogMjJweDtcclxuICAgICAgICBmb250LXdlaWdodDogNzAwO1xyXG4gICAgICAgIGxldHRlci1zcGFjaW5nOiAwcHg7XHJcbiAgICB9XHJcblxyXG4gICAgLy8gI3NsaWRlclxyXG4gICAgaW9uLXNsaWRlcyxcclxuICAgIC5zd2lwZXItY29udGFpbmVyIHtcclxuICAgICAgICB3aWR0aDogMTAwJTtcclxuICAgICAgICBoZWlnaHQ6IDIwMHB4O1xyXG4gICAgfVxyXG5cclxuICAgIC5zd2lwZXItc2xpZGUge1xyXG4gICAgICAgIGJhY2tncm91bmQtc2l6ZTogY292ZXIgIWltcG9ydGFudDtcclxuICAgICAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiBjZW50ZXIgIWltcG9ydGFudDtcclxuICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG4gICAgfVxyXG5cclxuICAgIC5zbGlkZXIge1xyXG4gICAgICAgIC5zZWN0aW9uXzEge1xyXG4gICAgICAgICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICAgICAgICAgIHRvcDogMTBweDtcclxuICAgICAgICAgICAgbGVmdDogMTBweDtcclxuICAgICAgICAgICAgdGV4dC1hbGlnbjogbGVmdDtcclxuICAgICAgICAgICAgbWFyZ2luOiAwO1xyXG4gICAgICAgIH1cclxuXHJcbiAgICAgICAgLnNlY3Rpb25fMiB7XHJcbiAgICAgICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgICAgICAgICAgYm90dG9tOiAxMHB4O1xyXG4gICAgICAgICAgICBsZWZ0OiAxMHB4O1xyXG4gICAgICAgICAgICB0ZXh0LWFsaWduOiBsZWZ0O1xyXG4gICAgICAgICAgICBtYXJnaW46IDA7XHJcbiAgICAgICAgICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgICAgICAgICAgdGV4dC1zaGFkb3c6IDAgMXB4IDAgYmxhY2s7XHJcblxyXG5cclxuICAgICAgICAgICAgaDIge1xyXG4gICAgICAgICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG59XHJcbiJdfQ== */");
 
 /***/ }),
 
@@ -3287,7 +3222,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\" class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-label>Vacant Marks</ion-label>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-card style=\"background-color: #2f3b69;\">\n    <ion-grid>\n      <form [formGroup]=\"formlogin\">\n      <ion-row>\n        <ion-col>\n          <ion-item (click)=\"getVenues()\">\n            <ion-label position=\"stacked\">Search Venue</ion-label>\n            <ion-input type=\"text\" placeholder=\"Please Select\" name=\"destination\"\n               formControlName=\"destination\" [(ngModel)]=\"formlogin.value.destination\"></ion-input>\n          </ion-item>\n          <div *ngIf=\"isValid == true\">\n            <span class=\"error ion-padding\" style=\"color:red;\" *ngIf=\"errorControl.Date.value =='' && errorControl.destination.value ==''\">\n              Venue is required.\n            </span>\n        </div>\n        </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col>\n            <ion-item>\n              <ion-label position=\"stacked\">Select Date</ion-label>\n              <ion-datetime displayFormat=\"DD MMMM YYYY\" placeholder=\"Please Select\" min=\"{{minDate}}\" max={{maxDate}} formControlName=\"Date\">\n              </ion-datetime>\n              </ion-item>\n              <div *ngIf=\"isValid == true\">\n                <span class=\"error ion-padding\" style=\"color:red;\" *ngIf=\"errorControl.Date.value =='' \">\n                  Date is required.\n                </span>\n              </div>\n          </ion-col>\n        </ion-row> \n\n        <ion-row>\n          <ion-col>\n            <ion-button color=\"light\" expand=\"full\" (click)=\"search()\">Search</ion-button>\n          </ion-col>\n        </ion-row>\n      </form>\n    </ion-grid>\n  </ion-card>\n\n  <div id=\"popular_hotels\">\n    <ion-list-header>\n      <ion-label color=\"dark\">Popular Venues</ion-label>\n      <ion-button >See All</ion-button>\n    </ion-list-header>\n\n    <div *ngIf=\"venues.length > 0\">\n      <ion-card *ngFor=\"let item of venues let k=index\">\n        <ion-list lines=\"none\">\n          <ion-item class=\"ion-no-padding border\" (click)=\"onDetailsClick(item.Id, item.Name)\">\n  \n            <!-- Image -->\n            <ion-thumbnail slot=\"start\">\n              <img class=\"packages_thumbnail\" style=\"vertical-align: middle;\" [src]=\"item.EncodeLogo\">\n            </ion-thumbnail>\n  \n            <ion-label class=\"ion-text-wrap\">\n              <h2> {{item.Name}}</h2>\n              <ion-text color=\"medium\">\n                <ion-icon name=\"location\"></ion-icon>{{item.Address}}\n              </ion-text>\n              <br>\n              <!-- <ion-text color=\"color1\">${{item.price}}/night</ion-text> -->\n              <p class=\"ion-padding-top\">\n                <ion-icon name=\"person\"></ion-icon> {{item.totalPerson}} &nbsp;\n                <ion-icon name=\"briefcase\"></ion-icon> {{item.suitcases}} &nbsp;\n                <ion-icon name=\"logo-slack\"></ion-icon> {{item.seats}} &nbsp;\n                <ion-icon name=\"copy\"></ion-icon> {{item.doorCount}}\n              </p>\n            </ion-label>\n            <!-- <ion-card>\n              Book Now\n            </ion-card> -->\n          </ion-item>\n        </ion-list>\n      </ion-card>\n    </div>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\" class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-label>Vacant Marks</ion-label>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <ion-card> -->\n    <ion-grid class=\"section1\">\n      <ion-row>\n        <ion-col>\n          <ion-item (click)=\"getDestination()\">\n            <ion-label position=\"stacked\">Search Venue</ion-label>\n            <ion-input type=\"text\" placeholder=\"Please Select\" name=\"destination\"\n             [(ngModel)]=\"postData.destination\"></ion-input>\n               <ion-icon style=\"padding-top: 20px;\" slot=\"end\" *ngIf=\"!isDestinationValid\" name=\"remove-circle\"></ion-icon>\n          </ion-item>\n          <div *ngIf=\"isValid == true\">\n            <!-- <span class=\"error ion-padding\" style=\"color:red;\" *ngIf=\"errorControl.Date.value =='' && errorControl.destination.value ==''\">\n              Venue is required.\n            </span> -->\n        </div>\n        </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col>\n            <ion-item lines=\"none\">\n              <ion-label position=\"stacked\">Select Date</ion-label>\n              <ion-datetime displayFormat=\"DD MMMM YYYY\" placeholder=\"Please Select\" min=\"{{minDate}}\" max={{maxDate}} \n              [(ngModel)]=\"postData.Date\">\n              </ion-datetime>\n              <!-- <div *ngIf=\"isValid == true\"> -->\n                <ion-icon style=\"padding-top: 20px;\" slot=\"end\" *ngIf=\"!isDateValid\" name=\"remove-circle\"></ion-icon>\n                <!-- <span class=\"error ion-padding\" style=\"color:red;\" *ngIf=\"errorControl.Date.value =='' \">\n                  Date is required.\n                </span> -->\n              <!-- </div> -->\n              </ion-item>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col>\n            <ion-button expand=\"block\" (click)=\"search()\">Search</ion-button>\n          </ion-col>\n        </ion-row>\n    </ion-grid>\n  <!-- </ion-card> -->\n\n  <!-- <div id=\"popular_hotels\">\n    <ion-list-header>\n      <ion-label color=\"dark\">Popular Venues</ion-label>\n      <ion-button >See All</ion-button>\n    </ion-list-header>\n\n    <div *ngIf=\"venues.length > 0\">\n      <ion-card *ngFor=\"let item of venues let k=index\">\n        <ion-list lines=\"none\">\n          <ion-item class=\"ion-no-padding border\" (click)=\"onDetailsClick(item.Id, item.Name)\">\n\n            <ion-thumbnail slot=\"start\">\n              <img class=\"packages_thumbnail\" style=\"vertical-align: middle;\" [src]=\"item.EncodeLogo\">\n            </ion-thumbnail>\n\n            <ion-label class=\"ion-text-wrap\">\n              <h2> {{item.Name}}</h2>\n              <ion-text color=\"medium\">\n                <ion-icon name=\"location\"></ion-icon>{{item.Address}}\n              </ion-text>\n              <br>\n              <p class=\"ion-padding-top\">\n                <ion-icon name=\"person\"></ion-icon> {{item.totalPerson}} &nbsp;\n                <ion-icon name=\"briefcase\"></ion-icon> {{item.suitcases}} &nbsp;\n                <ion-icon name=\"logo-slack\"></ion-icon> {{item.seats}} &nbsp;\n                <ion-icon name=\"copy\"></ion-icon> {{item.doorCount}}\n              </p>\n            </ion-label>\n             <ion-card>\n              Book Now\n            </ion-card>\n          </ion-item>\n        </ion-list>\n      </ion-card>\n    </div>\n  </div> -->\n\n  <div style=\"padding-top: 10px;\" id=\"popular_hotels\">\n    <ion-list-header>\n      <ion-label color=\"dark\">Popular Venues</ion-label>\n      <!-- <ion-button color=\"color1\" >See All</ion-button> -->\n    </ion-list-header>\n\n    <ion-slides class=\"ion-padding slider\" #slider [options]=\"slideOpts\">\n      <ion-slide *ngFor=\"let item of venues\"\n              [ngStyle]=\"{'background' : 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + item.EncodeLogo + ')'}\">\n\n        <div class=\"section_1\">\n          <!-- <ion-button size=\"small\" color=\"color1\">{{item.rating}}</ion-button> -->\n        </div>\n\n        <div class=\"section_2\">\n          <h2>{{item.Name}}</h2>\n        </div>\n      </ion-slide>\n    </ion-slides>\n  </div>\n</ion-content>\n");
 
 /***/ })
 

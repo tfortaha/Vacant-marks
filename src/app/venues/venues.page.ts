@@ -3,13 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { HttpService } from '../services/http.service';
 import { Storage } from '@ionic/storage';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras, Data } from '@angular/router';
+import { VenuedetailsPage } from '../venuedetails/venuedetails.page';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-venues',
   templateUrl: './venues.page.html',
   styleUrls: ['./venues.page.scss']
-})
+}) 
 export class VenuesPage implements OnInit {
 
   allData:any =[];
@@ -24,6 +26,7 @@ export class VenuesPage implements OnInit {
     public alertController: AlertController,
     private loadingController: LoadingController,
     private storage: Storage,
+    private dataservice: DataService,
     private modalController: ModalController
   ) { }
 
@@ -42,15 +45,22 @@ export class VenuesPage implements OnInit {
     });
     await this.loading.present();
 
-    let params = new HttpParams();
-    this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
-      this.data = this.allData = res;
+    if(this.dataservice.VenuePageData.length == 0){
+      let params = new HttpParams();
+      this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
+        this.data = this.allData = res;
+        this.dataservice.VenuePageData = res;
+        this.loading.dismiss();
+        console.log(res);
+      },err =>{
+        this.alerrt();
+        this.loading.dismiss();
+      })
+    }
+    else{
+      this.data = this.allData = this.dataservice.VenuePageData;
       this.loading.dismiss();
-      console.log(res);
-    },err =>{
-      this.alerrt();
-      this.loading.dismiss();
-    })
+    }
   }
   
   search(event){
@@ -65,27 +75,21 @@ export class VenuesPage implements OnInit {
     this.data = this.allData;
   }
   onItemClickFunc(Id,Name): void {
-
     this.modalController.dismiss(`${Id}\\${Name}`);
-    // let selectedVenue:any = [{"Name":Name,"Id":Id}];
-    // this.storage.set("selectedVenue",selectedVenue).then(response=>{
-    //   console.log("selectedVenue --> ",response)
-    //   this.router.navigate(['/tabs/home']);
-    // })
   }
 
-  onDetailsClick(Id,Name){
-    console.log("Details Click: ",Id,Name);
+  async onDetailsClick(Id,Name){
     let  VenueId = Id;
-    console.log(VenueId);
-      let navigationExtras: NavigationExtras = {
-        queryParams: {
-          special: JSON.stringify(VenueId)
-        }
-      };
-      this.router.navigate(['/venuedetails'],navigationExtras);
+    const modal = await this.modalController.create({
+      component: VenuedetailsPage,
+      componentProps:{VenueId}
+    });
+    return await modal.present();
   }
 
+  close(){
+    this.modalController.dismiss();
+  }
 
   async alerrt(){
     this.alert = await this.alertController.create({

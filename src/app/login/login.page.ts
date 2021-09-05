@@ -62,16 +62,15 @@ export class LoginPage implements OnInit {
     this.loading.present();
 
     if (this.validateInputs()) {
-      debugger;
       // this.authService.login(this.postData);
       this.httpService.getUserDetail('api/userlogin/VerifyLogin', this.postData).subscribe((res: any) => {
         if (res) {
           console.log(res);
           this.storage.set("userdetails",res).then(response=>{
             console.log(response)
-            this.close();
-            this.getData();
             this.loading.dismiss();
+            let result = res.result;
+            this.modalCtrl.dismiss(`${result.EmailID}\\ ${result.FirstName}\\ ${result.LastName}\\ ${result.UserName}`);
           })
         }
         else{
@@ -95,14 +94,8 @@ export class LoginPage implements OnInit {
     this.loginAction();
   }
 
-  close() {
-    this.modalCtrl.dismiss();
-  }
-
-  getData(){
-    this.storage.get("userdetails").then((res) =>{
-      console.log(res);
-    })
-  }
+  // close() {
+  //   this.modalCtrl.dismiss();
+  // }
 
 }

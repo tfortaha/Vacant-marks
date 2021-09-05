@@ -21,7 +21,6 @@ export class ProfilePage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    debugger;
     this.storage.get("userdetails").then((res) =>{
       this.IsLogin = res;
       this.data = res.result;
@@ -30,13 +29,16 @@ export class ProfilePage implements OnInit {
   }
 
   async login() {
-    debugger;
     let modal = await this.modalCtrl.create({
       component: LoginPage,
       cssClass: 'login-modal'
     });
-    modal.onWillDismiss().then(() => {
-      
+    modal.onWillDismiss().then((data) => {
+      let SelectedVenue = data.data;
+      let splitVenue = SelectedVenue.split("\\");
+      let Sdata = {"EmailID":splitVenue[0], "FirstName":splitVenue[1], "LastName":splitVenue[2],"UserName":splitVenue[3],}
+      this.data = Sdata;
+      console.log(data);
     });
     modal.present();
   }

@@ -51,7 +51,7 @@ const routes = [
     // },
     {
         path: 'venues',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_venues_venues_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./venues/venues.module */ 3930)).then(m => m.VenuesPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_venuedetails_venuedetails_page_ts"), __webpack_require__.e("default-src_app_venues_venues_page_ts"), __webpack_require__.e("src_app_venues_venues_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./venues/venues.module */ 3930)).then(m => m.VenuesPageModule)
     },
     {
         path: 'search-venue',
@@ -59,15 +59,15 @@ const routes = [
     },
     {
         path: 'venuebydate',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_venuebydate_venuebydate_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./venuebydate/venuebydate.module */ 4290)).then(m => m.VenuebydatePageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_venuedetails_venuedetails_page_ts"), __webpack_require__.e("src_app_venuebydate_venuebydate_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./venuebydate/venuebydate.module */ 4290)).then(m => m.VenuebydatePageModule)
     },
     {
         path: 'search-venueby-date-name',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_search-venueby-date-name_search-venueby-date-name_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./search-venueby-date-name/search-venueby-date-name.module */ 2667)).then(m => m.SearchVenuebyDateNamePageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_venuedetails_venuedetails_page_ts"), __webpack_require__.e("src_app_search-venueby-date-name_search-venueby-date-name_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./search-venueby-date-name/search-venueby-date-name.module */ 2667)).then(m => m.SearchVenuebyDateNamePageModule)
     },
     {
         path: 'venuedetails',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_venuedetails_venuedetails_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./venuedetails/venuedetails.module */ 7631)).then(m => m.VenuedetailsPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_venuedetails_venuedetails_page_ts"), __webpack_require__.e("src_app_venuedetails_venuedetails_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./venuedetails/venuedetails.module */ 7631)).then(m => m.VenuedetailsPageModule)
     },
     {
         path: 'login',
@@ -112,27 +112,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppComponent": () => (/* binding */ AppComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./app.component.html */ 1106);
 /* harmony import */ var _app_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.scss */ 3069);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/storage */ 8605);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/storage */ 8605);
+/* harmony import */ var _app_services_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../app/services/data.service */ 2468);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ 1524);
+/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ 3494);
+
+
+
+
 
 
 
 
 
 let AppComponent = class AppComponent {
-    constructor(storage) {
+    constructor(platform, splashScreen, statusBar, storage, ds) {
+        this.platform = platform;
+        this.splashScreen = splashScreen;
+        this.statusBar = statusBar;
         this.storage = storage;
-        // this.storage.clear();
+        this.ds = ds;
+        this.initializeApp();
+    }
+    initializeApp() {
+        this.platform.ready().then(() => {
+            this.statusBar.backgroundColorByHexString('#2f3b69');
+            this.splashScreen.hide();
+        });
+    }
+    signout() {
+        this.storage.clear();
+        window.location.reload();
     }
 };
 AppComponent.ctorParameters = () => [
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_2__.Storage }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.Platform },
+    { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__.SplashScreen },
+    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__.StatusBar },
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_6__.Storage },
+    { type: _app_services_data_service__WEBPACK_IMPORTED_MODULE_2__.DataService }
 ];
-AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-root',
         template: _raw_loader_app_component_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_app_component_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -154,15 +180,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppModule": () => (/* binding */ AppModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 9895);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 476);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/storage */ 8605);
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component */ 5041);
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-routing.module */ 158);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ 1524);
+/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ 3494);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/storage */ 8605);
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component */ 5041);
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app-routing.module */ 158);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ 1841);
+
+
 
 
 
@@ -174,15 +204,51 @@ __webpack_require__.r(__webpack_exports__);
 
 let AppModule = class AppModule {
 };
-AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
-        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
+AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)({
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_2__.AppComponent],
         entryComponents: [],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule, _ionic_storage__WEBPACK_IMPORTED_MODULE_6__.IonicStorageModule.forRoot(), _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpClientModule],
-        providers: [{ provide: _angular_router__WEBPACK_IMPORTED_MODULE_8__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicRouteStrategy }],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_3__.AppRoutingModule, _ionic_storage__WEBPACK_IMPORTED_MODULE_8__.IonicStorageModule.forRoot(), _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpClientModule],
+        providers: [
+            _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_1__.StatusBar,
+            _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_0__.SplashScreen,
+            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_10__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonicRouteStrategy }
+        ],
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__.AppComponent],
     })
 ], AppModule);
+
+
+
+/***/ }),
+
+/***/ 2468:
+/*!******************************************!*\
+  !*** ./src/app/services/data.service.ts ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DataService": () => (/* binding */ DataService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7716);
+
+
+let DataService = class DataService {
+    constructor() {
+        this.DashboardData = [];
+        this.VenuePageData = [];
+    }
+};
+DataService.ctorParameters = () => [];
+DataService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
+        providedIn: 'root'
+    })
+], DataService);
 
 
 
@@ -496,7 +562,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("\n<ion-app>\n  <ion-menu side=\"start\" menuId=\"pages\" type=\"overlay\" contentId=\"mainContent\">\n    <ion-header>\n      <ion-toolbar style=\"text-align: center;\">\n        <img style=\"width: 50%; align-items: center;\" src=\"assets/icon/VMSLogo.png\">\n        <ion-row>\n          <!-- <ion-col size=\"12\"><img src=\"assets/images/VMSLogo.png\"></ion-col> -->\n            <!-- <div>Vacand Mark</div> -->\n            <!-- <ion-fab style=\"padding-left:100px; padding-top:35px;\" vertical=\"top\" horizontal=\"start\">\n              <ion-button size=\"small\" color=\"none\" style=\"border: none;\">\n                <h5>Vaccand Mark</h5>\n              </ion-button>\n            </ion-fab> -->\n        </ion-row>\n      </ion-toolbar>\n    </ion-header>\n    \n    <ion-content>\n      <ion-list class=\"ion-padding\" lines=\"none\">\n        <ion-menu-toggle auto-hide=\"false\">\n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['']\">\n            <i slot=\"start\" class=\"icon icon-home icon-small\"></i>\n            <h1 class=\"text-size-xs\">Dashboard</h1>\n          </ion-item>\n \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/venues']\">\n            <i slot=\"start\" class=\"icon icon-home icon-small\"></i>\n            <h1 class=\"text-size-xs\">Venues</h1>\n          </ion-item>\n   <!--       \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/customer']\">\n            <i slot=\"start\" class=\"icon icon-account icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">{{ 'customer' | translate }}</h1>\n          </ion-item>\n\n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/customerrequest']\">\n            <i slot=\"start\" class=\"icon icon-plus-circle-outline icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">{{ 'CustomerRequest' | translate }}</h1>\n          </ion-item> \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/settings']\">\n            <i slot=\"start\" class=\"icon icon-settings icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">settings</h1>\n          </ion-item>-->\n\n        </ion-menu-toggle>\n      </ion-list>\n    </ion-content>\n    \n    <!-- <ion-footer class=\"ion-no-border\">\n      <div class=\"ion-padding\">\n        <ion-button shape=\"round\" color=\"color1\" expand=\"full\" (click)=\"signout()\">\n          Signout</ion-button>\n      </div>\n    </ion-footer> -->\n  </ion-menu>\n  <ion-router-outlet id=\"mainContent\"></ion-router-outlet>\n</ion-app>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("\n<ion-app>\n  <ion-menu side=\"start\" menuId=\"pages\" type=\"overlay\" contentId=\"mainContent\">\n    <ion-header>\n      <ion-toolbar style=\"text-align: center;\">\n        <img style=\"width: 50%; align-items: center;\" src=\"assets/icon/VMSLogo.png\">\n        <ion-row>\n          <!-- <ion-col size=\"12\"><img src=\"assets/images/VMSLogo.png\"></ion-col> -->\n            <!-- <div>Vacand Mark</div> -->\n            <!-- <ion-fab style=\"padding-left:100px; padding-top:35px;\" vertical=\"top\" horizontal=\"start\">\n              <ion-button size=\"small\" color=\"none\" style=\"border: none;\">\n                <h5>Vaccand Mark</h5>\n              </ion-button>\n            </ion-fab> -->\n        </ion-row>\n      </ion-toolbar>\n    </ion-header>\n    \n    <ion-content>\n      <ion-list class=\"ion-padding\" lines=\"none\">\n        <ion-menu-toggle auto-hide=\"false\">\n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['']\">\n            <i slot=\"start\" class=\"icon icon-home icon-small\"></i>\n            <h1 class=\"text-size-xs\">Dashboard</h1>\n          </ion-item>\n \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/venues']\">\n            <i slot=\"start\" class=\"icon icon-home icon-small\"></i>\n            <h1 class=\"text-size-xs\">Venues</h1>\n          </ion-item>\n   <!--       \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/customer']\">\n            <i slot=\"start\" class=\"icon icon-account icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">{{ 'customer' | translate }}</h1>\n          </ion-item>\n\n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/customerrequest']\">\n            <i slot=\"start\" class=\"icon icon-plus-circle-outline icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">{{ 'CustomerRequest' | translate }}</h1>\n          </ion-item> \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/settings']\">\n            <i slot=\"start\" class=\"icon icon-settings icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">settings</h1>\n          </ion-item>-->\n\n        </ion-menu-toggle>\n      </ion-list>\n    </ion-content>\n    \n    <ion-footer class=\"ion-no-border\">\n      <div class=\"ion-padding\">\n        <ion-button shape=\"round\" color=\"color1\" expand=\"full\" (click)=\"signout()\">\n          Signout</ion-button>\n      </div>\n    </ion-footer> \n  </ion-menu>\n  <ion-router-outlet id=\"mainContent\"></ion-router-outlet>\n</ion-app>");
 
 /***/ })
 

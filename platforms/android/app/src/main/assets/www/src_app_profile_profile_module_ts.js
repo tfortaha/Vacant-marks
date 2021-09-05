@@ -114,7 +114,6 @@ let ProfilePage = class ProfilePage {
     }
     ngOnInit() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
-            debugger;
             this.storage.get("userdetails").then((res) => {
                 this.IsLogin = res;
                 this.data = res.result;
@@ -124,12 +123,16 @@ let ProfilePage = class ProfilePage {
     }
     login() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
-            debugger;
             let modal = yield this.modalCtrl.create({
                 component: _login_login_page__WEBPACK_IMPORTED_MODULE_2__.LoginPage,
                 cssClass: 'login-modal'
             });
-            modal.onWillDismiss().then(() => {
+            modal.onWillDismiss().then((data) => {
+                let SelectedVenue = data.data;
+                let splitVenue = SelectedVenue.split("\\");
+                let Sdata = { "EmailID": splitVenue[0], "FirstName": splitVenue[1], "LastName": splitVenue[2], "UserName": splitVenue[3], };
+                this.data = Sdata;
+                console.log(data);
             });
             modal.present();
         });
@@ -178,7 +181,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<!--\n  - Profile Screen\n  - @author    FlawlessThemes <flawlesstemplates@gmail.com>\n  - @copyright Copyright (c) 2020\n  - @license   FlawlessThemes\n-->\n\n<!-- Header -->\n<ion-header [translucent]=\"true\" class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Profile</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<!-- Contents -->\n<ion-content [fullscreen]=\"true\" class=\"background\">\n  <!-- Profile Details -->\n  <ion-list lines=\"none\" class=\"ion-padding-top\">\n    <ion-item>\n      <!-- User Image -->\n      <ion-avatar slot=\"start\">\n        <img style=\"vertical-align: middle;\" src=\"assets/DetailsImgs/avatar.png\">\n      </ion-avatar>\n\n      <div *ngIf=\"data != null\">\n        <ion-label class=\"ion-text-wrap\" *ngIf=\"data.FirstName !== '' || data.FirstName !== null || data.FirstName !== undefined\">\n          <h4 class=\"name\">{{data.FirstName}} {{data.LastName}}</h4>\n          <!-- <ion-text class=\"edit-profile\" (click)=\"gotoEditProfile()\">Edit profile</ion-text> -->\n        </ion-label>\n      </div>\n\n      <div *ngIf=\"data == null\">\n        <ion-label class=\"ion-text-wrap\">\n          <h1 style=\"padding-bottom: 3px;\">Login</h1>\n          <ion-text class=\"edit-profile\" (click)=\"login()\">Login or Create an Account.</ion-text>\n        </ion-label>\n      </div>\n\n    </ion-item>\n  </ion-list>\n\n  <div *ngIf=\"data == null\">\n    <ion-list lines=\"full\" class=\"ion-padding-top\">\n      <ion-item> </ion-item>\n      <ion-item (click)=\"login()\">\n        <ion-icon color=\"medium\" slot=\"end\" name=\"log-out\"></ion-icon>\n        <ion-label class=\"ion-padding\">Login or Register</ion-label>\n      </ion-item>\n    </ion-list>\n  </div>\n\n  <div *ngIf=\"data != null\">\n    <ion-list>\n      <!-- <ion-item-divider>{{'BasicInformation' | translate }}</ion-item-divider> -->\n      <ion-item\n        *ngIf=\"data.UserName !== '' || data.UserName !== null || data.UserName !== undefined\">\n        <ion-label stacked>UserName</ion-label>\n        <ion-label>{{data.UserName}}</ion-label>\n      </ion-item>\n\n      <ion-item\n        *ngIf=\"data.EmailID !== '' || data.EmailID !== null || data.EmailID !== undefined\">\n        <ion-label stacked>Email </ion-label>\n        <ion-label>{{data.EmailID}}</ion-label>\n      </ion-item>\n    </ion-list>\n  </div>\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\" class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Profile</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\" class=\"background\">\n  <!-- Profile Details -->\n  <ion-list lines=\"none\" class=\"ion-padding-top\">\n    <ion-item>\n      <ion-avatar slot=\"start\">\n        <img style=\"vertical-align: middle;\" src=\"assets/DetailsImgs/avatar.png\">\n      </ion-avatar>\n\n      <div *ngIf=\"data != null\">\n        <ion-label class=\"ion-text-wrap\" *ngIf=\"data.FirstName !== '' || data.FirstName !== null || data.FirstName !== undefined\">\n          <h4 class=\"name\">{{data.FirstName}} {{data.LastName}}</h4>\n          <!-- <ion-text class=\"edit-profile\" (click)=\"gotoEditProfile()\">Edit profile</ion-text> -->\n        </ion-label>\n      </div>\n\n      <div *ngIf=\"data == null\">\n        <ion-label class=\"ion-text-wrap\">\n          <h1 style=\"padding-bottom: 3px;\">Login</h1>\n          <ion-text class=\"edit-profile\" (click)=\"login()\">Login or Create an Account.</ion-text>\n        </ion-label>\n      </div>\n\n    </ion-item>\n  </ion-list>\n\n  <div *ngIf=\"data == null\">\n    <ion-list lines=\"full\" class=\"ion-padding-top\">\n      <ion-item> </ion-item>\n      <ion-item (click)=\"login()\">\n        <ion-icon color=\"medium\" slot=\"end\" name=\"log-out\"></ion-icon>\n        <ion-label class=\"ion-padding\">Login or Register</ion-label>\n      </ion-item>\n    </ion-list>\n  </div>\n\n  <div *ngIf=\"data != null\">\n    <ion-list>\n      <!-- <ion-item-divider>{{'BasicInformation' | translate }}</ion-item-divider> -->\n      <ion-item\n        *ngIf=\"data.UserName !== '' || data.UserName !== null || data.UserName !== undefined\">\n        <ion-label stacked>UserName</ion-label>\n        <ion-label>{{data.UserName}}</ion-label>\n      </ion-item>\n\n      <ion-item\n        *ngIf=\"data.EmailID !== '' || data.EmailID !== null || data.EmailID !== undefined\">\n        <ion-label stacked>Email </ion-label>\n        <ion-label>{{data.EmailID}}</ion-label>\n      </ion-item>\n    </ion-list>\n  </div>\n</ion-content>");
 
 /***/ })
 

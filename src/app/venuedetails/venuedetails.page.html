@@ -1,7 +1,7 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button defaultHref="home">
+      <ion-button (click)="close()">
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -11,13 +11,19 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" id="hotel-details" *ngIf="PbarHide == 1">
-   <ion-slides pager="true" *ngIf="testimageArray.length > 0">
-    <ion-slide *ngFor="let item of testimageArray">
-      <img [src]="item" />
+  <ion-slides pager="true" *ngIf="data.images.length > 0">
+    <ion-slide *ngFor="let item of data.images">
+      <img [src]="item.Image" />
     </ion-slide>
   </ion-slides>
 
-  <div  class="ion-padding">
+  <!-- <ion-slides pager="true" *ngIf="testimageArray.length > 0">
+    <ion-slide *ngFor="let item of testimageArray">
+      <img [src]="item" />
+    </ion-slide>
+  </ion-slides> -->
+
+  <div  class="ion-no-padding">
     <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
       <h1 class="hotel-name" style="text-align: center;">{{data.Name}}</h1>
       <p style="text-align: center;"> <ion-icon name="location" slot="start" color="medium"></ion-icon> {{data.Address}}</p>
@@ -52,13 +58,13 @@
 
       <ion-row>
         <ion-col>
-          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center" *ngFor="let slot of data.slots let in=index">
+          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
             <div class="images ion-padding">
               <ion-img src="assets/DetailsImgs/slot.png" style="display: inline-table; width: 40%;"></ion-img>
             </div>
             <ion-card-content class="ion-no-padding">
               <h2 class="text-size-lg">Available Slots:</h2>
-              <p class="text-size-xs">{{in+1}}. {{slot.SlotStartEnd}}</p>
+              <p class="text-size-xs" *ngFor="let slot of data.slots let in=index">{{in+1}}. {{slot.SlotStartEnd}}</p>
             </ion-card-content>
           </ion-card>
         </ion-col>

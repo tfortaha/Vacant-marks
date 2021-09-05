@@ -710,8 +710,8 @@ const Nav = class {
     const mode = ionicGlobal.getIonMode(this);
     const enteringEl = enteringView.element;
     const leavingEl = leavingView && leavingView.element;
-    const animationOpts = Object.assign({ mode, showGoBack: this.canGoBackSync(enteringView), baseEl: this.el, animationBuilder: this.animation || opts.animationBuilder || ionicGlobal.config.get('navAnimation'), progressCallback, animated: this.animated && ionicGlobal.config.getBoolean('animated', true), enteringEl,
-      leavingEl }, opts);
+    const animationOpts = Object.assign(Object.assign({ mode, showGoBack: this.canGoBackSync(enteringView), baseEl: this.el, progressCallback, animated: this.animated && ionicGlobal.config.getBoolean('animated', true), enteringEl,
+      leavingEl }, opts), { animationBuilder: opts.animationBuilder || this.animation || ionicGlobal.config.get('navAnimation') });
     const { hasCompleted } = await index$1.transition(animationOpts);
     return this.transitionFinish(hasCompleted, enteringView, leavingView, opts);
   }

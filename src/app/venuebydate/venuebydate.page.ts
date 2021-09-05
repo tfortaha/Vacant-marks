@@ -1,9 +1,10 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { HttpService } from '../services/http.service';
 import { Storage } from '@ionic/storage';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { VenuedetailsPage } from '../venuedetails/venuedetails.page';
 
 @Component({
   selector: 'app-venuebydate',
@@ -30,6 +31,7 @@ export class VenuebydatePage implements OnInit {
     public alertController: AlertController,
     private loadingController: LoadingController,
     private storage: Storage,
+    private modalController: ModalController
   ) { }
 
   async ngOnInit() {
@@ -90,20 +92,13 @@ export class VenuebydatePage implements OnInit {
   clear(event){
     this.data = this.allData;
   }
-  onItemClickFunc(Id,Name): void {
+  async onItemClickFunc(Id,Name) {
     let  VenueId = Id;
-    console.log(VenueId);
-      let navigationExtras: NavigationExtras = {
-        queryParams: {
-          special: JSON.stringify(VenueId)
-        }
-      };
-      this.router.navigate(['/venuedetails'],navigationExtras);
-
-    // this.storage.set("selectedVenue",selectedVenue).then(response=>{
-    //   console.log("selectedVenue --> ",response)
-    //   this.router.navigate(['/dashboard']);
-    // })
+    const modal = await this.modalController.create({
+      component: VenuedetailsPage,
+      componentProps:{VenueId}
+    });
+    return await modal.present();
   }
 
   onDetailsClick(Id,Name){

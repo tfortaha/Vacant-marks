@@ -56,8 +56,11 @@
   <div *ngIf=" allData.length > 0">
     <ion-card *ngFor="let item of data; let k=index">
       <ion-fab vertical="top" horizontal="start">
-        <ion-button size="small" color="warning">
-          {{item.slots[k].Status}}
+        <ion-button size="small" color="warning" *ngIf="IsAvailable == true">
+          Available
+        </ion-button>
+        <ion-button size="small" color="warning" *ngIf="IsAvailable == false">
+          Confirmed
         </ion-button>
       </ion-fab>
   
@@ -71,7 +74,7 @@
             <ion-text style="font-size: 12px;" color="medium"> 
               Max Capacity: {{item.MaxCapacity}} <br>
                 Min Capacity: {{item.MinCapacity}} <br>
-                Available slot: {{item.slots[k].SlotStartEnd}}<br>
+                <!-- Available slot: {{item.slots[k].SlotStartEnd}}<br> -->
                 Date: {{item.slots[k].Date}} <br>
             </ion-text>
           </ion-label>

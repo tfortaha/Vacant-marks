@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 import { HttpParams } from '@angular/common/http';
 import { HttpService } from '../services/http.service';
 import { VenuesPage } from '../venues/venues.page';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,7 +34,7 @@ export class DashboardPage implements OnInit {
   // Slider Options
   slideOpts = {
     initialSlide: 0,
-    speed: 500,
+    speed: 200,
     slidesPerView: 2.2,
     spaceBetween: 10,
     loop: true,
@@ -46,6 +47,7 @@ export class DashboardPage implements OnInit {
     private storage: Storage,
     public alertController: AlertController,
     private loadingController: LoadingController,
+    private dataservice : DataService,
     private modalController: ModalController
   ) 
   { 
@@ -53,7 +55,7 @@ export class DashboardPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.getVenue();
+   this.getVenue();
   }
 
   validateInputs(): boolean {
@@ -82,15 +84,21 @@ export class DashboardPage implements OnInit {
       spinner:'bubbles'
     });
     await this.loading.present();
-    let params = new HttpParams();
-    this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
-      this.venues = res;
+    if(this.dataservice.DashboardData.length == 0){
+      let params = new HttpParams();
+      this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
+        this.venues = res;
+        this.loading.dismiss();
+        console.log(res);
+      },err =>{
+        this.alerrt();
+        this.loading.dismiss();
+      })
+    }
+    else{
+      this.venues =  this.dataservice.DashboardData;
       this.loading.dismiss();
-      console.log(res);
-    },err =>{
-      this.alerrt();
-      this.loading.dismiss();
-    })
+    }
   }
 
   async getDestination() {
@@ -100,7 +108,6 @@ export class DashboardPage implements OnInit {
 
     modal.onDidDismiss().then((data) => {
       if (data.data) {
-        debugger;
         let SelectedVenue = data.data;
         let splitVenue = SelectedVenue.split("\\");
         console.log(splitVenue);

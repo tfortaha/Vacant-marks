@@ -1,9 +1,10 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { HttpService } from '../services/http.service';
 import { Storage } from '@ionic/storage';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { VenuedetailsPage } from '../venuedetails/venuedetails.page';
 
 @Component({
   selector: 'app-search-venueby-date-name',
@@ -14,6 +15,9 @@ export class SearchVenuebyDateNamePage implements OnInit {
 
   allData:any =[];
   data:any = [];
+  slotsData = [];
+  IsAvailable:boolean = false;
+
   loading: HTMLIonLoadingElement;
   alert:HTMLIonAlertElement;
 
@@ -31,6 +35,7 @@ export class SearchVenuebyDateNamePage implements OnInit {
     public alertController: AlertController,
     private loadingController: LoadingController,
     private storage: Storage,
+    private modalController: ModalController
   ) { }
 
   async ngOnInit() {
@@ -66,8 +71,18 @@ export class SearchVenuebyDateNamePage implements OnInit {
     params = params.set("VenueId",this.postData.destinationId);
     this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
       this.data = this.allData = res;
+      debugger;
+      for(let item of this.allData){
+        this.slotsData = item.slots;
+      }
+      // this.slotsData = this.allData.slots;
+      for(let item of this.slotsData){
+        if(item.Status == "Available"){
+          this.IsAvailable = true;
+        }
+        console.log(item.Status);
+      }
       this.loading.dismiss();
-      console.log(res);
     },err =>{
       this.alerrt();
       this.loading.dismiss();
@@ -84,19 +99,13 @@ export class SearchVenuebyDateNamePage implements OnInit {
   clear(event){
     this.data = this.allData;
   }
-  onItemClickFunc(Id,Name): void {
+  async onItemClickFunc(Id,Name) {
     let  VenueId = Id;
-    console.log(VenueId);
-      let navigationExtras: NavigationExtras = {
-        queryParams: {
-          special: JSON.stringify(VenueId)
-        }
-      };
-      this.router.navigate(['/venuedetails'],navigationExtras);
-    // this.storage.set("selectedVenue",selectedVenue).then(response=>{
-    //   console.log("selectedVenue --> ",response)
-    //   this.router.navigate(['/dashboard']);
-    // })
+    const modal = await this.modalController.create({
+      component: VenuedetailsPage,
+      componentProps:{VenueId}
+    });
+    return await modal.present();
   }
 
   BookNowClick(){

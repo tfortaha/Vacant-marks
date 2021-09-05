@@ -26,7 +26,7 @@ const routes = [
         children: [
             {
                 path: 'home',
-                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_dashboard_dashboard_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../dashboard/dashboard.module */ 4814)).then(m => m.DashboardPageModule)
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_venuedetails_venuedetails_page_ts"), __webpack_require__.e("default-src_app_venues_venues_page_ts"), __webpack_require__.e("src_app_dashboard_dashboard_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../dashboard/dashboard.module */ 4814)).then(m => m.DashboardPageModule)
             },
             {
                 path: 'profile',

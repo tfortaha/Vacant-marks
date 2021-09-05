@@ -10,7 +10,7 @@ const fs__default = /*#__PURE__*/_interopDefaultLegacy(fs);
 const path__default = /*#__PURE__*/_interopDefaultLegacy(path);
 
 function fileExists(filePath) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
         fs__default['default'].access(filePath, (err) => resolve(!err));
     });
 }
@@ -51,14 +51,14 @@ function writeFile(filePath, data) {
     });
 }
 function mkDir(filePath) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
         fs__default['default'].mkdir(filePath, () => {
             resolve();
         });
     });
 }
 function rmDir(filePath) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
         fs__default['default'].rmdir(filePath, () => {
             resolve();
         });
@@ -76,7 +76,7 @@ async function emptyDir(dir) {
     await Promise.all(promises);
 }
 async function readDir(dir) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
         fs__default['default'].readdir(dir, (err, files) => {
             if (err) {
                 resolve([]);
@@ -88,7 +88,7 @@ async function readDir(dir) {
     });
 }
 async function isFile(itemPath) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
         fs__default['default'].stat(itemPath, (err, stat) => {
             if (err) {
                 resolve(false);
@@ -100,7 +100,7 @@ async function isFile(itemPath) {
     });
 }
 async function unlink(filePath) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
         fs__default['default'].unlink(filePath, () => {
             resolve();
         });
@@ -122,7 +122,8 @@ class ScreenshotConnector {
         this.buildAuthor = opts.buildAuthor;
         this.buildUrl = opts.buildUrl;
         this.previewUrl = opts.previewUrl;
-        (this.buildTimestamp = typeof opts.buildTimestamp === 'number' ? opts.buildTimestamp : Date.now()), (this.cacheDir = opts.cacheDir);
+        (this.buildTimestamp = typeof opts.buildTimestamp === 'number' ? opts.buildTimestamp : Date.now()),
+            (this.cacheDir = opts.cacheDir);
         this.packageDir = opts.packageDir;
         this.rootDir = opts.rootDir;
         this.appNamespace = opts.appNamespace;
@@ -170,7 +171,12 @@ class ScreenshotConnector {
         this.logger.debug(`currentBuildDir: ${this.currentBuildDir}`);
         this.logger.debug(`cacheDir: ${this.cacheDir}`);
         await mkDir(this.screenshotDir);
-        await Promise.all([mkDir(this.imagesDir), mkDir(this.buildsDir), mkDir(this.currentBuildDir), mkDir(this.cacheDir)]);
+        await Promise.all([
+            mkDir(this.imagesDir),
+            mkDir(this.buildsDir),
+            mkDir(this.currentBuildDir),
+            mkDir(this.cacheDir),
+        ]);
     }
     async pullMasterBuild() {
         /**/
@@ -184,7 +190,9 @@ class ScreenshotConnector {
         return masterBuild;
     }
     async completeBuild(masterBuild) {
-        const filePaths = (await readDir(this.currentBuildDir)).map(f => path.join(this.currentBuildDir, f)).filter(f => f.endsWith('.json'));
+        const filePaths = (await readDir(this.currentBuildDir))
+            .map((f) => path.join(this.currentBuildDir, f))
+            .filter((f) => f.endsWith('.json'));
         const screenshots = await Promise.all(filePaths.map(async (f) => JSON.parse(await readFile(f))));
         this.sortScreenshots(screenshots);
         if (!masterBuild) {
@@ -234,7 +242,7 @@ class ScreenshotConnector {
                 diffs: [],
             },
         };
-        results.currentBuild.screenshots.forEach(screenshot => {
+        results.currentBuild.screenshots.forEach((screenshot) => {
             screenshot.diff.device = screenshot.diff.device || screenshot.diff.userAgent;
             results.compare.diffs.push(screenshot.diff);
             delete screenshot.diff;
@@ -273,7 +281,7 @@ class ScreenshotConnector {
         screenshotCache.size = 0;
         screenshotCache.items = screenshotCache.items || [];
         if (buildResults && buildResults.compare && Array.isArray(buildResults.compare.diffs)) {
-            buildResults.compare.diffs.forEach(diff => {
+            buildResults.compare.diffs.forEach((diff) => {
                 if (typeof diff.cacheKey !== 'string') {
                     return;
                 }
@@ -281,7 +289,7 @@ class ScreenshotConnector {
                     // no need to cache identical matches
                     return;
                 }
-                const existingItem = screenshotCache.items.find(i => i.key === diff.cacheKey);
+                const existingItem = screenshotCache.items.find((i) => i.key === diff.cacheKey);
                 if (existingItem) {
                     // already have this cached, but update its timestamp
                     existingItem.ts = this.buildTimestamp;
@@ -316,13 +324,13 @@ class ScreenshotConnector {
     toJson(masterBuild, screenshotCache) {
         const masterScreenshots = {};
         if (masterBuild && Array.isArray(masterBuild.screenshots)) {
-            masterBuild.screenshots.forEach(masterScreenshot => {
+            masterBuild.screenshots.forEach((masterScreenshot) => {
                 masterScreenshots[masterScreenshot.id] = masterScreenshot.image;
             });
         }
         const mismatchCache = {};
         if (screenshotCache && Array.isArray(screenshotCache.items)) {
-            screenshotCache.items.forEach(cacheItem => {
+            screenshotCache.items.forEach((cacheItem) => {
                 mismatchCache[cacheItem.key] = cacheItem.mp;
             });
         }
@@ -443,7 +451,11 @@ const normalizePath = (path) => {
     if (normalized === '') {
         return '.';
     }
-    if (rootPart === '' && secondPart && path.includes('/') && !secondPart.startsWith('.') && !secondPart.startsWith('@')) {
+    if (rootPart === '' &&
+        secondPart &&
+        path.includes('/') &&
+        !secondPart.startsWith('.') &&
+        !secondPart.startsWith('@')) {
         return './' + normalized;
     }
     return normalized;
@@ -514,7 +526,9 @@ const getEncodedRootLength = (path) => {
             // special case interpreted as "the machine from which the URL is being interpreted".
             const scheme = path.slice(0, schemeEnd);
             const authority = path.slice(authorityStart, authorityEnd);
-            if (scheme === 'file' && (authority === '' || authority === 'localhost') && isVolumeCharacter(path.charCodeAt(authorityEnd + 1))) {
+            if (scheme === 'file' &&
+                (authority === '' || authority === 'localhost') &&
+                isVolumeCharacter(path.charCodeAt(authorityEnd + 1))) {
                 const volumeSeparatorEnd = getFileUrlVolumeSeparatorEnd(path, authorityEnd + 2);
                 if (volumeSeparatorEnd !== -1) {
                     if (path.charCodeAt(volumeSeparatorEnd) === 47 /* slash */) {
@@ -535,7 +549,8 @@ const getEncodedRootLength = (path) => {
     // relative
     return 0;
 };
-const isVolumeCharacter = (charCode) => (charCode >= 97 /* a */ && charCode <= 122 /* z */) || (charCode >= 65 /* A */ && charCode <= 90 /* Z */);
+const isVolumeCharacter = (charCode) => (charCode >= 97 /* a */ && charCode <= 122 /* z */) ||
+    (charCode >= 65 /* A */ && charCode <= 90 /* Z */);
 const getFileUrlVolumeSeparatorEnd = (url, start) => {
     const ch0 = url.charCodeAt(start);
     if (ch0 === 58 /* colon */)
@@ -568,8 +583,8 @@ class ScreenshotLocalConnector extends ScreenshotConnector {
                 screenshots: [],
             };
         }
-        results.currentBuild.screenshots.forEach(currentScreenshot => {
-            const masterHasScreenshot = results.masterBuild.screenshots.some(masterScreenshot => {
+        results.currentBuild.screenshots.forEach((currentScreenshot) => {
+            const masterHasScreenshot = results.masterBuild.screenshots.some((masterScreenshot) => {
                 return currentScreenshot.id === masterScreenshot.id;
             });
             if (!masterHasScreenshot) {

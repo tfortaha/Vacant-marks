@@ -17,40 +17,6 @@
 </ion-header>
 
 <ion-content>
-  <!-- <div id="popular_hotels" *ngIf=" allData.length > 0">
-    <ion-card class="ion-no-padding" *ngFor="let item of data">
-      <ion-list lines="none" class="ion-no-padding">
-        <ion-item class="ion-no-padding">
-
-          <ion-thumbnail slot="start"  (click)="onItemClickFunc(item.Id,item.Name)">
-            <img class="packages_thumbnail" style="vertical-align: middle;" [src]="item.EncodeLogo">
-          </ion-thumbnail>
-
-          <ion-label class="ion-text-wrap" (click)="onItemClickFunc(item.Id,item.Name)">
-            <h4 class="name">{{item.Name}}</h4>
-            <ion-text color="medium">
-              <ion-icon color="medium" name="location"></ion-icon>
-              {{item.Address}}<br>
-              Max Capacity: {{item.MaxCapacity}}<br>
-              Min Capacity: {{item.MinCapacity}}<br>
-              Area(yards): {{item.Yards}}<br>
-            </ion-text>
-            <br>
-            <p class="ion-padding-top">
-              <ion-icon name="person"></ion-icon>
-              <ion-icon name="briefcase"></ion-icon>
-              <ion-icon name="logo-slack"></ion-icon>
-              <ion-icon name="copy"></ion-icon>
-            </p>
-          </ion-label>
-          <ion-card (click)="onDetailsClick(item.Id,item.Name)">
-            Book Now
-          </ion-card>
-        </ion-item>
-      </ion-list>
-    </ion-card>
-  </div> -->
-
   <div *ngIf=" allData.length > 0">
     <ion-card *ngFor="let item of data; let k=index">
       <ion-fab vertical="top" horizontal="start">
@@ -59,7 +25,7 @@
         </ion-button>
       </ion-fab>
   
-      <img [src]="item.img">
+      <img [src]="item.EncodeLogo">
       <ion-list lines="none">
         <ion-item>
           <ion-label class="ion-text-wrap"  (click)="onItemClickFunc(item.VenueId,item.Name)">
@@ -67,9 +33,9 @@
             <h4 class="name">{{item.Name}}</h4>
   
             <ion-text style="font-size: 12px;" color="medium"> 
-              Max Capacity: {{item.MaxCapacity}} <br>
-                Min Capacity: {{item.MinCapacity}} <br>
-                Available slot: {{item.slots[0].SlotStartEnd}}<br>
+              Max Capacity: {{item.MaxCapacity}} Persons. <br>
+                Min Capacity: {{item.MinCapacity}} Persons. <br>
+                <!-- Available slot: {{item.slots[0].SlotStartEnd}}<br> -->
                 Date: {{item.slots[0].Date}} <br>
             </ion-text>
           </ion-label>

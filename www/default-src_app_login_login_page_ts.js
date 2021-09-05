@@ -71,16 +71,15 @@ let LoginPage = class LoginPage {
             });
             this.loading.present();
             if (this.validateInputs()) {
-                debugger;
                 // this.authService.login(this.postData);
                 this.httpService.getUserDetail('api/userlogin/VerifyLogin', this.postData).subscribe((res) => {
                     if (res) {
                         console.log(res);
                         this.storage.set("userdetails", res).then(response => {
                             console.log(response);
-                            this.close();
-                            this.getData();
                             this.loading.dismiss();
+                            let result = res.result;
+                            this.modalCtrl.dismiss(`${result.EmailID}\\ ${result.FirstName}\\ ${result.LastName}\\ ${result.UserName}`);
                         });
                     }
                     else {
@@ -101,14 +100,6 @@ let LoginPage = class LoginPage {
     }
     onEnter() {
         this.loginAction();
-    }
-    close() {
-        this.modalCtrl.dismiss();
-    }
-    getData() {
-        this.storage.get("userdetails").then((res) => {
-            console.log(res);
-        });
     }
 };
 LoginPage.ctorParameters = () => [
