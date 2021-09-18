@@ -88,6 +88,7 @@ export class RegistrationPage implements OnInit {
   }
 
   async signUp(){
+    if(this.validateInputs()){
     this.loading = await this.loadingController.create({
       //message: this.translate.instant('pleasewait'),
         cssClass: 'custom-loading',
@@ -97,7 +98,7 @@ export class RegistrationPage implements OnInit {
     });
     this.loading.present();
 
-    if(this.validateInputs()){
+   
       debugger;
       this.httpService.getUserDetail('api/Customer/Customer', this.postData).subscribe((res: any) => {
         if (res) {

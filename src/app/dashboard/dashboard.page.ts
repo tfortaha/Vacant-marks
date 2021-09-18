@@ -77,6 +77,7 @@ export class DashboardPage implements OnInit {
 
 
   async getVenue(){
+    debugger;
     this.loading = await this.loadingController.create({
       //message: this.translate.instant('pleasewait'),
       cssClass: 'custom-loading',

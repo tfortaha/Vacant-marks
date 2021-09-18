@@ -73,6 +73,7 @@ export class SearchVenuebyDateNamePage implements OnInit {
     let params = new HttpParams();
     params = params.set("Date",this.postData.Date);
     params = params.set("VenueId",this.postData.destinationId);
+    debugger;
     this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
       this.data = this.allData = res;
       debugger;

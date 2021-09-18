@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button color="light" >
-        <!-- <ion-icon name="arrow-back"></ion-icon> -->
-      </ion-back-button>
+      <ion-button color="light" href="">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>Searched Venue</ion-title>
   </ion-toolbar>
@@ -17,51 +17,16 @@
 </ion-header>
 
 <ion-content>
-  <!-- <div id="popular_hotels" *ngIf=" allData.length > 0">
-    <ion-card class="ion-no-padding" *ngFor="let item of data; let k=index">
-      <ion-list lines="none" class="ion-no-padding">
-        <ion-item class="ion-no-padding">
-
-          <ion-thumbnail slot="start"  (click)="onItemClickFunc(item.Id,item.Name)">
-            <img class="packages_thumbnail" style="vertical-align: middle;" [src]="item.EncodeLogo">
-          </ion-thumbnail>
-
-          <ion-label class="ion-text-wrap" (click)="onItemClickFunc(item.Id,item.Name)">
-            <h3 class="name">{{item.Name}}</h3>
-            <ion-text style="word-wrap: normal;" color="medium">
-              <ion-icon color="medium" name="location"></ion-icon> 
-              {{item.Address}} <br>
-              Max Capacity: {{item.MaxCapacity}} <br>
-              Min Capacity: {{item.MinCapacity}} <br>
-              Available slot: {{item.slots[k].SlotStartEnd}}<br>
-              Date: {{item.slots[k].Date}} <br>
-              Status: {{item.slots[k].Status}}
-            </ion-text>
-            <br>
-            <p class="ion-padding-top">
-              <ion-icon name="person"></ion-icon>
-              <ion-icon name="briefcase"></ion-icon>
-              <ion-icon name="logo-slack"></ion-icon>
-              <ion-icon name="copy"></ion-icon>
-            </p>
-          </ion-label>
-          <ion-card (click)="BookNowClick()">
-            Book Now
-          </ion-card>
-        </ion-item>
-      </ion-list>
-    </ion-card>
-  </div> -->
-
-  <div *ngIf=" allData.length > 0">
+  <div *ngIf=" allData.length > 0 && IsAvailable == true">
     <ion-card *ngFor="let item of data; let k=index">
       <ion-fab vertical="top" horizontal="start">
-        <ion-button size="small" color="warning" *ngIf="IsAvailable == true">
+        <img src="assets/DetailsImgs/available.png" style="height: auto;" />
+        <!-- <ion-button size="small" color="warning" *ngIf="IsAvailable == true">
           Available
         </ion-button>
         <ion-button size="small" color="warning" *ngIf="IsAvailable == false">
           Confirmed
-        </ion-button>
+        </ion-button> -->
       </ion-fab>
   
       <img [src]="item.EncodeLogo" />
@@ -86,5 +51,11 @@
       </ion-list>
     </ion-card>
   </div>
- 
+  
+  <div *ngIf=" allData.length == 0 || IsAvailable == false" style="text-align: center;">
+    <div style="margin-top: 20px;">
+      <img src="assets/DetailsImgs/fictorial.png" style="height: auto; width: auto;" />
+    </div>
+    <h3>No Slots Available</h3>
+  </div>
 </ion-content>

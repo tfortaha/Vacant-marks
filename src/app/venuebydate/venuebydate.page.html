@@ -20,9 +20,12 @@
   <div *ngIf=" allData.length > 0">
     <ion-card *ngFor="let item of data; let k=index">
       <ion-fab vertical="top" horizontal="start">
-        <ion-button size="small" color="warning">
+         <div *ngFor="let slotItem of item.slots" class="ion-no-padding">
+          <img src="assets/DetailsImgs/available.png" style="height: auto;" *ngIf="slotItem.Status === 'Available'"/>
+         </div>
+        <!-- <ion-button size="small" color="warning" >
           {{item.slots[0].Status}}
-        </ion-button>
+        </ion-button> -->
       </ion-fab>
   
       <img [src]="item.EncodeLogo">
