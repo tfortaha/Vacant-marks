@@ -7,6 +7,7 @@ import { HttpParams } from '@angular/common/http';
 import { HttpService } from '../services/http.service';
 import { VenuesPage } from '../venues/venues.page';
 import { DataService } from '../services/data.service';
+import { VenuedetailsPage } from '../venuedetails/venuedetails.page';
 
 @Component({
   selector: 'app-dashboard',
@@ -81,7 +82,7 @@ export class DashboardPage implements OnInit {
       cssClass: 'custom-loading',
       translucent: true,
       showBackdrop: true,
-      spinner:'bubbles'
+      spinner:'circular'
     });
     await this.loading.present();
     if(this.dataservice.DashboardData.length == 0){
@@ -141,16 +142,26 @@ export class DashboardPage implements OnInit {
     }
   }
 
-  onDetailsClick(Id,Name){
-    console.log("Details Click: ",Id,Name);
+  // onDetailsClick(Id,Name){
+  //   debugger;
+  //   console.log("Details Click: ",Id,Name);
+  //   let  VenueId = Id;
+  //   console.log(VenueId);
+  //     let navigationExtras: NavigationExtras = {
+  //       queryParams: {
+  //         special: JSON.stringify(VenueId)
+  //       }
+  //     };
+  //     this.router.navigate(['/venuedetails'],navigationExtras);
+  // }
+
+  async onDetailsClick(Id,Name) {
     let  VenueId = Id;
-    console.log(VenueId);
-      let navigationExtras: NavigationExtras = {
-        queryParams: {
-          special: JSON.stringify(VenueId)
-        }
-      };
-      this.router.navigate(['/venuedetails'],navigationExtras);
+    const modal = await this.modalController.create({
+      component: VenuedetailsPage,
+      componentProps:{VenueId}
+    });
+    return await modal.present();
   }
   
   async alerrt(){

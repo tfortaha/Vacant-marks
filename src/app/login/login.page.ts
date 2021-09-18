@@ -3,7 +3,8 @@ import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { Storage } from '@ionic/storage';
-import { LoadingController, ModalController } from '@ionic/angular';
+import { LoadingController, ModalController, ToastController } from '@ionic/angular';
+import { RegistrationPage } from '../registration/registration.page';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,8 @@ import { LoadingController, ModalController } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
   postData = {
-    username: '',
-    password: ''
+    Password: '',
+    EmailID:''
   };
   loading: HTMLIonLoadingElement;
   public isUsernameValid = true;
@@ -27,6 +28,7 @@ export class LoginPage implements OnInit {
     private httpService: HttpService,
     private storage: Storage,
     private modalCtrl: ModalController,
+    private toastController : ToastController,
     private router: Router
   ) {
     
@@ -42,10 +44,10 @@ export class LoginPage implements OnInit {
   validateInputs(): boolean {
     this.isUsernameValid = true;
     this.isPasswordValid = true;
-    if (!this.postData.username || this.postData.username.length === 0) {
+    if (!this.postData.EmailID || this.postData.EmailID.length === 0) {
       this.isUsernameValid = false;
     }
-    if (!this.postData.password || this.postData.password.length === 0) {
+    if (!this.postData.Password || this.postData.Password.length === 0) {
       this.isPasswordValid = false;
     }
     return this.isPasswordValid && this.isUsernameValid;
@@ -57,23 +59,26 @@ export class LoginPage implements OnInit {
         cssClass: 'custom-loading',
         translucent: true,
         showBackdrop: true,
-        spinner:'bubbles'
+        spinner:'circular'
     });
     this.loading.present();
 
     if (this.validateInputs()) {
+      debugger;
       // this.authService.login(this.postData);
-      this.httpService.getUserDetail('api/userlogin/VerifyLogin', this.postData).subscribe((res: any) => {
-        if (res) {
+      // this.httpService.getUserDetail('api/userlogin/VerifyLogin', this.postData).subscribe((res: any) => {
+      this.httpService.getUserDetail('api/Customer/VerifyCustomer', this.postData).subscribe((res: any) => {
+        if (res.msg == "succuss") {
           console.log(res);
           this.storage.set("userdetails",res).then(response=>{
             console.log(response)
             this.loading.dismiss();
             let result = res.result;
-            this.modalCtrl.dismiss(`${result.EmailID}\\ ${result.FirstName}\\ ${result.LastName}\\ ${result.UserName}`);
+            this.modalCtrl.dismiss(`${result.EmailID}\\ ${result.FirstName}\\ ${result.LastName}\\ ${result.UserName} \\ ${result.Mobile1} \\ ${result.CNIC} \\ ${result.Address}`);
           })
         }
         else{
+          this.toast("Inccorrect Email or Password.");
           this.loading.dismiss();
         }
       },err =>{
@@ -85,17 +90,37 @@ export class LoginPage implements OnInit {
     }
   }
 
+  async toast(msg){
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async SignUp(){
+    let modal = await this.modalCtrl.create({
+      component: RegistrationPage,
+      cssClass: 'registration-modal'
+    });
+    modal.onWillDismiss().then((data) => {
+      
+      console.log(data);
+    });
+    modal.present();
+  }
+
   clear(){
-    this.postData.username="";
-    this.postData.password="";
+    this.postData.EmailID="";
+    this.postData.Password="";
   }
 
   onEnter(){
     this.loginAction();
   }
 
-  // close() {
-  //   this.modalCtrl.dismiss();
-  // }
+  close() {
+    this.modalCtrl.dismiss();
+  }
 
 }

@@ -38,21 +38,22 @@ export class HttpService {
 
   }
 
-  // post(serviceName: string, data: any) {
-  //   const headers = new HttpHeaders();
-  //   const options = { headers: headers, withCredintials: false };
-  //   const url = environment.apiUrl + serviceName;
-
-  //   return this.http.post(url, JSON.stringify(data), options);
-  // }
-  post(serviceName: string ,params:HttpParams,token:any, data: any) {
+  post(serviceName: string, data: any) {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
-    headers = headers.append("Authorization", "bearer " + token);
-    const url = environment.apiUrl + serviceName;
     const options = { headers: headers, withCredintials: false };
-    return this.http.post(url,JSON.stringify(data),{headers:headers,params:params});
+    const url = environment.apiUrl + serviceName;
+
+    return this.http.post(url, JSON.stringify(data), options);
   }
+  // post(serviceName: string ,params:HttpParams,token:any, data: any) {
+  //   let headers = new HttpHeaders();
+  //   headers = headers.append("Content-Type", "application/json");
+  //   headers = headers.append("Authorization", "bearer " + token);
+  //   const url = environment.apiUrl + serviceName;
+  //   const options = { headers: headers, withCredintials: false };
+  //   return this.http.post(url,JSON.stringify(data),{headers:headers,params:params});
+  // }
   getUserDetail(serviceName: string, data: any) {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");

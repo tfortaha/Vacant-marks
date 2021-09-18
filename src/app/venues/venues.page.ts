@@ -41,7 +41,7 @@ export class VenuesPage implements OnInit {
       cssClass: 'custom-loading',
       translucent: true,
       showBackdrop: true,
-      spinner:'bubbles'
+      spinner:'circular'
     });
     await this.loading.present();
 

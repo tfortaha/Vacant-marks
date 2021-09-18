@@ -26,31 +26,13 @@
             <div class="ion-padding">
               <h2>Sign In</h2>
             </div>
-
-            <!-- <ion-row>
-              <ion-col>
-                <ion-button expand="full" color="primary" shape="round">
-                  Facebook
-                </ion-button>
-              </ion-col>
-              <ion-col>
-                <ion-button expand="full" color="secondary" shape="round">
-                  Twitter
-                </ion-button>
-              </ion-col>
-            </ion-row>
-
-            <div class="ion-padding ion-text-center">
-              <ion-text color="medium">or log in with email</ion-text>
-            </div> -->
-
-            <!-- Email -->
+            
             <div class="ion-padding-bottom ion-padding-top">
               <ion-item lines="none">
                 <ion-label>
                   <ion-icon name="mail"></ion-icon>
                 </ion-label>
-                <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="postData.username"></ion-input>
+                <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="postData.EmailID"></ion-input>
                 <ion-icon *ngIf="!isUsernameValid" class="icon-small" name="remove-circle"></ion-icon>
               </ion-item>
             </div>
@@ -60,7 +42,7 @@
               <ion-label>
                 <ion-icon name="eye"></ion-icon>
               </ion-label>
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="postData.password">
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="postData.Password">
               </ion-input>
               <ion-icon *ngIf="!isPasswordValid" class="icon-small" name="remove-circle"></ion-icon>
             </ion-item>
@@ -85,10 +67,10 @@
 
   <!-- SignUp Buttons -->
   <div id="section2">
-    <ion-button fill="clear" color="dark">
+    <ion-button fill="clear" color="dark" (click)="SignUp()">
       <ion-text color="medium">Don't Have An Account? 
         <ion-text>
-          <b>Sign In</b>
+          <b>Sign Up</b>
         </ion-text>
       </ion-text>
     </ion-button>

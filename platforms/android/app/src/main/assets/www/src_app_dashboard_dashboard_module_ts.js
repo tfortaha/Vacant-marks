@@ -3017,18 +3017,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DashboardPage": () => (/* binding */ DashboardPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_dashboard_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./dashboard.page.html */ 2836);
 /* harmony import */ var _dashboard_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dashboard.page.scss */ 8043);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 9895);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ 476);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/storage */ 8605);
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! date-fns */ 2707);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/storage */ 8605);
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! date-fns */ 2707);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ 1841);
 /* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/http.service */ 6858);
 /* harmony import */ var _venues_venues_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../venues/venues.page */ 6547);
 /* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/data.service */ 2468);
+/* harmony import */ var _venuedetails_venuedetails_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../venuedetails/venuedetails.page */ 7924);
+
 
 
 
@@ -3050,7 +3052,7 @@ let DashboardPage = class DashboardPage {
         this.loadingController = loadingController;
         this.dataservice = dataservice;
         this.modalController = modalController;
-        this.minDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_5__.default)(new Date(), "yyyy-MM-dd");
+        this.minDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_6__.default)(new Date(), "yyyy-MM-dd");
         this.maxDate = new Date().getFullYear() + 2;
         this.postData = {
             destination: '',
@@ -3089,17 +3091,17 @@ let DashboardPage = class DashboardPage {
         return this.isDestinationValid && this.isDateValid;
     }
     getVenue() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
             this.loading = yield this.loadingController.create({
                 //message: this.translate.instant('pleasewait'),
                 cssClass: 'custom-loading',
                 translucent: true,
                 showBackdrop: true,
-                spinner: 'bubbles'
+                spinner: 'circular'
             });
             yield this.loading.present();
             if (this.dataservice.DashboardData.length == 0) {
-                let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpParams();
+                let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HttpParams();
                 this.httpService.get("api/Venue/Venues", params).subscribe((res) => {
                     this.venues = res;
                     this.loading.dismiss();
@@ -3116,7 +3118,7 @@ let DashboardPage = class DashboardPage {
         });
     }
     getDestination() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
             const modal = yield this.modalController.create({
                 component: _venues_venues_page__WEBPACK_IMPORTED_MODULE_3__.VenuesPage
             });
@@ -3135,7 +3137,7 @@ let DashboardPage = class DashboardPage {
     search() {
         if (this.validateInputs()) {
             if (this.postData.Date != "" && this.postData.destinationId == "") {
-                let SearchDate = [{ "Date": (0,date_fns__WEBPACK_IMPORTED_MODULE_5__.default)(new Date(this.postData.Date), "yyyy-MM-dd") }];
+                let SearchDate = [{ "Date": (0,date_fns__WEBPACK_IMPORTED_MODULE_6__.default)(new Date(this.postData.Date), "yyyy-MM-dd") }];
                 let navigationExtras = {
                     queryParams: {
                         special: JSON.stringify(SearchDate)
@@ -3144,7 +3146,7 @@ let DashboardPage = class DashboardPage {
                 this.router.navigate(['/venuebydate'], navigationExtras);
             }
             else if (this.postData.Date != "" && this.postData.destinationId != "") {
-                let SearchByDateName = [{ "Date": (0,date_fns__WEBPACK_IMPORTED_MODULE_5__.default)(new Date(this.postData.Date), "yyyy-MM-dd"), "destinationId": this.postData.destinationId }];
+                let SearchByDateName = [{ "Date": (0,date_fns__WEBPACK_IMPORTED_MODULE_6__.default)(new Date(this.postData.Date), "yyyy-MM-dd"), "destinationId": this.postData.destinationId }];
                 let navigationExtras = {
                     queryParams: {
                         special: JSON.stringify(SearchByDateName)
@@ -3154,19 +3156,30 @@ let DashboardPage = class DashboardPage {
             }
         }
     }
+    // onDetailsClick(Id,Name){
+    //   debugger;
+    //   console.log("Details Click: ",Id,Name);
+    //   let  VenueId = Id;
+    //   console.log(VenueId);
+    //     let navigationExtras: NavigationExtras = {
+    //       queryParams: {
+    //         special: JSON.stringify(VenueId)
+    //       }
+    //     };
+    //     this.router.navigate(['/venuedetails'],navigationExtras);
+    // }
     onDetailsClick(Id, Name) {
-        console.log("Details Click: ", Id, Name);
-        let VenueId = Id;
-        console.log(VenueId);
-        let navigationExtras = {
-            queryParams: {
-                special: JSON.stringify(VenueId)
-            }
-        };
-        this.router.navigate(['/venuedetails'], navigationExtras);
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+            let VenueId = Id;
+            const modal = yield this.modalController.create({
+                component: _venuedetails_venuedetails_page__WEBPACK_IMPORTED_MODULE_5__.VenuedetailsPage,
+                componentProps: { VenueId }
+            });
+            return yield modal.present();
+        });
     }
     alerrt() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
             this.alert = yield this.alertController.create({
                 message: 'Some thing went wrong. Please try again later.',
                 buttons: ['ok']
@@ -3176,16 +3189,16 @@ let DashboardPage = class DashboardPage {
     }
 };
 DashboardPage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.Router },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__.Router },
     { type: _services_http_service__WEBPACK_IMPORTED_MODULE_2__.HttpService },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_9__.Storage },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.AlertController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.LoadingController },
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_10__.Storage },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.AlertController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.LoadingController },
     { type: _services_data_service__WEBPACK_IMPORTED_MODULE_4__.DataService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.ModalController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.ModalController }
 ];
-DashboardPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
+DashboardPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_12__.Component)({
         selector: 'app-dashboard',
         template: _raw_loader_dashboard_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_dashboard_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -3222,7 +3235,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\" class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-label>Vacant Marks</ion-label>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <ion-card> -->\n    <ion-grid class=\"section1\">\n      <ion-row>\n        <ion-col>\n          <ion-item (click)=\"getDestination()\">\n            <ion-label position=\"stacked\">Search Venue</ion-label>\n            <ion-input type=\"text\" placeholder=\"Please Select\" name=\"destination\"\n             [(ngModel)]=\"postData.destination\"></ion-input>\n               <ion-icon style=\"padding-top: 20px;\" slot=\"end\" *ngIf=\"!isDestinationValid\" name=\"remove-circle\"></ion-icon>\n          </ion-item>\n          <div *ngIf=\"isValid == true\">\n            <!-- <span class=\"error ion-padding\" style=\"color:red;\" *ngIf=\"errorControl.Date.value =='' && errorControl.destination.value ==''\">\n              Venue is required.\n            </span> -->\n        </div>\n        </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col>\n            <ion-item lines=\"none\">\n              <ion-label position=\"stacked\">Select Date</ion-label>\n              <ion-datetime displayFormat=\"DD MMMM YYYY\" placeholder=\"Please Select\" min=\"{{minDate}}\" max={{maxDate}} \n              [(ngModel)]=\"postData.Date\">\n              </ion-datetime>\n              <!-- <div *ngIf=\"isValid == true\"> -->\n                <ion-icon style=\"padding-top: 20px;\" slot=\"end\" *ngIf=\"!isDateValid\" name=\"remove-circle\"></ion-icon>\n                <!-- <span class=\"error ion-padding\" style=\"color:red;\" *ngIf=\"errorControl.Date.value =='' \">\n                  Date is required.\n                </span> -->\n              <!-- </div> -->\n              </ion-item>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col>\n            <ion-button expand=\"block\" (click)=\"search()\">Search</ion-button>\n          </ion-col>\n        </ion-row>\n    </ion-grid>\n  <!-- </ion-card> -->\n\n  <!-- <div id=\"popular_hotels\">\n    <ion-list-header>\n      <ion-label color=\"dark\">Popular Venues</ion-label>\n      <ion-button >See All</ion-button>\n    </ion-list-header>\n\n    <div *ngIf=\"venues.length > 0\">\n      <ion-card *ngFor=\"let item of venues let k=index\">\n        <ion-list lines=\"none\">\n          <ion-item class=\"ion-no-padding border\" (click)=\"onDetailsClick(item.Id, item.Name)\">\n\n            <ion-thumbnail slot=\"start\">\n              <img class=\"packages_thumbnail\" style=\"vertical-align: middle;\" [src]=\"item.EncodeLogo\">\n            </ion-thumbnail>\n\n            <ion-label class=\"ion-text-wrap\">\n              <h2> {{item.Name}}</h2>\n              <ion-text color=\"medium\">\n                <ion-icon name=\"location\"></ion-icon>{{item.Address}}\n              </ion-text>\n              <br>\n              <p class=\"ion-padding-top\">\n                <ion-icon name=\"person\"></ion-icon> {{item.totalPerson}} &nbsp;\n                <ion-icon name=\"briefcase\"></ion-icon> {{item.suitcases}} &nbsp;\n                <ion-icon name=\"logo-slack\"></ion-icon> {{item.seats}} &nbsp;\n                <ion-icon name=\"copy\"></ion-icon> {{item.doorCount}}\n              </p>\n            </ion-label>\n             <ion-card>\n              Book Now\n            </ion-card>\n          </ion-item>\n        </ion-list>\n      </ion-card>\n    </div>\n  </div> -->\n\n  <div style=\"padding-top: 10px;\" id=\"popular_hotels\">\n    <ion-list-header>\n      <ion-label color=\"dark\">Popular Venues</ion-label>\n      <!-- <ion-button color=\"color1\" >See All</ion-button> -->\n    </ion-list-header>\n\n    <ion-slides class=\"ion-padding slider\" #slider [options]=\"slideOpts\">\n      <ion-slide *ngFor=\"let item of venues\"\n              [ngStyle]=\"{'background' : 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + item.EncodeLogo + ')'}\">\n\n        <div class=\"section_1\">\n          <!-- <ion-button size=\"small\" color=\"color1\">{{item.rating}}</ion-button> -->\n        </div>\n\n        <div class=\"section_2\">\n          <h2>{{item.Name}}</h2>\n        </div>\n      </ion-slide>\n    </ion-slides>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\" class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-label>Vacant Marks</ion-label>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <ion-grid class=\"section1\">\n      <ion-row>\n        <ion-col>\n          <ion-item>\n            <ion-label position=\"stacked\">Search Venue</ion-label>\n            <ion-input type=\"text\" (click)=\"getDestination()\" placeholder=\"Please Select\" name=\"destination\" clear-input\n             [(ngModel)]=\"postData.destination\"></ion-input>\n               <ion-icon style=\"padding-top: 20px;\" slot=\"end\" *ngIf=\"!isDestinationValid\" name=\"remove-circle\"></ion-icon>\n          </ion-item>\n        </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col>\n            <ion-item lines=\"none\">\n              <ion-label position=\"stacked\">Select Date</ion-label>\n              <ion-datetime displayFormat=\"DD MMMM YYYY\" placeholder=\"Please Select\" min=\"{{minDate}}\" max={{maxDate}} \n              [(ngModel)]=\"postData.Date\">\n              </ion-datetime>\n                <ion-icon style=\"padding-top: 20px;\" slot=\"end\" *ngIf=\"!isDateValid\" name=\"remove-circle\"></ion-icon>\n              </ion-item>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col>\n            <ion-button expand=\"block\" (click)=\"search()\">Search</ion-button>\n          </ion-col>\n        </ion-row>\n    </ion-grid>\n  \n  <div style=\"padding-top: 10px;\" id=\"popular_hotels\">\n    <ion-list-header>\n      <ion-label color=\"dark\">Popular Venues</ion-label>\n    </ion-list-header>\n\n    <ion-slides class=\"ion-padding slider\" #slider [options]=\"slideOpts\">\n      <ion-slide *ngFor=\"let item of venues\" (click)=\"onDetailsClick(item.Id)\"\n              [ngStyle]=\"{'background' : 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + item.EncodeLogo + ')'}\">\n\n        <div class=\"section_1\">\n        </div>\n\n        <div class=\"section_2\">\n          <h2>{{item.Name}}</h2>\n        </div>\n      </ion-slide>\n    </ion-slides>\n  </div>\n</ion-content>\n");
 
 /***/ })
 

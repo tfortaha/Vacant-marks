@@ -1,7 +1,7 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="close()">
+      <ion-button (click)="close()" style="border-radius: 25px; background: #2f3b69;">
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -29,7 +29,7 @@
       <p style="text-align: center;"> <ion-icon name="location" slot="start" color="medium"></ion-icon> {{data.Address}}</p>
     </ion-card>
     
-    <ion-grid class="ion-no-padding">
+    <!-- <ion-grid class="ion-no-padding">
       <ion-row>
         <ion-col>
           <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
@@ -95,8 +95,29 @@
           </ion-card>
         </ion-col>
       </ion-row>
-    </ion-grid>
-  </div>
+    </ion-grid> -->
+
+    <div class="ion-padding">
+      <ion-list-header class="ion-no-padding">
+        <ion-label color="medium">Description</ion-label>
+      </ion-list-header>
+
+      <ion-text color="medium">
+        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
+        The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,
+        content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum
+         as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+      </ion-text>
+<div></div>
+      <ion-label style="padding:10px">
+        <p><strong>Address:</strong> {{data.Address}}</p>
+        <p><strong>Website:</strong> <a href="#"> WWW.vacantmarks.com</a></p>
+        <p><strong>Phone:</strong> <i>{{data.Phone}}</i></p>
+      </ion-label>
+  
+      <img class="location-img ion-no-padding" src="assets/DetailsImgs/navigation-map.png">
+    </div>
+    </div>
 
   <div style="padding-right: 15px;">
     <ion-button expand="block" expand="full" shape="round" fill="outline">

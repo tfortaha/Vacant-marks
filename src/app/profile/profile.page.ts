@@ -36,7 +36,7 @@ export class ProfilePage implements OnInit {
     modal.onWillDismiss().then((data) => {
       let SelectedVenue = data.data;
       let splitVenue = SelectedVenue.split("\\");
-      let Sdata = {"EmailID":splitVenue[0], "FirstName":splitVenue[1], "LastName":splitVenue[2],"UserName":splitVenue[3],}
+      let Sdata = {"EmailID":splitVenue[0], "FirstName":splitVenue[1], "LastName":splitVenue[2],"UserName":splitVenue[3], "Mobile1":splitVenue[4], "CNIC":splitVenue[5], "Address":splitVenue[6],}
       this.data = Sdata;
       console.log(data);
     });

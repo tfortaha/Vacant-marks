@@ -1,6 +1,6 @@
 {
   "name": "vacant-marks",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Muhammad Taha",
   "homepage": "",
   "scripts": {
@@ -31,7 +31,9 @@
     "@ionic/angular": "^5.5.2",
     "@ionic/storage": "^2.3.1",
     "date-fns": "^2.23.0",
+    "ngx-mask": "^12.0.0",
     "rxjs": "~6.6.0",
+    "text-mask-core": "^5.1.2",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },

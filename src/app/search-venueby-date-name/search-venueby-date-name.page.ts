@@ -1,10 +1,11 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController, ModalController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { HttpService } from '../services/http.service';
 import { Storage } from '@ionic/storage';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { VenuedetailsPage } from '../venuedetails/venuedetails.page';
+import { BookingPage } from '../booking/booking.page';
 
 @Component({
   selector: 'app-search-venueby-date-name',
@@ -27,6 +28,8 @@ export class SearchVenuebyDateNamePage implements OnInit {
     destinationId:''
   }
   count = 0;
+  slots:any=[];
+  availableSlots:any=[];
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +38,8 @@ export class SearchVenuebyDateNamePage implements OnInit {
     public alertController: AlertController,
     private loadingController: LoadingController,
     private storage: Storage,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private toastcontroller:ToastController
   ) { }
 
   async ngOnInit() {
@@ -62,7 +66,7 @@ export class SearchVenuebyDateNamePage implements OnInit {
       cssClass: 'custom-loading',
       translucent: true,
       showBackdrop: true,
-      spinner:'bubbles'
+      spinner:'circular'
     });
     await this.loading.present();
 
@@ -108,8 +112,71 @@ export class SearchVenuebyDateNamePage implements OnInit {
     return await modal.present();
   }
 
-  BookNowClick(){
-    console.log("Book now Click: ");
+  async BookNowClick(Id,Date){
+    debugger;
+    this.loading = await this.loadingController.create({
+      //message: this.translate.instant('pleasewait'),
+      cssClass: 'custom-loading',
+      translucent: true,
+      showBackdrop: true,
+      spinner:'circular'
+    });
+    await this.loading.present();
+
+    this.storage.get("userdetails").then((response)=>{
+      if(response != null){
+        let params = new HttpParams();
+        this.availableSlots=[];
+        params = params.set("Date",Date);
+        params = params.set("VenueId",Id);
+        this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
+          console.log(res);
+          this.slots = res;
+          let i =0;
+          debugger;
+          for(let item of this.slots){
+            for(let slot of item.slots){
+              if(slot.Status == "Available"){
+                this.availableSlots.push(slot);
+                // this.availableSlots[i] = slot;
+                // i++;
+              }
+            }
+            }
+            this.Booking(Id,Date);
+          console.log(this.availableSlots);
+          this.loading.dismiss();
+        },err=>{
+          this.loading.dismiss();
+        })
+      }
+      else{
+        this.toast("Please Sign In for Booking!");
+        this.loading.dismiss();
+      }
+    })
+    // console.log("Book Now Click: ",Id);
+  }
+
+  async Booking(Id,Date){
+    debugger;
+    let list:any = [];
+    list.push({"Id":Id, "Date":Date, "Slots":this.availableSlots})
+    let modal = await this.modalController.create({
+      component: BookingPage,
+      cssClass: 'booking-modal',
+      componentProps:[list]
+    });
+    
+    modal.present();
+  }
+
+  async toast(msg){
+    const toast = await this.toastcontroller.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
   }
 
 

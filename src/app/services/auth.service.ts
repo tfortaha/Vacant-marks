@@ -38,7 +38,7 @@ export class AuthService {
         cssClass: 'custom-loading',
         translucent: true,
         showBackdrop: true,
-        spinner:'bubbles'
+        spinner:'circular'
     });
     this.loading.present();
     this.httpService.getUserDetail('api/userlogin/VerifyLogin', postData).subscribe((res: any) => {

@@ -92,16 +92,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "SearchVenuebyDateNamePage": () => (/* binding */ SearchVenuebyDateNamePage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_search_venueby_date_name_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./search-venueby-date-name.page.html */ 2224);
 /* harmony import */ var _search_venueby_date_name_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search-venueby-date-name.page.scss */ 596);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 1841);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 476);
 /* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/http.service */ 6858);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/storage */ 8605);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/storage */ 8605);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 9895);
 /* harmony import */ var _venuedetails_venuedetails_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../venuedetails/venuedetails.page */ 7924);
+/* harmony import */ var _booking_booking_page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../booking/booking.page */ 710);
+
 
 
 
@@ -113,7 +115,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let SearchVenuebyDateNamePage = class SearchVenuebyDateNamePage {
-    constructor(route, router, httpService, alertController, loadingController, storage, modalController) {
+    constructor(route, router, httpService, alertController, loadingController, storage, modalController, toastcontroller) {
         this.route = route;
         this.router = router;
         this.httpService = httpService;
@@ -121,6 +123,7 @@ let SearchVenuebyDateNamePage = class SearchVenuebyDateNamePage {
         this.loadingController = loadingController;
         this.storage = storage;
         this.modalController = modalController;
+        this.toastcontroller = toastcontroller;
         this.allData = [];
         this.data = [];
         this.slotsData = [];
@@ -131,9 +134,11 @@ let SearchVenuebyDateNamePage = class SearchVenuebyDateNamePage {
             destinationId: ''
         };
         this.count = 0;
+        this.slots = [];
+        this.availableSlots = [];
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             this.route.queryParams.subscribe(paramse => {
                 if (paramse && paramse.special) {
                     this.data = JSON.parse(paramse.special);
@@ -149,16 +154,16 @@ let SearchVenuebyDateNamePage = class SearchVenuebyDateNamePage {
         });
     }
     getVenue() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             this.loading = yield this.loadingController.create({
                 //message: this.translate.instant('pleasewait'),
                 cssClass: 'custom-loading',
                 translucent: true,
                 showBackdrop: true,
-                spinner: 'bubbles'
+                spinner: 'circular'
             });
             yield this.loading.present();
-            let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__.HttpParams();
+            let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpParams();
             params = params.set("Date", this.postData.Date);
             params = params.set("VenueId", this.postData.destinationId);
             this.httpService.get("api/Venue/Venues", params).subscribe((res) => {
@@ -192,7 +197,7 @@ let SearchVenuebyDateNamePage = class SearchVenuebyDateNamePage {
         this.data = this.allData;
     }
     onItemClickFunc(Id, Name) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             let VenueId = Id;
             const modal = yield this.modalController.create({
                 component: _venuedetails_venuedetails_page__WEBPACK_IMPORTED_MODULE_3__.VenuedetailsPage,
@@ -201,11 +206,76 @@ let SearchVenuebyDateNamePage = class SearchVenuebyDateNamePage {
             return yield modal.present();
         });
     }
-    BookNowClick() {
-        console.log("Book now Click: ");
+    BookNowClick(Id, Date) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            debugger;
+            this.loading = yield this.loadingController.create({
+                //message: this.translate.instant('pleasewait'),
+                cssClass: 'custom-loading',
+                translucent: true,
+                showBackdrop: true,
+                spinner: 'circular'
+            });
+            yield this.loading.present();
+            this.storage.get("userdetails").then((response) => {
+                if (response != null) {
+                    let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpParams();
+                    this.availableSlots = [];
+                    params = params.set("Date", Date);
+                    params = params.set("VenueId", Id);
+                    this.httpService.get("api/Venue/Venues", params).subscribe((res) => {
+                        console.log(res);
+                        this.slots = res;
+                        let i = 0;
+                        debugger;
+                        for (let item of this.slots) {
+                            for (let slot of item.slots) {
+                                if (slot.Status == "Available") {
+                                    this.availableSlots.push(slot);
+                                    // this.availableSlots[i] = slot;
+                                    // i++;
+                                }
+                            }
+                        }
+                        this.Booking(Id, Date);
+                        console.log(this.availableSlots);
+                        this.loading.dismiss();
+                    }, err => {
+                        this.loading.dismiss();
+                    });
+                }
+                else {
+                    this.toast("Please Sign In for Booking!");
+                    this.loading.dismiss();
+                }
+            });
+            // console.log("Book Now Click: ",Id);
+        });
+    }
+    Booking(Id, Date) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            debugger;
+            let list = [];
+            list.push({ "Id": Id, "Date": Date, "Slots": this.availableSlots });
+            let modal = yield this.modalController.create({
+                component: _booking_booking_page__WEBPACK_IMPORTED_MODULE_4__.BookingPage,
+                cssClass: 'booking-modal',
+                componentProps: [list]
+            });
+            modal.present();
+        });
+    }
+    toast(msg) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            const toast = yield this.toastcontroller.create({
+                message: msg,
+                duration: 2000
+            });
+            toast.present();
+        });
     }
     alerrt() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             this.alert = yield this.alertController.create({
                 message: 'Some thing went wrong. Please try again later.',
                 buttons: ['ok']
@@ -215,16 +285,17 @@ let SearchVenuebyDateNamePage = class SearchVenuebyDateNamePage {
     }
 };
 SearchVenuebyDateNamePage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.ActivatedRoute },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.ActivatedRoute },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router },
     { type: _services_http_service__WEBPACK_IMPORTED_MODULE_2__.HttpService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.AlertController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.LoadingController },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_8__.Storage },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.ModalController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.AlertController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.LoadingController },
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_9__.Storage },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.ModalController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.ToastController }
 ];
-SearchVenuebyDateNamePage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
+SearchVenuebyDateNamePage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
         selector: 'app-search-venueby-date-name',
         template: _raw_loader_search_venueby_date_name_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_search_venueby_date_name_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -261,7 +332,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button color=\"light\" >\n        <!-- <ion-icon name=\"arrow-back\"></ion-icon> -->\n      </ion-back-button>\n    </ion-buttons>\n    <ion-title>Searched Venue</ion-title>\n  </ion-toolbar>\n  <ion-toolbar >\n    <ion-searchbar placeholder=\"Search\"\n                   animated\n                   (ionChange)=\"search( $event )\"\n                   (ionCancel)=\"clear($event)\">\n    </ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <div id=\"popular_hotels\" *ngIf=\" allData.length > 0\">\n    <ion-card class=\"ion-no-padding\" *ngFor=\"let item of data; let k=index\">\n      <ion-list lines=\"none\" class=\"ion-no-padding\">\n        <ion-item class=\"ion-no-padding\">\n\n          <ion-thumbnail slot=\"start\"  (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <img class=\"packages_thumbnail\" style=\"vertical-align: middle;\" [src]=\"item.EncodeLogo\">\n          </ion-thumbnail>\n\n          <ion-label class=\"ion-text-wrap\" (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <h3 class=\"name\">{{item.Name}}</h3>\n            <ion-text style=\"word-wrap: normal;\" color=\"medium\">\n              <ion-icon color=\"medium\" name=\"location\"></ion-icon> \n              {{item.Address}} <br>\n              Max Capacity: {{item.MaxCapacity}} <br>\n              Min Capacity: {{item.MinCapacity}} <br>\n              Available slot: {{item.slots[k].SlotStartEnd}}<br>\n              Date: {{item.slots[k].Date}} <br>\n              Status: {{item.slots[k].Status}}\n            </ion-text>\n            <br>\n            <p class=\"ion-padding-top\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-icon name=\"briefcase\"></ion-icon>\n              <ion-icon name=\"logo-slack\"></ion-icon>\n              <ion-icon name=\"copy\"></ion-icon>\n            </p>\n          </ion-label>\n          <ion-card (click)=\"BookNowClick()\">\n            Book Now\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div> -->\n\n  <div *ngIf=\" allData.length > 0\">\n    <ion-card *ngFor=\"let item of data; let k=index\">\n      <ion-fab vertical=\"top\" horizontal=\"start\">\n        <ion-button size=\"small\" color=\"warning\" *ngIf=\"IsAvailable == true\">\n          Available\n        </ion-button>\n        <ion-button size=\"small\" color=\"warning\" *ngIf=\"IsAvailable == false\">\n          Confirmed\n        </ion-button>\n      </ion-fab>\n  \n      <img [src]=\"item.EncodeLogo\" />\n      <ion-list lines=\"none\">\n        <ion-item>\n          <ion-label class=\"ion-text-wrap\"  (click)=\"onItemClickFunc(item.VenueId,item.Name)\">\n  \n            <h4 class=\"name\">{{item.Name}}</h4>\n  \n            <ion-text style=\"font-size: 12px;\" color=\"medium\"> \n              Max Capacity: {{item.MaxCapacity}} <br>\n                Min Capacity: {{item.MinCapacity}} <br>\n                <!-- Available slot: {{item.slots[k].SlotStartEnd}}<br> -->\n                Date: {{item.slots[k].Date}} <br>\n            </ion-text>\n          </ion-label>\n  \n          <ion-card (click)=\"BookNowClick()\">\n            Book Now\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div>\n \n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button color=\"light\" >\n        <!-- <ion-icon name=\"arrow-back\"></ion-icon> -->\n      </ion-back-button>\n    </ion-buttons>\n    <ion-title>Searched Venue</ion-title>\n  </ion-toolbar>\n  <ion-toolbar >\n    <ion-searchbar placeholder=\"Search\"\n                   animated\n                   (ionChange)=\"search( $event )\"\n                   (ionCancel)=\"clear($event)\">\n    </ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <div id=\"popular_hotels\" *ngIf=\" allData.length > 0\">\n    <ion-card class=\"ion-no-padding\" *ngFor=\"let item of data; let k=index\">\n      <ion-list lines=\"none\" class=\"ion-no-padding\">\n        <ion-item class=\"ion-no-padding\">\n\n          <ion-thumbnail slot=\"start\"  (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <img class=\"packages_thumbnail\" style=\"vertical-align: middle;\" [src]=\"item.EncodeLogo\">\n          </ion-thumbnail>\n\n          <ion-label class=\"ion-text-wrap\" (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <h3 class=\"name\">{{item.Name}}</h3>\n            <ion-text style=\"word-wrap: normal;\" color=\"medium\">\n              <ion-icon color=\"medium\" name=\"location\"></ion-icon> \n              {{item.Address}} <br>\n              Max Capacity: {{item.MaxCapacity}} <br>\n              Min Capacity: {{item.MinCapacity}} <br>\n              Available slot: {{item.slots[k].SlotStartEnd}}<br>\n              Date: {{item.slots[k].Date}} <br>\n              Status: {{item.slots[k].Status}}\n            </ion-text>\n            <br>\n            <p class=\"ion-padding-top\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-icon name=\"briefcase\"></ion-icon>\n              <ion-icon name=\"logo-slack\"></ion-icon>\n              <ion-icon name=\"copy\"></ion-icon>\n            </p>\n          </ion-label>\n          <ion-card (click)=\"BookNowClick()\">\n            Book Now\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div> -->\n\n  <div *ngIf=\" allData.length > 0\">\n    <ion-card *ngFor=\"let item of data; let k=index\">\n      <ion-fab vertical=\"top\" horizontal=\"start\">\n        <ion-button size=\"small\" color=\"warning\" *ngIf=\"IsAvailable == true\">\n          Available\n        </ion-button>\n        <ion-button size=\"small\" color=\"warning\" *ngIf=\"IsAvailable == false\">\n          Confirmed\n        </ion-button>\n      </ion-fab>\n  \n      <img [src]=\"item.EncodeLogo\" />\n      <ion-list lines=\"none\">\n        <ion-item>\n          <ion-label class=\"ion-text-wrap\"  (click)=\"onItemClickFunc(item.VenueId,item.Name)\">\n  \n            <h4 class=\"name\">{{item.Name}}</h4>\n  \n            <ion-text style=\"font-size: 12px;\" color=\"medium\"> \n              Max Capacity: {{item.MaxCapacity}} <br>\n                Min Capacity: {{item.MinCapacity}} <br>\n                <!-- Available slot: {{item.slots[k].SlotStartEnd}}<br> -->\n                Date: {{item.slots[k].Date}} <br>\n            </ion-text>\n          </ion-label>\n  \n          <ion-card (click)=\"BookNowClick(item.VenueId,item.slots[0].Date)\">\n            Book Now\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div>\n \n</ion-content>\n");
 
 /***/ })
 

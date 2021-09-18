@@ -8,21 +8,15 @@
 </ion-header>
 
 <ion-content>
-  <!-- <ion-card> -->
     <ion-grid class="section1">
       <ion-row>
         <ion-col>
-          <ion-item (click)="getDestination()">
+          <ion-item>
             <ion-label position="stacked">Search Venue</ion-label>
-            <ion-input type="text" placeholder="Please Select" name="destination"
+            <ion-input type="text" (click)="getDestination()" placeholder="Please Select" name="destination" clear-input
              [(ngModel)]="postData.destination"></ion-input>
                <ion-icon style="padding-top: 20px;" slot="end" *ngIf="!isDestinationValid" name="remove-circle"></ion-icon>
           </ion-item>
-          <div *ngIf="isValid == true">
-            <!-- <span class="error ion-padding" style="color:red;" *ngIf="errorControl.Date.value =='' && errorControl.destination.value ==''">
-              Venue is required.
-            </span> -->
-        </div>
         </ion-col>
         </ion-row>
 
@@ -33,12 +27,7 @@
               <ion-datetime displayFormat="DD MMMM YYYY" placeholder="Please Select" min="{{minDate}}" max={{maxDate}} 
               [(ngModel)]="postData.Date">
               </ion-datetime>
-              <!-- <div *ngIf="isValid == true"> -->
                 <ion-icon style="padding-top: 20px;" slot="end" *ngIf="!isDateValid" name="remove-circle"></ion-icon>
-                <!-- <span class="error ion-padding" style="color:red;" *ngIf="errorControl.Date.value =='' ">
-                  Date is required.
-                </span> -->
-              <!-- </div> -->
               </ion-item>
           </ion-col>
         </ion-row>
@@ -49,57 +38,17 @@
           </ion-col>
         </ion-row>
     </ion-grid>
-  <!-- </ion-card> -->
-
-  <!-- <div id="popular_hotels">
-    <ion-list-header>
-      <ion-label color="dark">Popular Venues</ion-label>
-      <ion-button >See All</ion-button>
-    </ion-list-header>
-
-    <div *ngIf="venues.length > 0">
-      <ion-card *ngFor="let item of venues let k=index">
-        <ion-list lines="none">
-          <ion-item class="ion-no-padding border" (click)="onDetailsClick(item.Id, item.Name)">
-
-            <ion-thumbnail slot="start">
-              <img class="packages_thumbnail" style="vertical-align: middle;" [src]="item.EncodeLogo">
-            </ion-thumbnail>
-
-            <ion-label class="ion-text-wrap">
-              <h2> {{item.Name}}</h2>
-              <ion-text color="medium">
-                <ion-icon name="location"></ion-icon>{{item.Address}}
-              </ion-text>
-              <br>
-              <p class="ion-padding-top">
-                <ion-icon name="person"></ion-icon> {{item.totalPerson}} &nbsp;
-                <ion-icon name="briefcase"></ion-icon> {{item.suitcases}} &nbsp;
-                <ion-icon name="logo-slack"></ion-icon> {{item.seats}} &nbsp;
-                <ion-icon name="copy"></ion-icon> {{item.doorCount}}
-              </p>
-            </ion-label>
-             <ion-card>
-              Book Now
-            </ion-card>
-          </ion-item>
-        </ion-list>
-      </ion-card>
-    </div>
-  </div> -->
-
+  
   <div style="padding-top: 10px;" id="popular_hotels">
     <ion-list-header>
       <ion-label color="dark">Popular Venues</ion-label>
-      <!-- <ion-button color="color1" >See All</ion-button> -->
     </ion-list-header>
 
     <ion-slides class="ion-padding slider" #slider [options]="slideOpts">
-      <ion-slide *ngFor="let item of venues"
+      <ion-slide *ngFor="let item of venues" (click)="onDetailsClick(item.Id)"
               [ngStyle]="{'background' : 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + item.EncodeLogo + ')'}">
 
         <div class="section_1">
-          <!-- <ion-button size="small" color="color1">{{item.rating}}</ion-button> -->
         </div>
 
         <div class="section_2">

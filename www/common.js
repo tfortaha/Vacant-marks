@@ -438,6 +438,177 @@ const openURL = async (url, ev, direction, animation) => {
 
 
 
+/***/ }),
+
+/***/ 710:
+/*!*****************************************!*\
+  !*** ./src/app/booking/booking.page.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "BookingPage": () => (/* binding */ BookingPage)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _raw_loader_booking_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./booking.page.html */ 5616);
+/* harmony import */ var _booking_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./booking.page.scss */ 9596);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/data.service */ 2468);
+/* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/http.service */ 6858);
+
+
+
+
+
+
+
+
+let BookingPage = class BookingPage {
+    constructor(modalCtrl, loadingController, navParams, httpService, ds, toastcontroller, router) {
+        this.modalCtrl = modalCtrl;
+        this.loadingController = loadingController;
+        this.navParams = navParams;
+        this.httpService = httpService;
+        this.ds = ds;
+        this.toastcontroller = toastcontroller;
+        this.router = router;
+        this.slot = [];
+        this.Slots = [];
+        this.postData = {
+            title: '',
+            SlotId: '',
+            BookingDate: '',
+            Status: 1,
+            Guest: '',
+            CustomerId: ''
+        };
+        this.isGuestValid = true;
+        this.isSlotValid = true;
+        this.istitleValid = true;
+        this.isDateValid = true;
+        debugger;
+        this.slot = this.navParams.data[0];
+        this.Slots = this.slot[0].Slots;
+        if (this.Slots.length == 0) {
+            this.Slots.push({ "Id": "", "SlotStartEnd": "No Slots Available." });
+        }
+        this.postData.BookingDate = this.slot[0].Date;
+        console.log(this.slot, this.Slots);
+    }
+    ngOnInit() {
+    }
+    validateInputs() {
+        debugger;
+        this.isGuestValid = true;
+        this.isSlotValid = true;
+        this.istitleValid = true;
+        this.isDateValid = true;
+        if (!this.postData.Guest || this.postData.Guest.length === 0 || this.postData.Guest <= '0') {
+            this.isGuestValid = false;
+        }
+        if (!this.postData.SlotId || this.postData.SlotId.length === 0) {
+            this.isSlotValid = false;
+        }
+        if (!this.postData.title || this.postData.title.length === 0) {
+            this.istitleValid = false;
+        }
+        if (!this.postData.BookingDate || this.postData.BookingDate.length === 0) {
+            this.isDateValid = false;
+        }
+        return this.isGuestValid && this.isDateValid && this.isSlotValid && this.istitleValid;
+    }
+    BookVenue() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            if (this.validateInputs()) {
+                this.loading = yield this.loadingController.create({
+                    //message: this.translate.instant('pleasewait'),
+                    cssClass: 'custom-loading',
+                    translucent: true,
+                    showBackdrop: true,
+                    spinner: 'circular'
+                });
+                yield this.loading.present();
+                debugger;
+                this.postData.CustomerId = this.ds.userdetails.result.Id;
+                this.httpService.post('api/Booking', this.postData).subscribe((res) => {
+                    debugger;
+                    console.log(res);
+                    this.toast("Venue Booked!!");
+                    this.close();
+                    this.router.navigate(['']);
+                    this.loading.dismiss();
+                }, err => {
+                    this.loading.dismiss();
+                });
+            }
+        });
+    }
+    toast(msg) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            const toast = yield this.toastcontroller.create({
+                message: msg,
+                duration: 2000
+            });
+            toast.present();
+        });
+    }
+    close() {
+        this.modalCtrl.dismiss();
+    }
+};
+BookingPage.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.LoadingController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.NavParams },
+    { type: _services_http_service__WEBPACK_IMPORTED_MODULE_3__.HttpService },
+    { type: _services_data_service__WEBPACK_IMPORTED_MODULE_2__.DataService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ToastController },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router }
+];
+BookingPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+        selector: 'app-booking',
+        template: _raw_loader_booking_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
+        styles: [_booking_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
+    })
+], BookingPage);
+
+
+
+/***/ }),
+
+/***/ 9596:
+/*!*******************************************!*\
+  !*** ./src/app/booking/booking.page.scss ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJib29raW5nLnBhZ2Uuc2NzcyJ9 */");
+
+/***/ }),
+
+/***/ 5616:
+/*!*********************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/booking/booking.page.html ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>booking</ion-title>\n    <ion-button color=\"clear\" size=\"small\" slot=\"end\" (click)=\"close()\">\n      <ion-icon name=\"close\"></ion-icon>\n    </ion-button>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"12\">\n        <ion-item class=\"ion-no-padding transparent input\">\n          <ion-label class=\"text-size-xs\" position=\"floating\" >Title </ion-label>\n          <ion-select interface=\"popover\" class=\"custom-options\" (ionChange)=\"validateInputs()\" [(ngModel)]=\"postData.title\">\n            <ion-select-option value=\"Wedding Ceremony\">Wedding Ceremony</ion-select-option>\n            <ion-select-option value=\"Valima Reception\">Valima Reception</ion-select-option>\n            <ion-select-option value=\"Birthday\">Birthday</ion-select-option>\n        </ion-select>\n        <ion-icon style=\"padding-top: 20px;\" class=\"icon-small\" slot=\"end\" *ngIf=\"!istitleValid\" name=\"remove-circle\"></ion-icon>\n      </ion-item>\n    </ion-col>\n  </ion-row>\n\n    <ion-row>\n        <ion-col size=\"12\">\n          <ion-item class=\"ion-no-padding transparent input\">\n            <ion-label class=\"text-size-xs\" position=\"floating\" >Available Slots </ion-label>\n            <ion-select interface=\"popover\" class=\"custom-options\" (ionChange)=\"validateInputs()\" [(ngModel)]=\"postData.SlotId\">\n              <ion-select-option *ngFor=\"let item of Slots\"  value=\"{{item.Id}}\">{{item.SlotStartEnd}}</ion-select-option>\n          </ion-select>\n          <ion-icon style=\"padding-top: 20px;\" class=\"icon-small\" slot=\"end\" *ngIf=\"!isSlotValid\" name=\"remove-circle\"></ion-icon>\n        </ion-item>\n      </ion-col>\n    </ion-row>\n\n  <ion-row>\n    <ion-col size=\"12\">\n      <ion-item class=\"ion-no-padding transparent input\">\n        <ion-label class=\"text-size-xs\" position=\"floating\" >Total Guest </ion-label>\n        <ion-input class=\"custom-options\" [(ngModel)]=\"postData.Guest\" (ionChange)=\"validateInputs()\"></ion-input>\n        <ion-icon style=\"padding-top: 20px;\" class=\"icon-small\" slot=\"end\" *ngIf=\"!isGuestValid\" name=\"remove-circle\"></ion-icon>\n    </ion-item>\n  </ion-col>\n</ion-row>\n\n<ion-row>\n  <ion-col size=\"12\">\n    <ion-item class=\"ion-no-padding transparent input\">\n      <ion-label class=\"text-size-xs\" position=\"floating\" >Booking Date </ion-label>\n      <ion-input class=\"custom-options\" [(ngModel)]=\"postData.BookingDate\" (ionChange)=\"validateInputs()\" readonly></ion-input>\n      <ion-icon style=\"padding-top: 20px;\" class=\"icon-small\" slot=\"end\" *ngIf=\"!isDateValid\" name=\"remove-circle\"></ion-icon>\n  </ion-item>\n</ion-col>\n</ion-row>\n\n<ion-row>\n  <ion-col size=\"12\">\n      <ion-button expand=\"block\" expand=\"full\" shape=\"round\" fill=\"outline\" (click)=\"BookVenue()\"> Book Venue </ion-button>\n</ion-col>\n</ion-row>\n\n  </ion-grid>\n</ion-content>\n");
+
 /***/ })
 
 }]);

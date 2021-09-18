@@ -57,7 +57,7 @@ let VenuesPage = class VenuesPage {
                 cssClass: 'custom-loading',
                 translucent: true,
                 showBackdrop: true,
-                spinner: 'bubbles'
+                spinner: 'circular'
             });
             yield this.loading.present();
             if (this.dataservice.VenuePageData.length == 0) {

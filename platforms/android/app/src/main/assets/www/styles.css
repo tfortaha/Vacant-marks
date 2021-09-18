@@ -6420,5 +6420,13 @@ sub {
 .ion-align-items-baseline {
   align-items: baseline !important;
 }
+.custom-loading {
+  --background: none;
+  --spinner-color:#2f3b69;
+}
+.custom-loading .loading-wrapper {
+  box-shadow: none !important;
+  --webkit-box-shadow: !important;
+}
 
 /*# sourceMappingURL=styles.css.map*/

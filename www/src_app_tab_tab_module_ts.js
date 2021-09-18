@@ -30,7 +30,7 @@ const routes = [
             },
             {
                 path: 'profile',
-                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_login_login_page_ts"), __webpack_require__.e("src_app_profile_profile_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../profile/profile.module */ 4523)).then(m => m.ProfilePageModule)
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_registration_registration_page_ts"), __webpack_require__.e("default-src_app_login_login_page_ts"), __webpack_require__.e("src_app_profile_profile_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../profile/profile.module */ 4523)).then(m => m.ProfilePageModule)
             },
             {
                 path: '',

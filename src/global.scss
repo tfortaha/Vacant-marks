@@ -24,3 +24,13 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.custom-loading {
+    --background: none;
+    --spinner-color:#2f3b69;
+   
+    .loading-wrapper{
+        box-shadow: none !important;
+        --webkit-box-shadow: !important;
+    }
+  }

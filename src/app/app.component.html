@@ -24,10 +24,10 @@
             <h1 class="text-size-xs">Dashboard</h1>
           </ion-item>
  
-          <ion-item [routerDirection]="'root'" [routerLink]="['/venues']">
+          <!-- <ion-item [routerDirection]="'root'" [routerLink]="['/venues']">
             <i slot="start" class="icon icon-home icon-small"></i>
             <h1 class="text-size-xs">Venues</h1>
-          </ion-item>
+          </ion-item> -->
    <!--       
           <ion-item [routerDirection]="'root'" [routerLink]="['/customer']">
             <i slot="start" class="icon icon-account icon-small" style="color: #49b36f;"></i>
@@ -47,12 +47,14 @@
       </ion-list>
     </ion-content>
     
-    <ion-footer class="ion-no-border">
-      <div class="ion-padding">
-        <ion-button shape="round" color="color1" expand="full" (click)="signout()">
-          Signout</ion-button>
-      </div>
-    </ion-footer> 
+    <div *ngIf="show">
+      <ion-footer class="ion-no-border">
+        <div class="ion-padding" >
+          <ion-button shape="round" color="color1" expand="full" (click)="signout()">
+            Signout</ion-button>
+        </div>
+      </ion-footer> 
+    </div>
   </ion-menu>
   <ion-router-outlet id="mainContent"></ion-router-outlet>
 </ion-app>

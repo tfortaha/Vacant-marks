@@ -7,6 +7,7 @@ export class DataService {
 
   DashboardData :any = [];
   VenuePageData :any = [];
+  userdetails :any = [];
   constructor() { }
 
 
