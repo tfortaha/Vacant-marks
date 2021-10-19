@@ -21,6 +21,7 @@ export class SearchVenuebyDateNamePage implements OnInit {
 
   loading: HTMLIonLoadingElement;
   alert:HTMLIonAlertElement;
+  skeletonList:any=[];
 
   postData={
     Date:'',
@@ -40,7 +41,10 @@ export class SearchVenuebyDateNamePage implements OnInit {
     private storage: Storage,
     private modalController: ModalController,
     private toastcontroller:ToastController
-  ) { }
+  ) 
+  {
+    this.skeletonList.length = 3;
+  }
 
   async ngOnInit() {
 
@@ -53,7 +57,7 @@ export class SearchVenuebyDateNamePage implements OnInit {
           this.postData.destinationId=this.data[0].destinationId;
           this.count+=1;
         }
-        // this.loading.dismiss();
+        // ;
       }
     });
     this.getVenue();
@@ -68,29 +72,35 @@ export class SearchVenuebyDateNamePage implements OnInit {
       showBackdrop: true,
       spinner:'circular'
     });
-    await this.loading.present();
-
+   // await this.loading.present();
+    debugger;
     let params = new HttpParams();
     params = params.set("Date",this.postData.Date);
     params = params.set("VenueId",this.postData.destinationId);
-    debugger;
+    ;
     this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
       this.data = this.allData = res;
-      debugger;
-      for(let item of this.allData){
-        this.slotsData = item.slots;
-      }
-      // this.slotsData = this.allData.slots;
-      for(let item of this.slotsData){
-        if(item.Status == "Available"){
-          this.IsAvailable = true;
+      if(this.data.length > 0 ){
+        for(let i =0; i<this.allData.length; i++){
+         this.data[i].EncodeLogo='https://vacantmarks.com/VenueLogoFolder/'+this.data[i].EncodeLogo;
         }
-        console.log(item.Status);
+        for(let item of this.allData){
+          this.slotsData = item.slots;
+        }
+        // this.slotsData = this.allData.slots;
+        for(let item of this.slotsData){
+          if(item.Status == "Available"){
+            this.IsAvailable = true;
+          }
+          console.log(item.Status);
+        }
       }
-      this.loading.dismiss();
+      else{
+        this.toast('No Slot Available');
+      }
     },err =>{
       this.alerrt();
-      this.loading.dismiss();
+      ;
     })
   }
   search(event){
@@ -114,7 +124,6 @@ export class SearchVenuebyDateNamePage implements OnInit {
   }
 
   async BookNowClick(Id,Date){
-    debugger;
     this.loading = await this.loadingController.create({
       //message: this.translate.instant('pleasewait'),
       cssClass: 'custom-loading',
@@ -122,7 +131,7 @@ export class SearchVenuebyDateNamePage implements OnInit {
       showBackdrop: true,
       spinner:'circular'
     });
-    await this.loading.present();
+   // await this.loading.present();
 
     this.storage.get("userdetails").then((response)=>{
       if(response != null){
@@ -134,7 +143,7 @@ export class SearchVenuebyDateNamePage implements OnInit {
           console.log(res);
           this.slots = res;
           let i =0;
-          debugger;
+          ;
           for(let item of this.slots){
             for(let slot of item.slots){
               if(slot.Status == "Available"){
@@ -146,21 +155,20 @@ export class SearchVenuebyDateNamePage implements OnInit {
             }
             this.Booking(Id,Date);
           console.log(this.availableSlots);
-          this.loading.dismiss();
+          ;
         },err=>{
-          this.loading.dismiss();
+          this.alerrt();
         })
       }
       else{
         this.toast("Please Sign In for Booking!");
-        this.loading.dismiss();
+        ;
       }
     })
     // console.log("Book Now Click: ",Id);
   }
 
   async Booking(Id,Date){
-    debugger;
     let list:any = [];
     list.push({"Id":Id, "Date":Date, "Slots":this.availableSlots})
     let modal = await this.modalController.create({
@@ -168,7 +176,6 @@ export class SearchVenuebyDateNamePage implements OnInit {
       cssClass: 'booking-modal',
       componentProps:[list]
     });
-    
     modal.present();
   }
 

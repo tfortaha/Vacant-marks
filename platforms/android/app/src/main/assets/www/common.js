@@ -490,7 +490,7 @@ let BookingPage = class BookingPage {
         this.isSlotValid = true;
         this.istitleValid = true;
         this.isDateValid = true;
-        debugger;
+        ;
         this.slot = this.navParams.data[0];
         this.Slots = this.slot[0].Slots;
         if (this.Slots.length == 0) {
@@ -502,7 +502,7 @@ let BookingPage = class BookingPage {
     ngOnInit() {
     }
     validateInputs() {
-        debugger;
+        ;
         this.isGuestValid = true;
         this.isSlotValid = true;
         this.istitleValid = true;
@@ -532,10 +532,10 @@ let BookingPage = class BookingPage {
                     spinner: 'circular'
                 });
                 yield this.loading.present();
-                debugger;
+                ;
                 this.postData.CustomerId = this.ds.userdetails.result.Id;
                 this.httpService.post('api/Booking', this.postData).subscribe((res) => {
-                    debugger;
+                    ;
                     console.log(res);
                     this.toast("Venue Booked!!");
                     this.close();

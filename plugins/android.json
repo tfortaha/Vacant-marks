@@ -7,23 +7,23 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.vacantmarks.io"
-    },
-    "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.vacantmarks.io"
-    },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "com.vacantmarks.io"
     },
-    "cordova-plugin-splashscreen": {
+    "cordova-plugin-ionic-keyboard": {
       "PACKAGE_NAME": "com.vacantmarks.io"
     },
     "cordova-plugin-ionic-webview": {
       "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
       "PACKAGE_NAME": "com.vacantmarks.io"
     },
-    "cordova-plugin-ionic-keyboard": {
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.vacantmarks.io"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.vacantmarks.io"
+    },
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.vacantmarks.io"
     }
   },

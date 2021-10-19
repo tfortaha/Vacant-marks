@@ -8,14 +8,15 @@
 </ion-header>
 
 <ion-content>
-    <ion-grid class="section1">
+    <ion-grid class="section1" style="border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; margin-left: 5px; margin-right: 5px;">
       <ion-row>
         <ion-col>
           <ion-item>
             <ion-label position="stacked">Search Venue</ion-label>
-            <ion-input type="text" (click)="getDestination()" placeholder="Please Select" name="destination" clear-input
+            <ion-input type="text" (click)="getDestination()" placeholder="Please Select" name="destination"
              [(ngModel)]="postData.destination"></ion-input>
-               <ion-icon style="padding-top: 20px;" slot="end" *ngIf="!isDestinationValid" name="remove-circle"></ion-icon>
+             <ion-icon style="padding-top: 20px;" slot="end" *ngIf='postData.destinationId' (click)='clearVenue()' name="close-circle"></ion-icon>  
+             <ion-icon style="padding-top: 20px;" slot="end" *ngIf="!isDestinationValid && !postData.destinationId" name="remove-circle"></ion-icon>
           </ion-item>
         </ion-col>
         </ion-row>
@@ -24,37 +25,48 @@
           <ion-col>
             <ion-item lines="none">
               <ion-label position="stacked">Select Date</ion-label>
-              <ion-datetime displayFormat="DD MMMM YYYY" placeholder="Please Select" min="{{minDate}}" max={{maxDate}} 
-              [(ngModel)]="postData.Date">
-              </ion-datetime>
-                <ion-icon style="padding-top: 20px;" slot="end" *ngIf="!isDateValid" name="remove-circle"></ion-icon>
+                <ion-datetime displayFormat="DD MMMM YYYY" placeholder="Please Select" min="{{minDate}}" max={{maxDate}} 
+                [(ngModel)]="postData.Date" [pickerOptions]="customPickerOption">
+                </ion-datetime>
+                <ion-icon style="padding-top: 20px;" slot="end" *ngIf='postData.Date' (click)='clearDate()' name="close-circle"></ion-icon>  
+                <ion-icon style="padding-top: 20px;" slot="end" *ngIf="!isDateValid && !postData.Date" name="remove-circle"></ion-icon>
               </ion-item>
           </ion-col>
         </ion-row>
 
         <ion-row>
-          <ion-col>
+          <ion-col style="margin-bottom: 10px;">
             <ion-button expand="block" (click)="search()">Search</ion-button>
           </ion-col>
         </ion-row>
     </ion-grid>
   
-  <div style="padding-top: 10px;" id="popular_hotels">
+  <div style="padding-top: 10px;" id="popular_hotels" *ngIf='venues.length > 0'>
     <ion-list-header>
       <ion-label color="dark">Popular Venues</ion-label>
     </ion-list-header>
-
     <ion-slides class="ion-padding slider" #slider [options]="slideOpts">
       <ion-slide *ngFor="let item of venues" (click)="onDetailsClick(item.Id)"
               [ngStyle]="{'background' : 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + item.EncodeLogo + ')'}">
-
-        <div class="section_1">
-        </div>
-
         <div class="section_2">
           <h2>{{item.Name}}</h2>
         </div>
       </ion-slide>
     </ion-slides>
+  </div>
+
+  <div style="padding-top: 10px;" id="popular_hotels" *ngIf='skeletonStop == 0 && venues.length == 0'>
+    <ion-list-header>
+      <ion-skeleton-text animated style="width:40%"></ion-skeleton-text>
+    </ion-list-header>
+     <ion-item lines="none">
+    <ion-slides class="ion-padding slider" #slider [options]="slideOpts">
+      <ion-slide>
+        <ion-thumbnail slot="start" style="width: 100%; height: 100%; border-radius: 25px;">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+      </ion-slide>
+    </ion-slides>
+      </ion-item>
   </div>
 </ion-content>

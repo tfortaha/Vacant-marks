@@ -115,9 +115,11 @@ let ProfilePage = class ProfilePage {
     ngOnInit() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.storage.get("userdetails").then((res) => {
-                this.IsLogin = res;
-                this.data = res.result;
-                console.log(this.data);
+                if (res != null) {
+                    this.IsLogin = res;
+                    this.data = res.result;
+                    console.log(this.data);
+                }
             });
         });
     }
@@ -129,10 +131,12 @@ let ProfilePage = class ProfilePage {
             });
             modal.onWillDismiss().then((data) => {
                 let SelectedVenue = data.data;
-                let splitVenue = SelectedVenue.split("\\");
-                let Sdata = { "EmailID": splitVenue[0], "FirstName": splitVenue[1], "LastName": splitVenue[2], "UserName": splitVenue[3], "Mobile1": splitVenue[4], "CNIC": splitVenue[5], "Address": splitVenue[6], };
-                this.data = Sdata;
-                console.log(data);
+                if (data.data != null) {
+                    let splitVenue = SelectedVenue.split("\\");
+                    let Sdata = { "EmailID": splitVenue[0], "FirstName": splitVenue[1], "LastName": splitVenue[2], "UserName": splitVenue[3], "Mobile1": splitVenue[4], "CNIC": splitVenue[5], "Address": splitVenue[6], };
+                    this.data = Sdata;
+                    console.log(data);
+                }
             });
             modal.present();
         });

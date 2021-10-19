@@ -4288,7 +4288,7 @@ var anInstance = __webpack_require__(/*! ../internals/an-instance */ 6063);
 var isObject = __webpack_require__(/*! ../internals/is-object */ 726);
 var fails = __webpack_require__(/*! ../internals/fails */ 8597);
 var checkCorrectnessOfIteration = __webpack_require__(/*! ../internals/check-correctness-of-iteration */ 6297);
-var setToStringTag = __webpack_require__(/*! ../internals/set-to-string-tag */ 8242);
+var setToStringTag = __webpack_require__(/*! ../internals/set-to-string-tag */ 8288);
 var inheritIfRequired = __webpack_require__(/*! ../internals/inherit-if-required */ 8267);
 
 module.exports = function (CONSTRUCTOR_NAME, wrapper, common) {
@@ -4437,7 +4437,7 @@ module.exports = !fails(function () {
 var IteratorPrototype = __webpack_require__(/*! ../internals/iterators-core */ 2053).IteratorPrototype;
 var create = __webpack_require__(/*! ../internals/object-create */ 8724);
 var createPropertyDescriptor = __webpack_require__(/*! ../internals/create-property-descriptor */ 3203);
-var setToStringTag = __webpack_require__(/*! ../internals/set-to-string-tag */ 8242);
+var setToStringTag = __webpack_require__(/*! ../internals/set-to-string-tag */ 8288);
 var Iterators = __webpack_require__(/*! ../internals/iterators */ 2339);
 
 var returnThis = function () { return this; };
@@ -4503,7 +4503,7 @@ var $ = __webpack_require__(/*! ../internals/export */ 1163);
 var createIteratorConstructor = __webpack_require__(/*! ../internals/create-iterator-constructor */ 7453);
 var getPrototypeOf = __webpack_require__(/*! ../internals/object-get-prototype-of */ 3963);
 var setPrototypeOf = __webpack_require__(/*! ../internals/object-set-prototype-of */ 1464);
-var setToStringTag = __webpack_require__(/*! ../internals/set-to-string-tag */ 8242);
+var setToStringTag = __webpack_require__(/*! ../internals/set-to-string-tag */ 8288);
 var createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ 815);
 var redefine = __webpack_require__(/*! ../internals/redefine */ 7763);
 var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ 4563);
@@ -6034,7 +6034,7 @@ module.exports = function (CONSTRUCTOR_NAME) {
 
 /***/ }),
 
-/***/ 8242:
+/***/ 8288:
 /*!*************************************************************!*\
   !*** ./node_modules/core-js/internals/set-to-string-tag.js ***!
   \*************************************************************/

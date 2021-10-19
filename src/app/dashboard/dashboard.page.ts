@@ -14,6 +14,7 @@ import { VenuedetailsPage } from '../venuedetails/venuedetails.page';
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss']
 })
+
 export class DashboardPage implements OnInit {
 
   minDate = format(new Date(), "yyyy-MM-dd");
@@ -25,6 +26,7 @@ export class DashboardPage implements OnInit {
     destinationId:''
   }
 
+  skeletonStop = 0;
   venues:any=[];
   loading: HTMLIonLoadingElement;
   alert:HTMLIonAlertElement;
@@ -35,12 +37,24 @@ export class DashboardPage implements OnInit {
   // Slider Options
   slideOpts = {
     initialSlide: 0,
-    speed: 200,
-    slidesPerView: 2.2,
-    spaceBetween: 10,
+    speed: 1000,
+    slidesPerView: 1,
+    spaceBetween: 5,
     loop: true,
     effect: 'slide',
   };
+
+  customPickerOption = {
+    buttons: [{
+    text: 'Clear',
+       handler: () => this.postData.Date = ''
+    },
+  {
+    text:'Done',
+    handler:(e) => this.postData.Date = (''+e.year.value+'/'+e.month.value+'/'+e.day.value+'/')
+  }
+]
+  }
 
   constructor(
     private router: Router,
@@ -56,7 +70,7 @@ export class DashboardPage implements OnInit {
   }
 
   ngOnInit() {
-   this.getVenue();
+    this.getVenue();
   }
 
   validateInputs(): boolean {
@@ -77,7 +91,6 @@ export class DashboardPage implements OnInit {
 
 
   async getVenue(){
-    debugger;
     this.loading = await this.loadingController.create({
       //message: this.translate.instant('pleasewait'),
       cssClass: 'custom-loading',
@@ -85,21 +98,29 @@ export class DashboardPage implements OnInit {
       showBackdrop: true,
       spinner:'circular'
     });
-    await this.loading.present();
+   // await this.loading.present();
     if(this.dataservice.DashboardData.length == 0){
       let params = new HttpParams();
       this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
+        debugger;
         this.venues = res;
-        this.loading.dismiss();
+        let a = false;
+        for(let i =0; i<this.venues.length; i++){
+          ;
+          this.venues[i].EncodeLogo='https://vacantmarks.com/VenueLogoFolder/'+this.venues[i].EncodeLogo;
+        }
+        ;
         console.log(res);
       },err =>{
+        
+        this.skeletonStop = 1;
         this.alerrt();
-        this.loading.dismiss();
+        ;
       })
     }
     else{
       this.venues =  this.dataservice.DashboardData;
-      this.loading.dismiss();
+      ;
     }
   }
 
@@ -143,26 +164,24 @@ export class DashboardPage implements OnInit {
     }
   }
 
-  // onDetailsClick(Id,Name){
-  //   debugger;
-  //   console.log("Details Click: ",Id,Name);
-  //   let  VenueId = Id;
-  //   console.log(VenueId);
-  //     let navigationExtras: NavigationExtras = {
-  //       queryParams: {
-  //         special: JSON.stringify(VenueId)
-  //       }
-  //     };
-  //     this.router.navigate(['/venuedetails'],navigationExtras);
-  // }
-
   async onDetailsClick(Id,Name) {
+    debugger;
     let  VenueId = Id;
     const modal = await this.modalController.create({
       component: VenuedetailsPage,
       componentProps:{VenueId}
     });
     return await modal.present();
+  }
+
+  clearVenue(){
+    debugger;
+    this.postData.destination = '';
+    this.postData.destinationId = '';
+  }
+  clearDate(){
+    debugger;
+    this.postData.Date = '';
   }
   
   async alerrt(){

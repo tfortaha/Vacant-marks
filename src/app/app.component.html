@@ -17,6 +17,7 @@
     </ion-header>
     
     <ion-content>
+      <div *ngIf="show">
       <ion-list class="ion-padding" lines="none">
         <ion-menu-toggle auto-hide="false">
           <ion-item [routerDirection]="'root'" [routerLink]="['']">
@@ -24,10 +25,11 @@
             <h1 class="text-size-xs">Dashboard</h1>
           </ion-item>
  
-          <!-- <ion-item [routerDirection]="'root'" [routerLink]="['/venues']">
-            <i slot="start" class="icon icon-home icon-small"></i>
-            <h1 class="text-size-xs">Venues</h1>
-          </ion-item> -->
+          <ion-item [routerDirection]="'root'" [routerLink]="['/bookedvenues']">
+            <ion-icon name="calendar-clear-outline" style="color: #2f3b69;width: 8%; padding-left: 4px; padding-right: 12px; padding-top: 6px;"></ion-icon>
+            <!-- <i slot="start" class="icon icon-home icon-small"></i> -->
+            <h1 class="text-size-xs">Boooked Venues</h1>
+          </ion-item>
    <!--       
           <ion-item [routerDirection]="'root'" [routerLink]="['/customer']">
             <i slot="start" class="icon icon-account icon-small" style="color: #49b36f;"></i>
@@ -45,6 +47,17 @@
 
         </ion-menu-toggle>
       </ion-list>
+      </div>
+      <div *ngIf="!show">
+        <ion-list class="ion-padding" lines="none">
+          <ion-menu-toggle auto-hide="false">
+            <ion-item (click)="login()">
+              <ion-icon color="medium" slot="end" name="log-out"></ion-icon>
+              <ion-label class="ion-padding">Login or Register</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </div>
     </ion-content>
     
     <div *ngIf="show">

@@ -18,8 +18,8 @@ export class VenuesPage implements OnInit {
   data:any = [];
   loading: HTMLIonLoadingElement;
   alert:HTMLIonAlertElement;
-
-
+  skeletonList: any=[];
+  
   constructor(
     private router: Router,
     private httpService: HttpService,
@@ -28,38 +28,47 @@ export class VenuesPage implements OnInit {
     private storage: Storage,
     private dataservice: DataService,
     private modalController: ModalController
-  ) { }
+  ) 
+  {
+    this.skeletonList.length = 4;
+  }
 
   async ngOnInit() {
     this.getVenue();
   }
 
   async getVenue(){
+    ;
 
-    this.loading = await this.loadingController.create({
-      //message: this.translate.instant('pleasewait'),
-      cssClass: 'custom-loading',
-      translucent: true,
-      showBackdrop: true,
-      spinner:'circular'
-    });
-    await this.loading.present();
+    // this.loading = await this.loadingController.create({
+    //   //message: this.translate.instant('pleasewait'),
+    //   cssClass: 'custom-loading',
+    //   translucent: true,
+    //   showBackdrop: true,
+    //   spinner:'circular'
+    // });
+    // await this.loading.present();
 
     if(this.dataservice.VenuePageData.length == 0){
       let params = new HttpParams();
       this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
-        this.data = this.allData = res;
-        this.dataservice.VenuePageData = res;
-        this.loading.dismiss();
+       this.data = this.allData = res;
+       
+        for(let i =0; i<this.allData.length; i++){
+          ;
+         this.data[i].EncodeLogo='https://vacantmarks.com/VenueLogoFolder/'+this.data[i].EncodeLogo;
+        }
+       this.dataservice.VenuePageData = this.data;
+        ;
         console.log(res);
       },err =>{
         this.alerrt();
-        this.loading.dismiss();
+       // ;
       })
     }
     else{
       this.data = this.allData = this.dataservice.VenuePageData;
-      this.loading.dismiss();
+      // ;
     }
   }
   

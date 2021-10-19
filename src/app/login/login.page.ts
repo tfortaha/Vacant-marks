@@ -35,11 +35,9 @@ export class LoginPage implements OnInit {
   }
   ionViewWillEnter() {
     this.clear();
-    
   }
-  ngOnInit() {
-    
-  }
+
+  ngOnInit() {}
 
   validateInputs(): boolean {
     this.isUsernameValid = true;
@@ -55,7 +53,6 @@ export class LoginPage implements OnInit {
   
   async loginAction() {
     this.loading = await this.loadingController.create({
-      //message: this.translate.instant('pleasewait'),
         cssClass: 'custom-loading',
         translucent: true,
         showBackdrop: true,
@@ -64,15 +61,13 @@ export class LoginPage implements OnInit {
     this.loading.present();
 
     if (this.validateInputs()) {
-      debugger;
-      // this.authService.login(this.postData);
-      // this.httpService.getUserDetail('api/userlogin/VerifyLogin', this.postData).subscribe((res: any) => {
       this.httpService.getUserDetail('api/Customer/VerifyCustomer', this.postData).subscribe((res: any) => {
         if (res.msg == "succuss") {
           console.log(res);
           this.storage.set("userdetails",res).then(response=>{
             console.log(response)
             this.loading.dismiss();
+            window.location.reload();
             let result = res.result;
             this.modalCtrl.dismiss(`${result.EmailID}\\ ${result.FirstName}\\ ${result.LastName}\\ ${result.UserName} \\ ${result.Mobile1} \\ ${result.CNIC} \\ ${result.Address}`);
           })

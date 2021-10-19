@@ -5,7 +5,6 @@
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <!-- <ion-title>Venues</ion-title> -->
   </ion-toolbar>
   <ion-progress-bar *ngIf="PbarHide == 0" type="indeterminate" value="0.5"></ion-progress-bar>
 </ion-header>
@@ -17,111 +16,89 @@
     </ion-slide>
   </ion-slides>
 
-  <!-- <ion-slides pager="true" *ngIf="testimageArray.length > 0">
-    <ion-slide *ngFor="let item of testimageArray">
-      <img [src]="item" />
-    </ion-slide>
-  </ion-slides> -->
-
-  <div  class="ion-no-padding">
-    <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
-      <h1 class="hotel-name" style="text-align: center;">{{data.Name}}</h1>
-      <p style="text-align: center;"> <ion-icon name="location" slot="start" color="medium"></ion-icon> {{data.Address}}</p>
-    </ion-card>
-    
-    <!-- <ion-grid class="ion-no-padding">
+    <div class="ion-padding">
+      <h1 class="hotel-name" style="text-align: left; font-size: 30px;">{{data.Name}}</h1>
+      <ion-item-divider class="ion-no-padding"></ion-item-divider>
+      <h3 style="color: gray;">Overview</h3>
+      <p style="color: gray;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+      </p>
+      <ion-item-divider class="ion-no-padding"></ion-item-divider>
+      <h3 style="color: gray;">Services</h3>
+    </div>
+    <ion-grid style="overflow-wrap: normal; font-size: 13px;">
       <ion-row>
-        <ion-col>
-          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
-            <div class="images ion-padding">
-              <ion-img src="assets/DetailsImgs/yards.png"></ion-img>
-            </div>
-            <ion-card-content class="ion-no-padding">
-              <h2 class="text-size-lg">Yards:</h2>
-              <p class="text-size-xs">{{data.Yards}}</p>
-            </ion-card-content>
-          </ion-card>
+        <ion-col size="3" style="text-align: center;">
+          <ion-icon class="icon-medium" name="car-sport-sharp"></ion-icon><br> Free<br> Parking &nbsp;
         </ion-col>
-      
-        <ion-col>
-          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
-            <div class="images ion-padding">
-              <ion-img src="assets/DetailsImgs/star.png"></ion-img>
-            </div>
-            <ion-card-content class="ion-no-padding">
-              <h2 class="text-size-lg">Service: </h2>
-              <p class="text-size-xs">Excellent</p>
-            </ion-card-content>
-          </ion-card>
+        <ion-col size="3" style="text-align: center;">
+          <ion-icon class="icon-medium" name="snow-sharp"></ion-icon><br> Air Conditioned &nbsp;
+        </ion-col>
+        <ion-col size="3" style="text-align: center;">
+          <ion-icon class="icon-medium" name="wine"></ion-icon><br> Mineral Water &nbsp;
+        </ion-col>
+        <ion-col size="3" style="text-align: center;">
+          <ion-icon class="icon-medium" name="sparkles"></ion-icon><br> Premium Quality &nbsp;
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col>
-          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
-            <div class="images ion-padding">
-              <ion-img src="assets/DetailsImgs/slot.png" style="display: inline-table; width: 40%;"></ion-img>
-            </div>
-            <ion-card-content class="ion-no-padding">
-              <h2 class="text-size-lg">Available Slots:</h2>
-              <p class="text-size-xs" *ngFor="let slot of data.slots let in=index">{{in+1}}. {{slot.SlotStartEnd}}</p>
-            </ion-card-content>
-          </ion-card>
+        <ion-col size="4" style="text-align: center;">
+          <ion-icon class="icon-medium" name="expand"></ion-icon> <br> {{data.Yards}} Yards &nbsp;
+        </ion-col>
+        <ion-col size="4" style="text-align: center;">
+          <ion-icon class="icon-medium" name="apps"></ion-icon><br> Buffet System &nbsp;
+        </ion-col>
+        <ion-col size="4" style="text-align: center;">
+          <ion-icon class="icon-medium" name="people"></ion-icon><br> Expert Team &nbsp;
         </ion-col>
       </ion-row>
-
-      <ion-row>
-        <ion-col>
-          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
-            <div class="images ion-padding">
-              <ion-img src="assets/DetailsImgs/minCap.png"></ion-img>
-            </div>
-            <ion-card-content class="ion-no-padding">
-              <h2 class="text-size-lg">Min. Capacity:</h2>
-              <p class="text-size-xs">{{data.MinCapacity}}</p>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-
-        <ion-col>
-          <ion-card class="box-shadow ion-padding ion-no-margin ion-text-center">
-            <div class="images ion-padding">
-              <ion-img src="assets/DetailsImgs/maxCap.png"></ion-img>
-            </div>
-            <ion-card-content class="ion-no-padding">
-              <h2 class="text-size-lg">Max. Capacity:</h2>
-              <p class="text-size-xs">{{data.MaxCapacity}}</p>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid> -->
+    </ion-grid>
 
     <div class="ion-padding">
-      <ion-list-header class="ion-no-padding">
-        <ion-label color="medium">Description</ion-label>
-      </ion-list-header>
+      <ion-item-divider class="ion-no-padding"></ion-item-divider>
+      <h3 style="color: gray;">Contact Information</h3>
+      <ion-grid style="overflow-wrap: normal;">
+        <ion-row style="margin-bottom: 5px;">
+          <ion-col size="2">
+            <ion-icon name="location" class="icon-medium"></ion-icon>
+          </ion-col>
+          <ion-col size="10">
+            {{data.Address}}
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-bottom: 5px;">
+          <ion-col size="2">
+            <ion-icon name="call" class="icon-medium"></ion-icon>
+          </ion-col>
+          <ion-col size="10">
+            {{data.Phone}}
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-bottom: 5px;">
+          <ion-col size="2">
+            <ion-icon class="icon-medium" name="mail-sharp"></ion-icon>
+          </ion-col>
+          <ion-col size="10">
+            {{data.Email}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-      <ion-text color="medium">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
-        The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,
-        content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum
-         as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
-      </ion-text>
-<div></div>
-      <ion-label style="padding:10px">
-        <p><strong>Address:</strong> {{data.Address}}</p>
-        <p><strong>Website:</strong> <a href="#"> WWW.vacantmarks.com</a></p>
-        <p><strong>Phone:</strong> <i>{{data.Phone}}</i></p>
-      </ion-label>
-  
+      <ion-item-divider class="ion-no-padding"></ion-item-divider>
+      <h3 style="color: gray;">Description</h3>
+      <p style="color: gray;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+      </p>
+
+      <ion-item-divider class="ion-no-padding"></ion-item-divider>
+      <h3 style="color: gray;">Location</h3>
       <img class="location-img ion-no-padding" src="assets/DetailsImgs/navigation-map.png">
     </div>
-    </div>
-
-  <!-- <div style="padding-right: 15px;">
-    <ion-button expand="block" expand="full" shape="round" fill="outline">
-      See Availablity
-    </ion-button>
-  </div> -->
 </ion-content>

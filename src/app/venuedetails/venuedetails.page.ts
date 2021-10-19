@@ -5,6 +5,7 @@ import { HttpService } from '../services/http.service';
 import { Storage } from '@ionic/storage';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NavParams} from '@ionic/angular';
+import { isSameDay } from 'date-fns';
 
 @Component({
   selector: 'app-venuedetails',
@@ -38,15 +39,12 @@ export class VenuedetailsPage implements OnInit {
     public modalController: ModalController
   ) 
   {
-    debugger;
     console.log(this.navParams.get('VenueId'));
-
    }
-
-    // Slider Options
+   
     slideOpts = {
       initialSlide: 0,
-      speed: 400,
+      speed: 1000,
       slidesPerView: 3.1,
       spaceBetween: 10,
       loop: true,
@@ -54,36 +52,17 @@ export class VenuedetailsPage implements OnInit {
     };
 
   ngOnInit() {
-    debugger;
     if(this.navParams.get('VenueId') != ""){
-          if(this.count==0)
-        {
-          this.postData.VenueId=this.navParams.get('VenueId');
-          this.count+=1;
-        }
-        this.getVenue();
-        this.imageLoop();
+      if(this.count==0){
+        this.postData.VenueId=this.navParams.get('VenueId');
+        this.count+=1;
+      }
+      this.getVenue();
     }
-
     this.getVenue();
-    this.imageLoop();
-
-    // this.route.queryParams.subscribe(paramse => {
-    //   if (paramse && paramse.special) {
-    //     this.data = JSON.parse(paramse.special);
-    //     if(this.count==0)
-    //     {
-    //       this.postData.VenueId=this.data;
-    //       this.count+=1;
-    //     }
-    //     this.getVenue();
-    //     this.imageLoop();
-    //   }
-    // });
   }
 
   async getVenue(){
-
     this.loading = await this.loadingController.create({
       //message: this.translate.instant('pleasewait'),
       cssClass: 'custom-loading',
@@ -91,19 +70,21 @@ export class VenuedetailsPage implements OnInit {
       showBackdrop: true,
       spinner:'circular'
     });
-   // await this.loading.present();
 
     let params = new HttpParams();
     params = params.set("Id",this.postData.VenueId)
     this.httpService.get("api/venue/venues",params).subscribe((res) => {
       this.data = this.allData = res;
-      // this.imageLoop();
-      this.PbarHide=1;
-     // this.loading.dismiss();
       console.log(res);
+      let images  = this.data.images;
+      for(let i =0; i<images.length; i++){
+        images[i].Image='https://www.vacantmarks.com/VenueImages/'+images[i].VenueId+"/"+images[i].Image;
+      }
+      this.data.images = images;
+      //console.log(images);
+      this.PbarHide=1;
     },err =>{
       this.alerrt();
-     // this.loading.dismiss();
     })
   }
 
@@ -113,15 +94,6 @@ export class VenuedetailsPage implements OnInit {
       buttons:['ok']
     });
     await this.alert.present();
-  }
-
-  imageLoop(){
-    let j=2;
-    for(let i=0; i<8; i++){
-      this.imgUrl = "\\assets\\hotels\\"+j+".jpg";
-      this.testimageArray[i] = this.imgUrl;
-      j++;
-    }
   }
 
   close(){

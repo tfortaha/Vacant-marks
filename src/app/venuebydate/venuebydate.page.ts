@@ -27,7 +27,7 @@ export class VenuebydatePage implements OnInit {
   }
   count = 0;
   imgUrl="";
-
+  skeletonList:any=[];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -37,7 +37,10 @@ export class VenuebydatePage implements OnInit {
     private storage: Storage,
     private toastcontroller:ToastController,
     private modalController: ModalController
-  ) { }
+  ) 
+  {
+    this.skeletonList.length = 4;
+  }
 
   async ngOnInit() {
     this.route.queryParams.subscribe(paramse => {
@@ -48,7 +51,7 @@ export class VenuebydatePage implements OnInit {
           this.postData.Date=this.data[0].Date;
           this.count+=1;
         }
-        // this.loading.dismiss();
+        // ;
       }
     });
     this.getVenue();
@@ -56,36 +59,41 @@ export class VenuebydatePage implements OnInit {
 
   async getVenue(){
 
-    this.loading = await this.loadingController.create({
-      //message: this.translate.instant('pleasewait'),
-      cssClass: 'custom-loading',
-      translucent: true,
-      showBackdrop: true,
-      spinner:'circular'
-    });
-    await this.loading.present();
+    // this.loading = await this.loadingController.create({
+    //   //message: this.translate.instant('pleasewait'),
+    //   cssClass: 'custom-loading',
+    //   translucent: true,
+    //   showBackdrop: true,
+    //   spinner:'circular'
+    // });
+    // await this.loading.present();
 
     let params = new HttpParams();
     params = params.set("Date",this.postData.Date)
     this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
+
       this.data = this.allData = res;
-      this.imageLoop();
-      this.loading.dismiss();
+      for(let i =0; i<this.allData.length; i++){
+        ;
+       this.data[i].EncodeLogo='https://vacantmarks.com/VenueLogoFolder/'+this.data[i].EncodeLogo;
+      }
+     // this.imageLoop();
+     // ;
       console.log(res);
     },err =>{
       this.alerrt();
-      this.loading.dismiss();
+      ;
     })
   }
 
-  imageLoop(){
-    let j=2;
-    for(let i=0; i<this.data.length; i++){
-      this.imgUrl = "\\assets\\hotels\\"+j+".jpg";
-      this.data[i].img = this.imgUrl;
-      j++;
-    }
-  }
+  // imageLoop(){
+  //   let j=2;
+  //   for(let i=0; i<this.data.length; i++){
+  //     this.imgUrl = "\\assets\\hotels\\"+j+".jpg";
+  //     this.data[i].img = this.imgUrl;
+  //     j++;
+  //   }
+  // }
   search(event){
     this.data = this.allData;
     let text = event.target.value;
@@ -118,7 +126,7 @@ export class VenuebydatePage implements OnInit {
       showBackdrop: true,
       spinner:'circular'
     });
-    await this.loading.present();
+   // await this.loading.present();
 
     this.storage.get("userdetails").then((response)=>{
       if(response != null){
@@ -130,7 +138,7 @@ export class VenuebydatePage implements OnInit {
           console.log(res);
           this.slots = res;
           let i =0;
-          debugger;
+          ;
           for(let item of this.slots){
             for(let slot of item.slots){
               if(slot.Status == "Available"){
@@ -142,21 +150,21 @@ export class VenuebydatePage implements OnInit {
             }
             this.Booking(Id,Date);
           console.log(this.availableSlots);
-          this.loading.dismiss();
+          ;
         },err=>{
-          this.loading.dismiss();
+          ;
         })
       }
       else{
         this.toast("Please Sign In for Booking!");
-        this.loading.dismiss();
+        ;
       }
     })
     // console.log("Book Now Click: ",Id);
   }
 
   async Booking(Id,Date){
-    debugger;
+    ;
     let list:any = [];
     list.push({"Id":Id, "Date":Date, "Slots":this.availableSlots})
     let modal = await this.modalController.create({

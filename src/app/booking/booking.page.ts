@@ -37,7 +37,7 @@ export class BookingPage implements OnInit {
     private router : Router
   ) 
   {
-    debugger;
+    ;
     this.slot = this.navParams.data[0];
     this.Slots = this.slot[0].Slots;
     if(this.Slots.length == 0){
@@ -51,7 +51,7 @@ export class BookingPage implements OnInit {
   }
 
   validateInputs(): boolean {
-    debugger;
+    ;
     this.isGuestValid = true;
     this.isSlotValid = true;
     this.istitleValid = true;
@@ -82,10 +82,10 @@ export class BookingPage implements OnInit {
         spinner:'circular'
       });
       await this.loading.present();
-      debugger;
+      ;
       this.postData.CustomerId = this.ds.userdetails.result.Id;
       this.httpService.post('api/Booking', this.postData).subscribe((res: any) => {
-        debugger;
+        ;
         console.log(res);
         this.toast("Venue Booked!!");
         this.close();

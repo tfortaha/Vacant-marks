@@ -1,0 +1,38 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-label>Booked Venues</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf='data.length > 0'>
+    <ion-card style="padding-top: 5px; padding-bottom: 5px;" (click)="showMore = !showMore">
+          <ion-item lines="none">
+            <div>
+              <div *ngIf="!showMore">
+                  {{trimString(detailHeader,55)}}
+              </div>
+              <div *ngIf="showMore" style="white-space: pre-wrap;">
+                  {{detailHeader}}
+              </div>
+          </div>
+          <i slot="end" *ngIf="!showMore" class="icon icon-plus-box icon-small"></i>
+          <i slot="end" *ngIf="showMore" class="icon icon-minus-box icon-small"></i>
+        </ion-item>
+    </ion-card>
+  </div>
+
+  <div *ngIf='data.length == 0'>
+    <ion-list style="padding-right: 4%;">
+      <div *ngFor='let item of skeletonList'>
+          <ion-item>
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-item>
+      </div>
+    </ion-list>
+  </div>
+
+</ion-content>

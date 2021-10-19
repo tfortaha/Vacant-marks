@@ -14,7 +14,9 @@ export class HttpService {
   
   get(serviceName: string,params:HttpParams) {
     let headers = new HttpHeaders();
-    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Access-Control-Request-Method', '*');
+    headers.append('Access-Control-Allow-Origin', 'https://www.vacantmarks.com/');
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:8100/');
     // headers.append('Access-Control-Allow-Headers', 'Content-Type');
     // headers.append('Access-Control-Allow-Methods', 'GET');
     headers.append('Content-Type', 'application/json');

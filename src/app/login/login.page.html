@@ -2,9 +2,9 @@
   <ion-toolbar>
 
     <!-- Back Button -->
-    <ion-buttons slot="start">
+    <ion-buttons slot="end">
       <ion-button color="dark" routerLink="" routerDirection="root" (click)="close()">
-        <ion-icon name="arrow-back"></ion-icon>
+        <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
 
@@ -33,7 +33,7 @@
                   <ion-icon name="mail"></ion-icon>
                 </ion-label>
                 <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="postData.EmailID"></ion-input>
-                <ion-icon *ngIf="!isUsernameValid" class="icon-small" name="remove-circle"></ion-icon>
+                <ion-icon *ngIf='!isUsernameValid' class="icon-small" name="remove-circle"></ion-icon>
               </ion-item>
             </div>
 
@@ -44,7 +44,10 @@
               </ion-label>
               <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="postData.Password">
               </ion-input>
-              <ion-icon *ngIf="!isPasswordValid" class="icon-small" name="remove-circle"></ion-icon>
+              <div *ngIf='!isPasswordValid'>
+                <ion-icon class="icon-small" name="remove-circle"></ion-icon>
+              </div>
+              <!-- <ion-icon class="icon-small" name="eye"></ion-icon> -->
             </ion-item>
 
             <!-- Forget Password Button -->

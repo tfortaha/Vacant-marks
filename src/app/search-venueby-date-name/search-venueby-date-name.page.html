@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button color="light" href="">
+      <ion-button color="light" routerLink="" routerDirection="root">
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -17,16 +17,16 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf=" allData.length > 0 && IsAvailable == true">
+  <div *ngIf=" allData.length > 0 ">
     <ion-card *ngFor="let item of data; let k=index">
       <ion-fab vertical="top" horizontal="start">
-        <img src="assets/DetailsImgs/available.png" style="height: auto;" />
-        <!-- <ion-button size="small" color="warning" *ngIf="IsAvailable == true">
+        <!-- <img src="assets/DetailsImgs/available.png" style="height: auto;" /> -->
+        <ion-button size="small" color="warning" *ngIf="IsAvailable == true">
           Available
         </ion-button>
         <ion-button size="small" color="warning" *ngIf="IsAvailable == false">
           Confirmed
-        </ion-button> -->
+        </ion-button>
       </ion-fab>
   
       <img [src]="item.EncodeLogo" />
@@ -52,10 +52,30 @@
     </ion-card>
   </div>
   
-  <div *ngIf=" allData.length == 0 || IsAvailable == false" style="text-align: center;">
+  <!-- <div *ngIf=" allData.length == 0 " style="text-align: center;">
     <div style="margin-top: 20px;">
       <img src="assets/DetailsImgs/fictorial.png" style="height: auto; width: auto;" />
     </div>
     <h3>No Slots Available</h3>
+  </div> -->
+
+  <div *ngIf=" allData.length == 0">
+    <div *ngFor='let item of skeletonList'>
+      <ion-card>
+        <ion-skeleton-text style="padding:20%;margin-left: 3%;margin-top: 3%;width: 94%;" animated></ion-skeleton-text>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-label class="ion-text-wrap">
+              <ion-skeleton-text style="width: 40%;" animated></ion-skeleton-text>
+              <ion-skeleton-text style="width: 40%;" animated></ion-skeleton-text> 
+              <ion-skeleton-text style="width: 40%;" animated></ion-skeleton-text>
+            </ion-label>
+            <ion-card>
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-card>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+    </div>
   </div>
 </ion-content>

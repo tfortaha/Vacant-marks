@@ -99,7 +99,7 @@ export class RegistrationPage implements OnInit {
     this.loading.present();
 
    
-      debugger;
+      ;
       this.httpService.getUserDetail('api/Customer/Customer', this.postData).subscribe((res: any) => {
         if (res) {
           this.toast("Successfully! Now Login.");
