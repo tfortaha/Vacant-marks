@@ -4,6 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-label>Vacant Marks</ion-label>
+    <i slot="end" class="icon icon-power icon-small" *ngIf='logoutbtn' style="padding-right: 1%; color: white;" (click)="onLogoutClick()"></i>
   </ion-toolbar>
 </ion-header>
 
@@ -28,7 +29,7 @@
                 <ion-datetime displayFormat="DD MMMM YYYY" placeholder="Please Select" min="{{minDate}}" max={{maxDate}} 
                 [(ngModel)]="postData.Date" [pickerOptions]="customPickerOption">
                 </ion-datetime>
-                <ion-icon style="padding-top: 20px;" slot="end" *ngIf='postData.Date' (click)='clearDate()' name="close-circle"></ion-icon>  
+                <ion-icon style="padding-top: 20px;" slot="end" *ngIf='postData.Date' name="close-circle"></ion-icon>  
                 <ion-icon style="padding-top: 20px;" slot="end" *ngIf="!isDateValid && !postData.Date" name="remove-circle"></ion-icon>
               </ion-item>
           </ion-col>

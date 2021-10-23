@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Google Maps
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" style="border-radius: 25px; background: #2f3b69;">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf='!this.markerOptions.title' style="padding: 2%; height: 100%;">
+    <ion-skeleton-text animated></ion-skeleton-text>
+  </div>
+  <div #Map class="map" *ngIf='skeletonText == 1'></div>
+</ion-content>
+<!-- 
+<ion-content>
+  <div #Map class="map"></div>
+
+</ion-content> -->

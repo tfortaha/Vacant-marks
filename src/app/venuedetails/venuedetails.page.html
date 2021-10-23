@@ -20,10 +20,12 @@
       <h1 class="hotel-name" style="text-align: left; font-size: 30px;">{{data.Name}}</h1>
       <ion-item-divider class="ion-no-padding"></ion-item-divider>
       <h3 style="color: gray;">Overview</h3>
-      <p style="color: gray;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-      </p>
+      <div *ngIf='data.Overview'>
+        <p style="color: gray;">{{data.Overview}}</p>
+      </div>
+      <div *ngIf='!data.Overview'>
+        <p style="color: gray;"> No Overview Found. </p>
+      </div>
       <ion-item-divider class="ion-no-padding"></ion-item-divider>
       <h3 style="color: gray;">Services</h3>
     </div>
@@ -65,7 +67,12 @@
             <ion-icon name="location" class="icon-medium"></ion-icon>
           </ion-col>
           <ion-col size="10">
-            {{data.Address}}
+            <div *ngIf='data.Address'>
+              {{data.Address}}
+            </div>
+            <div *ngIf='!data.Address'>
+              No Address Found.
+            </div>
           </ion-col>
         </ion-row>
         <ion-row style="margin-bottom: 5px;">
@@ -73,7 +80,12 @@
             <ion-icon name="call" class="icon-medium"></ion-icon>
           </ion-col>
           <ion-col size="10">
-            {{data.Phone}}
+            <div *ngIf='data.Phone'>
+              {{data.Phone}}
+            </div>
+            <div *ngIf='!data.Phone'>
+              No Phone Number Found.
+            </div>
           </ion-col>
         </ion-row>
         <ion-row style="margin-bottom: 5px;">
@@ -81,24 +93,34 @@
             <ion-icon class="icon-medium" name="mail-sharp"></ion-icon>
           </ion-col>
           <ion-col size="10">
-            {{data.Email}}
+            <div *ngIf='data.Email'>
+              {{data.Email}}
+            </div>
+            <div *ngIf='!data.Email'>
+              No Email Found.
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>
 
       <ion-item-divider class="ion-no-padding"></ion-item-divider>
       <h3 style="color: gray;">Description</h3>
-      <p style="color: gray;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-      </p>
+      <div *ngIf='data.Description'>
+        <p style="color: gray;">{{data.Description}}</p>
+      </div>
+      <div *ngIf='!data.Description'>
+        <p style="color: gray;">No Description Found.</p>
+      </div>
 
       <ion-item-divider class="ion-no-padding"></ion-item-divider>
       <h3 style="color: gray;">Location</h3>
-      <img class="location-img ion-no-padding" src="assets/DetailsImgs/navigation-map.png">
+      <div *ngIf='data.Lattitude && data.Longitude'>
+        <div class="map"><a style="border-bottom: 1px solid;" (click)="mapModal(data.Lattitude, data.Longitude)">Click here to see on map.</a></div>
+        <!-- <img class="location-img ion-no-padding" src="assets/DetailsImgs/navigation-map.png"> -->
+      </div>
+      <div *ngIf='!data.Lattitude && !data.Longitude'>
+        <p style="color: gray;">No Location Found.</p>
+      </div>
+
     </div>
 </ion-content>

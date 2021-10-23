@@ -5,15 +5,15 @@ import { HttpService } from '../services/http.service';
 import { Storage } from '@ionic/storage';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NavParams} from '@ionic/angular';
-import { isSameDay } from 'date-fns';
+import { GoogleMapPage } from '../google-map/google-map.page';
 
 @Component({
   selector: 'app-venuedetails',
   templateUrl: './venuedetails.page.html',
   styleUrls: ['./venuedetails.page.scss'],
 })
-export class VenuedetailsPage implements OnInit {
-
+export class VenuedetailsPage implements OnInit{
+  
   allData:any =[];
   data:any = [];
   loading: HTMLIonLoadingElement;
@@ -59,7 +59,7 @@ export class VenuedetailsPage implements OnInit {
       }
       this.getVenue();
     }
-    this.getVenue();
+   // this.getVenue();
   }
 
   async getVenue(){
@@ -94,6 +94,17 @@ export class VenuedetailsPage implements OnInit {
       buttons:['ok']
     });
     await this.alert.present();
+  }
+
+  async mapModal(Lattitude, Longitude){
+    debugger;
+    console.log(Lattitude, Longitude);
+    let  directionParams = {Lattitude, Longitude};
+    const modal = await this.modalController.create({
+      component: GoogleMapPage,
+      componentProps:{directionParams}
+    });
+    return await modal.present();
   }
 
   close(){

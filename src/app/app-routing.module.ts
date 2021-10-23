@@ -55,10 +55,15 @@ const routes: Routes = [
     path: 'bookedvenues',
     loadChildren: () => import('./bookedvenues/bookedvenues.module').then( m => m.BookedvenuesPageModule)
   },
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  // },
+
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'google-map',
+    loadChildren: () => import('./google-map/google-map.module').then( m => m.GoogleMapPageModule)
+  },
 ];
 
 @NgModule({

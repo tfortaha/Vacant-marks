@@ -30,6 +30,7 @@ export class DashboardPage implements OnInit {
   venues:any=[];
   loading: HTMLIonLoadingElement;
   alert:HTMLIonAlertElement;
+  logoutbtn = false;
 
   public isDestinationValid = true;
   public isDateValid = true;
@@ -40,7 +41,7 @@ export class DashboardPage implements OnInit {
     speed: 1000,
     slidesPerView: 1,
     spaceBetween: 5,
-    loop: true,
+    //loop: true,
     effect: 'slide',
   };
 
@@ -66,7 +67,11 @@ export class DashboardPage implements OnInit {
     private modalController: ModalController
   ) 
   { 
-   
+    this.storage.get("userdetails").then((res)=>{
+      if(res != null){
+        this.logoutbtn = true;
+      }
+    })
   }
 
   ngOnInit() {
@@ -179,16 +184,17 @@ export class DashboardPage implements OnInit {
     this.postData.destination = '';
     this.postData.destinationId = '';
   }
-  clearDate(){
-    debugger;
-    this.postData.Date = '';
-  }
-  
+   
   async alerrt(){
     this.alert = await this.alertController.create({
       message: 'Some thing went wrong. Please try again later.',
       buttons:['ok']
     });
     await this.alert.present();
+  }
+
+  onLogoutClick(){
+    this.storage.clear();
+    window.location.reload();
   }
 }

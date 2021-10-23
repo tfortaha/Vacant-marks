@@ -13,12 +13,20 @@ export class ProfilePage implements OnInit {
 
   IsLogin: any = [];
   data:any;
-
+  logoutbtn=false;
+  
   constructor(
     public storage: Storage,
     private modalCtrl: ModalController,
 
-  ) { }
+  ) 
+  {
+    this.storage.get("userdetails").then((res)=>{
+      if(res != null){
+        this.logoutbtn = true;
+      }
+    })
+  }
 
   async ngOnInit() {
     this.storage.get("userdetails").then((res) =>{
@@ -47,4 +55,8 @@ export class ProfilePage implements OnInit {
     modal.present();
   }
 
+  onLogoutClick(){
+    this.storage.clear();
+    window.location.reload();
+  }
 }

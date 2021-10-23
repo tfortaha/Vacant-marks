@@ -89,6 +89,10 @@ const routes = [
         path: 'booking',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_booking_booking_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./booking/booking.module */ 3911)).then(m => m.BookingPageModule)
     },
+    {
+        path: 'bookedvenues',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_bookedvenues_bookedvenues_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./bookedvenues/bookedvenues.module */ 1149)).then(m => m.BookedvenuesPageModule)
+    },
     // {
     //   path: 'home',
     //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
@@ -172,8 +176,8 @@ let AppComponent = class AppComponent {
                         this.ds.userdetails = res;
                     }
                     else {
+                        //this.login();
                         this.router.navigateByUrl("");
-                        this.login();
                     }
                 });
             });
@@ -190,6 +194,7 @@ let AppComponent = class AppComponent {
                 if (data.data != null) {
                     let splitVenue = SelectedVenue.split("\\");
                     let Sdata = { "EmailID": splitVenue[0], "FirstName": splitVenue[1], "LastName": splitVenue[2], "UserName": splitVenue[3], "Mobile1": splitVenue[4], "CNIC": splitVenue[5], "Address": splitVenue[6], };
+                    window.location.reload();
                     // this.data = Sdata;
                     // console.log(data);
                 }
@@ -367,6 +372,7 @@ let LoginPage = class LoginPage {
                         this.storage.set("userdetails", res).then(response => {
                             console.log(response);
                             this.loading.dismiss();
+                            window.location.reload();
                             let result = res.result;
                             this.modalCtrl.dismiss(`${result.EmailID}\\ ${result.FirstName}\\ ${result.LastName}\\ ${result.UserName} \\ ${result.Mobile1} \\ ${result.CNIC} \\ ${result.Address}`);
                         });
@@ -1168,7 +1174,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("\n<ion-app>\n  <ion-menu side=\"start\" menuId=\"pages\" type=\"overlay\" contentId=\"mainContent\">\n    <ion-header>\n      <ion-toolbar style=\"text-align: center;\">\n        <img style=\"width: 50%; align-items: center;\" src=\"assets/icon/VMSLogo.png\">\n        <ion-row>\n          <!-- <ion-col size=\"12\"><img src=\"assets/images/VMSLogo.png\"></ion-col> -->\n            <!-- <div>Vacand Mark</div> -->\n            <!-- <ion-fab style=\"padding-left:100px; padding-top:35px;\" vertical=\"top\" horizontal=\"start\">\n              <ion-button size=\"small\" color=\"none\" style=\"border: none;\">\n                <h5>Vaccand Mark</h5>\n              </ion-button>\n            </ion-fab> -->\n        </ion-row>\n      </ion-toolbar>\n    </ion-header>\n    \n    <ion-content>\n      <ion-list class=\"ion-padding\" lines=\"none\">\n        <ion-menu-toggle auto-hide=\"false\">\n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['']\">\n            <i slot=\"start\" class=\"icon icon-home icon-small\"></i>\n            <h1 class=\"text-size-xs\">Dashboard</h1>\n          </ion-item>\n \n          <!-- <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/venues']\">\n            <i slot=\"start\" class=\"icon icon-home icon-small\"></i>\n            <h1 class=\"text-size-xs\">Venues</h1>\n          </ion-item> -->\n   <!--       \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/customer']\">\n            <i slot=\"start\" class=\"icon icon-account icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">{{ 'customer' | translate }}</h1>\n          </ion-item>\n\n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/customerrequest']\">\n            <i slot=\"start\" class=\"icon icon-plus-circle-outline icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">{{ 'CustomerRequest' | translate }}</h1>\n          </ion-item> \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/settings']\">\n            <i slot=\"start\" class=\"icon icon-settings icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">settings</h1>\n          </ion-item>-->\n\n        </ion-menu-toggle>\n      </ion-list>\n    </ion-content>\n    \n    <div *ngIf=\"show\">\n      <ion-footer class=\"ion-no-border\">\n        <div class=\"ion-padding\" >\n          <ion-button shape=\"round\" color=\"color1\" expand=\"full\" (click)=\"signout()\">\n            Signout</ion-button>\n        </div>\n      </ion-footer> \n    </div>\n  </ion-menu>\n  <ion-router-outlet id=\"mainContent\"></ion-router-outlet>\n</ion-app>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("\n<ion-app>\n  <ion-menu side=\"start\" menuId=\"pages\" type=\"overlay\" contentId=\"mainContent\">\n    <ion-header>\n      <ion-toolbar style=\"text-align: center;\">\n        <img style=\"width: 50%; align-items: center;\" src=\"assets/icon/VMSLogo.png\">\n        <ion-row>\n          <!-- <ion-col size=\"12\"><img src=\"assets/images/VMSLogo.png\"></ion-col> -->\n            <!-- <div>Vacand Mark</div> -->\n            <!-- <ion-fab style=\"padding-left:100px; padding-top:35px;\" vertical=\"top\" horizontal=\"start\">\n              <ion-button size=\"small\" color=\"none\" style=\"border: none;\">\n                <h5>Vaccand Mark</h5>\n              </ion-button>\n            </ion-fab> -->\n        </ion-row>\n      </ion-toolbar>\n    </ion-header>\n    \n    <ion-content>\n      <div *ngIf=\"show\">\n      <ion-list class=\"ion-padding\" lines=\"none\">\n        <ion-menu-toggle auto-hide=\"false\">\n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['']\">\n            <i slot=\"start\" class=\"icon icon-home icon-small\"></i>\n            <h1 class=\"text-size-xs\">Dashboard</h1>\n          </ion-item>\n \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/bookedvenues']\">\n            <ion-icon name=\"calendar-clear-outline\" style=\"color: #2f3b69;width: 8%; padding-left: 4px; padding-right: 12px; padding-top: 6px;\"></ion-icon>\n            <!-- <i slot=\"start\" class=\"icon icon-home icon-small\"></i> -->\n            <h1 class=\"text-size-xs\">Booked Venues</h1>\n          </ion-item>\n   <!--       \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/customer']\">\n            <i slot=\"start\" class=\"icon icon-account icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">{{ 'customer' | translate }}</h1>\n          </ion-item>\n\n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/customerrequest']\">\n            <i slot=\"start\" class=\"icon icon-plus-circle-outline icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">{{ 'CustomerRequest' | translate }}</h1>\n          </ion-item> \n          <ion-item [routerDirection]=\"'root'\" [routerLink]=\"['/settings']\">\n            <i slot=\"start\" class=\"icon icon-settings icon-small\" style=\"color: #49b36f;\"></i>\n            <h1 class=\"text-size-xs\">settings</h1>\n          </ion-item>-->\n\n        </ion-menu-toggle>\n      </ion-list>\n      </div>\n      <div *ngIf=\"!show\">\n        <ion-list class=\"ion-padding\" lines=\"none\">\n          <ion-menu-toggle auto-hide=\"false\">\n            <ion-item (click)=\"login()\">\n              <ion-icon color=\"medium\" slot=\"end\" name=\"log-out\"></ion-icon>\n              <ion-label class=\"ion-padding\">Login or Register</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </div>\n    </ion-content>\n    \n    <div *ngIf=\"show\">\n      <ion-footer class=\"ion-no-border\">\n        <div class=\"ion-padding\" >\n          <ion-button shape=\"round\" color=\"color1\" expand=\"full\" (click)=\"signout()\">\n            Signout</ion-button>\n        </div>\n      </ion-footer> \n    </div>\n  </ion-menu>\n  <ion-router-outlet id=\"mainContent\"></ion-router-outlet>\n</ion-app>");
 
 /***/ }),
 

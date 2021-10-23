@@ -44,6 +44,8 @@ let VenuesPage = class VenuesPage {
         this.modalController = modalController;
         this.allData = [];
         this.data = [];
+        this.skeletonList = [];
+        this.skeletonList.length = 4;
     }
     ngOnInit() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
@@ -52,29 +54,34 @@ let VenuesPage = class VenuesPage {
     }
     getVenue() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
-            this.loading = yield this.loadingController.create({
-                //message: this.translate.instant('pleasewait'),
-                cssClass: 'custom-loading',
-                translucent: true,
-                showBackdrop: true,
-                spinner: 'circular'
-            });
-            yield this.loading.present();
+            ;
+            // this.loading = await this.loadingController.create({
+            //   //message: this.translate.instant('pleasewait'),
+            //   cssClass: 'custom-loading',
+            //   translucent: true,
+            //   showBackdrop: true,
+            //   spinner:'circular'
+            // });
+            // await this.loading.present();
             if (this.dataservice.VenuePageData.length == 0) {
                 let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpParams();
                 this.httpService.get("api/Venue/Venues", params).subscribe((res) => {
                     this.data = this.allData = res;
-                    this.dataservice.VenuePageData = res;
-                    this.loading.dismiss();
+                    for (let i = 0; i < this.allData.length; i++) {
+                        ;
+                        this.data[i].EncodeLogo = 'https://vacantmarks.com/VenueLogoFolder/' + this.data[i].EncodeLogo;
+                    }
+                    this.dataservice.VenuePageData = this.data;
+                    ;
                     console.log(res);
                 }, err => {
                     this.alerrt();
-                    this.loading.dismiss();
+                    // ;
                 });
             }
             else {
                 this.data = this.allData = this.dataservice.VenuePageData;
-                this.loading.dismiss();
+                // ;
             }
         });
     }
@@ -161,7 +168,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"light\" (click)=\"close()\">\n        <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n\n    <!-- <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"dashboard\"></ion-back-button>\n    </ion-buttons> -->\n    <ion-title>Venues</ion-title>\n  </ion-toolbar>\n  <ion-toolbar >\n    <ion-searchbar placeholder=\"Search\"\n                   animated\n                   (ionChange)=\"search( $event )\"\n                   (ionCancel)=\"clear($event)\">\n    </ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <div id=\"popular_hotels\">\n    <ion-card class=\"ion-no-padding\" *ngFor=\"let item of data\">\n      <ion-list lines=\"none\" class=\"ion-no-padding\">\n        <ion-item class=\"ion-no-padding\">\n\n          <ion-thumbnail slot=\"start\"  (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <img class=\"packages_thumbnail\" style=\"vertical-align: middle;\" [src]=\"item.EncodeLogo\">\n          </ion-thumbnail>\n\n          <ion-label class=\"ion-text-wrap\" (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <h4 class=\"name\">{{item.Name}}</h4>\n            <ion-text color=\"medium\">\n              <ion-icon color=\"medium\" name=\"location\"></ion-icon> \n              {{item.Address}}<br>\n              Max Capacity: {{item.MaxCapacity}}<br>\n              Min Capacity: {{item.MinCapacity}}<br>\n              Area(yards): {{item.Yards}}<br>\n            </ion-text>\n            <br>\n            <p class=\"ion-padding-top\">\n              <ion-icon name=\"person\"></ion-icon> {{item.totalPerson}} &nbsp;\n              <ion-icon name=\"briefcase\"></ion-icon> {{item.suitcases}} &nbsp;\n              <ion-icon name=\"logo-slack\"></ion-icon> {{item.seats}} &nbsp;\n              <ion-icon name=\"copy\"></ion-icon> {{item.doorCount}}\n            </p>\n          </ion-label>\n          <ion-card (click)=\"onDetailsClick(item.Id,item.Name)\">\n            Details\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div> -->\n\n  <div *ngIf=\" allData.length > 0\">\n    <ion-card *ngFor=\"let item of data; let k=index\">\n      <!-- <ion-fab vertical=\"top\" horizontal=\"start\">\n        <ion-button size=\"small\" color=\"warning\">\n          {{item.slots[0].Status}}\n        </ion-button>\n      </ion-fab>\n   -->\n      <img [src]=\"item.EncodeLogo\">\n      <ion-list lines=\"none\">\n        <ion-item>\n          <ion-label class=\"ion-text-wrap\"  (click)=\"onItemClickFunc(item.Id,item.Name)\">\n  \n            <h4 class=\"name\">{{item.Name}}</h4>\n  \n            <ion-text style=\"font-size: 12px;\" color=\"medium\"> \n              Max Capacity: {{item.MaxCapacity}} Persons. <br>\n                Min Capacity: {{item.MinCapacity}} Persons. <br>\n                <!-- Available slot: {{item.slots[0].SlotStartEnd}}<br> -->\n                <!-- Date: {{item.slots[0].Date}} <br> -->\n            </ion-text>\n          </ion-label>\n          <ion-card (click)=\"onDetailsClick(item.Id,item.Name)\">\n            Details\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div>\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"light\" (click)=\"close()\">\n        <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n\n    <!-- <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"dashboard\"></ion-back-button>\n    </ion-buttons> -->\n    <ion-title>Venues</ion-title>\n  </ion-toolbar>\n  <ion-toolbar >\n    <ion-searchbar placeholder=\"Search\"\n                   animated\n                   (ionChange)=\"search( $event )\"\n                   (ionCancel)=\"clear($event)\">\n    </ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <div id=\"popular_hotels\">\n    <ion-card class=\"ion-no-padding\" *ngFor=\"let item of data\">\n      <ion-list lines=\"none\" class=\"ion-no-padding\">\n        <ion-item class=\"ion-no-padding\">\n\n          <ion-thumbnail slot=\"start\"  (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <img class=\"packages_thumbnail\" style=\"vertical-align: middle;\" [src]=\"item.EncodeLogo\">\n          </ion-thumbnail>\n\n          <ion-label class=\"ion-text-wrap\" (click)=\"onItemClickFunc(item.Id,item.Name)\">\n            <h4 class=\"name\">{{item.Name}}</h4>\n            <ion-text color=\"medium\">\n              <ion-icon color=\"medium\" name=\"location\"></ion-icon> \n              {{item.Address}}<br>\n              Max Capacity: {{item.MaxCapacity}}<br>\n              Min Capacity: {{item.MinCapacity}}<br>\n              Area(yards): {{item.Yards}}<br>\n            </ion-text>\n            <br>\n            <p class=\"ion-padding-top\">\n              <ion-icon name=\"person\"></ion-icon> {{item.totalPerson}} &nbsp;\n              <ion-icon name=\"briefcase\"></ion-icon> {{item.suitcases}} &nbsp;\n              <ion-icon name=\"logo-slack\"></ion-icon> {{item.seats}} &nbsp;\n              <ion-icon name=\"copy\"></ion-icon> {{item.doorCount}}\n            </p>\n          </ion-label>\n          <ion-card (click)=\"onDetailsClick(item.Id,item.Name)\">\n            Details\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div> -->\n\n  <div *ngIf=\" allData.length > 0\">\n    <ion-card *ngFor=\"let item of data; let k=index\">\n      <img [src]=\"item.EncodeLogo\">\n      <ion-list lines=\"none\">\n        <ion-item>\n          <ion-label class=\"ion-text-wrap\"  (click)=\"onItemClickFunc(item.Id,item.Name)\">\n  \n            <h4 class=\"name\">{{item.Name}}</h4>\n  \n            <ion-text style=\"font-size: 12px;\" color=\"medium\"> \n              Max Capacity: {{item.MaxCapacity}} Persons. <br>\n                Min Capacity: {{item.MinCapacity}} Persons. <br>\n            </ion-text>\n          </ion-label>\n          <ion-card (click)=\"onDetailsClick(item.Id,item.Name)\">\n            Details\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div>\n\n  <div *ngIf=\" allData.length == 0\">\n    <div *ngFor='let item of skeletonList'>\n      <ion-card>\n        <ion-skeleton-text style=\"padding:20%;margin-left: 3%;margin-top: 3%;width: 94%;\" animated></ion-skeleton-text>\n        <ion-list lines=\"none\">\n          <ion-item>\n            <ion-label class=\"ion-text-wrap\">\n              <ion-skeleton-text style=\"width: 40%;\" animated></ion-skeleton-text>\n              <ion-skeleton-text style=\"width: 40%;\" animated></ion-skeleton-text> \n              <ion-skeleton-text style=\"width: 40%;\" animated></ion-skeleton-text>\n            </ion-label>\n            <ion-card>\n              <ion-skeleton-text animated></ion-skeleton-text>\n            </ion-card>\n          </ion-item>\n        </ion-list>\n      </ion-card>\n    </div>\n  </div>\n</ion-content>");
 
 /***/ })
 

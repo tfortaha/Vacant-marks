@@ -13,9 +13,9 @@ import { format } from 'date-fns';
 export class BookedvenuesPage implements OnInit {
 
   alert:HTMLIonAlertElement;
-  detailHeader:any;
+  detailHeader:any =[];
   data:any = [];
-  showMore:any;
+  showMore:any=[];
   skeletonList:any=[];
 
   constructor(
@@ -28,7 +28,7 @@ export class BookedvenuesPage implements OnInit {
   ) 
   {
     this.skeletonList.length = 10;
-    this.showMore = false;
+    // this.showMore = false;
   }
 
   ngOnInit() {
@@ -41,16 +41,33 @@ export class BookedvenuesPage implements OnInit {
       if(res != null){
         params = params.set("CustomerId",res.result.Id);
         ;
-        this.data = [];
+        // this.data = [];
         this.httpService.get("api/Booking/PreviousBooking",params).subscribe((res) => {
-          this.data.push(res);
+         // this.data.push(res);
+         this.data = res;
           if(this.data.length > 0){
+            let count = 0;
             for(let item of this.data){
               var SplitedDate = item.BookingDate.split("T");
-              this.detailHeader = "Date: " + SplitedDate[0] + "\n Venue: " + item.Name + "\n Status: " + item.Status +
+              let statusMessage = "";
+              if(item.Status == 1){
+                statusMessage = "Confirmed";
+              }
+              else if(item.Status == 2){
+                statusMessage = "Pending";
+              }
+              else if(item.Status == 2){
+                statusMessage = "Canceled";
+              }
+              else{
+                  statusMessage = "";
+              }
+              this.detailHeader[count] = "Date: " + SplitedDate[0] + "\n Venue: " + item.Name + "\n Status: " + statusMessage +
                 "\n Title: " + item.title + "\n " + item.Description + "\n Guest: " + item.Guest +
                 "\n Total Amount: " + item.VenueAmount + "\n Advance Amount: " + item.Advance +
                 "\n Discount%: " + item.Discount + "\n Reference: " + item.Reference;
+                this.showMore[count ] = false;
+                count++;
             }
           }
         },err =>{

@@ -40,7 +40,7 @@ import android.os.Build;
  */
 public class PluginManager {
     private static String TAG = "PluginManager";
-    private static final int SLOW_EXEC_WARNING_THRESHOLD = Debug.isConnected() ? 60 : 16;
+    private static final int SLOW_EXEC_WARNING_THRESHOLD = Debug.isDebuggerConnected() ? 60 : 16;
 
     // List of service entries
     private final Map<String, CordovaPlugin> pluginMap = Collections.synchronizedMap(new LinkedHashMap<String, CordovaPlugin>());

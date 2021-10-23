@@ -133,6 +133,8 @@ let VenuebydatePage = class VenuebydatePage {
         };
         this.count = 0;
         this.imgUrl = "";
+        this.skeletonList = [];
+        this.skeletonList.length = 4;
     }
     ngOnInit() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
@@ -143,7 +145,7 @@ let VenuebydatePage = class VenuebydatePage {
                         this.postData.Date = this.data[0].Date;
                         this.count += 1;
                     }
-                    // this.loading.dismiss();
+                    // ;
                 }
             });
             this.getVenue();
@@ -151,35 +153,39 @@ let VenuebydatePage = class VenuebydatePage {
     }
     getVenue() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
-            this.loading = yield this.loadingController.create({
-                //message: this.translate.instant('pleasewait'),
-                cssClass: 'custom-loading',
-                translucent: true,
-                showBackdrop: true,
-                spinner: 'circular'
-            });
-            yield this.loading.present();
+            // this.loading = await this.loadingController.create({
+            //   //message: this.translate.instant('pleasewait'),
+            //   cssClass: 'custom-loading',
+            //   translucent: true,
+            //   showBackdrop: true,
+            //   spinner:'circular'
+            // });
+            // await this.loading.present();
             let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpParams();
             params = params.set("Date", this.postData.Date);
             this.httpService.get("api/Venue/Venues", params).subscribe((res) => {
                 this.data = this.allData = res;
-                this.imageLoop();
-                this.loading.dismiss();
+                for (let i = 0; i < this.allData.length; i++) {
+                    ;
+                    this.data[i].EncodeLogo = 'https://vacantmarks.com/VenueLogoFolder/' + this.data[i].EncodeLogo;
+                }
+                // this.imageLoop();
+                // ;
                 console.log(res);
             }, err => {
                 this.alerrt();
-                this.loading.dismiss();
+                ;
             });
         });
     }
-    imageLoop() {
-        let j = 2;
-        for (let i = 0; i < this.data.length; i++) {
-            this.imgUrl = "\\assets\\hotels\\" + j + ".jpg";
-            this.data[i].img = this.imgUrl;
-            j++;
-        }
-    }
+    // imageLoop(){
+    //   let j=2;
+    //   for(let i=0; i<this.data.length; i++){
+    //     this.imgUrl = "\\assets\\hotels\\"+j+".jpg";
+    //     this.data[i].img = this.imgUrl;
+    //     j++;
+    //   }
+    // }
     search(event) {
         this.data = this.allData;
         let text = event.target.value;
@@ -212,7 +218,7 @@ let VenuebydatePage = class VenuebydatePage {
                 showBackdrop: true,
                 spinner: 'circular'
             });
-            yield this.loading.present();
+            // await this.loading.present();
             this.storage.get("userdetails").then((response) => {
                 if (response != null) {
                     let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpParams();
@@ -235,14 +241,14 @@ let VenuebydatePage = class VenuebydatePage {
                         }
                         this.Booking(Id, Date);
                         console.log(this.availableSlots);
-                        this.loading.dismiss();
+                        ;
                     }, err => {
-                        this.loading.dismiss();
+                        ;
                     });
                 }
                 else {
                     this.toast("Please Sign In for Booking!");
-                    this.loading.dismiss();
+                    ;
                 }
             });
             // console.log("Book Now Click: ",Id);
@@ -328,7 +334,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"light\" routerLink=\"\" routerDirection=\"root\">\n        <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>Venues</ion-title>\n  </ion-toolbar>\n  <ion-toolbar >\n    <ion-searchbar placeholder=\"Search\"\n                   animated\n                   (ionChange)=\"search( $event )\"\n                   (ionCancel)=\"clear($event)\">\n    </ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div *ngIf=\" allData.length > 0\">\n    <ion-card *ngFor=\"let item of data; let k=index\">\n      <ion-fab vertical=\"top\" horizontal=\"start\">\n         <div *ngFor=\"let slotItem of item.slots\" class=\"ion-no-padding\">\n          <!-- <img src=\"assets/DetailsImgs/available.png\" style=\"height: auto;\" *ngIf=\"slotItem.Status === 'Available'\"/> -->\n          <div *ngIF=\"slotItem.Status == 'Available'\">\n            <ion-button size=\"small\" color=\"warning\">\n              {{aSlot.Status}}\n            </ion-button> \n          </div>\n         \n         </div>\n\n      </ion-fab>\n  \n      <img [src]=\"item.EncodeLogo\">\n      <ion-list lines=\"none\">\n        <ion-item>\n          <ion-label class=\"ion-text-wrap\"  (click)=\"onItemClickFunc(item.VenueId,item.Name)\">\n  \n            <h4 class=\"name\">{{item.Name}}</h4>\n  \n            <ion-text style=\"font-size: 12px;\" color=\"medium\"> \n              Max Capacity: {{item.MaxCapacity}} Persons. <br>\n                Min Capacity: {{item.MinCapacity}} Persons. <br>\n                <!-- Available slot: {{item.slots[0].SlotStartEnd}}<br> -->\n                Date: {{item.slots[0].Date}} <br>\n            </ion-text>\n          </ion-label>\n  \n          <ion-card (click)=\"BookNowClick(item.VenueId,item.slots[0].Date)\">\n            Book Now\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"light\" routerLink=\"\" routerDirection=\"root\">\n        <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>Venues</ion-title>\n  </ion-toolbar>\n  <ion-toolbar >\n    <ion-searchbar placeholder=\"Search\"\n                   animated\n                   (ionChange)=\"search( $event )\"\n                   (ionCancel)=\"clear($event)\">\n    </ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div *ngIf=\" allData.length > 0\">\n    <ion-card *ngFor=\"let item of data; let k=index\">\n      <ion-fab vertical=\"top\" horizontal=\"start\">\n         <div *ngFor=\"let slotItem of item.slots\" class=\"ion-no-padding\">\n          <!-- <img src=\"assets/DetailsImgs/available.png\" style=\"height: auto;\" *ngIf=\"slotItem.Status === 'Available'\"/> -->\n          <div *ngIF=\"slotItem.Status == 'Available'\">\n            <ion-button size=\"small\" color=\"warning\">\n              {{aSlot.Status}}\n            </ion-button> \n          </div>\n         </div>\n      </ion-fab>\n  \n      <img [src]=\"item.EncodeLogo\">\n      <ion-list lines=\"none\">\n        <ion-item>\n          <ion-label class=\"ion-text-wrap\"  (click)=\"onItemClickFunc(item.VenueId,item.Name)\">\n  \n            <h4 class=\"name\">{{item.Name}}</h4>\n  \n            <ion-text style=\"font-size: 12px;\" color=\"medium\"> \n              Max Capacity: {{item.MaxCapacity}} Persons. <br>\n                Min Capacity: {{item.MinCapacity}} Persons. <br>\n                Date: {{item.slots[0].Date}} <br>\n            </ion-text>\n          </ion-label>\n  \n          <ion-card (click)=\"BookNowClick(item.VenueId,item.slots[0].Date)\">\n            Book Now\n          </ion-card>\n        </ion-item>\n      </ion-list>\n    </ion-card>\n  </div>\n\n  <div *ngIf=\" allData.length == 0\">\n    <div *ngFor='let item of skeletonList'>\n      <ion-card>\n        <ion-skeleton-text style=\"padding:20%;margin-left: 3%;margin-top: 3%;width: 94%;\" animated></ion-skeleton-text>\n        <ion-list lines=\"none\">\n          <ion-item>\n            <ion-label class=\"ion-text-wrap\">\n              <ion-skeleton-text style=\"width: 40%;\" animated></ion-skeleton-text>\n              <ion-skeleton-text style=\"width: 40%;\" animated></ion-skeleton-text> \n              <ion-skeleton-text style=\"width: 40%;\" animated></ion-skeleton-text>\n            </ion-label>\n            <ion-card>\n              <ion-skeleton-text animated></ion-skeleton-text>\n            </ion-card>\n          </ion-item>\n        </ion-list>\n      </ion-card>\n    </div>\n  </div>\n</ion-content>\n");
 
 /***/ })
 

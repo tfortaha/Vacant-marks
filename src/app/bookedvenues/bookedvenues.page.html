@@ -9,18 +9,18 @@
 
 <ion-content>
   <div *ngIf='data.length > 0'>
-    <ion-card style="padding-top: 5px; padding-bottom: 5px;" (click)="showMore = !showMore">
-          <ion-item lines="none">
+    <ion-card style="padding-top: 5px; padding-bottom: 5px;" *ngFor='let item of detailHeader; let k = index'>
+          <ion-item lines="none" (click)="showMore[k] = !showMore[k]">
             <div>
-              <div *ngIf="!showMore">
-                  {{trimString(detailHeader,55)}}
+              <div *ngIf="!showMore[k]">
+                  {{trimString(item,55)}}
               </div>
-              <div *ngIf="showMore" style="white-space: pre-wrap;">
-                  {{detailHeader}}
+              <div *ngIf="showMore[k]" style="white-space: pre-wrap;">
+                  {{item}}
               </div>
           </div>
-          <i slot="end" *ngIf="!showMore" class="icon icon-plus-box icon-small"></i>
-          <i slot="end" *ngIf="showMore" class="icon icon-minus-box icon-small"></i>
+          <i slot="end" *ngIf="!showMore[k]" class="icon icon-plus-box icon-small"></i>
+          <i slot="end" *ngIf="showMore[k]" class="icon icon-minus-box icon-small"></i>
         </ion-item>
     </ion-card>
   </div>

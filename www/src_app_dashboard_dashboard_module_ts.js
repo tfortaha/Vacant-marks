@@ -3061,17 +3061,34 @@ let DashboardPage = class DashboardPage {
         };
         this.skeletonStop = 0;
         this.venues = [];
+        this.logoutbtn = false;
         this.isDestinationValid = true;
         this.isDateValid = true;
         // Slider Options
         this.slideOpts = {
             initialSlide: 0,
             speed: 1000,
-            slidesPerView: 1.5,
-            spaceBetween: 10,
-            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 5,
+            //loop: true,
             effect: 'slide',
         };
+        this.customPickerOption = {
+            buttons: [{
+                    text: 'Clear',
+                    handler: () => this.postData.Date = ''
+                },
+                {
+                    text: 'Done',
+                    handler: (e) => this.postData.Date = ('' + e.year.value + '/' + e.month.value + '/' + e.day.value + '/')
+                }
+            ]
+        };
+        this.storage.get("userdetails").then((res) => {
+            if (res != null) {
+                this.logoutbtn = true;
+            }
+        });
     }
     ngOnInit() {
         this.getVenue();
@@ -3093,7 +3110,6 @@ let DashboardPage = class DashboardPage {
     }
     getVenue() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
-            ;
             this.loading = yield this.loadingController.create({
                 //message: this.translate.instant('pleasewait'),
                 cssClass: 'custom-loading',
@@ -3104,27 +3120,25 @@ let DashboardPage = class DashboardPage {
             // await this.loading.present();
             if (this.dataservice.DashboardData.length == 0) {
                 let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HttpParams();
-                ;
                 this.httpService.get("api/Venue/Venues", params).subscribe((res) => {
-                    ;
+                    debugger;
                     this.venues = res;
                     let a = false;
                     for (let i = 0; i < this.venues.length; i++) {
                         ;
                         this.venues[i].EncodeLogo = 'https://vacantmarks.com/VenueLogoFolder/' + this.venues[i].EncodeLogo;
                     }
-                    this.loading.dismiss();
+                    ;
                     console.log(res);
                 }, err => {
-                    ;
                     this.skeletonStop = 1;
                     this.alerrt();
-                    this.loading.dismiss();
+                    ;
                 });
             }
             else {
                 this.venues = this.dataservice.DashboardData;
-                this.loading.dismiss();
+                ;
             }
         });
     }
@@ -3167,20 +3181,9 @@ let DashboardPage = class DashboardPage {
             }
         }
     }
-    // onDetailsClick(Id,Name){
-    //   ;
-    //   console.log("Details Click: ",Id,Name);
-    //   let  VenueId = Id;
-    //   console.log(VenueId);
-    //     let navigationExtras: NavigationExtras = {
-    //       queryParams: {
-    //         special: JSON.stringify(VenueId)
-    //       }
-    //     };
-    //     this.router.navigate(['/venuedetails'],navigationExtras);
-    // }
     onDetailsClick(Id, Name) {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+            debugger;
             let VenueId = Id;
             const modal = yield this.modalController.create({
                 component: _venuedetails_venuedetails_page__WEBPACK_IMPORTED_MODULE_5__.VenuedetailsPage,
@@ -3188,6 +3191,11 @@ let DashboardPage = class DashboardPage {
             });
             return yield modal.present();
         });
+    }
+    clearVenue() {
+        debugger;
+        this.postData.destination = '';
+        this.postData.destinationId = '';
     }
     alerrt() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
@@ -3197,6 +3205,10 @@ let DashboardPage = class DashboardPage {
             });
             yield this.alert.present();
         });
+    }
+    onLogoutClick() {
+        this.storage.clear();
+        window.location.reload();
     }
 };
 DashboardPage.ctorParameters = () => [
@@ -3246,7 +3258,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\" class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-label>Vacant Marks</ion-label>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <ion-grid class=\"section1\" style=\"border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; margin-left: 5px; margin-right: 5px;\">\n      <ion-row>\n        <ion-col>\n          <ion-item>\n            <ion-label position=\"stacked\">Search Venue</ion-label>\n            <ion-input type=\"text\" (click)=\"getDestination()\" placeholder=\"Please Select\" name=\"destination\" clear-input\n             [(ngModel)]=\"postData.destination\"></ion-input>\n               <ion-icon style=\"padding-top: 20px;\" slot=\"end\" *ngIf=\"!isDestinationValid\" name=\"remove-circle\"></ion-icon>\n          </ion-item>\n        </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col>\n            <ion-item lines=\"none\">\n              <ion-label position=\"stacked\">Select Date</ion-label>\n              <ion-datetime displayFormat=\"DD MMMM YYYY\" placeholder=\"Please Select\" min=\"{{minDate}}\" max={{maxDate}} \n              [(ngModel)]=\"postData.Date\">\n              </ion-datetime>\n                <ion-icon style=\"padding-top: 20px;\" slot=\"end\" *ngIf=\"!isDateValid\" name=\"remove-circle\"></ion-icon>\n              </ion-item>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col style=\"margin-bottom: 10px;\">\n            <ion-button expand=\"block\" (click)=\"search()\">Search</ion-button>\n          </ion-col>\n        </ion-row>\n    </ion-grid>\n  \n  <div style=\"padding-top: 10px;\" id=\"popular_hotels\" *ngIf='venues.length > 0'>\n    <ion-list-header>\n      <ion-label color=\"dark\">Popular Venues</ion-label>\n    </ion-list-header>\n    <ion-slides class=\"ion-padding slider\" #slider [options]=\"slideOpts\">\n      <ion-slide *ngFor=\"let item of venues\" (click)=\"onDetailsClick(item.Id)\"\n              [ngStyle]=\"{'background' : 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + item.EncodeLogo + ')'}\">\n        <div class=\"section_2\">\n          <h2>{{item.Name}}</h2>\n        </div>\n      </ion-slide>\n    </ion-slides>\n  </div>\n\n  <div style=\"padding-top: 10px;\" id=\"popular_hotels\" *ngIf='skeletonStop == 0 && venues.length == 0'>\n    <ion-list-header>\n      <ion-skeleton-text animated style=\"width:40%\"></ion-skeleton-text>\n    </ion-list-header>\n     <ion-item lines=\"none\">\n    <ion-slides class=\"ion-padding slider\" #slider [options]=\"slideOpts\">\n      <ion-slide>\n        <ion-thumbnail slot=\"start\" style=\"width: 100%; height: 100%; border-radius: 25px;\">\n          <ion-skeleton-text animated></ion-skeleton-text>\n        </ion-thumbnail>\n      </ion-slide>\n    </ion-slides>\n      </ion-item>\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\" class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-label>Vacant Marks</ion-label>\n    <i slot=\"end\" class=\"icon icon-power icon-small\" *ngIf='logoutbtn' style=\"padding-right: 1%; color: white;\" (click)=\"onLogoutClick()\"></i>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <ion-grid class=\"section1\" style=\"border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; margin-left: 5px; margin-right: 5px;\">\n      <ion-row>\n        <ion-col>\n          <ion-item>\n            <ion-label position=\"stacked\">Search Venue</ion-label>\n            <ion-input type=\"text\" (click)=\"getDestination()\" placeholder=\"Please Select\" name=\"destination\"\n             [(ngModel)]=\"postData.destination\"></ion-input>\n             <ion-icon style=\"padding-top: 20px;\" slot=\"end\" *ngIf='postData.destinationId' (click)='clearVenue()' name=\"close-circle\"></ion-icon>  \n             <ion-icon style=\"padding-top: 20px;\" slot=\"end\" *ngIf=\"!isDestinationValid && !postData.destinationId\" name=\"remove-circle\"></ion-icon>\n          </ion-item>\n        </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col>\n            <ion-item lines=\"none\">\n              <ion-label position=\"stacked\">Select Date</ion-label>\n                <ion-datetime displayFormat=\"DD MMMM YYYY\" placeholder=\"Please Select\" min=\"{{minDate}}\" max={{maxDate}} \n                [(ngModel)]=\"postData.Date\" [pickerOptions]=\"customPickerOption\">\n                </ion-datetime>\n                <ion-icon style=\"padding-top: 20px;\" slot=\"end\" *ngIf='postData.Date' name=\"close-circle\"></ion-icon>  \n                <ion-icon style=\"padding-top: 20px;\" slot=\"end\" *ngIf=\"!isDateValid && !postData.Date\" name=\"remove-circle\"></ion-icon>\n              </ion-item>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col style=\"margin-bottom: 10px;\">\n            <ion-button expand=\"block\" (click)=\"search()\">Search</ion-button>\n          </ion-col>\n        </ion-row>\n    </ion-grid>\n  \n  <div style=\"padding-top: 10px;\" id=\"popular_hotels\" *ngIf='venues.length > 0'>\n    <ion-list-header>\n      <ion-label color=\"dark\">Popular Venues</ion-label>\n    </ion-list-header>\n    <ion-slides class=\"ion-padding slider\" #slider [options]=\"slideOpts\">\n      <ion-slide *ngFor=\"let item of venues\" (click)=\"onDetailsClick(item.Id)\"\n              [ngStyle]=\"{'background' : 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + item.EncodeLogo + ')'}\">\n        <div class=\"section_2\">\n          <h2>{{item.Name}}</h2>\n        </div>\n      </ion-slide>\n    </ion-slides>\n  </div>\n\n  <div style=\"padding-top: 10px;\" id=\"popular_hotels\" *ngIf='skeletonStop == 0 && venues.length == 0'>\n    <ion-list-header>\n      <ion-skeleton-text animated style=\"width:40%\"></ion-skeleton-text>\n    </ion-list-header>\n     <ion-item lines=\"none\">\n    <ion-slides class=\"ion-padding slider\" #slider [options]=\"slideOpts\">\n      <ion-slide>\n        <ion-thumbnail slot=\"start\" style=\"width: 100%; height: 100%; border-radius: 25px;\">\n          <ion-skeleton-text animated></ion-skeleton-text>\n        </ion-thumbnail>\n      </ion-slide>\n    </ion-slides>\n      </ion-item>\n  </div>\n</ion-content>\n");
 
 /***/ })
 
