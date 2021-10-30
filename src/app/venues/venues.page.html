@@ -5,10 +5,6 @@
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-
-    <!-- <ion-buttons slot="start">
-      <ion-back-button defaultHref="dashboard"></ion-back-button>
-    </ion-buttons> -->
     <ion-title>Venues</ion-title>
   </ion-toolbar>
   <ion-toolbar >
@@ -21,41 +17,18 @@
 </ion-header>
 
 <ion-content>
-  <!-- <div id="popular_hotels">
-    <ion-card class="ion-no-padding" *ngFor="let item of data">
-      <ion-list lines="none" class="ion-no-padding">
-        <ion-item class="ion-no-padding">
-
-          <ion-thumbnail slot="start"  (click)="onItemClickFunc(item.Id,item.Name)">
-            <img class="packages_thumbnail" style="vertical-align: middle;" [src]="item.EncodeLogo">
-          </ion-thumbnail>
-
-          <ion-label class="ion-text-wrap" (click)="onItemClickFunc(item.Id,item.Name)">
-            <h4 class="name">{{item.Name}}</h4>
-            <ion-text color="medium">
-              <ion-icon color="medium" name="location"></ion-icon> 
-              {{item.Address}}<br>
-              Max Capacity: {{item.MaxCapacity}}<br>
-              Min Capacity: {{item.MinCapacity}}<br>
-              Area(yards): {{item.Yards}}<br>
-            </ion-text>
-            <br>
-            <p class="ion-padding-top">
-              <ion-icon name="person"></ion-icon> {{item.totalPerson}} &nbsp;
-              <ion-icon name="briefcase"></ion-icon> {{item.suitcases}} &nbsp;
-              <ion-icon name="logo-slack"></ion-icon> {{item.seats}} &nbsp;
-              <ion-icon name="copy"></ion-icon> {{item.doorCount}}
-            </p>
-          </ion-label>
-          <ion-card (click)="onDetailsClick(item.Id,item.Name)">
-            Details
-          </ion-card>
-        </ion-item>
-      </ion-list>
-    </ion-card>
-  </div> -->
-
   <div *ngIf=" allData.length > 0">
+    <ion-card *ngFor="let item of data">
+      <ion-fab vertical="top" horizontal="start">
+        <ion-button size="small" color="dark" (click)="onDetailsClick(item.Id,item.Name)">
+          {{item.Name}}
+        </ion-button>
+      </ion-fab>
+      <img [src]="item.EncodeLogo" (click)="onItemClickFunc(item.Id,item.Name)" />
+    </ion-card>
+  </div>
+  
+  <!-- <div *ngIf=" allData.length > 0">
     <ion-card *ngFor="let item of data; let k=index">
       <img [src]="item.EncodeLogo">
       <ion-list lines="none">
@@ -75,7 +48,7 @@
         </ion-item>
       </ion-list>
     </ion-card>
-  </div>
+  </div> -->
 
   <div *ngIf=" allData.length == 0">
     <div *ngFor='let item of skeletonList'>

@@ -71,14 +71,13 @@ export class VenuebydatePage implements OnInit {
     let params = new HttpParams();
     params = params.set("Date",this.postData.Date)
     this.httpService.get("api/Venue/Venues",params).subscribe((res) => {
-
-      this.data = this.allData = res;
+      debugger;
+      this.data=[];
+      let count = 0;
+     this.data = this.allData = res;
       for(let i =0; i<this.allData.length; i++){
-        ;
        this.data[i].EncodeLogo='https://vacantmarks.com/VenueLogoFolder/'+this.data[i].EncodeLogo;
       }
-     // this.imageLoop();
-     // ;
       console.log(res);
     },err =>{
       this.alerrt();
@@ -86,14 +85,6 @@ export class VenuebydatePage implements OnInit {
     })
   }
 
-  // imageLoop(){
-  //   let j=2;
-  //   for(let i=0; i<this.data.length; i++){
-  //     this.imgUrl = "\\assets\\hotels\\"+j+".jpg";
-  //     this.data[i].img = this.imgUrl;
-  //     j++;
-  //   }
-  // }
   search(event){
     this.data = this.allData;
     let text = event.target.value;
