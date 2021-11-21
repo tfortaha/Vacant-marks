@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button color="light" routerLink="" routerDirection="root">
@@ -20,7 +20,6 @@
   <div *ngIf=" allData.length > 0 ">
     <ion-card *ngFor="let item of data; let k=index">
       <ion-fab vertical="top" horizontal="start">
-        <!-- <img src="assets/DetailsImgs/available.png" style="height: auto;" /> -->
         <ion-button size="small" color="warning" *ngIf="IsAvailable == true">
           Available
         </ion-button>
@@ -39,7 +38,6 @@
             <ion-text style="font-size: 12px;" color="medium"> 
               Max Capacity: {{item.MaxCapacity}} <br>
                 Min Capacity: {{item.MinCapacity}} <br>
-                <!-- Available slot: {{item.slots[k].SlotStartEnd}}<br> -->
                 Date: {{item.slots[k].Date}} <br>
             </ion-text>
           </ion-label>
@@ -52,12 +50,77 @@
     </ion-card>
   </div>
   
-  <!-- <div *ngIf=" allData.length == 0 " style="text-align: center;">
-    <div style="margin-top: 20px;">
-      <img src="assets/DetailsImgs/fictorial.png" style="height: auto; width: auto;" />
+  <div *ngIf=" allData.length == 0">
+    <div *ngFor='let item of skeletonList'>
+      <ion-card>
+        <ion-skeleton-text style="padding:20%;margin-left: 3%;margin-top: 3%;width: 94%;" animated></ion-skeleton-text>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-label class="ion-text-wrap">
+              <ion-skeleton-text style="width: 40%;" animated></ion-skeleton-text>
+              <ion-skeleton-text style="width: 40%;" animated></ion-skeleton-text> 
+              <ion-skeleton-text style="width: 40%;" animated></ion-skeleton-text>
+            </ion-label>
+            <ion-card>
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-card>
+          </ion-item>
+        </ion-list>
+      </ion-card>
     </div>
-    <h3>No Slots Available</h3>
-  </div> -->
+  </div>
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="light" routerLink="" routerDirection="root">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Venues</ion-title>
+  </ion-toolbar>
+  <ion-toolbar >
+    <ion-searchbar placeholder="Search"
+                   animated
+                   (ionChange)="search( $event )"
+                   (ionCancel)="clear($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf=" allData.length > 0">
+    <ion-card *ngFor="let item of data; let k=index">
+      <ion-fab vertical="top" horizontal="start">
+          <!-- <img src="assets/DetailsImgs/available.png" style="height: auto;" *ngIf="slotItem.Status === 'Available'"/> -->
+        <!-- <div>
+          <ion-button size="small" color="warning">
+            Available
+          </ion-button> 
+        </div> -->
+      </ion-fab>
+  
+      <img [src]="item.EncodeLogo">
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label class="ion-text-wrap"  (click)="onItemClickFunc(item.VenueId,item.Name)">
+            <h3 style="font-size: 17pt;" class="name">{{item.Name}}</h3>
+            <div style="color: slategray; font-size: 11pt;" *ngFor="let availbleslot of item.slots"> 
+              <ion-icon style="color: #2f3b69;" name="time-sharp"></ion-icon>
+              {{availbleslot.SlotStartEnd}}<br>
+              <ion-icon style="color: #2f3b69;" name="stats-chart-sharp"></ion-icon>
+              {{availbleslot.Status}} <br>
+            </div>
+          </ion-label>
+  
+          <ion-card (click)="BookNowClick(item.VenueId,item.slots[0].Date)">
+            Book Now
+          </ion-card>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
 
   <div *ngIf=" allData.length == 0">
     <div *ngFor='let item of skeletonList'>

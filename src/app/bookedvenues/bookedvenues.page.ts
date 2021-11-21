@@ -62,10 +62,13 @@ export class BookedvenuesPage implements OnInit {
               else{
                   statusMessage = "";
               }
+              // this.detailHeader[count] = "Date: " + SplitedDate[0] + "\n Venue: " + item.Name + "\n Status: " + statusMessage +
+              //   "\n Title: " + item.title + "\n " + item.Description + "\n Guest: " + item.Guest +
+              //   "\n Total Amount: " + item.VenueAmount + "\n Advance Amount: " + item.Advance +
+              //   "\n Discount%: " + item.Discount + "\n Reference: " + item.Reference;
               this.detailHeader[count] = "Date: " + SplitedDate[0] + "\n Venue: " + item.Name + "\n Status: " + statusMessage +
-                "\n Title: " + item.title + "\n " + item.Description + "\n Guest: " + item.Guest +
-                "\n Total Amount: " + item.VenueAmount + "\n Advance Amount: " + item.Advance +
-                "\n Discount%: " + item.Discount + "\n Reference: " + item.Reference;
+              "\n Title: " + item.title + "\n " + item.Description + "\n Guest: " + item.Guest ;
+
                 this.showMore[count ] = false;
                 count++;
             }

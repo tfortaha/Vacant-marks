@@ -17,7 +17,7 @@ export class BookingPage implements OnInit {
     title:'',
     SlotId:'',
     BookingDate:'',
-    Status:1,
+    Status:2,
     Guest:'',
     CustomerId:'' 
   }

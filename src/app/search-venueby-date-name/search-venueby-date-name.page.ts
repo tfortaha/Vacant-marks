@@ -84,16 +84,16 @@ export class SearchVenuebyDateNamePage implements OnInit {
         for(let i =0; i<this.allData.length; i++){
          this.data[i].EncodeLogo='https://vacantmarks.com/VenueLogoFolder/'+this.data[i].EncodeLogo;
         }
-        for(let item of this.allData){
-          this.slotsData = item.slots;
-        }
+        // for(let item of this.allData){
+        //   this.slotsData = item.slots;
+        // }
         // this.slotsData = this.allData.slots;
-        for(let item of this.slotsData){
-          if(item.Status == "Available"){
-            this.IsAvailable = true;
-          }
-          console.log(item.Status);
-        }
+        // for(let item of this.slotsData){
+        //   if(item.Status == "Available"){
+        //     this.IsAvailable = true;
+        //   }
+        //   console.log(item.Status);
+        // }
       }
       else{
         this.toast('No Slot Available');

@@ -32,15 +32,14 @@
       <ion-list lines="none">
         <ion-item>
           <ion-label class="ion-text-wrap"  (click)="onItemClickFunc(item.VenueId,item.Name)">
-  
-            <h4 class="name">{{item.Name}}</h4>
-  
-            <ion-text style="font-size: 12px;" color="medium" *ngFor="let availbleslot of item.slots"> 
-              Timing: {{availbleslot.SlotStartEnd}}<br>
-                Availablity: {{availbleslot.Status}} <br>
-            </ion-text>
+            <h3 style="font-size: 17pt;" class="name">{{item.Name}}</h3>
+            <div style="color: slategray; font-size: 11pt;" *ngFor="let availbleslot of item.slots"> 
+              <ion-icon style="color: #2f3b69;" name="time-sharp"></ion-icon>
+              {{availbleslot.SlotStartEnd}}<br>
+              <ion-icon style="color: #2f3b69;" name="stats-chart-sharp"></ion-icon>
+              {{availbleslot.Status}} <br>
+            </div>
           </ion-label>
-  
           <ion-card (click)="BookNowClick(item.VenueId,item.slots[0].Date)">
             Book Now
           </ion-card>

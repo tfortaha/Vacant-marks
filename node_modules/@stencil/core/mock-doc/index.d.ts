@@ -166,6 +166,7 @@ declare class MockAnchorElement extends MockHTMLElement {
   constructor(ownerDocument: any);
   get href(): string;
   set href(value: string);
+  get pathname(): string;
 }
 declare class MockButtonElement extends MockHTMLElement {
   constructor(ownerDocument: any);
@@ -399,17 +400,17 @@ declare class MockNode {
   prepend(...items: (MockNode | string)[]): void;
   cloneNode(deep?: boolean): MockNode;
   compareDocumentPosition(_other: MockNode): number;
-  get firstChild(): MockNode;
+  get firstChild(): MockNode | null;
   insertBefore(newNode: MockNode, referenceNode: MockNode): MockNode;
   get isConnected(): boolean;
   isSameNode(node: any): boolean;
-  get lastChild(): MockNode;
-  get nextSibling(): MockNode;
+  get lastChild(): MockNode | null;
+  get nextSibling(): MockNode | null;
   get nodeValue(): string;
   set nodeValue(value: string);
   get parentElement(): any;
   set parentElement(value: any);
-  get previousSibling(): MockNode;
+  get previousSibling(): MockNode | null;
   contains(otherNode: MockNode): boolean;
   removeChild(childNode: MockNode): MockNode;
   remove(): void;
@@ -451,7 +452,7 @@ declare class MockElement extends MockNode {
   get dir(): string;
   set dir(value: string);
   dispatchEvent(ev: MockEvent): boolean;
-  get firstElementChild(): MockElement;
+  get firstElementChild(): MockElement | null;
   getAttribute(attrName: string): any;
   getAttributeNS(namespaceURI: string, attrName: string): string;
   getBoundingClientRect(): {
@@ -486,7 +487,7 @@ declare class MockElement extends MockNode {
   set hidden(isHidden: boolean);
   get lang(): string;
   set lang(value: string);
-  get lastElementChild(): MockElement;
+  get lastElementChild(): MockElement | null;
   matches(selector: string): boolean;
   get nextElementSibling(): any;
   get outerHTML(): string;
