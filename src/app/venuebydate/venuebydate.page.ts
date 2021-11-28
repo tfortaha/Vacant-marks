@@ -134,7 +134,7 @@ export class VenuebydatePage implements OnInit {
             for(let slot of item.slots){
               if(slot.Status == "Available"){
                 this.availableSlots.push(slot);
-                // this.availableSlots[i] = slot;
+                // this.availableSlots[i] = slot;`
                 // i++;
               }
             }
