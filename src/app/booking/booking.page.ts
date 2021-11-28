@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, ModalController, NavParams, ToastController } from '@ionic/angular';
+import { format } from 'date-fns';
 import { DataService } from '../services/data.service';
 import { HttpService } from '../services/http.service';
 
@@ -43,7 +44,8 @@ export class BookingPage implements OnInit {
     if(this.Slots.length == 0){
       this.Slots.push({"Id":"","SlotStartEnd":"No Slots Available."});
     }
-    this.postData.BookingDate = this.slot[0].Date;
+    debugger;
+    this.postData.BookingDate = format(new Date(this.slot[0].Date),"dd-MMMM-yyyy");
     console.log(this.slot,this.Slots);
    }
 

@@ -13,14 +13,24 @@
           <ion-item lines="none" (click)="showMore[k] = !showMore[k]">
             <div>
               <div *ngIf="!showMore[k]">
-                  {{trimString(item,55)}}
+                <ion-icon style="color: #2f3b69;" name="today"></ion-icon>
+                  {{trimString(item.Date,55)}}
               </div>
-              <div *ngIf="showMore[k]" style="white-space: pre-wrap;">
-                  {{item}}
+              <div *ngIf="showMore[k]" style="color: slategray; font-size: 11pt;"> 
+                <ion-icon style="color: #2f3b69;" name="today"></ion-icon>
+                {{item.Date}}<br>
+                <ion-icon style="color: #2f3b69;" name="storefront"></ion-icon>
+                {{item.Venue}}<br>
+                <ion-icon style="color: #2f3b69;" name="sparkles"></ion-icon>
+                {{item.Title}}<br>
+                <ion-icon style="color: #2f3b69;" name="stats-chart"></ion-icon>
+                {{item.Status}}<br>
+                <ion-icon style="color: #2f3b69;" name="time-sharp"></ion-icon>
+                {{item.Description}}<br>
               </div>
           </div>
-          <i slot="end" *ngIf="!showMore[k]" class="icon icon-plus-box icon-small"></i>
-          <i slot="end" *ngIf="showMore[k]" class="icon icon-minus-box icon-small"></i>
+          <i slot="end" *ngIf="!showMore[k]" class="icon icon-plus icon-small"></i>
+          <i slot="end" *ngIf="showMore[k]" class="icon icon-minus icon-small"></i>
         </ion-item>
     </ion-card>
   </div>

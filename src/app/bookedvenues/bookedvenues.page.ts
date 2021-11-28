@@ -36,6 +36,7 @@ export class BookedvenuesPage implements OnInit {
   }
 
   async method(){
+    debugger;
     let params = new HttpParams();
     this.storage.get("userdetails").then((res) =>{
       if(res != null){
@@ -51,12 +52,12 @@ export class BookedvenuesPage implements OnInit {
               var SplitedDate = item.BookingDate.split("T");
               let statusMessage = "";
               if(item.Status == 1){
-                statusMessage = "Confirmed";
+                statusMessage = "Booked";
               }
               else if(item.Status == 2){
                 statusMessage = "Pending";
               }
-              else if(item.Status == 2){
+              else if(item.Status == 3){
                 statusMessage = "Canceled";
               }
               else{
@@ -66,8 +67,20 @@ export class BookedvenuesPage implements OnInit {
               //   "\n Title: " + item.title + "\n " + item.Description + "\n Guest: " + item.Guest +
               //   "\n Total Amount: " + item.VenueAmount + "\n Advance Amount: " + item.Advance +
               //   "\n Discount%: " + item.Discount + "\n Reference: " + item.Reference;
-              this.detailHeader[count] = "Date: " + SplitedDate[0] + "\n Venue: " + item.Name + "\n Status: " + statusMessage +
-              "\n Title: " + item.title + "\n " + item.Description + "\n Guest: " + item.Guest ;
+
+              // this.detailHeader[count] = "Date: " + SplitedDate[0] + "\n Venue: " + item.Name + "\n Status: " + statusMessage +
+              // "\n Title: " + item.title + "\n " + item.Description + "\n Guest: " + item.Guest ;
+
+              var SplitedDesc = item.Description.split(" ");
+              console.log(SplitedDesc);
+              this.detailHeader[count] = {
+                                          "Date": format(new Date(SplitedDate[0]),"dd-MMMM-yyyy"),
+                                          "Venue": item.Name,
+                                          "Status": statusMessage,
+                                          "Title": item.title,
+                                          "Description": SplitedDesc[6]+SplitedDesc[7]+" "+SplitedDesc[8]+" "+SplitedDesc[9]+SplitedDesc[10],
+                                          "Guest": item.Guest
+                                        };
 
                 this.showMore[count ] = false;
                 count++;

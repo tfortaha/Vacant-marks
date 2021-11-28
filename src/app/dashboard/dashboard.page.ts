@@ -39,7 +39,7 @@ export class DashboardPage implements OnInit {
   slideOpts = {
     initialSlide: 0,
     speed: 1000,
-    slidesPerView: 1,
+    slidesPerView: 3,
     spaceBetween: 5,
     //loop: true,
     effect: 'slide',

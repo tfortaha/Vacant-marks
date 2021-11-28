@@ -451,14 +451,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BookingPage": () => (/* binding */ BookingPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_booking_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./booking.page.html */ 5616);
 /* harmony import */ var _booking_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./booking.page.scss */ 9596);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 9895);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! date-fns */ 2707);
 /* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/data.service */ 2468);
 /* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/http.service */ 6858);
+
 
 
 
@@ -482,7 +484,7 @@ let BookingPage = class BookingPage {
             title: '',
             SlotId: '',
             BookingDate: '',
-            Status: 1,
+            Status: 2,
             Guest: '',
             CustomerId: ''
         };
@@ -496,7 +498,8 @@ let BookingPage = class BookingPage {
         if (this.Slots.length == 0) {
             this.Slots.push({ "Id": "", "SlotStartEnd": "No Slots Available." });
         }
-        this.postData.BookingDate = this.slot[0].Date;
+        debugger;
+        this.postData.BookingDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_4__.default)(new Date(this.slot[0].Date), "dd-MMMM-yyyy");
         console.log(this.slot, this.Slots);
     }
     ngOnInit() {
@@ -522,7 +525,7 @@ let BookingPage = class BookingPage {
         return this.isGuestValid && this.isDateValid && this.isSlotValid && this.istitleValid;
     }
     BookVenue() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             if (this.validateInputs()) {
                 this.loading = yield this.loadingController.create({
                     //message: this.translate.instant('pleasewait'),
@@ -548,7 +551,7 @@ let BookingPage = class BookingPage {
         });
     }
     toast(msg) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             const toast = yield this.toastcontroller.create({
                 message: msg,
                 duration: 2000
@@ -561,16 +564,16 @@ let BookingPage = class BookingPage {
     }
 };
 BookingPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.LoadingController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.NavParams },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.ModalController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.LoadingController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.NavParams },
     { type: _services_http_service__WEBPACK_IMPORTED_MODULE_3__.HttpService },
     { type: _services_data_service__WEBPACK_IMPORTED_MODULE_2__.DataService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ToastController },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.ToastController },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router }
 ];
-BookingPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+BookingPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-booking',
         template: _raw_loader_booking_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_booking_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -607,7 +610,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>booking</ion-title>\n    <ion-button color=\"clear\" size=\"small\" slot=\"end\" (click)=\"close()\">\n      <ion-icon name=\"close\"></ion-icon>\n    </ion-button>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"12\">\n        <ion-item class=\"ion-no-padding transparent input\">\n          <ion-label class=\"text-size-xs\" position=\"floating\" >Title </ion-label>\n          <ion-select interface=\"popover\" class=\"custom-options\" (ionChange)=\"validateInputs()\" [(ngModel)]=\"postData.title\">\n            <ion-select-option value=\"Wedding Ceremony\">Wedding Ceremony</ion-select-option>\n            <ion-select-option value=\"Valima Reception\">Valima Reception</ion-select-option>\n            <ion-select-option value=\"Birthday\">Birthday</ion-select-option>\n        </ion-select>\n        <ion-icon style=\"padding-top: 20px;\" class=\"icon-small\" slot=\"end\" *ngIf=\"!istitleValid\" name=\"remove-circle\"></ion-icon>\n      </ion-item>\n    </ion-col>\n  </ion-row>\n\n    <ion-row>\n        <ion-col size=\"12\">\n          <ion-item class=\"ion-no-padding transparent input\">\n            <ion-label class=\"text-size-xs\" position=\"floating\" >Available Slots </ion-label>\n            <ion-select interface=\"popover\" class=\"custom-options\" (ionChange)=\"validateInputs()\" [(ngModel)]=\"postData.SlotId\">\n              <ion-select-option *ngFor=\"let item of Slots\"  value=\"{{item.Id}}\">{{item.SlotStartEnd}}</ion-select-option>\n          </ion-select>\n          <ion-icon style=\"padding-top: 20px;\" class=\"icon-small\" slot=\"end\" *ngIf=\"!isSlotValid\" name=\"remove-circle\"></ion-icon>\n        </ion-item>\n      </ion-col>\n    </ion-row>\n\n  <ion-row>\n    <ion-col size=\"12\">\n      <ion-item class=\"ion-no-padding transparent input\">\n        <ion-label class=\"text-size-xs\" position=\"floating\" >Total Guest </ion-label>\n        <ion-input class=\"custom-options\" [(ngModel)]=\"postData.Guest\" (ionChange)=\"validateInputs()\"></ion-input>\n        <ion-icon style=\"padding-top: 20px;\" class=\"icon-small\" slot=\"end\" *ngIf=\"!isGuestValid\" name=\"remove-circle\"></ion-icon>\n    </ion-item>\n  </ion-col>\n</ion-row>\n\n<ion-row>\n  <ion-col size=\"12\">\n    <ion-item class=\"ion-no-padding transparent input\">\n      <ion-label class=\"text-size-xs\" position=\"floating\" >Booking Date </ion-label>\n      <ion-input class=\"custom-options\" [(ngModel)]=\"postData.BookingDate\" (ionChange)=\"validateInputs()\" readonly></ion-input>\n      <ion-icon style=\"padding-top: 20px;\" class=\"icon-small\" slot=\"end\" *ngIf=\"!isDateValid\" name=\"remove-circle\"></ion-icon>\n  </ion-item>\n</ion-col>\n</ion-row>\n\n<ion-row>\n  <ion-col size=\"12\">\n      <ion-button expand=\"block\" expand=\"full\" shape=\"round\" fill=\"outline\" (click)=\"BookVenue()\"> Book Venue </ion-button>\n</ion-col>\n</ion-row>\n\n  </ion-grid>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Booking</ion-title>\r\n    <ion-button style=\"background-color: darkslateblue; margin-right: 10px;\" color=\"clear\" size=\"small\" slot=\"end\" (click)=\"close()\">\r\n      <ion-icon name=\"close\"></ion-icon>\r\n    </ion-button>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <ion-grid>\r\n    <ion-row>\r\n      <ion-col size=\"12\">\r\n        <ion-item class=\"ion-no-padding transparent input\">\r\n          <ion-label class=\"text-size-xs\" position=\"floating\" >Title </ion-label>\r\n          <ion-select interface=\"action-sheet\" class=\"custom-options\" (ionChange)=\"validateInputs()\" [(ngModel)]=\"postData.title\">\r\n            <ion-select-option value=\"Wedding Ceremony\">Wedding Ceremony</ion-select-option>\r\n            <ion-select-option value=\"Valima Reception\">Valima Reception</ion-select-option>\r\n            <ion-select-option value=\"Birthday\">Birthday</ion-select-option>\r\n            <ion-select-option value=\"Other\">Other</ion-select-option>\r\n        </ion-select>\r\n        <ion-icon style=\"padding-top: 20px;\" class=\"icon-small\" slot=\"end\" *ngIf=\"!istitleValid\" name=\"remove-circle\"></ion-icon>\r\n      </ion-item>\r\n    </ion-col>\r\n  </ion-row>\r\n\r\n    <ion-row>\r\n        <ion-col size=\"12\">\r\n          <ion-item class=\"ion-no-padding transparent input\">\r\n            <ion-label class=\"text-size-xs\" position=\"floating\" >Available Slots </ion-label>\r\n            <ion-select interface=\"action-sheet\" class=\"custom-options\" (ionChange)=\"validateInputs()\" [(ngModel)]=\"postData.SlotId\">\r\n              <ion-select-option *ngFor=\"let item of Slots\"  value=\"{{item.Id}}\">{{item.SlotStartEnd}}</ion-select-option>\r\n          </ion-select>\r\n          <ion-icon style=\"padding-top: 20px;\" class=\"icon-small\" slot=\"end\" *ngIf=\"!isSlotValid\" name=\"remove-circle\"></ion-icon>\r\n        </ion-item>\r\n      </ion-col>\r\n    </ion-row>\r\n\r\n  <ion-row>\r\n    <ion-col size=\"12\">\r\n      <ion-item class=\"ion-no-padding transparent input\">\r\n        <ion-label class=\"text-size-xs\" position=\"floating\" >Total Guest </ion-label>\r\n        <ion-input type=\"number\" class=\"custom-options\" [(ngModel)]=\"postData.Guest\" (ionChange)=\"validateInputs()\"></ion-input>\r\n        <ion-icon style=\"padding-top: 20px;\" class=\"icon-small\" slot=\"end\" *ngIf=\"!isGuestValid\" name=\"remove-circle\"></ion-icon>\r\n    </ion-item>\r\n  </ion-col>\r\n</ion-row>\r\n\r\n<ion-row>\r\n  <ion-col size=\"12\">\r\n    <ion-item class=\"ion-no-padding transparent input\">\r\n      <ion-label class=\"text-size-xs\" position=\"floating\" >Booking Date </ion-label>\r\n      <ion-input class=\"custom-options\" [(ngModel)]=\"postData.BookingDate\" (ionChange)=\"validateInputs()\" readonly></ion-input>\r\n      <ion-icon style=\"padding-top: 20px;\" class=\"icon-small\" slot=\"end\" *ngIf=\"!isDateValid\" name=\"remove-circle\"></ion-icon>\r\n  </ion-item>\r\n</ion-col>\r\n</ion-row>\r\n\r\n<ion-row>\r\n  <ion-col size=\"12\">\r\n      <ion-button expand=\"block\" expand=\"full\" shape=\"round\" fill=\"outline\" (click)=\"BookVenue()\"> Book Venue </ion-button>\r\n</ion-col>\r\n</ion-row>\r\n\r\n  </ion-grid>\r\n</ion-content>\r\n");
 
 /***/ })
 

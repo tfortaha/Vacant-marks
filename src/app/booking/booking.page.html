@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>booking</ion-title>
-    <ion-button color="clear" size="small" slot="end" (click)="close()">
+    <ion-title>Booking</ion-title>
+    <ion-button style="background-color: darkslateblue; margin-right: 10px;" color="clear" size="small" slot="end" (click)="close()">
       <ion-icon name="close"></ion-icon>
     </ion-button>
   </ion-toolbar>
@@ -13,10 +13,11 @@
       <ion-col size="12">
         <ion-item class="ion-no-padding transparent input">
           <ion-label class="text-size-xs" position="floating" >Title </ion-label>
-          <ion-select interface="popover" class="custom-options" (ionChange)="validateInputs()" [(ngModel)]="postData.title">
+          <ion-select interface="action-sheet" class="custom-options" (ionChange)="validateInputs()" [(ngModel)]="postData.title">
             <ion-select-option value="Wedding Ceremony">Wedding Ceremony</ion-select-option>
             <ion-select-option value="Valima Reception">Valima Reception</ion-select-option>
             <ion-select-option value="Birthday">Birthday</ion-select-option>
+            <ion-select-option value="Other">Other</ion-select-option>
         </ion-select>
         <ion-icon style="padding-top: 20px;" class="icon-small" slot="end" *ngIf="!istitleValid" name="remove-circle"></ion-icon>
       </ion-item>
@@ -27,7 +28,7 @@
         <ion-col size="12">
           <ion-item class="ion-no-padding transparent input">
             <ion-label class="text-size-xs" position="floating" >Available Slots </ion-label>
-            <ion-select interface="popover" class="custom-options" (ionChange)="validateInputs()" [(ngModel)]="postData.SlotId">
+            <ion-select interface="action-sheet" class="custom-options" (ionChange)="validateInputs()" [(ngModel)]="postData.SlotId">
               <ion-select-option *ngFor="let item of Slots"  value="{{item.Id}}">{{item.SlotStartEnd}}</ion-select-option>
           </ion-select>
           <ion-icon style="padding-top: 20px;" class="icon-small" slot="end" *ngIf="!isSlotValid" name="remove-circle"></ion-icon>
@@ -39,7 +40,7 @@
     <ion-col size="12">
       <ion-item class="ion-no-padding transparent input">
         <ion-label class="text-size-xs" position="floating" >Total Guest </ion-label>
-        <ion-input class="custom-options" [(ngModel)]="postData.Guest" (ionChange)="validateInputs()"></ion-input>
+        <ion-input type="number" class="custom-options" [(ngModel)]="postData.Guest" (ionChange)="validateInputs()"></ion-input>
         <ion-icon style="padding-top: 20px;" class="icon-small" slot="end" *ngIf="!isGuestValid" name="remove-circle"></ion-icon>
     </ion-item>
   </ion-col>
